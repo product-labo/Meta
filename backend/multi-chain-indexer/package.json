@@ -1,0 +1,33 @@
+{
+    "name": "multi-chain-indexer",
+    "version": "1.0.0",
+    "description": "Multi-Chain Streaming Indexer for smart contract data",
+    "main": "dist/index.js",
+    "scripts": {
+        "build": "tsc",
+        "start": "node dist/index.js",
+        "dev": "ts-node-dev src/index.ts",
+        "parallel": "ts-node-dev src/index-parallel-optimized.ts"
+    },
+    "dependencies": {
+        "axios": "^1.13.2",
+        "cors": "^2.8.5",
+        "dotenv": "^16.3.1",
+        "ethers": "^6.8.1",
+        "express": "^5.2.1",
+        "kafkajs": "^2.2.4",
+        "node-cron": "^3.0.3",
+        "pg": "^8.11.3",
+        "redis": "^5.10.0",
+        "starknet": "^5.19.5",
+        "winston": "^3.11.0"
+    },
+    "devDependencies": {
+        "@types/node": "^20.10.0",
+        "@types/node-cron": "^3.0.11",
+        "@types/pg": "^8.10.9",
+        "ts-node": "^10.9.1",
+        "ts-node-dev": "^2.0.0",
+        "typescript": "^5.3.0"
+    }
+}

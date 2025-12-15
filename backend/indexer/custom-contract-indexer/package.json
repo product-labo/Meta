@@ -1,0 +1,19 @@
+{
+  "name": "custom-contract-indexer",
+  "version": "1.0.0",
+  "description": "Index user-specified smart contracts on any EVM chain",
+  "main": "custom-contract-indexer.js",
+  "type": "module",
+  "scripts": {
+    "start": "node run-custom-indexer.js",
+    "start:config": "node run-custom-indexer.js custom-indexer-config.json"
+  },
+  "dependencies": {
+    "axios": "^1.13.2",
+    "dotenv": "^16.0.0",
+    "ethers": "^6.13.0",
+    "node-cron": "^4.2.1",
+    "pg": "^8.16.3",
+    "starknet": "^7.1.0"
+  }
+}
