@@ -1,0 +1,52 @@
+{
+  "name": "blockchain-analytics-indexer",
+  "version": "1.0.0",
+  "description": "Multi-chain blockchain analytics platform using Apibara indexers",
+  "main": "dist/index.js",
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "dev": "concurrently \"npm run indexer:evm\" \"npm run indexer:starknet\"",
+    "start": "node dist/index.js",
+    "setup": "tsx src/index.ts setup",
+    "analytics": "tsx src/index.ts analytics",
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "drizzle-kit migrate",
+    "db:studio": "drizzle-kit studio",
+    "indexer:evm": "tsx src/indexers/evm-working.indexer.ts",
+    "indexer:starknet": "tsx src/indexers/starknet-simple.indexer.ts",
+    "indexer:beacon": "tsx src/indexers/beacon.indexer.ts",
+    "indexer:all": "concurrently \"npm run indexer:evm\" \"npm run indexer:starknet\" \"npm run indexer:beacon\"",
+    "setup-db": "tsx src/scripts/setup.ts"
+  },
+  "dependencies": {
+    "@apibara/beaconchain": "latest",
+    "@apibara/evm": "latest",
+    "@apibara/indexer": "latest",
+    "@apibara/plugin-drizzle": "latest",
+    "@apibara/starknet": "latest",
+    "dotenv": "^16.3.1",
+    "drizzle-orm": "^0.36.0",
+    "pg": "^8.11.3",
+    "viem": "^2.0.0",
+    "winston": "^3.11.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "@types/pg": "^8.10.9",
+    "concurrently": "^8.2.2",
+    "drizzle-kit": "^0.31.8",
+    "tsx": "^4.6.0",
+    "typescript": "^5.3.0"
+  },
+  "keywords": [
+    "blockchain",
+    "analytics",
+    "indexer",
+    "apibara",
+    "ethereum",
+    "starknet"
+  ],
+  "author": "Blockchain Analytics Team",
+  "license": "MIT"
+}
