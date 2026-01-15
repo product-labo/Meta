@@ -29,7 +29,7 @@ export function HeroSection() {
       <div className="relative mt-12">
         <div className="bg-gradient-to-b from-muted/50 to-background rounded-2xl p-4 shadow-xl border">
           <Image
-            src="/images/home-20page.png"
+            src="/images/home-page.jpg"
             alt="MetaGauge Dashboard Preview"
             width={1200}
             height={600}

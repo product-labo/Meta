@@ -1,107 +1,154 @@
-const axios = require('axios');
-const { Client } = require('pg');
+const { exec } = require('child_process');
+const { promisify } = require('util');
+const execAsync = promisify(exec);
 
-const DB_CONFIG = {
-  host: 'localhost',
-  port: 5432,
-  database: 'david',
-  user: 'david_user',
-  password: 'Davidsoyaya@1015'
-};
+async function query(sql) {
+  const { stdout } = await execAsync(`sudo -u postgres psql -d david -t -A -c "${sql}"`);
+  return stdout.trim().split('\n').filter(line => !line.includes('Warning'));
+}
 
-const RPC_URL = 'https://rpc.starknet.lava.build';
+async function fetchBlock(blockNumber) {
+  const cmd = `curl -s -X POST https://rpc.starknet.lava.build -H "Content-Type: application/json" -d '{"jsonrpc":"2.0","method":"starknet_getBlockWithTxs","params":[{"block_number":${blockNumber}}],"id":1}'`;
+  const { stdout } = await execAsync(cmd);
+  return JSON.parse(stdout);
+}
 
-async function fetchAndStoreBlocks() {
-  const client = new Client(DB_CONFIG);
-  await client.connect();
+async function ingestBlock(blockNumber) {
+  console.log(`\n📦 Block ${blockNumber}...`);
   
-  try {
-    // Get current latest block from DB
-    const result = await client.query('SELECT MAX(block_number) as latest FROM blocks');
-    const latestInDb = parseInt(result.rows[0].latest) || 0;
+  const response = await fetchBlock(blockNumber);
+  if (!response.result) {
+    console.log(`  ❌ Failed to fetch`);
+    return false;
+  }
+  
+  const block = response.result;
+  
+  // Insert block
+  const blockSql = `
+    INSERT INTO blocks (
+      block_number, block_hash, parent_block_hash, timestamp,
+      finality_status, chain_id, transaction_count, event_count, is_active
+    ) VALUES (
+      ${block.block_number}, 
+      '${block.block_hash}', 
+      '${block.parent_hash}', 
+      ${block.timestamp},
+      '${block.status || 'ACCEPTED_ON_L2'}', 
+      1, 
+      ${block.transactions?.length || 0}, 
+      0, 
+      true
+    ) ON CONFLICT (block_number) DO NOTHING;
+  `;
+  
+  await execAsync(`sudo -u postgres psql -d david -c "${blockSql.replace(/\n/g, ' ')}"`);
+  
+  // Insert transactions
+  let txCount = 0;
+  let eventCount = 0;
+  
+  for (const tx of block.transactions || []) {
+    const txSql = `
+      INSERT INTO transactions (
+        tx_hash, block_number, chain_id, tx_type, sender_address,
+        status, actual_fee, nonce, max_fee, is_active
+      ) VALUES (
+        '${tx.transaction_hash}',
+        ${block.block_number},
+        1,
+        '${tx.type}',
+        ${tx.sender_address ? `'${tx.sender_address}'` : 'NULL'},
+        'ACCEPTED_ON_L2',
+        ${tx.actual_fee || 'NULL'},
+        ${tx.nonce || 'NULL'},
+        ${tx.max_fee || 'NULL'},
+        true
+      ) ON CONFLICT (tx_hash) DO NOTHING;
+    `;
     
-    console.log(`Latest block in DB: ${latestInDb}`);
-    
-    // Get current block from RPC
-    const rpcResponse = await axios.post(RPC_URL, {
-      jsonrpc: '2.0',
-      method: 'starknet_blockNumber',
-      id: 1
-    });
-    
-    const currentBlock = parseInt(rpcResponse.data.result, 16);
-    console.log(`Current network block: ${currentBlock}`);
-    
-    // Fetch missing blocks
-    for (let blockNum = latestInDb + 1; blockNum <= Math.min(latestInDb + 5, currentBlock); blockNum++) {
-      try {
-        console.log(`Fetching block ${blockNum}...`);
-        
-        const blockResponse = await axios.post(RPC_URL, {
-          jsonrpc: '2.0',
-          method: 'starknet_getBlockWithTxs',
-          params: [{ block_number: blockNum }],
-          id: 1
-        });
-        
-        const block = blockResponse.data.result;
-        
-        // Insert block
-        await client.query(`
-          INSERT INTO blocks (block_number, block_hash, parent_block_hash, timestamp, finality_status, created_at)
-          VALUES ($1, $2, $3, $4, $5, NOW())
-          ON CONFLICT (block_number) DO NOTHING
-        `, [
-          blockNum,
-          block.block_hash,
-          block.parent_hash,
-          new Date(block.timestamp * 1000),
-          'ACCEPTED_ON_L2'
-        ]);
-        
-        // Insert transactions
-        if (block.transactions) {
-          for (const tx of block.transactions) {
-            await client.query(`
-              INSERT INTO transactions (tx_hash, block_number, tx_type, sender_address, status, created_at)
-              VALUES ($1, $2, $3, $4, $5, NOW())
-              ON CONFLICT (tx_hash) DO NOTHING
-            `, [
-              tx.transaction_hash,
-              blockNum,
-              tx.type || 'UNKNOWN',
-              tx.sender_address || '0x0',
-              'ACCEPTED_ON_L2'
-            ]);
+    try {
+      await execAsync(`sudo -u postgres psql -d david -c "${txSql.replace(/\n/g, ' ')}"`);
+      txCount++;
+      
+      // Fetch receipt for events
+      const receiptCmd = `curl -s -X POST https://rpc.starknet.lava.build -H "Content-Type: application/json" -d '{"jsonrpc":"2.0","method":"starknet_getTransactionReceipt","params":["${tx.transaction_hash}"],"id":1}'`;
+      const { stdout: receiptData } = await execAsync(receiptCmd);
+      const receipt = JSON.parse(receiptData);
+      
+      if (receipt.result?.events) {
+        for (let i = 0; i < receipt.result.events.length; i++) {
+          const event = receipt.result.events[i];
+          const keys = event.keys ? `ARRAY['${event.keys.join("','")}']` : 'ARRAY[]::text[]';
+          const data = event.data ? `ARRAY['${event.data.join("','")}']` : 'ARRAY[]::text[]';
+          
+          const eventSql = `
+            INSERT INTO events (
+              tx_hash, contract_address, block_number, chain_id,
+              event_index, keys, data, is_active
+            ) VALUES (
+              '${tx.transaction_hash}',
+              '${event.from_address}',
+              ${block.block_number},
+              1,
+              ${i},
+              ${keys},
+              ${data},
+              true
+            ) ON CONFLICT DO NOTHING;
+          `;
+          
+          try {
+            await execAsync(`sudo -u postgres psql -d david -c "${eventSql.replace(/\n/g, ' ')}"`);
+            eventCount++;
+          } catch (e) {
+            // Skip on error
           }
         }
-        
-        console.log(`✅ Block ${blockNum} stored with ${block.transactions?.length || 0} transactions`);
-        
-      } catch (error) {
-        console.error(`❌ Error fetching block ${blockNum}:`, error.message);
       }
+    } catch (e) {
+      // Skip on error
     }
-    
-  } finally {
-    await client.end();
   }
-}
-
-// Run continuously
-async function startIndexer() {
-  console.log('🚀 Starting simple indexer...');
   
-  while (true) {
-    try {
-      await fetchAndStoreBlocks();
-      console.log('⏳ Waiting 10 seconds...');
-      await new Promise(resolve => setTimeout(resolve, 10000));
-    } catch (error) {
-      console.error('💥 Indexer error:', error.message);
-      await new Promise(resolve => setTimeout(resolve, 5000));
-    }
-  }
+  // Update block event count
+  await execAsync(`sudo -u postgres psql -d david -c "UPDATE blocks SET event_count = ${eventCount} WHERE block_number = ${block.block_number} AND chain_id = 1;"`);
+  
+  // Update sync state
+  await execAsync(`sudo -u postgres psql -d david -c "UPDATE sync_state SET last_synced_block = ${block.block_number}, last_sync_timestamp = NOW() WHERE chain_id = 1;"`);
+  
+  console.log(`  ✅ Hash: ${block.block_hash.substring(0, 20)}...`);
+  console.log(`  ✅ Txs: ${txCount}/${block.transactions?.length || 0}`);
+  console.log(`  ✅ Events: ${eventCount}`);
+  
+  return true;
 }
 
-startIndexer();
+async function start() {
+  console.log('🚀 Starknet Indexer Starting\n');
+  
+  // Get last synced
+  const lastSynced = await query('SELECT COALESCE(last_synced_block, 0) FROM sync_state WHERE chain_id = 1');
+  const startBlock = parseInt(lastSynced[0] || '0');
+  
+  console.log(`📊 Starting from block: ${startBlock}`);
+  console.log(`📥 Syncing 2 blocks...\n`);
+  
+  // Sync 2 blocks
+  for (let i = 1; i <= 2; i++) {
+    await ingestBlock(startBlock + i);
+    await new Promise(r => setTimeout(r, 1000)); // Rate limit
+  }
+  
+  // Stats
+  const blocks = await query('SELECT COUNT(*) FROM blocks WHERE chain_id = 1');
+  const txs = await query('SELECT COUNT(*) FROM transactions WHERE chain_id = 1');
+  
+  console.log('\n================================');
+  console.log('📊 Stats:');
+  console.log(`   Blocks: ${blocks[0]}`);
+  console.log(`   Transactions: ${txs[0]}`);
+  console.log('================================\n');
+}
+
+start().catch(console.error);
