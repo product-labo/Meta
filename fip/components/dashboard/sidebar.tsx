@@ -9,6 +9,7 @@ import { cn } from "@/lib/utils"
 import { Slider } from "@/components/ui/slider"
 import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
+import { useAuth } from "@/components/auth/auth-provider"
 
 const navItems = [
   { href: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
@@ -17,7 +18,7 @@ const navItems = [
   { href: "/dashboard/top", label: "Top/Failing Project", icon: TrendingUp },
   { href: "/dashboard/new", label: "New Project", icon: FolderPlus },
   { href: "/dashboard/api", label: "API & Export", icon: FileCode },
-  { href: "/settings", label: "Settings", icon: Settings },
+  { href: "/dashboard/settings", label: "Settings", icon: Settings },
 ]
 
 const chains = [
@@ -35,6 +36,7 @@ const categories = [
 export function DashboardSidebar() {
   const pathname = usePathname()
   const router = useRouter()
+  const { logout } = useAuth()
   const [growthRange, setGrowthRange] = useState([50])
   const [isClient, setIsClient] = useState(false)
 
@@ -119,6 +121,16 @@ export function DashboardSidebar() {
 
         </div>
       </nav>
+
+      <div className="p-4 border-t">
+        <button
+          onClick={logout}
+          className="flex items-center gap-3 px-3 py-2 w-full rounded-lg text-sm text-red-500 hover:bg-red-50 transition-colors font-medium"
+        >
+          <LogOut className="h-4 w-4" />
+          Logout
+        </button>
+      </div>
     </aside>
   )
 }

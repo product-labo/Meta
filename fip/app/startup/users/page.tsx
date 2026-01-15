@@ -6,19 +6,21 @@ import { MetricCard } from "@/components/startup/cards/metric-card"
 import { InsightCard } from "@/components/startup/cards/insight-card"
 import { Lightbulb, Bell, UserMinus } from "lucide-react"
 
+import { DashboardHeader } from "@/components/dashboard/header"
+
 export default function UsersPage() {
     return (
-        <div className="p-8 space-y-8">
+        <div className="p-8 space-y-8 bg-[#F9FAFB] min-h-screen">
 
-            <div className="flex items-center justify-between">
-                <div>
-                    <h1 className="text-2xl font-bold">Users Retention & Churn Insight</h1>
-                    <p className="text-muted-foreground">Detect when and why users stop using your product</p>
-                </div>
-                <Button className="bg-slate-900 text-white">
-                    <Share className="w-4 h-4 mr-2" /> Last 30 Days
-                </Button>
-            </div>
+            <DashboardHeader
+                title="Users Retention & Churn Insight"
+                subtitle="Detect when and why users stop using your product"
+                action={
+                    <Button className="h-11 px-6 rounded-xl bg-[#111827] text-white hover:bg-gray-800 transition-colors">
+                        <Share className="w-4 h-4 mr-2" /> Last 30 Days
+                    </Button>
+                }
+            />
 
             {/* Metrics Row */}
             <div className="grid grid-cols-4 gap-6">

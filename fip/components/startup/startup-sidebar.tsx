@@ -4,12 +4,13 @@ import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { MetaGaugeLogo } from "@/components/icons/metagauge-logo"
 import { Input } from "@/components/ui/input"
-import { Search, LayoutDashboard, User, Users, Gauge, Building2, Bell, Lightbulb, Settings } from "lucide-react"
+import { Search, LayoutDashboard, User, Users, Gauge, Building2, Bell, Lightbulb, Settings, LogOut } from "lucide-react"
 import { cn } from "@/lib/utils"
+import { useAuth } from "@/components/auth/auth-provider"
 
 const navItems = [
   { href: "/startup", label: "Dashboard", icon: LayoutDashboard },
-  { href: "/startup/users", label: "User & Wallet", icon: User },
+  { href: "/startup/wallet", label: "User & Wallet", icon: User },
   { href: "/startup/benchmark", label: "Competitive Benchmark", icon: Users },
   { href: "/startup/productivity", label: "Productivity Score", icon: Gauge },
   { href: "/startup/transactions", label: "Transactional Insight", icon: Building2 },
@@ -20,6 +21,7 @@ const navItems = [
 
 export function StartupSidebar() {
   const pathname = usePathname()
+  const { logout } = useAuth()
 
   return (
     <aside className="w-64 border-r bg-card h-screen flex flex-col">
@@ -57,6 +59,16 @@ export function StartupSidebar() {
           ))}
         </ul>
       </nav>
+
+      <div className="p-4 border-t">
+        <button
+          onClick={logout}
+          className="flex items-center gap-3 px-3 py-2 w-full rounded-lg text-sm text-red-500 hover:bg-red-50 transition-colors font-medium"
+        >
+          <LogOut className="h-4 w-4" />
+          Logout
+        </button>
+      </div>
     </aside>
   )
 }

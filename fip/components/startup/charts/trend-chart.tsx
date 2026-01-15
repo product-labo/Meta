@@ -1,68 +1,40 @@
 "use client"
 
-import { Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis, CartesianGrid, Legend } from "recharts"
+import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 
 const data = [
-    { month: "Jan", product: 3200, competitor: 3600, median: 3500 },
-    { month: "Feb", product: 3700, competitor: 4200, median: 3550 },
-    { month: "Mar", product: 3500, competitor: 4400, median: 3600 },
-    { month: "Apr", product: 4200, competitor: 4800, median: 3650 },
-    { month: "May", product: 4000, competitor: 4900, median: 3700 },
-    { month: "Jun", product: 4800, competitor: 5600, median: 3750 },
-]
+    { name: 'Jan', product: 3500, competitor: 3800, median: 3300 },
+    { name: 'Feb', product: 3800, competitor: 4500, median: 4200 },
+    { name: 'Mar', product: 3700, competitor: 4500, median: 4200 },
+    { name: 'Apr', product: 4300, competitor: 4800, median: 4600 },
+    { name: 'May', product: 4200, competitor: 4800, median: 4600 },
+    { name: 'Jun', product: 4800, competitor: 5800, median: 4200 },
+];
 
 export function TrendChart() {
     return (
-        <ResponsiveContainer width="100%" height={300}>
-            <LineChart data={data} margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
-                <CartesianGrid strokeDasharray="3 3" vertical={true} horizontal={true} stroke="#e5e7eb" />
-                <XAxis
-                    dataKey="month"
-                    axisLine={false}
-                    tickLine={false}
-                    tickMargin={10}
-                    stroke="#6b7280"
-                    fontSize={12}
-                />
-                <YAxis
-                    axisLine={false}
-                    tickLine={false}
-                    stroke="#6b7280"
-                    fontSize={12}
-                />
-                <Tooltip
-                    contentStyle={{ backgroundColor: 'white', borderRadius: '8px', border: '1px solid #e2e8f0', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)' }}
-                    itemStyle={{ fontSize: '12px' }}
-                />
-                <Legend wrapperStyle={{ paddingTop: '20px' }} iconType="circle" />
-
-                <Line
-                    type="monotone"
-                    dataKey="product"
-                    name="Your Product"
-                    stroke="#22c55e"
-                    strokeWidth={2}
-                    dot={false}
-                    activeDot={{ r: 6 }}
-                />
-                <Line
-                    type="monotone"
-                    dataKey="competitor"
-                    name="Top Competitor"
-                    stroke="#ef4444"
-                    strokeWidth={2}
-                    dot={false}
-                />
-                <Line
-                    type="monotone"
-                    dataKey="median"
-                    name="Industry Median"
-                    stroke="#eab308"
-                    strokeWidth={2}
-                    strokeDasharray="5 5"
-                    dot={false}
-                />
-            </LineChart>
-        </ResponsiveContainer>
-    )
+        <div className="h-[300px] w-full">
+            <ResponsiveContainer width="100%" height="100%">
+                <AreaChart data={data} margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
+                    <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#E5E7EB" />
+                    <XAxis
+                        dataKey="name"
+                        axisLine={false}
+                        tickLine={false}
+                        tick={{ fontSize: 10, fontWeight: 700, fill: '#6B7280' }}
+                        dy={10}
+                    />
+                    <YAxis
+                        axisLine={false}
+                        tickLine={false}
+                        tick={{ fontSize: 10, fontWeight: 700, fill: '#6B7280' }}
+                    />
+                    <Tooltip />
+                    <Area type="monotone" dataKey="product" stroke="#10B981" fillOpacity={0} />
+                    <Area type="monotone" dataKey="competitor" stroke="#EF4444" fillOpacity={0} />
+                    <Area type="monotone" dataKey="median" stroke="#F59E0B" strokeDasharray="5 5" fillOpacity={0} />
+                </AreaChart>
+            </ResponsiveContainer>
+        </div>
+    );
 }

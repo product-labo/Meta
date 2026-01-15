@@ -23,6 +23,40 @@ export default function LoginPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
 
+    // Development mode bypass - remove this in production
+    if (email === 'test@metagauge.com' && password === 'password') {
+      const mockUser = {
+        id: 'dev-user-1',
+        email: 'test@metagauge.com',
+        name: 'Test Researcher',
+        is_verified: true,
+        onboarding_completed: true,
+        roles: ['researcher']
+      };
+      const mockToken = 'dev-mock-token-' + Date.now();
+
+      login(mockToken, mockUser);
+      router.push('/dashboard');
+      return;
+    }
+
+    // Startup test account
+    if (email === 'startup@metagauge.com' && password === 'password') {
+      const mockUser = {
+        id: 'dev-user-2',
+        email: 'startup@metagauge.com',
+        name: 'Test Startup',
+        is_verified: true,
+        onboarding_completed: true,
+        roles: ['startup']
+      };
+      const mockToken = 'dev-mock-token-' + Date.now();
+
+      login(mockToken, mockUser);
+      router.push('/startup');
+      return;
+    }
+
     try {
       const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3003'}/api/auth/login`, {
         method: 'POST',
@@ -71,7 +105,7 @@ export default function LoginPage() {
       }
     } catch (error) {
       console.error('Login error:', error);
-      alert('An error occurred during login');
+      alert('An error occurred during login. Try test@metagauge.com / password for dev mode.');
     }
   }
 
@@ -80,9 +114,10 @@ export default function LoginPage() {
       <div className="text-center mb-6">
         <h1 className="text-2xl font-bold">Sign In</h1>
         <p className="text-muted-foreground mt-1">Welcome back to MetaGauge</p>
+        <p className="text-xs text-muted-foreground/70 mt-2">Dev: test@metagauge.com (researcher) or startup@metagauge.com (startup)</p>
       </div>
 
-      <OAuthButtons mode="login" />
+      <OAuthButtons mode="signin" />
       <AuthDivider />
 
       <form onSubmit={handleSubmit} className="space-y-4">

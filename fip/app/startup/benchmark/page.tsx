@@ -23,56 +23,45 @@ import {
   TableRow,
 } from "@/components/ui/table"
 
+import { DashboardHeader } from "@/components/dashboard/header"
+
 export default function BenchmarkPage() {
   return (
-    <div className="p-8 space-y-8">
+    <div className="p-8 space-y-8 bg-[#F9FAFB] min-h-screen">
 
       <Tabs defaultValue="table" className="w-full space-y-8">
         <div className="flex items-center justify-between">
           {/* Tabs List acting as sub-navigation */}
-          {/* Since the designs are separate "Competitive Benchmark" and "Competitive Benchmarking Insight", 
-               I am assuming they are tabs or related views. The Table one looks like the main view. 
-           */}
         </div>
 
-        {/* Since the design shows "Competitive Benchmark" title for both but slightly different subtitles, 
-            I will use a single page title and switch content 
-        */}
-
         <TabsContent value="table" className="space-y-8 m-0">
-          <div className="flex items-center justify-between">
-            <div>
-              <h1 className="text-2xl font-bold">Competitive Benchmark</h1>
-              <p className="text-muted-foreground">Compare key Metrics for your features against competitors to gain actionable insight</p>
-            </div>
-            <div className="flex items-center gap-4">
-              {/* Toggle for views if I want to make them flip, but Tab is better. Let's add a button to switch Views manually if Tabs list is hidden */}
-              <TabsList>
-                <TabsTrigger value="table">Benchmark Table</TabsTrigger>
-                <TabsTrigger value="trends">Performance Insight</TabsTrigger>
+          <DashboardHeader
+            title="Competitive Benchmark"
+            subtitle="Compare key Metrics for your features against competitors to gain actionable insight"
+            action={
+              <TabsList className="bg-gray-100/50 p-1 rounded-xl h-11 border border-gray-200">
+                <TabsTrigger value="table" className="rounded-lg data-[state=active]:bg-white data-[state=active]:shadow-sm">Benchmark Table</TabsTrigger>
+                <TabsTrigger value="trends" className="rounded-lg data-[state=active]:bg-white data-[state=active]:shadow-sm">Performance Insight</TabsTrigger>
               </TabsList>
-
-              <div className="flex items-center gap-2">
-                <div className="h-8 w-8 rounded-full bg-muted flex items-center justify-center relative">
-                  <div className="absolute top-0 right-0 w-3 h-3 bg-red-500 rounded-full text-[8px] text-white flex items-center justify-center">2</div>
-                  <Bell className="w-4 h-4 text-muted-foreground" />
-                </div>
-                <div className="h-8 w-8 rounded-full bg-yellow-100 flex items-center justify-center">
-                  <span className="text-xs">👤</span>
-                </div>
-              </div>
-            </div>
-          </div>
+            }
+          />
 
           <div className="space-y-1">
-            <label className="text-xs font-medium text-muted-foreground">Project A (Baseline)</label>
-            <Select defaultValue="tokens"><SelectTrigger className="w-[300px] bg-background"><SelectValue placeholder="Select" /></SelectTrigger><SelectContent><SelectItem value="tokens">swapExactTokensForETH</SelectItem></SelectContent></Select>
+            <label className="text-xs font-medium text-[#6B7280]">Project A (Baseline)</label>
+            <Select defaultValue="tokens">
+              <SelectTrigger className="w-[300px] h-10 bg-white border-gray-200 rounded-xl">
+                <SelectValue placeholder="Select" />
+              </SelectTrigger>
+              <SelectContent className="rounded-xl">
+                <SelectItem value="tokens">swapExactTokensForETH</SelectItem>
+              </SelectContent>
+            </Select>
           </div>
 
           <BenchmarkTable />
 
           <div className="space-y-4">
-            <h3 className="font-semibold text-lg">Actionable insight</h3>
+            <h3 className="font-bold text-lg text-[#111827]">Actionable insight</h3>
             <div className="grid grid-cols-3 gap-6">
               <InsightCard
                 type="high"
@@ -97,21 +86,21 @@ export default function BenchmarkPage() {
         </TabsContent>
 
         <TabsContent value="trends" className="space-y-8 m-0">
-          <div className="flex items-center justify-between">
-            <div>
-              <h1 className="text-2xl font-bold">Competitive Benchmarking Insight</h1>
-              <p className="text-muted-foreground">Compare product performance with competitors in the same category.</p>
-            </div>
-            <div className="flex items-center gap-4">
-              <TabsList>
-                <TabsTrigger value="table">Benchmark Table</TabsTrigger>
-                <TabsTrigger value="trends">Performance Insight</TabsTrigger>
-              </TabsList>
-              <Button className="bg-slate-900 text-white">
-                <Share className="w-4 h-4 mr-2" /> Share/Export
-              </Button>
-            </div>
-          </div>
+          <DashboardHeader
+            title="Competitive Benchmarking Insight"
+            subtitle="Compare product performance with competitors in the same category."
+            action={
+              <div className="flex items-center gap-4">
+                <TabsList className="bg-gray-100/50 p-1 rounded-xl h-11 border border-gray-200">
+                  <TabsTrigger value="table" className="rounded-lg data-[state=active]:bg-white data-[state=active]:shadow-sm">Benchmark Table</TabsTrigger>
+                  <TabsTrigger value="trends" className="rounded-lg data-[state=active]:bg-white data-[state=active]:shadow-sm">Performance Insight</TabsTrigger>
+                </TabsList>
+                <Button className="h-11 px-6 rounded-xl bg-[#111827] text-white hover:bg-gray-800 transition-colors">
+                  <Share className="w-4 h-4 mr-2" /> Share/Export
+                </Button>
+              </div>
+            }
+          />
 
           <div className="grid grid-cols-4 gap-6">
             <Card><CardContent className="p-6">

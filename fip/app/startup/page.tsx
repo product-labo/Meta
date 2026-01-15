@@ -8,27 +8,17 @@ import { StackedBarChart } from "@/components/startup/charts/stacked-bar"
 import { DonutChart } from "@/components/startup/charts/donut-chart"
 import { Bell, User } from "lucide-react"
 
+import { DashboardHeader } from "@/components/dashboard/header"
+
 export default function StartupOverviewPage() {
   return (
-    <div className="p-8 space-y-8">
+    <div className="p-8 space-y-8 bg-[#F9FAFB] min-h-screen">
       {/* Header */}
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-2xl font-bold">Startup Overview</h1>
-          <p className="text-muted-foreground">Real time analysis across chain</p>
-        </div>
-        <div className="flex items-center gap-4">
-          <div className="flex items-center gap-2">
-            <div className="h-8 w-8 rounded-full bg-muted flex items-center justify-center relative">
-              <div className="absolute top-0 right-0 w-3 h-3 bg-red-500 rounded-full text-[8px] text-white flex items-center justify-center">2</div>
-              <Bell className="w-4 h-4 text-muted-foreground" />
-            </div>
-            <div className="h-8 w-8 rounded-full bg-yellow-100 flex items-center justify-center">
-              <span className="text-xs">👤</span>
-            </div>
-          </div>
-        </div>
-      </div>
+      <DashboardHeader
+        title="Startup Overview"
+        subtitle="Real time analysis across chain"
+        showFilters={true}
+      />
 
       {/* Tabs / Filters */}
       <Tabs defaultValue="all" className="w-full">

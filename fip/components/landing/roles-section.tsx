@@ -39,10 +39,10 @@ export function RolesSection() {
 
   return (
     <section className="px-6 py-16 md:py-24 max-w-7xl mx-auto">
-      <div className="flex items-center gap-4 mb-12 justify-center">
-        <div className="h-px bg-primary flex-1 max-w-24" />
-        <h2 className="text-xl md:text-2xl font-semibold text-center">Data-Driven Decisions for Every Role</h2>
-        <div className="h-px bg-primary flex-1 max-w-24" />
+      <div className="flex items-center gap-8 mb-16 justify-center">
+        <div className="h-px bg-gradient-to-r from-transparent via-primary to-primary flex-1" />
+        <h2 className="text-xl md:text-2xl font-semibold text-center whitespace-nowrap">Data-Driven Decisions for Every Role</h2>
+        <div className="h-px bg-gradient-to-l from-transparent via-primary to-primary flex-1" />
       </div>
 
       <div className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-4">
