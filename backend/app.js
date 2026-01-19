@@ -14,6 +14,7 @@ import userDataRoutes from './src/routes/userData.js';
 import aiInsightsRoutes from './src/routes/aiInsights.js';
 import v1Routes from './src/routes/v1/index.js';
 import contractBusinessRoutes from './src/routes/contractBusiness.js';
+import { createGroupDRoutes } from './src/routes/groupDRoutes.js';
 import { errorHandlerMiddleware } from './src/middleware/errorHandler.js';
 import { startWalletTracking } from './src/services/walletTrackingService.js';
 import { secureDataSyncService } from './src/services/secureDataSyncService.js';
@@ -90,6 +91,9 @@ app.use('/api/v1', v1Routes);
 
 // Business Intelligence API (Multi-Chain Indexer)
 app.use('/api/contract-business', contractBusinessRoutes);
+
+// Group D: Advanced Features (25 endpoints)
+app.use('/api', createGroupDRoutes(pool));
 
 // Error handling middleware (must be last)
 app.use(errorHandlerMiddleware);
