@@ -9,10 +9,13 @@
     "declaration": true,
     "outDir": "./dist",
     "rootDir": "./src",
-    "strict": true,
+    "strict": false,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "types": ["node"],
+    "noImplicitAny": false,
+    "useUnknownInCatchVariables": false
   },
   "include": [
     "src/**/*"

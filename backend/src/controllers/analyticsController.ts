@@ -85,12 +85,12 @@ export const getStartupOverview = async (req: Request, res: Response) => {
                 avg_gas_used: Math.round(parseFloat(metrics.avg_gas_used)) || 0
             }
         });
-    } catch (error) {
+    } catch (error: any) {
         console.error('Get Overview Error:', error);
         res.status(500).json({ 
             status: 'error', 
             message: 'Server error',
-            error: error.message 
+            error: error?.message || 'Unknown error'
         });
     }
 };
@@ -165,7 +165,7 @@ export const getRetentionChart = async (req: Request, res: Response) => {
                 }))
             }
         });
-    } catch (error) {
+    } catch (error: any) {
         console.error('Get Retention Chart Error:', error);
         res.status(500).json({ status: 'error', message: 'Server error' });
     }
@@ -223,7 +223,7 @@ export const getTransactionSuccessRate = async (req: Request, res: Response) => 
                     : 0
             }
         });
-    } catch (error) {
+    } catch (error: any) {
         console.error('Get Transaction Success Rate Error:', error);
         res.status(500).json({ status: 'error', message: 'Server error' });
     }
@@ -295,7 +295,7 @@ export const getFeeAnalysis = async (req: Request, res: Response) => {
                 daily_fee_trend: data.daily_fees || []
             }
         });
-    } catch (error) {
+    } catch (error: any) {
         console.error('Get Fee Analysis Error:', error);
         res.status(500).json({ status: 'error', message: 'Server error' });
     }
@@ -2251,4 +2251,32 @@ export const getWalletIntelligence = async (req: Request, res: Response) => {
 export const getInsightCentre = async (req: Request, res: Response) => {
     // Redirect to new user cohorts endpoint
     return getUserCohorts(req, res);
+};
+
+export const getCompetitorBenchmarks = async (req: Request, res: Response) => {
+    const { projectId } = req.params;
+    try {
+        // Mock competitor data for now - would require external data sources
+        res.json({
+            status: 'success',
+            data: {
+                my_app: { feature_used: 12, avg_time: '45m', failed_tx: '8.5%', success_rate: '91.5%' },
+                competitor_a: { feature_used: 18, avg_time: '32m', failed_tx: '4.2%', success_rate: '95.8%' },
+                competitor_b: { feature_used: 15, avg_time: '38m', failed_tx: '5.8%', success_rate: '94.2%' }
+            }
+        });
+    } catch (error) {
+        console.error('Get Competitor Benchmarks Error:', error);
+        res.status(500).json({ status: 'error', message: 'Server error' });
+    }
+};
+
+export const getBridgeAnalytics = async (req: Request, res: Response) => {
+    // Redirect to new wallet bridges endpoint
+    return getWalletBridges(req, res);
+};
+
+export const getActivityAnalytics = async (req: Request, res: Response) => {
+    // Redirect to new wallet activity endpoint
+    return getWalletActivity(req, res);
 };
