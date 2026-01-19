@@ -1,5 +1,20 @@
 import { Router } from 'express';
-import { getProjects, getProjectById, getProjectAnalytics, compareProjects, getNewProjects, getRankings, createProject } from '../controllers/projectController.js';
+import { 
+    getProjects, 
+    getProjectById, 
+    getProjectAnalytics, 
+    compareProjects, 
+    getNewProjects, 
+    getRankings, 
+    createProject,
+    // B5: Enhanced Project Management
+    getProjectsAdvancedFilter,
+    getProjectsMultiSort,
+    bookmarkProject,
+    getBookmarkedProjects,
+    getProjectHealthStatus,
+    getMonitoringDashboard
+} from '../controllers/projectController.js';
 import { createWallet, getWallets, getWallet, updateWallet, deleteWallet, getWalletsByType, getActiveWallets } from '../controllers/walletController.js';
 import { 
     // A1: Startup Overview Analytics
@@ -35,6 +50,17 @@ router.get('/rankings', getRankings);
 router.get('/compare', compareProjects);
 router.get('/:id', getProjectById);
 router.get('/:id/analytics', getProjectAnalytics);
+
+// =============================================================================
+// B5: ENHANCED PROJECT MANAGEMENT (6 endpoints)
+// =============================================================================
+
+router.get('/filter', getProjectsAdvancedFilter);
+router.get('/sort', getProjectsMultiSort);
+router.post('/:id/bookmark', authenticateToken, bookmarkProject);
+router.get('/bookmarks', authenticateToken, getBookmarkedProjects);
+router.get('/:id/health-status', getProjectHealthStatus);
+router.get('/monitoring/dashboard', authenticateToken, getMonitoringDashboard);
 
 // Wallet Routes nested under projects
 // All wallet operations require authentication

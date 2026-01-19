@@ -22,6 +22,7 @@ import watchlistRoutes from './routes/watchlist.js';
 import alertRoutes from './routes/alerts.js';
 import walletRoutes from './routes/wallets.js';
 import custodyRoutes from './routes/custody.js';
+import exportRoutes from './routes/exports.js';
 
 import subscriptionRoutes from './routes/subscription.js';
 import contractBusinessRoutes from './routes/contractBusiness.js';
@@ -33,7 +34,8 @@ apiRouter.use('/auth', authRoutes); // Auth routes now at /api/auth
 apiRouter.use('/profile', profileRoutes);
 apiRouter.use('/projects', projectRoutes);
 apiRouter.use('/watchlist', watchlistRoutes);
-apiRouter.use('/alerts', alertRoutes);
+apiRouter.use('/notifications', alertRoutes); // B1: Notification System
+apiRouter.use('/exports', exportRoutes); // B3: Data Export System
 apiRouter.use('/wallets', walletRoutes);
 apiRouter.use('/contract-business', contractBusinessRoutes);
 apiRouter.use('/', walletRoutes); // CAUTION: This behaves as catch-all if mounted at root of apiRouter for otherwise unmatched routes.
