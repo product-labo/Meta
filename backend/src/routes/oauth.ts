@@ -23,12 +23,10 @@ router.get('/oauth/google/callback', handleGoogleCallback);
 router.get('/oauth/github', initiateGitHubOAuth);
 router.get('/oauth/github/callback', handleGitHubCallback);
 
-// Social login endpoint (no auth required)
-router.post('/social-login', socialLogin);
-
 // Provider management endpoints (auth required)
-router.get('/providers', getAuthProviders);
-router.post('/link-provider', authenticateToken, linkProvider);
-router.delete('/unlink-provider/:provider', authenticateToken, unlinkProvider);
+router.get('/auth/providers', getAuthProviders);
+router.post('/auth/social-login', socialLogin);
+router.post('/auth/link-provider', authenticateToken, linkProvider);
+router.delete('/auth/unlink-provider/:provider', authenticateToken, unlinkProvider);
 
 export default router;

@@ -15,6 +15,24 @@ import aiInsightsRoutes from './src/routes/aiInsights.js';
 import v1Routes from './src/routes/v1/index.js';
 import contractBusinessRoutes from './src/routes/contractBusiness.js';
 import { createGroupDRoutes } from './src/routes/groupDRoutes.js';
+
+// Group B & C Routes
+import alertRoutes from './src/routes/alerts.js';
+import exportRoutes from './src/routes/exports.js';
+import profileRoutes from './src/routes/profile.js';
+import oauthRoutes from './src/routes/oauth.js';
+import onboardingRoutes from './src/routes/onboarding.js';
+
+// Missing Routes - Adding Now
+import subscriptionRoutes from './src/routes/subscription.js';
+import systemRoutes from './src/routes/system.js';
+import taskRoutes from './src/routes/tasks.js';
+import watchlistRoutes from './src/routes/watchlist.js';
+import trendingRoutes from './src/routes/trending.js';
+import insightsRoutes from './src/routes/insights.js';
+import custodyRoutes from './src/routes/custody.js';
+import dashboardAnalyticsRoutes from './src/routes/dashboard-analytics.js';
+import monitoringRoutes from './src/routes/monitoring.js';
 import { errorHandlerMiddleware } from './src/middleware/errorHandler.js';
 import { startWalletTracking } from './src/services/walletTrackingService.js';
 import { secureDataSyncService } from './src/services/secureDataSyncService.js';
@@ -94,6 +112,26 @@ app.use('/api/contract-business', contractBusinessRoutes);
 
 // Group D: Advanced Features (25 endpoints)
 app.use('/api', createGroupDRoutes(pool));
+
+// Group B: User Experience (remaining endpoints)
+app.use('/api/notifications', alertRoutes);
+app.use('/api/exports', exportRoutes);
+app.use('/api/profile', profileRoutes);
+
+// Group C: Authentication & Onboarding (remaining endpoints)
+app.use('/auth', oauthRoutes);  // This will handle /auth/oauth/* routes
+app.use('/api/onboarding', onboardingRoutes);
+
+// Missing Routes - Adding Now
+app.use('/api/subscription', subscriptionRoutes);
+app.use('/api/system', systemRoutes);
+app.use('/api/tasks', taskRoutes);
+app.use('/api/watchlist', watchlistRoutes);
+app.use('/api/trending', trendingRoutes);
+app.use('/api/insights', insightsRoutes);
+app.use('/api/custody', custodyRoutes);
+app.use('/api/dashboard-analytics', dashboardAnalyticsRoutes);
+app.use('/api/monitoring', monitoringRoutes);
 
 // Error handling middleware (must be last)
 app.use(errorHandlerMiddleware);
