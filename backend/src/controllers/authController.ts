@@ -20,7 +20,7 @@ export const signup = async (req: Request, res: Response) => {
             if (existing.rows.length > 0) return res.status(400).json({ message: 'User already exists' });
 
             const hash = await bcrypt.hash(password, 10);
-            const roles = role ? [role] : [];
+            const roles = role ? JSON.stringify([role]) : JSON.stringify([]);
 
             // Enforce OTP verification even with password
             // Generate OTP
@@ -76,8 +76,8 @@ export const signup = async (req: Request, res: Response) => {
         }
 
         // Create new unverified user
-        // roles is array
-        const roles = role ? [role] : [];
+        // roles is array - must be JSON stringified for JSONB column
+        const roles = role ? JSON.stringify([role]) : JSON.stringify([]);
 
         await pool.query(
             `INSERT INTO users (email, phone_number, otp_secret, is_verified, roles)

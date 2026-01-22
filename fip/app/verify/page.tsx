@@ -16,7 +16,7 @@ function VerifyContent() {
   const emailParam = searchParams.get('email')
 
   const [email, setEmail] = useState(emailParam || "")
-  const [otp, setOtp] = useState(["", "", "", "", "", ""])
+  const [otp, setOtp] = useState(["", "", "", ""])
   const [loading, setLoading] = useState(false)
 
   const handleVerify = async (e: React.FormEvent) => {

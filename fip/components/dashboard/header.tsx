@@ -5,21 +5,45 @@ import { Bell } from "lucide-react"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Button } from "@/components/ui/button"
+import { ProjectSelector } from "./project-selector"
 
 interface DashboardHeaderProps {
   title: string
   subtitle?: string
   action?: ReactNode
   showFilters?: boolean
+  showProjectSelector?: boolean
+  currentProjectId?: string
+  onProjectChange?: (projectId: string) => void
+  onAddProject?: () => void
 }
 
-export function DashboardHeader({ title, subtitle, action, showFilters = false }: DashboardHeaderProps) {
+export function DashboardHeader({ 
+  title, 
+  subtitle, 
+  action, 
+  showFilters = false,
+  showProjectSelector = false,
+  currentProjectId,
+  onProjectChange,
+  onAddProject
+}: DashboardHeaderProps) {
   return (
     <header className="bg-card px-6 py-4 rounded-lg border">
       <div className="flex items-start justify-between">
-        <div>
-          <h1 className="text-2xl font-bold">{title}</h1>
-          {subtitle && <p className="text-muted-foreground text-sm">{subtitle}</p>}
+        <div className="flex items-center gap-4">
+          <div>
+            <h1 className="text-2xl font-bold">{title}</h1>
+            {subtitle && <p className="text-muted-foreground text-sm">{subtitle}</p>}
+          </div>
+          
+          {showProjectSelector && onProjectChange && onAddProject && (
+            <ProjectSelector
+              currentProjectId={currentProjectId}
+              onProjectChange={onProjectChange}
+              onAddProject={onAddProject}
+            />
+          )}
         </div>
 
         <div className="flex items-center gap-4">

@@ -111,6 +111,186 @@ export const createProject = async (req: Request, res: Response) => {
     }
 };
 
+export const getUserProjects = async (req: Request, res: Response) => {
+    try {
+        // Ensure user is authenticated
+        if (!req.user || !req.user.id) {
+            return res.status(401).json({ 
+                status: 'error',
+                data: { error: 'Unauthorized' }
+            });
+        }
+
+        const result = await pool.query(`
+            SELECT p.*, 
+                   COUNT(w.id) as wallet_count,
+                   MAX(w.last_synced_at) as last_wallet_sync
+            FROM projects p
+            LEFT JOIN wallets w ON p.id = w.project_id AND w.is_active = true
+            WHERE p.user_id = $1
+            GROUP BY p.id
+            ORDER BY p.created_at DESC
+        `, [req.user.id]);
+
+        res.json({
+            status: 'success',
+            data: result.rows
+        });
+    } catch (error) {
+        console.error('Get User Projects Error:', error);
+        res.status(500).json({ 
+            status: 'error',
+            data: { error: 'Server error' }
+        });
+    }
+};
+
+export const updateProject = async (req: Request, res: Response) => {
+    const { id } = req.params;
+    const { name, description, category, status, website_url, github_url, logo_url, tags } = req.body;
+    
+    try {
+        // Ensure user is authenticated
+        if (!req.user || !req.user.id) {
+            return res.status(401).json({ 
+                status: 'error',
+                data: { error: 'Unauthorized' }
+            });
+        }
+
+        // Check if project exists and belongs to user
+        const projectCheck = await pool.query(
+            'SELECT id FROM projects WHERE id = $1 AND user_id = $2',
+            [id, req.user.id]
+        );
+
+        if (projectCheck.rows.length === 0) {
+            return res.status(404).json({
+                status: 'error',
+                data: { error: 'Project not found or unauthorized' }
+            });
+        }
+
+        // Build dynamic update query
+        const updates = [];
+        const values = [];
+        let paramCount = 1;
+
+        if (name !== undefined) {
+            updates.push(`name = $${paramCount}`);
+            values.push(name);
+            paramCount++;
+        }
+        if (description !== undefined) {
+            updates.push(`description = $${paramCount}`);
+            values.push(description);
+            paramCount++;
+        }
+        if (category !== undefined) {
+            updates.push(`category = $${paramCount}`);
+            values.push(category);
+            paramCount++;
+        }
+        if (status !== undefined) {
+            updates.push(`status = $${paramCount}`);
+            values.push(status);
+            paramCount++;
+        }
+        if (website_url !== undefined) {
+            updates.push(`website_url = $${paramCount}`);
+            values.push(website_url);
+            paramCount++;
+        }
+        if (github_url !== undefined) {
+            updates.push(`github_url = $${paramCount}`);
+            values.push(github_url);
+            paramCount++;
+        }
+        if (logo_url !== undefined) {
+            updates.push(`logo_url = $${paramCount}`);
+            values.push(logo_url);
+            paramCount++;
+        }
+        if (tags !== undefined) {
+            updates.push(`tags = $${paramCount}`);
+            values.push(tags);
+            paramCount++;
+        }
+
+        if (updates.length === 0) {
+            return res.status(400).json({
+                status: 'error',
+                data: { error: 'No fields to update' }
+            });
+        }
+
+        updates.push(`updated_at = NOW()`);
+        values.push(id);
+
+        const query = `
+            UPDATE projects 
+            SET ${updates.join(', ')}
+            WHERE id = $${paramCount} AND user_id = $${paramCount + 1}
+            RETURNING *
+        `;
+        values.push(req.user.id);
+
+        const result = await pool.query(query, values);
+
+        res.json({
+            status: 'success',
+            data: result.rows[0]
+        });
+    } catch (error) {
+        console.error('Update Project Error:', error);
+        res.status(500).json({ 
+            status: 'error',
+            data: { error: 'Server error' }
+        });
+    }
+};
+
+export const deleteProject = async (req: Request, res: Response) => {
+    const { id } = req.params;
+    
+    try {
+        // Ensure user is authenticated
+        if (!req.user || !req.user.id) {
+            return res.status(401).json({ 
+                status: 'error',
+                data: { error: 'Unauthorized' }
+            });
+        }
+
+        // Check if project exists and belongs to user
+        const projectCheck = await pool.query(
+            'SELECT id FROM projects WHERE id = $1 AND user_id = $2',
+            [id, req.user.id]
+        );
+
+        if (projectCheck.rows.length === 0) {
+            return res.status(404).json({
+                status: 'error',
+                data: { error: 'Project not found or unauthorized' }
+            });
+        }
+
+        // Delete project (wallets will be cascade deleted due to foreign key constraint)
+        await pool.query('DELETE FROM projects WHERE id = $1 AND user_id = $2', [id, req.user.id]);
+
+        res.json({
+            status: 'success',
+            data: { message: 'Project deleted successfully' }
+        });
+    } catch (error) {
+        console.error('Delete Project Error:', error);
+        res.status(500).json({ 
+            status: 'error',
+            data: { error: 'Server error' }
+        });
+    }
+};
+
 export const getProjectById = async (req: Request, res: Response) => {
     const { id } = req.params;
     try {

@@ -24,7 +24,7 @@ export default function LoginPage() {
     e.preventDefault()
 
     try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3003'}/api/auth/login`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:300'}/api/auth/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password })
@@ -82,7 +82,7 @@ export default function LoginPage() {
         <p className="text-muted-foreground mt-1">Welcome back to MetaGauge</p>
       </div>
 
-      <OAuthButtons mode="login" />
+      <OAuthButtons mode="signin" />
       <AuthDivider />
 
       <form onSubmit={handleSubmit} className="space-y-4">

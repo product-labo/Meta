@@ -19,7 +19,7 @@ export const sendEmailOTP = async (email: string, otp: string): Promise<void> =>
         await transporter.sendMail({
             from: process.env.GMAIL_USER,
             to: email,
-            subject: 'Your Verification Code - Zcash Indexer',
+            subject: 'Your Verification Code - MetaGuage',
             html: `
                 <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
                     <h2>Verification Code</h2>

@@ -1,7 +1,7 @@
-import { Router } from 'express';
+import { Router, type Router as ExpressRouter } from 'express';
 import { signup, verifyOTP, login, socialLogin } from '../controllers/authController.js';
 
-const router = Router();
+const router: ExpressRouter = Router();
 
 router.post('/signup', signup);
 router.post('/verify-otp', verifyOTP);

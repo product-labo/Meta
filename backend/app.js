@@ -2,9 +2,9 @@ import 'dotenv/config';
 import express from 'express';
 import cors from 'cors';
 import bodyParser from 'body-parser';
-import authRoutes from './src/routes/auth.js';
-import projectRoutes from './src/routes/project.js';
-import walletRoutes from './src/routes/wallet.js';
+import authRoutes from './src/routes/auth.ts';
+import projectRoutes from './src/routes/projects.ts';
+import walletRoutes from './src/routes/wallets.ts';
 import analyticsRoutes from './src/routes/analytics.js';
 import liskAnalyticsRoutes from './src/routes/liskAnalytics.js';
 import adminRoutes from './src/routes/admin.js';
@@ -15,11 +15,23 @@ import aiInsightsRoutes from './src/routes/aiInsights.js';
 import v1Routes from './src/routes/v1/index.js';
 import contractBusinessRoutes from './src/routes/contractBusiness.js';
 import { errorHandlerMiddleware } from './src/middleware/errorHandler.js';
+import { 
+  generalRateLimit, 
+  authRateLimit, 
+  walletRateLimit, 
+  readRateLimit, 
+  intensiveRateLimit,
+  indexingRateLimit,
+  websocketRateLimit,
+  rateLimitHeaders,
+  bypassRateLimit
+} from './src/middleware/rateLimiting.js';
 import { startWalletTracking } from './src/services/walletTrackingService.js';
 import { secureDataSyncService } from './src/services/secureDataSyncService.js';
 import liskService from './src/services/liskService.js';
 import pool from './src/db/db.js';
 import indexerWebSocketService from './src/services/indexerWebSocket.js';
+import { indexingService } from './src/services/indexingService.js';
 
 const app = express();
 
@@ -30,6 +42,11 @@ const corsOptions = {
   optionsSuccessStatus: 200
 };
 app.use(cors(corsOptions));
+
+// Rate limiting and security middleware
+app.use(rateLimitHeaders);
+app.use(bypassRateLimit);
+app.use(generalRateLimit);
 
 app.use(bodyParser.json());
 
@@ -73,23 +90,23 @@ app.get('/health', async (req, res) => {
 // Make pool available to routes
 app.locals.pool = pool;
 
-// Routes
-app.use('/auth', authRoutes);
-app.use('/api/projects', projectRoutes);
-app.use('/api', walletRoutes);
-app.use('/api', analyticsRoutes);
-app.use('/api/lisk', liskAnalyticsRoutes); // New Lisk analytics routes
-app.use('/api/admin', adminRoutes);
-app.use('/api/wallet-tracking', walletTrackingRoutes);
-app.use('/api/indexer', universalIndexerRoutes); // Universal Smart Contract Indexer routes
-app.use('/api/user-data', userDataRoutes); // User-specific indexed data CRUD
-app.use('/api/ai-insights', aiInsightsRoutes); // AI insights for user data
+// Routes with specific rate limiting
+app.use('/auth', authRateLimit, authRoutes);
+app.use('/api/projects', walletRateLimit, projectRoutes);
+app.use('/api/wallets', walletRateLimit, walletRoutes);
+app.use('/api', readRateLimit, analyticsRoutes);
+app.use('/api/lisk', readRateLimit, liskAnalyticsRoutes); // New Lisk analytics routes
+app.use('/api/admin', intensiveRateLimit, adminRoutes);
+app.use('/api/wallet-tracking', walletRateLimit, walletTrackingRoutes);
+app.use('/api/indexer', indexingRateLimit, universalIndexerRoutes); // Universal Smart Contract Indexer routes
+app.use('/api/user-data', readRateLimit, userDataRoutes); // User-specific indexed data CRUD
+app.use('/api/ai-insights', intensiveRateLimit, aiInsightsRoutes); // AI insights for user data
 
 // V1 API - Clean, robust, secure
-app.use('/api/v1', v1Routes);
+app.use('/api/v1', readRateLimit, v1Routes);
 
 // Business Intelligence API (Multi-Chain Indexer)
-app.use('/api/contract-business', contractBusinessRoutes);
+app.use('/api/contract-business', readRateLimit, contractBusinessRoutes);
 
 // Error handling middleware (must be last)
 app.use(errorHandlerMiddleware);
@@ -113,6 +130,13 @@ const server = app.listen(PORT, async () => {
     console.log('✅ Universal Indexer WebSocket service initialized');
   } catch (error) {
     console.error('❌ Failed to initialize WebSocket service:', error.message);
+  }
+
+  // Initialize indexing service
+  try {
+    console.log('✅ Indexing service initialized');
+  } catch (error) {
+    console.error('❌ Failed to initialize indexing service:', error.message);
   }
 
   // Start wallet tracking service
