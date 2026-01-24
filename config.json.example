@@ -1,0 +1,108 @@
+{
+  "targetContract": {
+    "id": "my-startup-dex",
+    "name": "MyStartup",
+    "address": "0x5a98fcbea516cf06857215779fd812ca3bef1b32",
+    "abi": "./abis/target-contract.json",
+    "chain": "ethereum",
+    "category": "DEX"
+  },
+  "competitors": [
+    {
+      "id": "competitor-1",
+      "name": "Uniswap_V2_Router",
+      "address": "0x7a250d5630b4cf539739df2c5dacb4c659f2488d",
+      "abi": "./abis/competitor-1-uniswap.json",
+      "chain": "ethereum",
+      "category": "DEX"
+    },
+    {
+      "id": "competitor-2",
+      "name": "SushiSwap_Router",
+      "address": "0xd9e1ce17f2641f24ae83637ab66a2cca9c378b9f",
+      "abi": "./abis/competitor-2-sushiswap.json",
+      "chain": "ethereum",
+      "category": "DEX"
+    },
+    {
+      "id": "competitor-3",
+      "name": "1inch_V5_Router",
+      "address": "0x1111111254fb6c44bac0bed2854e76f90643097d",
+      "abi": "./abis/competitor-3-1inch.json",
+      "chain": "ethereum",
+      "category": "DEX"
+    },
+    {
+      "id": "competitor-4",
+      "name": "Uniswap_V3_Router",
+      "address": "0x68b3465833fb72a70ecdf485e0e4c7bd8665fc45",
+      "abi": "./abis/competitor-4-uniswap-v3.json",
+      "chain": "ethereum",
+      "category": "DEX"
+    },
+    {
+      "id": "competitor-5",
+      "name": "0x_Exchange_Proxy",
+      "address": "0xdef1c0ded9bec7f1a1670819833240f027b25eff",
+      "abi": "./abis/competitor-5-0x.json",
+      "chain": "ethereum",
+      "category": "DEX"
+    }
+  ],
+  "analysisParameters": {
+    "cohortPeriodDays": 7,
+    "retentionWindows": [7, 14, 30, 60, 90],
+    "whaleThresholdEth": 10,
+    "churnThresholdDays": 30,
+    "uxGradeThresholds": {
+      "A": { "completionRate": 0.9, "failureRate": 0.05 },
+      "B": { "completionRate": 0.8, "failureRate": 0.1 },
+      "C": { "completionRate": 0.7, "failureRate": 0.15 },
+      "D": { "completionRate": 0.6, "failureRate": 0.2 },
+      "F": { "completionRate": 0, "failureRate": 1 }
+    },
+    "botDetectionThresholdMinutes": 5,
+    "bottleneckAbandonmentThreshold": 0.3,
+    "viralGrowthThreshold": 0.2,
+    "systematicFailureThreshold": 0.1
+  },
+  "reportStorage": {
+    "separateReports": true,
+    "reportDirectory": "./reports",
+    "reportNaming": "{contractName}_{timestamp}_{format}",
+    "formats": ["json", "csv", "markdown"],
+    "includeTimestamp": true,
+    "archiveOldReports": true,
+    "archiveAfterDays": 30
+  },
+  "outputPaths": {
+    "target": {
+      "json": "./reports/{contractName}/analysis_{timestamp}.json",
+      "csv": "./reports/{contractName}/analysis_{timestamp}.csv",
+      "markdown": "./reports/{contractName}/analysis_{timestamp}.md"
+    },
+    "competitors": {
+      "json": "./reports/competitors/{competitorName}/analysis_{timestamp}.json",
+      "csv": "./reports/competitors/{competitorName}/analysis_{timestamp}.csv",
+      "markdown": "./reports/competitors/{competitorName}/analysis_{timestamp}.md"
+    },
+    "comparative": {
+      "json": "./reports/comparative/comparison_{timestamp}.json",
+      "csv": "./reports/comparative/comparison_{timestamp}.csv",
+      "markdown": "./reports/comparative/comparison_{timestamp}.md"
+    }
+  },
+  "database": {
+    "type": "mongodb",
+    "cacheTransactions": true,
+    "cacheCompetitorData": true,
+    "cacheTTLHours": 24,
+    "collections": {
+      "targetTransactions": "transactions_target",
+      "competitorTransactions": "transactions_competitors",
+      "analyticsResults": "analytics_results",
+      "userProfiles": "user_profiles",
+      "competitorData": "competitor_data"
+    }
+  }
+}

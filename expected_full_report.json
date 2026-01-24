@@ -1,0 +1,172 @@
+{
+  "metadata": {
+    "contractAddress": "0x05D032ac25d322df992303dCa074EE7392C117b9",
+    "contractName": "usdt",
+    "contractChain": "lisk",
+    "generatedAt": "2026-01-24T14:15:00.000Z",
+    "blockRange": {
+      "from": 27261791,
+      "to": 27262791
+    },
+    "analysisType": "full_comparative"
+  },
+  "summary": {
+    "totalTransactions": 1250,
+    "uniqueUsers": 340,
+    "totalValue": 125000.75,
+    "avgGasUsed": 21000,
+    "successRate": 98.4,
+    "timeRange": "24h"
+  },
+  "defiMetrics": {
+    "tvl": 2500000.50,
+    "dau": 340,
+    "mau": 8500,
+    "transactionVolume24h": 125000.75,
+    "gasEfficiency": "High",
+    "revenuePerUser": 367.65,
+    "liquidityUtilization": 75.2,
+    "yieldGenerated": 1250.30,
+    "protocolFees": 125.50,
+    "stakingRewards": 890.25,
+    "borrowingRate": 5.2,
+    "lendingRate": 3.8,
+    "impermanentLoss": 0.15,
+    "slippageTolerance": 0.5,
+    "volumeToTvlRatio": 0.05,
+    "feeToVolumeRatio": 0.001,
+    "activePoolsCount": 12,
+    "crossChainVolume": 25000.0,
+    "bridgeUtilization": 15.5,
+    "governanceParticipation": 25.8
+  },
+  "userBehavior": {
+    "whaleRatio": 15.2,
+    "botActivity": 8.5,
+    "loyaltyScore": 72.3,
+    "earlyAdopterPotential": "High",
+    "retentionRate7d": 65.4,
+    "retentionRate30d": 42.1,
+    "averageSessionDuration": 1800,
+    "transactionsPerUser": 3.68,
+    "userGrowthRate": 12.5,
+    "churRate": 8.2,
+    "powerUserRatio": 22.1,
+    "newUserRatio": 18.7,
+    "crossChainUsers": 45,
+    "multiProtocolUsers": 78,
+    "gasOptimizationScore": 85.2,
+    "frontRunningDetection": 2.1,
+    "mevExposure": 5.8,
+    "sandwichAttacks": 0,
+    "arbitrageOpportunities": 15,
+    "liquidationEvents": 3
+  },
+  "transactions": [
+    {
+      "hash": "0xabc123...",
+      "from": "0x1234...",
+      "to": "0x05D032ac25d322df992303dCa074EE7392C117b9",
+      "value": "1000000000000000000",
+      "valueEth": 1.0,
+      "gasPrice": "20000000000",
+      "gasUsed": "21000",
+      "gasCostEth": 0.00042,
+      "blockNumber": 27262500,
+      "blockTimestamp": 1737720900,
+      "status": true,
+      "type": "transfer",
+      "methodId": "0xa9059cbb"
+    }
+  ],
+  "users": [
+    {
+      "address": "0x1234...",
+      "transactionCount": 5,
+      "totalValue": 5000.0,
+      "totalGasSpent": 0.0021,
+      "firstSeen": "2026-01-24T10:00:00.000Z",
+      "lastSeen": "2026-01-24T14:00:00.000Z",
+      "userType": "regular",
+      "loyaltyScore": 75.5,
+      "riskScore": 15.2
+    }
+  ],
+  "events": [
+    {
+      "eventName": "Transfer",
+      "signature": "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
+      "from": "0x1234...",
+      "to": "0x5678...",
+      "value": "1000000000000000000",
+      "blockNumber": 27262500,
+      "transactionHash": "0xabc123..."
+    }
+  ],
+  "locks": [
+    {
+      "lockContract": "0x9999...",
+      "lockedAmount": "50000000000000000000",
+      "lockDuration": 2592000,
+      "unlockTimestamp": 1740312900,
+      "lockType": "vesting",
+      "beneficiary": "0x1234..."
+    }
+  ],
+  "gasAnalysis": {
+    "averageGasPrice": "20000000000",
+    "averageGasUsed": 21000,
+    "totalGasCost": 0.525,
+    "gasEfficiencyScore": 85.2,
+    "failedTransactions": 20,
+    "failureRate": 1.6,
+    "gasOptimizationOpportunities": [
+      "Batch transactions",
+      "Use multicall"
+    ]
+  },
+  "competitive": {
+    "marketPosition": 3,
+    "marketShare": 15.2,
+    "advantages": [
+      "Low gas costs",
+      "L2 efficiency", 
+      "USDT brand recognition"
+    ],
+    "challenges": [
+      "Limited ecosystem",
+      "User acquisition",
+      "Liquidity depth"
+    ],
+    "benchmarks": {
+      "vsEthereum": {
+        "gasCostReduction": 85.5,
+        "transactionSpeed": 12.5,
+        "userGrowth": -25.2
+      },
+      "vsCompetitors": [
+        {
+          "name": "usdc",
+          "chain": "lisk",
+          "marketShare": 25.8,
+          "userOverlap": 35.2
+        }
+      ]
+    }
+  },
+  "recommendations": [
+    "Increase liquidity incentives",
+    "Launch ecosystem partnerships", 
+    "Develop user interfaces",
+    "Educational campaigns",
+    "Cross-chain bridge optimization"
+  ],
+  "alerts": [
+    {
+      "type": "warning",
+      "message": "Low transaction volume detected",
+      "severity": "medium",
+      "timestamp": "2026-01-24T14:15:00.000Z"
+    }
+  ]
+}
