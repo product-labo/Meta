@@ -1,5 +1,0 @@
-{
-  "scripts": {
-    "setup": "ts-node src/setup.ts"
-  }
-}
