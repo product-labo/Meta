@@ -1,0 +1,412 @@
+{
+  "metadata": {
+    "contractAddress": "0x05D032ac25d322df992303dCa074EE7392C117b9",
+    "contractName": "usdc",
+    "contractChain": "lisk",
+    "generatedAt": "2026-01-25T02:02:22.897Z",
+    "blockRange": {
+      "from": 27281873,
+      "to": 27288873
+    },
+    "analysisType": "full_comparative"
+  },
+  "summary": {
+    "totalTransactions": 13,
+    "uniqueUsers": 9,
+    "totalValue": 0,
+    "avgGasUsed": 189261,
+    "successRate": 100,
+    "timeRange": "24h"
+  },
+  "defiMetrics": {
+    "tvl": 0,
+    "dau": 9,
+    "mau": 9,
+    "transactionVolume24h": 0,
+    "gasEfficiency": "Low",
+    "revenuePerUser": 0,
+    "liquidityUtilization": 75.2,
+    "yieldGenerated": 0,
+    "protocolFees": 0,
+    "stakingRewards": 0,
+    "borrowingRate": 5.2,
+    "lendingRate": 3.8,
+    "impermanentLoss": 0.15,
+    "slippageTolerance": 0.5,
+    "volumeToTvlRatio": 0.05,
+    "feeToVolumeRatio": 0.001,
+    "activePoolsCount": 12,
+    "crossChainVolume": 0,
+    "bridgeUtilization": 15.5,
+    "governanceParticipation": 25.8
+  },
+  "userBehavior": {
+    "whaleRatio": 15.2,
+    "botActivity": 4.44,
+    "loyaltyScore": 41.11,
+    "earlyAdopterPotential": "Medium",
+    "retentionRate7d": 65.4,
+    "retentionRate30d": 42.1,
+    "averageSessionDuration": 1800,
+    "transactionsPerUser": 1.4444444444444444,
+    "userGrowthRate": 12.5,
+    "churRate": 8.2,
+    "powerUserRatio": 22.1,
+    "newUserRatio": 18.7,
+    "crossChainUsers": 1,
+    "multiProtocolUsers": 2,
+    "gasOptimizationScore": 18.39,
+    "frontRunningDetection": 2.1,
+    "mevExposure": 5.8,
+    "sandwichAttacks": 0,
+    "arbitrageOpportunities": 15,
+    "liquidationEvents": 3
+  },
+  "transactions": [
+    {
+      "hash": "0xae60a76143a933211dd1cb9097263ceca63f84cda2736e640a4633616110a690",
+      "from": "0xc06ebbefd94032b85424d51906e2a335efae264b",
+      "to": "0x1231deb6f5749ef6ce6943a275a1d3e7486f4eae",
+      "value": "0",
+      "valueEth": 0,
+      "gasPrice": "1001015",
+      "gasUsed": "414986",
+      "gasCostEth": 4.1540721079e-7,
+      "blockNumber": 27283562,
+      "blockTimestamp": 1769295915,
+      "status": true,
+      "type": "transfer",
+      "methodId": "0xa9059cbb"
+    },
+    {
+      "hash": "0x22be54b75ca46a84b343d3a2cb290bea6c366c207be0fafdbfc497ee3761d30e",
+      "from": "0x840a89cc5d6bfa49f940a65cc22995d4a1db5a0f",
+      "to": "0x01d40099fcd87c018969b0e8d4ab1633fb34763c",
+      "value": "0",
+      "valueEth": 0,
+      "gasPrice": "1200000",
+      "gasUsed": "162471",
+      "gasCostEth": 1.949652e-7,
+      "blockNumber": 27283719,
+      "blockTimestamp": 1769296229,
+      "status": true,
+      "type": "transfer",
+      "methodId": "0xa9059cbb"
+    },
+    {
+      "hash": "0xc0375e3d7d31cf9a92f63c12302b075573fe969786b8968edfaa252d88539d93",
+      "from": "0x840a89cc5d6bfa49f940a65cc22995d4a1db5a0f",
+      "to": "0x05d032ac25d322df992303dca074ee7392c117b9",
+      "value": "0",
+      "valueEth": 0,
+      "gasPrice": "1116",
+      "gasUsed": "46207",
+      "gasCostEth": 5.1567012e-11,
+      "blockNumber": 27284154,
+      "blockTimestamp": 1769297099,
+      "status": true,
+      "type": "transfer",
+      "methodId": "0xa9059cbb"
+    },
+    {
+      "hash": "0x61a44f6fdd857dd0ed82bf7615b49db05f9e3f00b8cc46c9af0bf8ec340aa71d",
+      "from": "0x840a89cc5d6bfa49f940a65cc22995d4a1db5a0f",
+      "to": "0x1231deb6f5749ef6ce6943a275a1d3e7486f4eae",
+      "value": "0",
+      "valueEth": 0,
+      "gasPrice": "1116",
+      "gasUsed": "170467",
+      "gasCostEth": 1.90241172e-10,
+      "blockNumber": 27284155,
+      "blockTimestamp": 1769297101,
+      "status": true,
+      "type": "transfer",
+      "methodId": "0xa9059cbb"
+    },
+    {
+      "hash": "0xd0eea37c98fd2764a3117b3863631d5c830399bf05355188bd50184b449b4e5e",
+      "from": "0xf64fe162a0a059b5cc271a1fffc81e232f7f5c6d",
+      "to": "0x01d40099fcd87c018969b0e8d4ab1633fb34763c",
+      "value": "0",
+      "valueEth": 0,
+      "gasPrice": "101015",
+      "gasUsed": "263662",
+      "gasCostEth": 2.663381693e-8,
+      "blockNumber": 27284262,
+      "blockTimestamp": 1769297315,
+      "status": true,
+      "type": "transfer",
+      "methodId": "0xa9059cbb"
+    },
+    {
+      "hash": "0xbaf10a616d61b996b2fb5ce2708f6ae78f40a4280a9bd14f82ad921057b1fd1c",
+      "from": "0x840a89cc5d6bfa49f940a65cc22995d4a1db5a0f",
+      "to": "0x01d40099fcd87c018969b0e8d4ab1633fb34763c",
+      "value": "0",
+      "valueEth": 0,
+      "gasPrice": "1001000",
+      "gasUsed": "162471",
+      "gasCostEth": 1.62633471e-7,
+      "blockNumber": 27284412,
+      "blockTimestamp": 1769297615,
+      "status": true,
+      "type": "transfer",
+      "methodId": "0xa9059cbb"
+    },
+    {
+      "hash": "0xbd7a940e86e22773edd20babf01e88494ae7274942529db8e18d9e75d2c72009",
+      "from": "0x202cfe6507f9e030668b077e5442d7c364147b07",
+      "to": "0x5911cb3633e764939edc2d92b7e1ad375bb57649",
+      "value": "0",
+      "valueEth": 0,
+      "gasPrice": "1001000",
+      "gasUsed": "192914",
+      "gasCostEth": 1.93106914e-7,
+      "blockNumber": 27284418,
+      "blockTimestamp": 1769297627,
+      "status": true,
+      "type": "transfer",
+      "methodId": "0xa9059cbb"
+    },
+    {
+      "hash": "0xdc81affc273211fe1082f1e582343c78c02844ef7d337dd00382a2f59a2d29a3",
+      "from": "0x42c82d76fb666844c41edf08df0254875dbb8fec",
+      "to": "0x4200000000000000000000000000000000000007",
+      "value": "0",
+      "valueEth": 0,
+      "gasPrice": "0",
+      "gasUsed": "125797",
+      "gasCostEth": 0,
+      "blockNumber": 27284864,
+      "blockTimestamp": 1769298519,
+      "status": true,
+      "type": "transfer",
+      "methodId": "0xa9059cbb"
+    },
+    {
+      "hash": "0xdd032631cbca180ddff6cfe8070f4ad582ad962455795a6cbc2666107466752b",
+      "from": "0x3bd3b18376896a755a30420d83f23e23fa71c42b",
+      "to": "0x01d40099fcd87c018969b0e8d4ab1633fb34763c",
+      "value": "0",
+      "valueEth": 0,
+      "gasPrice": "1001015",
+      "gasUsed": "272423",
+      "gasCostEth": 2.72699509345e-7,
+      "blockNumber": 27286935,
+      "blockTimestamp": 1769302661,
+      "status": true,
+      "type": "transfer",
+      "methodId": "0xa9059cbb"
+    },
+    {
+      "hash": "0x058465caedee487bd43a694c624176099caf3fb6c132cc750325ea9560805f6d",
+      "from": "0x03d9964f4d93a24b58c0fc3a8df3474b59ba8557",
+      "to": "0x02ae4716b9d5d48db1445814b0ede39f5c28264b",
+      "value": "0",
+      "valueEth": 0,
+      "gasPrice": "1001015",
+      "gasUsed": "566093",
+      "gasCostEth": 5.66667584395e-7,
+      "blockNumber": 27287925,
+      "blockTimestamp": 1769304641,
+      "status": true,
+      "type": "transfer",
+      "methodId": "0xa9059cbb"
+    },
+    {
+      "hash": "0xb7e649b9e868afc4fa3e53983ab4190372c217b8a24cd5fbac12316d91320907",
+      "from": "0xbd0964e36951f17ccc16a4b2120cab5caece2f87",
+      "to": "0x05d032ac25d322df992303dca074ee7392c117b9",
+      "value": "0",
+      "valueEth": 0,
+      "gasPrice": "1001015",
+      "gasUsed": "34360",
+      "gasCostEth": 3.43948754e-8,
+      "blockNumber": 27288101,
+      "blockTimestamp": 1769304993,
+      "status": true,
+      "type": "transfer",
+      "methodId": "0xa9059cbb"
+    },
+    {
+      "hash": "0x960d1c76aee25132fedf859e8168cbd8775057ef4863ef9b517f30db70b96ea3",
+      "from": "0xe059a37d87c49503b283a2f7a3a5d4b652ff7351",
+      "to": "0x05d032ac25d322df992303dca074ee7392c117b9",
+      "value": "0",
+      "valueEth": 0,
+      "gasPrice": "1001000",
+      "gasUsed": "24271",
+      "gasCostEth": 2.4295271e-8,
+      "blockNumber": 27288615,
+      "blockTimestamp": 1769306021,
+      "status": true,
+      "type": "transfer",
+      "methodId": "0xa9059cbb"
+    },
+    {
+      "hash": "0x1952256ad6c609bed11fbc97133a25a42fcc2bf7d2a7b319b36497ef5699b45e",
+      "from": "0xe059a37d87c49503b283a2f7a3a5d4b652ff7351",
+      "to": "0x05d032ac25d322df992303dca074ee7392c117b9",
+      "value": "0",
+      "valueEth": 0,
+      "gasPrice": "1000915",
+      "gasUsed": "24271",
+      "gasCostEth": 2.4293207965e-8,
+      "blockNumber": 27288618,
+      "blockTimestamp": 1769306027,
+      "status": true,
+      "type": "transfer",
+      "methodId": "0xa9059cbb"
+    }
+  ],
+  "users": [
+    {
+      "address": "0xc06ebbefd94032b85424d51906e2a335efae264b",
+      "transactionCount": 1,
+      "totalValue": 0,
+      "totalGasSpent": 4.1540721079e-7,
+      "firstSeen": "2026-01-24T23:05:15.000Z",
+      "lastSeen": "2026-01-24T23:05:15.000Z",
+      "userType": "casual",
+      "loyaltyScore": 20,
+      "riskScore": 0
+    },
+    {
+      "address": "0x840a89cc5d6bfa49f940a65cc22995d4a1db5a0f",
+      "transactionCount": 4,
+      "totalValue": 0,
+      "totalGasSpent": 3.57840479184e-7,
+      "firstSeen": "2026-01-24T23:10:29.000Z",
+      "lastSeen": "2026-01-24T23:33:35.000Z",
+      "userType": "casual",
+      "loyaltyScore": 80,
+      "riskScore": 0
+    },
+    {
+      "address": "0xf64fe162a0a059b5cc271a1fffc81e232f7f5c6d",
+      "transactionCount": 1,
+      "totalValue": 0,
+      "totalGasSpent": 2.663381693e-8,
+      "firstSeen": "2026-01-24T23:28:35.000Z",
+      "lastSeen": "2026-01-24T23:28:35.000Z",
+      "userType": "casual",
+      "loyaltyScore": 20,
+      "riskScore": 0
+    },
+    {
+      "address": "0x202cfe6507f9e030668b077e5442d7c364147b07",
+      "transactionCount": 1,
+      "totalValue": 0,
+      "totalGasSpent": 1.93106914e-7,
+      "firstSeen": "2026-01-24T23:33:47.000Z",
+      "lastSeen": "2026-01-24T23:33:47.000Z",
+      "userType": "casual",
+      "loyaltyScore": 20,
+      "riskScore": 0
+    },
+    {
+      "address": "0x42c82d76fb666844c41edf08df0254875dbb8fec",
+      "transactionCount": 1,
+      "totalValue": 0,
+      "totalGasSpent": 0,
+      "firstSeen": "2026-01-24T23:48:39.000Z",
+      "lastSeen": "2026-01-24T23:48:39.000Z",
+      "userType": "casual",
+      "loyaltyScore": 20,
+      "riskScore": 0
+    },
+    {
+      "address": "0x3bd3b18376896a755a30420d83f23e23fa71c42b",
+      "transactionCount": 1,
+      "totalValue": 0,
+      "totalGasSpent": 2.72699509345e-7,
+      "firstSeen": "2026-01-25T00:57:41.000Z",
+      "lastSeen": "2026-01-25T00:57:41.000Z",
+      "userType": "casual",
+      "loyaltyScore": 20,
+      "riskScore": 0
+    },
+    {
+      "address": "0x03d9964f4d93a24b58c0fc3a8df3474b59ba8557",
+      "transactionCount": 1,
+      "totalValue": 0,
+      "totalGasSpent": 5.66667584395e-7,
+      "firstSeen": "2026-01-25T01:30:41.000Z",
+      "lastSeen": "2026-01-25T01:30:41.000Z",
+      "userType": "casual",
+      "loyaltyScore": 20,
+      "riskScore": 0
+    },
+    {
+      "address": "0xbd0964e36951f17ccc16a4b2120cab5caece2f87",
+      "transactionCount": 1,
+      "totalValue": 0,
+      "totalGasSpent": 3.43948754e-8,
+      "firstSeen": "2026-01-25T01:36:33.000Z",
+      "lastSeen": "2026-01-25T01:36:33.000Z",
+      "userType": "casual",
+      "loyaltyScore": 20,
+      "riskScore": 0
+    },
+    {
+      "address": "0xe059a37d87c49503b283a2f7a3a5d4b652ff7351",
+      "transactionCount": 2,
+      "totalValue": 0,
+      "totalGasSpent": 4.8588478965000005e-8,
+      "firstSeen": "2026-01-25T01:53:41.000Z",
+      "lastSeen": "2026-01-25T01:53:47.000Z",
+      "userType": "casual",
+      "loyaltyScore": 40,
+      "riskScore": 0
+    }
+  ],
+  "events": [],
+  "locks": [],
+  "gasAnalysis": {
+    "averageGasPrice": "716247.8461538461",
+    "averageGasUsed": 189261,
+    "totalGasCost": 0.000002,
+    "gasEfficiencyScore": 18.39,
+    "failedTransactions": 0,
+    "failureRate": 0,
+    "gasOptimizationOpportunities": [
+      "Optimize contract calls",
+      "Batch similar transactions"
+    ]
+  },
+  "competitive": {
+    "marketPosition": 4,
+    "marketShare": 0,
+    "advantages": [
+      "Low transaction fees",
+      "Fast confirmation times",
+      "Active development team"
+    ],
+    "challenges": [
+      "Limited ecosystem",
+      "User acquisition needed",
+      "Liquidity depth improvement"
+    ],
+    "benchmarks": {
+      "vsEthereum": {
+        "gasCostReduction": 85.5,
+        "transactionSpeed": 12.5,
+        "userGrowth": -5.2
+      },
+      "vsCompetitors": [
+        {
+          "name": "Similar Protocol",
+          "chain": "lisk",
+          "marketShare": 16.27,
+          "userOverlap": 42.11
+        }
+      ]
+    }
+  },
+  "recommendations": [
+    "Develop user retention programs",
+    "Monitor competitive landscape regularly",
+    "Implement user feedback collection system"
+  ],
+  "alerts": []
+}

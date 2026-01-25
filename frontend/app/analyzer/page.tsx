@@ -8,6 +8,8 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Header } from '@/components/ui/header';
+import { useAuth } from '@/components/auth/auth-provider';
+import { useRouter } from 'next/navigation';
 
 // Import components
 import { WizardStep } from '@/components/analyzer/wizard-step';
@@ -20,14 +22,14 @@ import { UsersTab } from '@/components/analyzer/users-tab';
 import { TransactionsTab } from '@/components/analyzer/transactions-tab';
 import { CompetitiveTab } from '@/components/analyzer/competitive-tab';
 
+// Import API
+import { api, monitorAnalysis } from '@/lib/api';
+
 // ============ TYPE & SCHEMA DEFINITIONS ============
 const chainLogos = {
   ethereum: 'https://cryptologos.cc/logos/ethereum-eth-logo.svg',
-  // polygon: 'https://cryptologos.cc/logos/polygon-matic-logo.svg',
   lisk: 'https://cryptologos.cc/logos/lisk-lsk-logo.svg',
-  // solana: 'https://cryptologos.cc/logos/solana-sol-logo.svg',
   starknet: 'https://cryptologos.cc/logos/starknet-token-strk-logo.svg',
-  // arbitrum: 'https://cryptologos.cc/logos/arbitrum-arb-logo.svg',
 };
 
 const CompetitorSchema = z.object({
@@ -40,7 +42,7 @@ const CompetitorSchema = z.object({
 const WizardSchema = z.object({
   startupName: z.string().min(2, 'Startup name required (min 2 characters)'),
   chain: z.string().min(1, 'Chain required'),
-  address: z.string().optional().default(''),
+  address: z.string().min(1, 'Contract address required'),
   abi: z.string().optional().default(''),
   competitors: z.array(CompetitorSchema).optional(),
   duration: z.enum(['7', '14', '30']).optional().default('7'),
@@ -52,10 +54,16 @@ const CHAINS = Object.keys(chainLogos) as Array<keyof typeof chainLogos>;
 
 // ============ MAIN PAGE COMPONENT ============
 export default function OnChainAnalyzer() {
+  const { user, isAuthenticated, isLoading: authLoading } = useAuth();
+  const router = useRouter();
   const [step, setStep] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
+  const [loadingStatus, setLoadingStatus] = useState('');
   const [formData, setFormData] = useState<WizardFormData | null>(null);
+  const [analysisResults, setAnalysisResults] = useState<any>(null);
+  const [analysisId, setAnalysisId] = useState<string | null>(null);
   const [dashboardTab, setDashboardTab] = useState('overview');
+  const [error, setError] = useState('');
 
   const form = useForm<WizardFormData>({
     resolver: zodResolver(WizardSchema),
@@ -75,6 +83,14 @@ export default function OnChainAnalyzer() {
     name: 'competitors',
   });
 
+  // Check authentication
+  useEffect(() => {
+    if (!authLoading && !isAuthenticated) {
+      router.push('/login?redirect=analyzer');
+      return;
+    }
+  }, [authLoading, isAuthenticated, router]);
+
   // Load pending address from localStorage
   useEffect(() => {
     const pendingAddress = localStorage.getItem('pendingAnalysisAddress');
@@ -84,28 +100,99 @@ export default function OnChainAnalyzer() {
     }
   }, [form]);
 
+  // Show loading while auth is being checked
+  if (authLoading) {
+    return (
+      <div className="min-h-screen bg-background flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto mb-4"></div>
+          <p className="text-muted-foreground">Loading...</p>
+        </div>
+      </div>
+    );
+  }
+
+  // Don't render anything if not authenticated (will redirect)
+  if (!isAuthenticated) {
+    return null;
+  }
+
   async function onSubmit(data: WizardFormData) {
     setIsLoading(true);
+    setError('');
     setFormData(data);
     
-    // Simulate 3-5 second API call
-    await new Promise(resolve => setTimeout(resolve, 4000));
-    
-    setIsLoading(false);
+    try {
+      setLoadingStatus('Creating configuration...');
+      
+      // Create custom configuration - always required now
+      const configData = {
+        name: `${data.startupName} Analysis`,
+        description: `Analysis for ${data.startupName} on ${data.chain}`,
+        targetContract: {
+          address: data.address,
+          chain: data.chain,
+          name: data.startupName,
+          abi: data.abi || ''
+        },
+        competitors: data.competitors?.filter(comp => comp.address && comp.chain).map(comp => ({
+          address: comp.address,
+          chain: comp.chain,
+          name: comp.name || 'Competitor',
+          abi: comp.abi || ''
+        })) || [],
+        analysisParams: {
+          blockRange: parseInt(data.duration) * 1000, // Convert days to approximate blocks
+          whaleThreshold: 10,
+          maxConcurrentRequests: 5,
+          failoverTimeout: 60000,
+          maxRetries: 2
+        }
+      };
+      const config = await api.contracts.create(configData);
+
+      setLoadingStatus('Starting analysis...');
+      
+      // Start analysis
+      const analysisType = data.competitors && data.competitors.length > 0 ? 'competitive' : 'single';
+      const analysis = await api.analysis.start(config.id || config.config?.id, analysisType);
+      
+      // Store analysis ID
+      setAnalysisId(analysis.analysisId);
+      
+      setLoadingStatus('Analyzing blockchain data...');
+      
+      // Monitor analysis progress
+      const results = await monitorAnalysis(analysis.analysisId, (status) => {
+        setLoadingStatus(`Analysis ${status.progress}% complete...`);
+      });
+      
+      setAnalysisResults(results);
+      setIsLoading(false);
+      
+    } catch (error: any) {
+      console.error('Analysis error:', error);
+      setError(error.message || 'Analysis failed. Please try again.');
+      setIsLoading(false);
+    }
   }
 
   // Show loading screen
   if (isLoading) {
-    return <LoadingScreen startupName={formData?.startupName || 'Your Protocol'} />;
+    return <LoadingScreen startupName={formData?.startupName || 'Your Protocol'} status={loadingStatus} />;
   }
 
   // Show dashboard after analysis
-  if (formData && !isLoading) {
+  if (analysisResults && !isLoading) {
     return (
       <div className="min-h-screen bg-background">
         <Header />
         <main className="px-6 py-8 max-w-7xl mx-auto">
-          <DashboardHeader startupName={formData.startupName} chain={formData.chain} />
+          <DashboardHeader 
+            startupName={formData?.startupName || 'Analysis'} 
+            chain={formData?.chain || 'unknown'} 
+            analysisResults={analysisResults}
+          />
 
           <Tabs value={dashboardTab} onValueChange={setDashboardTab} className="w-full">
             <TabsList className="grid w-full grid-cols-5 mb-8">
@@ -127,23 +214,23 @@ export default function OnChainAnalyzer() {
             </TabsList>
 
             <TabsContent value="overview">
-              <OverviewTab />
+              <OverviewTab analysisResults={analysisResults} analysisId={analysisId} />
             </TabsContent>
 
             <TabsContent value="metrics">
-              <MetricsTab />
+              <MetricsTab analysisResults={analysisResults} />
             </TabsContent>
 
             <TabsContent value="users">
-              <UsersTab />
+              <UsersTab analysisResults={analysisResults} />
             </TabsContent>
 
             <TabsContent value="transactions">
-              <TransactionsTab />
+              <TransactionsTab analysisResults={analysisResults} />
             </TabsContent>
 
             <TabsContent value="competitive">
-              <CompetitiveTab />
+              <CompetitiveTab analysisResults={analysisResults} />
             </TabsContent>
           </Tabs>
 
@@ -164,9 +251,11 @@ export default function OnChainAnalyzer() {
             <Button
               onClick={() => {
                 setFormData(null);
+                setAnalysisResults(null);
                 form.reset();
                 setStep(0);
                 setDashboardTab('overview');
+                setError('');
               }}
               variant="outline"
             >
@@ -196,6 +285,12 @@ export default function OnChainAnalyzer() {
 
         <Card className="shadow-lg">
           <CardContent className="pt-8">
+            {error && (
+              <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg">
+                <p className="text-red-600 text-sm">{error}</p>
+              </div>
+            )}
+
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
               {step === 0 && (
                 <div className="space-y-6">
@@ -225,7 +320,7 @@ export default function OnChainAnalyzer() {
                   />
 
                   <div>
-                    <label className="block text-sm font-medium mb-2">Contract Address</label>
+                    <label className="block text-sm font-medium mb-2">Contract Address *</label>
                     <input
                       type="text"
                       placeholder="0x..."
@@ -242,19 +337,16 @@ export default function OnChainAnalyzer() {
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium mb-2">Contract ABI</label>
+                    <label className="block text-sm font-medium mb-2">Contract ABI (Optional)</label>
                     <textarea
-                      placeholder='Paste ABI JSON here...'
+                      placeholder="Paste your contract ABI JSON here..."
                       {...form.register('abi')}
-                      className={`w-full px-4 py-3 bg-background border rounded-lg focus:outline-none focus:ring-2 focus:ring-ring transition-all font-mono h-32 resize-none ${
-                        form.formState.errors.abi
-                          ? 'border-destructive focus:ring-destructive/20'
-                          : 'border-input focus:border-ring'
-                      }`}
+                      className="w-full px-4 py-3 bg-background border border-input rounded-lg focus:outline-none focus:ring-2 focus:ring-ring transition-all font-mono text-xs"
+                      rows={4}
                     />
-                    {form.formState.errors.abi && (
-                      <p className="text-destructive text-sm mt-1">{form.formState.errors.abi.message}</p>
-                    )}
+                    <p className="text-muted-foreground text-xs mt-1">
+                      Leave empty to use standard ERC-20 ABI
+                    </p>
                   </div>
                 </div>
               )}
@@ -292,7 +384,7 @@ export default function OnChainAnalyzer() {
                         <div>
                           <label className="block text-sm font-medium text-muted-foreground mb-2">Chain</label>
                           <div className="grid grid-cols-3 gap-2">
-                            {CHAINS.slice(0, 3).map((chain) => (
+                            {CHAINS.map((chain) => (
                               <button
                                 key={chain}
                                 type="button"
@@ -320,12 +412,16 @@ export default function OnChainAnalyzer() {
                         </div>
 
                         <div>
-                          <label className="block text-sm font-medium text-muted-foreground mb-2">ABI</label>
+                          <label className="block text-sm font-medium text-muted-foreground mb-2">ABI (Optional)</label>
                           <textarea
-                            placeholder="Paste ABI..."
+                            placeholder="Paste competitor ABI JSON here..."
                             {...form.register(`competitors.${index}.abi`)}
-                            className="w-full px-3 py-2 bg-background border border-input rounded focus:outline-none focus:border-ring font-mono text-xs h-20 resize-none"
+                            className="w-full px-3 py-2 bg-background border border-input rounded focus:outline-none focus:border-ring font-mono text-xs"
+                            rows={3}
                           />
+                          <p className="text-muted-foreground text-xs mt-1">
+                            Leave empty to use standard ERC-20 ABI
+                          </p>
                         </div>
                       </CardContent>
                     </Card>
@@ -353,33 +449,6 @@ export default function OnChainAnalyzer() {
 
               {step === 2 && (
                 <div className="space-y-6">
-                  <div>
-                    <label className="block text-sm font-medium mb-4">Analysis Duration</label>
-                    <div className="space-y-3">
-                      {(['7', '14', '30'] as const).map((duration) => (
-                        <label
-                          key={duration}
-                          className={`flex items-center p-4 rounded-lg border-2 cursor-pointer transition-all ${
-                            form.watch('duration') === duration
-                              ? 'bg-primary/5 border-primary'
-                              : 'bg-card border-border hover:border-muted-foreground/50'
-                          }`}
-                        >
-                          <input
-                            type="radio"
-                            value={duration}
-                            {...form.register('duration')}
-                            className="w-4 h-4 text-primary"
-                          />
-                          <span className="ml-3 flex-1">
-                            <span className="font-semibold">{duration} Days</span>
-                            <p className="text-muted-foreground text-sm">Detailed analysis over {duration} days</p>
-                          </span>
-                        </label>
-                      ))}
-                    </div>
-                  </div>
-
                   <Card className="bg-muted/50">
                     <CardContent className="pt-6">
                       <p className="text-sm">
@@ -408,7 +477,7 @@ export default function OnChainAnalyzer() {
                     onClick={async () => {
                       if (step === 0) {
                         // Validate required fields for step 0
-                        const isValid = await form.trigger(['startupName', 'chain']);
+                        const isValid = await form.trigger(['startupName', 'chain', 'address']);
                         if (isValid) {
                           setStep(step + 1);
                         }

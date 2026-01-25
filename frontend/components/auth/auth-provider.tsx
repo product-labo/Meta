@@ -51,10 +51,12 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     // Protected Route Logic
     useEffect(() => {
         const PUBLIC_ROUTES = ['/', '/login', '/signup', '/verify', '/explore'];
-        const isPublicRoute = PUBLIC_ROUTES.includes(pathname) || pathname.startsWith('/verify'); // verify has query params usually
+        const isPublicRoute = PUBLIC_ROUTES.includes(pathname) || pathname.startsWith('/verify');
 
         if (!isLoading && !token && !isPublicRoute) {
-            router.push('/login');
+            // Store the intended destination for redirect after login
+            const redirectParam = pathname !== '/login' ? `?redirect=${encodeURIComponent(pathname)}` : '';
+            router.push(`/login${redirectParam}`);
         }
     }, [isLoading, token, pathname, router]);
 

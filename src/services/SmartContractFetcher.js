@@ -74,17 +74,29 @@ export class SmartContractFetcher extends EventEmitter {
       ],
       lisk: [
         {
-          name: 'drpc',
-          url: process.env.LISK_RPC_URL1 || 'https://lisk.drpc.org',
+          name: 'lisk-api',
+          url: process.env.LISK_RPC_URL1 || 'https://rpc.api.lisk.com',
           priority: 1,
           type: 'http'
         },
         {
-          name: 'tenderly',
-          url: process.env.LISK_RPC_URL2 || 'https://lisk.gateway.tenderly.co/2o3VKjmisQNOJIPlLrt6Ye',
+          name: 'drpc',
+          url: process.env.LISK_RPC_URL2 || 'https://lisk.drpc.org',
           priority: 2,
+          type: 'http'
+        },
+        {
+          name: 'tenderly',
+          url: process.env.LISK_RPC_URL3 || 'https://lisk.gateway.tenderly.co/2o3VKjmisQNOJIPlLrt6Ye',
+          priority: 3,
           type: 'http',
           wsUrl: process.env.LISK_TENDERLY_WS || 'wss://lisk.gateway.tenderly.co/2o3VKjmisQNOJIPlLrt6Ye'
+        },
+        {
+          name: 'moralis',
+          url: process.env.LISK_RPC_URL4 || 'https://site1.moralis-nodes.com/lisk/7f6b7ac6edf2456fa240535cc2d8fc6e',
+          priority: 4,
+          type: 'http'
         }
       ]
     };

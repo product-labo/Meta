@@ -1,22 +1,33 @@
 {
   "name": "improve",
   "version": "1.0.0",
-  "description": "",
-  "main": "server.js",
+  "description": "Multi-Chain Smart Contract Analytics Platform with API",
+  "main": "src/api/server.js",
   "type": "module",
   "scripts": {
-    "start": "node server.js",
+    "start": "node src/api/server.js",
+    "dev": "node --watch src/api/server.js",
     "quick-start": "node start.js",
     "analyze": "node src/main.js",
     "analyze:competitors": "node src/main.js --competitors",
     "analyze:comparative": "node src/main.js --comparative",
-    "dev": "node --watch src/main.js",
-    "reports": "node report-manager.js"
+    "reports": "node report-manager.js",
+    "test": "node --test",
+    "test:api": "node test/api-test.js"
   },
-  "keywords": [],
+  "keywords": [
+    "blockchain",
+    "analytics",
+    "defi",
+    "smart-contracts",
+    "api"
+  ],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@google/genai": "^1.38.0",
+    "@google/generative-ai": "^0.21.0",
+    "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
     "csv-writer": "^1.6.0",
     "d3-scale": "^4.0.2",
@@ -29,10 +40,10 @@
     "lodash": "^4.17.21",
     "ml-matrix": "^6.12.1",
     "moment": "^2.30.1",
+    "mongoose": "^8.21.1",
     "node-fetch": "^3.3.2",
     "pg": "^8.16.3",
     "simple-statistics": "^7.8.8",
     "ws": "^8.19.0"
-  },
-  "devDependencies": {}
+  }
 }

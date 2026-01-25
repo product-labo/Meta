@@ -1,0 +1,1198 @@
+[
+  {
+    "id": "8f62f354-9eb3-4caf-a56b-08b56a319d85",
+    "userId": "ff74b7ed-1b35-4e68-8a03-a4cf27df2700",
+    "name": "usdt Analysis",
+    "description": "Analysis configuration for usdt on lisk",
+    "targetContract": {
+      "address": "0x05D032ac25d322df992303dCa074EE7392C117b9",
+      "chain": "lisk",
+      "name": "usdt",
+      "abi": "./abis/trip.json"
+    },
+    "competitors": [
+      {
+        "address": "0xfc102D4807A92B08080D4d969Dfda59C3C01B02F",
+        "chain": "lisk",
+        "name": "usdc",
+        "abi": "./abis/usdc.json"
+      },
+      {
+        "address": "0xd9e1ce17f2641f24ae83637ab66a2cca9c378b9f",
+        "chain": "ethereum",
+        "name": "SushiSwap_Router",
+        "abi": "./abis/competitor-2-sushiswap.json"
+      },
+      {
+        "address": "0x1111111254fb6c44bac0bed2854e76f90643097d",
+        "chain": "ethereum",
+        "name": "1inch_V5_Router",
+        "abi": "./abis/competitor-3-1inch.json"
+      },
+      {
+        "address": "0x68b3465833fb72a70ecdf485e0e4c7bd8665fc45",
+        "chain": "ethereum",
+        "name": "Uniswap_V3_Router",
+        "abi": "./abis/competitor-4-uniswap-v3.json"
+      },
+      {
+        "address": "0xdef1c0ded9bec7f1a1670819833240f027b25eff",
+        "chain": "ethereum",
+        "name": "0x_Exchange_Proxy",
+        "abi": "./abis/competitor-5-0x.json"
+      }
+    ],
+    "rpcConfig": {
+      "ethereum": [
+        "https://ethereum-rpc.publicnode.com",
+        "https://eth.nownodes.io/2ca1a1a6-9040-4ca9-8727-33a186414a1f"
+      ],
+      "lisk": [
+        "https://lisk.drpc.org",
+        "https://rpc.api.lisk.com",
+        "https://lisk.gateway.tenderly.co/2o3VKjmisQNOJIPlLrt6Ye",
+        "https://site1.moralis-nodes.com/lisk/7f6b7ac6edf2456fa240535cc2d8fc6e"
+      ],
+      "starknet": [
+        "https://rpc.starknet.lava.build",
+        "https://starknet-rpc.publicnode.com",
+        "https://starknet-mainnet.infura.io/v3/52be4d01250949baa85cad00e7b955ab"
+      ]
+    },
+    "analysisParams": {
+      "blockRange": 1000,
+      "whaleThreshold": 10,
+      "maxConcurrentRequests": 5,
+      "failoverTimeout": 30000,
+      "maxRetries": 2,
+      "outputFormats": [
+        "json",
+        "csv",
+        "markdown"
+      ]
+    },
+    "tags": [
+      "default",
+      "env-config"
+    ],
+    "isActive": true,
+    "lastAnalyzed": null,
+    "analysisCount": 0,
+    "createdAt": "2026-01-25T00:40:57.833Z",
+    "updatedAt": "2026-01-25T00:40:57.833Z"
+  },
+  {
+    "id": "2b026c1c-b15d-4718-9cb5-6b9b8d995125",
+    "userId": "27a97218-415a-4511-8366-fcd00e647758",
+    "name": "usdt Analysis",
+    "description": "Analysis configuration for usdt on lisk",
+    "targetContract": {
+      "address": "0x05D032ac25d322df992303dCa074EE7392C117b9",
+      "chain": "lisk",
+      "name": "usdt",
+      "abi": "./abis/trip.json"
+    },
+    "competitors": [
+      {
+        "address": "0xfc102D4807A92B08080D4d969Dfda59C3C01B02F",
+        "chain": "lisk",
+        "name": "usdc",
+        "abi": "./abis/usdc.json"
+      },
+      {
+        "address": "0xd9e1ce17f2641f24ae83637ab66a2cca9c378b9f",
+        "chain": "ethereum",
+        "name": "SushiSwap_Router",
+        "abi": "./abis/competitor-2-sushiswap.json"
+      },
+      {
+        "address": "0x1111111254fb6c44bac0bed2854e76f90643097d",
+        "chain": "ethereum",
+        "name": "1inch_V5_Router",
+        "abi": "./abis/competitor-3-1inch.json"
+      },
+      {
+        "address": "0x68b3465833fb72a70ecdf485e0e4c7bd8665fc45",
+        "chain": "ethereum",
+        "name": "Uniswap_V3_Router",
+        "abi": "./abis/competitor-4-uniswap-v3.json"
+      },
+      {
+        "address": "0xdef1c0ded9bec7f1a1670819833240f027b25eff",
+        "chain": "ethereum",
+        "name": "0x_Exchange_Proxy",
+        "abi": "./abis/competitor-5-0x.json"
+      }
+    ],
+    "rpcConfig": {
+      "ethereum": [
+        "https://ethereum-rpc.publicnode.com",
+        "https://eth.nownodes.io/2ca1a1a6-9040-4ca9-8727-33a186414a1f"
+      ],
+      "lisk": [
+        "https://lisk.drpc.org",
+        "https://rpc.api.lisk.com",
+        "https://lisk.gateway.tenderly.co/2o3VKjmisQNOJIPlLrt6Ye",
+        "https://site1.moralis-nodes.com/lisk/7f6b7ac6edf2456fa240535cc2d8fc6e"
+      ],
+      "starknet": [
+        "https://rpc.starknet.lava.build",
+        "https://starknet-rpc.publicnode.com",
+        "https://starknet-mainnet.infura.io/v3/52be4d01250949baa85cad00e7b955ab"
+      ]
+    },
+    "analysisParams": {
+      "blockRange": 1000,
+      "whaleThreshold": 10,
+      "maxConcurrentRequests": 5,
+      "failoverTimeout": 30000,
+      "maxRetries": 2,
+      "outputFormats": [
+        "json",
+        "csv",
+        "markdown"
+      ]
+    },
+    "tags": [
+      "default",
+      "env-config"
+    ],
+    "isActive": true,
+    "lastAnalyzed": null,
+    "analysisCount": 0,
+    "createdAt": "2026-01-25T00:42:09.778Z",
+    "updatedAt": "2026-01-25T00:42:09.778Z"
+  },
+  {
+    "id": "b1a71e05-2a83-45ad-bfa2-823dd048b3cd",
+    "userId": "6cfa276d-2608-4ec1-b149-920445291ff9",
+    "name": "usdt Analysis",
+    "description": "Analysis configuration for usdt on lisk",
+    "targetContract": {
+      "address": "0x05D032ac25d322df992303dCa074EE7392C117b9",
+      "chain": "lisk",
+      "name": "usdt",
+      "abi": "./abis/trip.json"
+    },
+    "competitors": [
+      {
+        "address": "0xfc102D4807A92B08080D4d969Dfda59C3C01B02F",
+        "chain": "lisk",
+        "name": "usdc",
+        "abi": "./abis/usdc.json"
+      },
+      {
+        "address": "0xd9e1ce17f2641f24ae83637ab66a2cca9c378b9f",
+        "chain": "ethereum",
+        "name": "SushiSwap_Router",
+        "abi": "./abis/competitor-2-sushiswap.json"
+      },
+      {
+        "address": "0x1111111254fb6c44bac0bed2854e76f90643097d",
+        "chain": "ethereum",
+        "name": "1inch_V5_Router",
+        "abi": "./abis/competitor-3-1inch.json"
+      },
+      {
+        "address": "0x68b3465833fb72a70ecdf485e0e4c7bd8665fc45",
+        "chain": "ethereum",
+        "name": "Uniswap_V3_Router",
+        "abi": "./abis/competitor-4-uniswap-v3.json"
+      },
+      {
+        "address": "0xdef1c0ded9bec7f1a1670819833240f027b25eff",
+        "chain": "ethereum",
+        "name": "0x_Exchange_Proxy",
+        "abi": "./abis/competitor-5-0x.json"
+      }
+    ],
+    "rpcConfig": {
+      "ethereum": [
+        "https://ethereum-rpc.publicnode.com",
+        "https://eth.nownodes.io/2ca1a1a6-9040-4ca9-8727-33a186414a1f"
+      ],
+      "lisk": [
+        "https://lisk.drpc.org",
+        "https://rpc.api.lisk.com",
+        "https://lisk.gateway.tenderly.co/2o3VKjmisQNOJIPlLrt6Ye",
+        "https://site1.moralis-nodes.com/lisk/7f6b7ac6edf2456fa240535cc2d8fc6e"
+      ],
+      "starknet": [
+        "https://rpc.starknet.lava.build",
+        "https://starknet-rpc.publicnode.com",
+        "https://starknet-mainnet.infura.io/v3/52be4d01250949baa85cad00e7b955ab"
+      ]
+    },
+    "analysisParams": {
+      "blockRange": 1000,
+      "whaleThreshold": 10,
+      "maxConcurrentRequests": 5,
+      "failoverTimeout": 30000,
+      "maxRetries": 2,
+      "outputFormats": [
+        "json",
+        "csv",
+        "markdown"
+      ]
+    },
+    "tags": [
+      "default",
+      "env-config"
+    ],
+    "isActive": true,
+    "lastAnalyzed": null,
+    "analysisCount": 0,
+    "createdAt": "2026-01-25T00:43:10.553Z",
+    "updatedAt": "2026-01-25T00:43:10.553Z"
+  },
+  {
+    "id": "a88cfd05-f070-40e2-b1e7-e179a026ffb2",
+    "userId": "f3588858-59ac-4d3e-97f3-60912dfc5afe",
+    "name": "usdt Analysis",
+    "description": "Analysis configuration for usdt on lisk",
+    "targetContract": {
+      "address": "0x05D032ac25d322df992303dCa074EE7392C117b9",
+      "chain": "lisk",
+      "name": "usdt",
+      "abi": "./abis/trip.json"
+    },
+    "competitors": [
+      {
+        "address": "0xfc102D4807A92B08080D4d969Dfda59C3C01B02F",
+        "chain": "lisk",
+        "name": "usdc",
+        "abi": "./abis/usdc.json"
+      },
+      {
+        "address": "0xd9e1ce17f2641f24ae83637ab66a2cca9c378b9f",
+        "chain": "ethereum",
+        "name": "SushiSwap_Router",
+        "abi": "./abis/competitor-2-sushiswap.json"
+      },
+      {
+        "address": "0x1111111254fb6c44bac0bed2854e76f90643097d",
+        "chain": "ethereum",
+        "name": "1inch_V5_Router",
+        "abi": "./abis/competitor-3-1inch.json"
+      },
+      {
+        "address": "0x68b3465833fb72a70ecdf485e0e4c7bd8665fc45",
+        "chain": "ethereum",
+        "name": "Uniswap_V3_Router",
+        "abi": "./abis/competitor-4-uniswap-v3.json"
+      },
+      {
+        "address": "0xdef1c0ded9bec7f1a1670819833240f027b25eff",
+        "chain": "ethereum",
+        "name": "0x_Exchange_Proxy",
+        "abi": "./abis/competitor-5-0x.json"
+      }
+    ],
+    "rpcConfig": {
+      "ethereum": [
+        "https://ethereum-rpc.publicnode.com",
+        "https://eth.nownodes.io/2ca1a1a6-9040-4ca9-8727-33a186414a1f"
+      ],
+      "lisk": [
+        "https://lisk.drpc.org",
+        "https://rpc.api.lisk.com",
+        "https://lisk.gateway.tenderly.co/2o3VKjmisQNOJIPlLrt6Ye",
+        "https://site1.moralis-nodes.com/lisk/7f6b7ac6edf2456fa240535cc2d8fc6e"
+      ],
+      "starknet": [
+        "https://rpc.starknet.lava.build",
+        "https://starknet-rpc.publicnode.com",
+        "https://starknet-mainnet.infura.io/v3/52be4d01250949baa85cad00e7b955ab"
+      ]
+    },
+    "analysisParams": {
+      "blockRange": 1000,
+      "whaleThreshold": 10,
+      "maxConcurrentRequests": 5,
+      "failoverTimeout": 30000,
+      "maxRetries": 2,
+      "outputFormats": [
+        "json",
+        "csv",
+        "markdown"
+      ]
+    },
+    "tags": [
+      "default",
+      "env-config"
+    ],
+    "isActive": true,
+    "lastAnalyzed": null,
+    "analysisCount": 0,
+    "createdAt": "2026-01-25T00:44:13.554Z",
+    "updatedAt": "2026-01-25T00:44:13.555Z"
+  },
+  {
+    "id": "b35b64ef-924e-4afd-906f-2c310258ddfe",
+    "userId": "c3fefa2f-7eda-4f99-9cab-95f113601391",
+    "name": "usdt Analysis",
+    "description": "Analysis configuration for usdt on lisk",
+    "targetContract": {
+      "address": "0x05D032ac25d322df992303dCa074EE7392C117b9",
+      "chain": "lisk",
+      "name": "usdt",
+      "abi": "./abis/trip.json"
+    },
+    "competitors": [
+      {
+        "address": "0xfc102D4807A92B08080D4d969Dfda59C3C01B02F",
+        "chain": "lisk",
+        "name": "usdc",
+        "abi": "./abis/usdc.json"
+      },
+      {
+        "address": "0xd9e1ce17f2641f24ae83637ab66a2cca9c378b9f",
+        "chain": "ethereum",
+        "name": "SushiSwap_Router",
+        "abi": "./abis/competitor-2-sushiswap.json"
+      },
+      {
+        "address": "0x1111111254fb6c44bac0bed2854e76f90643097d",
+        "chain": "ethereum",
+        "name": "1inch_V5_Router",
+        "abi": "./abis/competitor-3-1inch.json"
+      },
+      {
+        "address": "0x68b3465833fb72a70ecdf485e0e4c7bd8665fc45",
+        "chain": "ethereum",
+        "name": "Uniswap_V3_Router",
+        "abi": "./abis/competitor-4-uniswap-v3.json"
+      },
+      {
+        "address": "0xdef1c0ded9bec7f1a1670819833240f027b25eff",
+        "chain": "ethereum",
+        "name": "0x_Exchange_Proxy",
+        "abi": "./abis/competitor-5-0x.json"
+      }
+    ],
+    "rpcConfig": {
+      "ethereum": [
+        "https://ethereum-rpc.publicnode.com",
+        "https://eth.nownodes.io/2ca1a1a6-9040-4ca9-8727-33a186414a1f"
+      ],
+      "lisk": [
+        "https://lisk.drpc.org",
+        "https://rpc.api.lisk.com",
+        "https://lisk.gateway.tenderly.co/2o3VKjmisQNOJIPlLrt6Ye",
+        "https://site1.moralis-nodes.com/lisk/7f6b7ac6edf2456fa240535cc2d8fc6e"
+      ],
+      "starknet": [
+        "https://rpc.starknet.lava.build",
+        "https://starknet-rpc.publicnode.com",
+        "https://starknet-mainnet.infura.io/v3/52be4d01250949baa85cad00e7b955ab"
+      ]
+    },
+    "analysisParams": {
+      "blockRange": 1000,
+      "whaleThreshold": 10,
+      "maxConcurrentRequests": 5,
+      "failoverTimeout": 30000,
+      "maxRetries": 2,
+      "outputFormats": [
+        "json",
+        "csv",
+        "markdown"
+      ]
+    },
+    "tags": [
+      "default",
+      "env-config"
+    ],
+    "isActive": true,
+    "lastAnalyzed": null,
+    "analysisCount": 0,
+    "createdAt": "2026-01-25T00:45:09.630Z",
+    "updatedAt": "2026-01-25T00:45:09.630Z"
+  },
+  {
+    "id": "fb184caf-737a-4598-aa62-bc2db6e919ad",
+    "userId": "e03ae0bc-ffae-4c04-95d5-d57521c4ee7c",
+    "name": "usdt Analysis",
+    "description": "Analysis configuration for usdt on lisk",
+    "targetContract": {
+      "address": "0x05D032ac25d322df992303dCa074EE7392C117b9",
+      "chain": "lisk",
+      "name": "usdt",
+      "abi": "./abis/trip.json"
+    },
+    "competitors": [
+      {
+        "address": "0xfc102D4807A92B08080D4d969Dfda59C3C01B02F",
+        "chain": "lisk",
+        "name": "usdc",
+        "abi": "./abis/usdc.json"
+      },
+      {
+        "address": "0xd9e1ce17f2641f24ae83637ab66a2cca9c378b9f",
+        "chain": "ethereum",
+        "name": "SushiSwap_Router",
+        "abi": "./abis/competitor-2-sushiswap.json"
+      },
+      {
+        "address": "0x1111111254fb6c44bac0bed2854e76f90643097d",
+        "chain": "ethereum",
+        "name": "1inch_V5_Router",
+        "abi": "./abis/competitor-3-1inch.json"
+      },
+      {
+        "address": "0x68b3465833fb72a70ecdf485e0e4c7bd8665fc45",
+        "chain": "ethereum",
+        "name": "Uniswap_V3_Router",
+        "abi": "./abis/competitor-4-uniswap-v3.json"
+      },
+      {
+        "address": "0xdef1c0ded9bec7f1a1670819833240f027b25eff",
+        "chain": "ethereum",
+        "name": "0x_Exchange_Proxy",
+        "abi": "./abis/competitor-5-0x.json"
+      }
+    ],
+    "rpcConfig": {
+      "ethereum": [
+        "https://ethereum-rpc.publicnode.com",
+        "https://eth.nownodes.io/2ca1a1a6-9040-4ca9-8727-33a186414a1f"
+      ],
+      "lisk": [
+        "https://lisk.drpc.org",
+        "https://rpc.api.lisk.com",
+        "https://lisk.gateway.tenderly.co/2o3VKjmisQNOJIPlLrt6Ye",
+        "https://site1.moralis-nodes.com/lisk/7f6b7ac6edf2456fa240535cc2d8fc6e"
+      ],
+      "starknet": [
+        "https://rpc.starknet.lava.build",
+        "https://starknet-rpc.publicnode.com",
+        "https://starknet-mainnet.infura.io/v3/52be4d01250949baa85cad00e7b955ab"
+      ]
+    },
+    "analysisParams": {
+      "blockRange": 1000,
+      "whaleThreshold": 10,
+      "maxConcurrentRequests": 5,
+      "failoverTimeout": 30000,
+      "maxRetries": 2,
+      "outputFormats": [
+        "json",
+        "csv",
+        "markdown"
+      ]
+    },
+    "tags": [
+      "default",
+      "env-config"
+    ],
+    "isActive": true,
+    "lastAnalyzed": null,
+    "analysisCount": 0,
+    "createdAt": "2026-01-25T00:46:13.370Z",
+    "updatedAt": "2026-01-25T00:46:13.370Z"
+  },
+  {
+    "id": "5fa64678-9bd4-4610-9fa7-a491abcd2b86",
+    "userId": "9790a251-5959-4287-bd64-3c4e040dc8fc",
+    "name": "usdt Analysis",
+    "description": "Analysis configuration for usdt on lisk",
+    "targetContract": {
+      "address": "0x05D032ac25d322df992303dCa074EE7392C117b9",
+      "chain": "lisk",
+      "name": "usdt",
+      "abi": "./abis/trip.json"
+    },
+    "competitors": [
+      {
+        "address": "0xfc102D4807A92B08080D4d969Dfda59C3C01B02F",
+        "chain": "lisk",
+        "name": "usdc",
+        "abi": "./abis/usdc.json"
+      },
+      {
+        "address": "0xd9e1ce17f2641f24ae83637ab66a2cca9c378b9f",
+        "chain": "ethereum",
+        "name": "SushiSwap_Router",
+        "abi": "./abis/competitor-2-sushiswap.json"
+      },
+      {
+        "address": "0x1111111254fb6c44bac0bed2854e76f90643097d",
+        "chain": "ethereum",
+        "name": "1inch_V5_Router",
+        "abi": "./abis/competitor-3-1inch.json"
+      },
+      {
+        "address": "0x68b3465833fb72a70ecdf485e0e4c7bd8665fc45",
+        "chain": "ethereum",
+        "name": "Uniswap_V3_Router",
+        "abi": "./abis/competitor-4-uniswap-v3.json"
+      },
+      {
+        "address": "0xdef1c0ded9bec7f1a1670819833240f027b25eff",
+        "chain": "ethereum",
+        "name": "0x_Exchange_Proxy",
+        "abi": "./abis/competitor-5-0x.json"
+      }
+    ],
+    "rpcConfig": {
+      "ethereum": [
+        "https://ethereum-rpc.publicnode.com",
+        "https://eth.nownodes.io/2ca1a1a6-9040-4ca9-8727-33a186414a1f"
+      ],
+      "lisk": [
+        "https://lisk.drpc.org",
+        "https://rpc.api.lisk.com",
+        "https://lisk.gateway.tenderly.co/2o3VKjmisQNOJIPlLrt6Ye",
+        "https://site1.moralis-nodes.com/lisk/7f6b7ac6edf2456fa240535cc2d8fc6e"
+      ],
+      "starknet": [
+        "https://rpc.starknet.lava.build",
+        "https://starknet-rpc.publicnode.com",
+        "https://starknet-mainnet.infura.io/v3/52be4d01250949baa85cad00e7b955ab"
+      ]
+    },
+    "analysisParams": {
+      "blockRange": 1000,
+      "whaleThreshold": 10,
+      "maxConcurrentRequests": 5,
+      "failoverTimeout": 30000,
+      "maxRetries": 2,
+      "outputFormats": [
+        "json",
+        "csv",
+        "markdown"
+      ]
+    },
+    "tags": [
+      "default",
+      "env-config"
+    ],
+    "isActive": true,
+    "lastAnalyzed": null,
+    "analysisCount": 0,
+    "createdAt": "2026-01-25T00:47:15.265Z",
+    "updatedAt": "2026-01-25T00:47:15.265Z"
+  },
+  {
+    "id": "b51f7c49-0cc2-4853-b379-a9c28797c5fa",
+    "userId": "6505a1c2-99ec-4854-a39f-420cd2af2fc8",
+    "name": "usdt Analysis",
+    "description": "Analysis configuration for usdt on lisk",
+    "targetContract": {
+      "address": "0x05D032ac25d322df992303dCa074EE7392C117b9",
+      "chain": "lisk",
+      "name": "usdt",
+      "abi": "./abis/trip.json"
+    },
+    "competitors": [
+      {
+        "address": "0xfc102D4807A92B08080D4d969Dfda59C3C01B02F",
+        "chain": "lisk",
+        "name": "usdc",
+        "abi": "./abis/usdc.json"
+      },
+      {
+        "address": "0xd9e1ce17f2641f24ae83637ab66a2cca9c378b9f",
+        "chain": "ethereum",
+        "name": "SushiSwap_Router",
+        "abi": "./abis/competitor-2-sushiswap.json"
+      },
+      {
+        "address": "0x1111111254fb6c44bac0bed2854e76f90643097d",
+        "chain": "ethereum",
+        "name": "1inch_V5_Router",
+        "abi": "./abis/competitor-3-1inch.json"
+      },
+      {
+        "address": "0x68b3465833fb72a70ecdf485e0e4c7bd8665fc45",
+        "chain": "ethereum",
+        "name": "Uniswap_V3_Router",
+        "abi": "./abis/competitor-4-uniswap-v3.json"
+      },
+      {
+        "address": "0xdef1c0ded9bec7f1a1670819833240f027b25eff",
+        "chain": "ethereum",
+        "name": "0x_Exchange_Proxy",
+        "abi": "./abis/competitor-5-0x.json"
+      }
+    ],
+    "rpcConfig": {
+      "ethereum": [
+        "https://ethereum-rpc.publicnode.com",
+        "https://eth.nownodes.io/2ca1a1a6-9040-4ca9-8727-33a186414a1f"
+      ],
+      "lisk": [
+        "https://lisk.drpc.org",
+        "https://rpc.api.lisk.com",
+        "https://lisk.gateway.tenderly.co/2o3VKjmisQNOJIPlLrt6Ye",
+        "https://site1.moralis-nodes.com/lisk/7f6b7ac6edf2456fa240535cc2d8fc6e"
+      ],
+      "starknet": [
+        "https://rpc.starknet.lava.build",
+        "https://starknet-rpc.publicnode.com",
+        "https://starknet-mainnet.infura.io/v3/52be4d01250949baa85cad00e7b955ab"
+      ]
+    },
+    "analysisParams": {
+      "blockRange": 1000,
+      "whaleThreshold": 10,
+      "maxConcurrentRequests": 5,
+      "failoverTimeout": 30000,
+      "maxRetries": 2,
+      "outputFormats": [
+        "json",
+        "csv",
+        "markdown"
+      ]
+    },
+    "tags": [
+      "default",
+      "env-config"
+    ],
+    "isActive": true,
+    "lastAnalyzed": null,
+    "analysisCount": 0,
+    "createdAt": "2026-01-25T00:48:54.382Z",
+    "updatedAt": "2026-01-25T00:48:54.382Z"
+  },
+  {
+    "id": "295b109c-c83e-43cd-ba61-85df045b31a1",
+    "userId": "84fd6a37-154e-4f3d-9e57-a34abaaa7f9c",
+    "name": "usdt Analysis",
+    "description": "Analysis configuration for usdt on lisk",
+    "targetContract": {
+      "address": "0x05D032ac25d322df992303dCa074EE7392C117b9",
+      "chain": "lisk",
+      "name": "usdt",
+      "abi": "./abis/trip.json"
+    },
+    "competitors": [
+      {
+        "address": "0xfc102D4807A92B08080D4d969Dfda59C3C01B02F",
+        "chain": "lisk",
+        "name": "usdc",
+        "abi": "./abis/usdc.json"
+      },
+      {
+        "address": "0xd9e1ce17f2641f24ae83637ab66a2cca9c378b9f",
+        "chain": "ethereum",
+        "name": "SushiSwap_Router",
+        "abi": "./abis/competitor-2-sushiswap.json"
+      },
+      {
+        "address": "0x1111111254fb6c44bac0bed2854e76f90643097d",
+        "chain": "ethereum",
+        "name": "1inch_V5_Router",
+        "abi": "./abis/competitor-3-1inch.json"
+      },
+      {
+        "address": "0x68b3465833fb72a70ecdf485e0e4c7bd8665fc45",
+        "chain": "ethereum",
+        "name": "Uniswap_V3_Router",
+        "abi": "./abis/competitor-4-uniswap-v3.json"
+      },
+      {
+        "address": "0xdef1c0ded9bec7f1a1670819833240f027b25eff",
+        "chain": "ethereum",
+        "name": "0x_Exchange_Proxy",
+        "abi": "./abis/competitor-5-0x.json"
+      }
+    ],
+    "rpcConfig": {
+      "ethereum": [
+        "https://ethereum-rpc.publicnode.com",
+        "https://eth.nownodes.io/2ca1a1a6-9040-4ca9-8727-33a186414a1f"
+      ],
+      "lisk": [
+        "https://rpc.api.lisk.com",
+        "https://lisk.drpc.org",
+        "https://lisk.gateway.tenderly.co/2o3VKjmisQNOJIPlLrt6Ye",
+        "https://site1.moralis-nodes.com/lisk/7f6b7ac6edf2456fa240535cc2d8fc6e"
+      ],
+      "starknet": [
+        "https://rpc.starknet.lava.build",
+        "https://starknet-rpc.publicnode.com",
+        "https://starknet-mainnet.infura.io/v3/52be4d01250949baa85cad00e7b955ab"
+      ]
+    },
+    "analysisParams": {
+      "blockRange": 10000,
+      "whaleThreshold": 10,
+      "maxConcurrentRequests": 5,
+      "failoverTimeout": 60000,
+      "maxRetries": 2,
+      "outputFormats": [
+        "json",
+        "csv",
+        "markdown"
+      ]
+    },
+    "tags": [
+      "default",
+      "env-config"
+    ],
+    "isActive": true,
+    "lastAnalyzed": null,
+    "analysisCount": 0,
+    "createdAt": "2026-01-25T00:51:43.075Z",
+    "updatedAt": "2026-01-25T00:51:43.075Z"
+  },
+  {
+    "id": "94fe9d00-a31d-4ab1-ac06-b87a33fd115c",
+    "userId": "15f5d65c-c091-4df8-a37e-936cf49d300d",
+    "name": "usdt Analysis",
+    "description": "Analysis configuration for usdt on lisk",
+    "targetContract": {
+      "address": "0x05D032ac25d322df992303dCa074EE7392C117b9",
+      "chain": "lisk",
+      "name": "usdt",
+      "abi": "./abis/trip.json"
+    },
+    "competitors": [
+      {
+        "address": "0xfc102D4807A92B08080D4d969Dfda59C3C01B02F",
+        "chain": "lisk",
+        "name": "usdc",
+        "abi": "./abis/usdc.json"
+      },
+      {
+        "address": "0xd9e1ce17f2641f24ae83637ab66a2cca9c378b9f",
+        "chain": "ethereum",
+        "name": "SushiSwap_Router",
+        "abi": "./abis/competitor-2-sushiswap.json"
+      },
+      {
+        "address": "0x1111111254fb6c44bac0bed2854e76f90643097d",
+        "chain": "ethereum",
+        "name": "1inch_V5_Router",
+        "abi": "./abis/competitor-3-1inch.json"
+      },
+      {
+        "address": "0x68b3465833fb72a70ecdf485e0e4c7bd8665fc45",
+        "chain": "ethereum",
+        "name": "Uniswap_V3_Router",
+        "abi": "./abis/competitor-4-uniswap-v3.json"
+      },
+      {
+        "address": "0xdef1c0ded9bec7f1a1670819833240f027b25eff",
+        "chain": "ethereum",
+        "name": "0x_Exchange_Proxy",
+        "abi": "./abis/competitor-5-0x.json"
+      }
+    ],
+    "rpcConfig": {
+      "ethereum": [
+        "https://ethereum-rpc.publicnode.com",
+        "https://eth.nownodes.io/2ca1a1a6-9040-4ca9-8727-33a186414a1f"
+      ],
+      "lisk": [
+        "https://rpc.api.lisk.com",
+        "https://lisk.drpc.org",
+        "https://lisk.gateway.tenderly.co/2o3VKjmisQNOJIPlLrt6Ye",
+        "https://site1.moralis-nodes.com/lisk/7f6b7ac6edf2456fa240535cc2d8fc6e"
+      ],
+      "starknet": [
+        "https://rpc.starknet.lava.build",
+        "https://starknet-rpc.publicnode.com",
+        "https://starknet-mainnet.infura.io/v3/52be4d01250949baa85cad00e7b955ab"
+      ]
+    },
+    "analysisParams": {
+      "blockRange": 10000,
+      "whaleThreshold": 10,
+      "maxConcurrentRequests": 5,
+      "failoverTimeout": 60000,
+      "maxRetries": 2,
+      "outputFormats": [
+        "json",
+        "csv",
+        "markdown"
+      ]
+    },
+    "tags": [
+      "default",
+      "env-config"
+    ],
+    "isActive": true,
+    "lastAnalyzed": "2026-01-25T00:52:11.951Z",
+    "analysisCount": 1,
+    "createdAt": "2026-01-25T00:52:08.564Z",
+    "updatedAt": "2026-01-25T00:52:11.952Z"
+  },
+  {
+    "id": "e316bef7-0334-406a-b2d4-676898c9fe5a",
+    "userId": "b6d14119-94b6-423e-b517-5b9b57ab16ec",
+    "name": "usdt Analysis",
+    "description": "Analysis configuration for usdt on lisk",
+    "targetContract": {
+      "address": "0x05D032ac25d322df992303dCa074EE7392C117b9",
+      "chain": "lisk",
+      "name": "usdt",
+      "abi": "./abis/trip.json"
+    },
+    "competitors": [
+      {
+        "address": "0xfc102D4807A92B08080D4d969Dfda59C3C01B02F",
+        "chain": "lisk",
+        "name": "usdc",
+        "abi": "./abis/usdc.json"
+      },
+      {
+        "address": "0xd9e1ce17f2641f24ae83637ab66a2cca9c378b9f",
+        "chain": "ethereum",
+        "name": "SushiSwap_Router",
+        "abi": "./abis/competitor-2-sushiswap.json"
+      },
+      {
+        "address": "0x1111111254fb6c44bac0bed2854e76f90643097d",
+        "chain": "ethereum",
+        "name": "1inch_V5_Router",
+        "abi": "./abis/competitor-3-1inch.json"
+      },
+      {
+        "address": "0x68b3465833fb72a70ecdf485e0e4c7bd8665fc45",
+        "chain": "ethereum",
+        "name": "Uniswap_V3_Router",
+        "abi": "./abis/competitor-4-uniswap-v3.json"
+      },
+      {
+        "address": "0xdef1c0ded9bec7f1a1670819833240f027b25eff",
+        "chain": "ethereum",
+        "name": "0x_Exchange_Proxy",
+        "abi": "./abis/competitor-5-0x.json"
+      }
+    ],
+    "rpcConfig": {
+      "ethereum": [
+        "https://ethereum-rpc.publicnode.com",
+        "https://eth.nownodes.io/2ca1a1a6-9040-4ca9-8727-33a186414a1f"
+      ],
+      "lisk": [
+        "https://lisk.drpc.org",
+        "https://rpc.api.lisk.com",
+        "https://lisk.gateway.tenderly.co/2o3VKjmisQNOJIPlLrt6Ye",
+        "https://site1.moralis-nodes.com/lisk/7f6b7ac6edf2456fa240535cc2d8fc6e"
+      ],
+      "starknet": [
+        "https://rpc.starknet.lava.build",
+        "https://starknet-rpc.publicnode.com",
+        "https://starknet-mainnet.infura.io/v3/52be4d01250949baa85cad00e7b955ab"
+      ]
+    },
+    "analysisParams": {
+      "blockRange": 1000,
+      "whaleThreshold": 10,
+      "maxConcurrentRequests": 5,
+      "failoverTimeout": 30000,
+      "maxRetries": 2,
+      "outputFormats": [
+        "json",
+        "csv",
+        "markdown"
+      ]
+    },
+    "tags": [
+      "default",
+      "env-config"
+    ],
+    "isActive": true,
+    "lastAnalyzed": null,
+    "analysisCount": 0,
+    "createdAt": "2026-01-25T01:10:48.621Z",
+    "updatedAt": "2026-01-25T01:10:48.621Z"
+  },
+  {
+    "id": "e180262b-f992-44cc-bfa7-249bf0241bd3",
+    "userId": "8c09670f-027b-4381-9985-22584f98c782",
+    "name": "usdt Analysis",
+    "description": "Analysis configuration for usdt on lisk",
+    "targetContract": {
+      "address": "0x05D032ac25d322df992303dCa074EE7392C117b9",
+      "chain": "lisk",
+      "name": "usdt",
+      "abi": "./abis/trip.json"
+    },
+    "competitors": [
+      {
+        "address": "0xfc102D4807A92B08080D4d969Dfda59C3C01B02F",
+        "chain": "lisk",
+        "name": "usdc",
+        "abi": "./abis/usdc.json"
+      },
+      {
+        "address": "0xd9e1ce17f2641f24ae83637ab66a2cca9c378b9f",
+        "chain": "ethereum",
+        "name": "SushiSwap_Router",
+        "abi": "./abis/competitor-2-sushiswap.json"
+      },
+      {
+        "address": "0x1111111254fb6c44bac0bed2854e76f90643097d",
+        "chain": "ethereum",
+        "name": "1inch_V5_Router",
+        "abi": "./abis/competitor-3-1inch.json"
+      },
+      {
+        "address": "0x68b3465833fb72a70ecdf485e0e4c7bd8665fc45",
+        "chain": "ethereum",
+        "name": "Uniswap_V3_Router",
+        "abi": "./abis/competitor-4-uniswap-v3.json"
+      },
+      {
+        "address": "0xdef1c0ded9bec7f1a1670819833240f027b25eff",
+        "chain": "ethereum",
+        "name": "0x_Exchange_Proxy",
+        "abi": "./abis/competitor-5-0x.json"
+      }
+    ],
+    "rpcConfig": {
+      "ethereum": [
+        "https://ethereum-rpc.publicnode.com",
+        "https://eth.nownodes.io/2ca1a1a6-9040-4ca9-8727-33a186414a1f"
+      ],
+      "lisk": [
+        "https://lisk.drpc.org",
+        "https://rpc.api.lisk.com",
+        "https://lisk.gateway.tenderly.co/2o3VKjmisQNOJIPlLrt6Ye",
+        "https://site1.moralis-nodes.com/lisk/7f6b7ac6edf2456fa240535cc2d8fc6e"
+      ],
+      "starknet": [
+        "https://rpc.starknet.lava.build",
+        "https://starknet-rpc.publicnode.com",
+        "https://starknet-mainnet.infura.io/v3/52be4d01250949baa85cad00e7b955ab"
+      ]
+    },
+    "analysisParams": {
+      "blockRange": 1000,
+      "whaleThreshold": 10,
+      "maxConcurrentRequests": 5,
+      "failoverTimeout": 30000,
+      "maxRetries": 2,
+      "outputFormats": [
+        "json",
+        "csv",
+        "markdown"
+      ]
+    },
+    "tags": [
+      "default",
+      "env-config"
+    ],
+    "isActive": true,
+    "lastAnalyzed": null,
+    "analysisCount": 0,
+    "createdAt": "2026-01-25T01:11:27.636Z",
+    "updatedAt": "2026-01-25T01:11:27.636Z"
+  },
+  {
+    "id": "154705e1-6c6c-4b3a-a706-126021022fcc",
+    "userId": "e764b02a-f326-4556-8a0c-203726d4029e",
+    "name": "usdt Analysis",
+    "description": "Analysis configuration for usdt on lisk",
+    "targetContract": {
+      "address": "0x05D032ac25d322df992303dCa074EE7392C117b9",
+      "chain": "lisk",
+      "name": "usdt",
+      "abi": "./abis/trip.json"
+    },
+    "competitors": [
+      {
+        "address": "0xfc102D4807A92B08080D4d969Dfda59C3C01B02F",
+        "chain": "lisk",
+        "name": "usdc",
+        "abi": "./abis/usdc.json"
+      },
+      {
+        "address": "0xd9e1ce17f2641f24ae83637ab66a2cca9c378b9f",
+        "chain": "ethereum",
+        "name": "SushiSwap_Router",
+        "abi": "./abis/competitor-2-sushiswap.json"
+      },
+      {
+        "address": "0x1111111254fb6c44bac0bed2854e76f90643097d",
+        "chain": "ethereum",
+        "name": "1inch_V5_Router",
+        "abi": "./abis/competitor-3-1inch.json"
+      },
+      {
+        "address": "0x68b3465833fb72a70ecdf485e0e4c7bd8665fc45",
+        "chain": "ethereum",
+        "name": "Uniswap_V3_Router",
+        "abi": "./abis/competitor-4-uniswap-v3.json"
+      },
+      {
+        "address": "0xdef1c0ded9bec7f1a1670819833240f027b25eff",
+        "chain": "ethereum",
+        "name": "0x_Exchange_Proxy",
+        "abi": "./abis/competitor-5-0x.json"
+      }
+    ],
+    "rpcConfig": {
+      "ethereum": [
+        "https://ethereum-rpc.publicnode.com",
+        "https://eth.nownodes.io/2ca1a1a6-9040-4ca9-8727-33a186414a1f"
+      ],
+      "lisk": [
+        "https://lisk.drpc.org",
+        "https://rpc.api.lisk.com",
+        "https://lisk.gateway.tenderly.co/2o3VKjmisQNOJIPlLrt6Ye",
+        "https://site1.moralis-nodes.com/lisk/7f6b7ac6edf2456fa240535cc2d8fc6e"
+      ],
+      "starknet": [
+        "https://rpc.starknet.lava.build",
+        "https://starknet-rpc.publicnode.com",
+        "https://starknet-mainnet.infura.io/v3/52be4d01250949baa85cad00e7b955ab"
+      ]
+    },
+    "analysisParams": {
+      "blockRange": 1000,
+      "whaleThreshold": 10,
+      "maxConcurrentRequests": 5,
+      "failoverTimeout": 30000,
+      "maxRetries": 2,
+      "outputFormats": [
+        "json",
+        "csv",
+        "markdown"
+      ]
+    },
+    "tags": [
+      "default",
+      "env-config"
+    ],
+    "isActive": true,
+    "lastAnalyzed": null,
+    "analysisCount": 0,
+    "createdAt": "2026-01-25T01:12:06.420Z",
+    "updatedAt": "2026-01-25T01:12:06.420Z"
+  },
+  {
+    "id": "b1ebf609-e995-4077-b26a-4da11652c4d4",
+    "userId": "2b4257f2-843a-4622-aeeb-49a825ae9b32",
+    "name": "usdt Analysis",
+    "description": "Analysis configuration for usdt on lisk",
+    "targetContract": {
+      "address": "0x05D032ac25d322df992303dCa074EE7392C117b9",
+      "chain": "lisk",
+      "name": "usdt",
+      "abi": "./abis/trip.json"
+    },
+    "competitors": [
+      {
+        "address": "0xfc102D4807A92B08080D4d969Dfda59C3C01B02F",
+        "chain": "lisk",
+        "name": "usdc",
+        "abi": "./abis/usdc.json"
+      },
+      {
+        "address": "0xd9e1ce17f2641f24ae83637ab66a2cca9c378b9f",
+        "chain": "ethereum",
+        "name": "SushiSwap_Router",
+        "abi": "./abis/competitor-2-sushiswap.json"
+      },
+      {
+        "address": "0x1111111254fb6c44bac0bed2854e76f90643097d",
+        "chain": "ethereum",
+        "name": "1inch_V5_Router",
+        "abi": "./abis/competitor-3-1inch.json"
+      },
+      {
+        "address": "0x68b3465833fb72a70ecdf485e0e4c7bd8665fc45",
+        "chain": "ethereum",
+        "name": "Uniswap_V3_Router",
+        "abi": "./abis/competitor-4-uniswap-v3.json"
+      },
+      {
+        "address": "0xdef1c0ded9bec7f1a1670819833240f027b25eff",
+        "chain": "ethereum",
+        "name": "0x_Exchange_Proxy",
+        "abi": "./abis/competitor-5-0x.json"
+      }
+    ],
+    "rpcConfig": {
+      "ethereum": [
+        "https://ethereum-rpc.publicnode.com",
+        "https://eth.nownodes.io/2ca1a1a6-9040-4ca9-8727-33a186414a1f"
+      ],
+      "lisk": [
+        "https://lisk.drpc.org",
+        "https://rpc.api.lisk.com",
+        "https://lisk.gateway.tenderly.co/2o3VKjmisQNOJIPlLrt6Ye",
+        "https://site1.moralis-nodes.com/lisk/7f6b7ac6edf2456fa240535cc2d8fc6e"
+      ],
+      "starknet": [
+        "https://rpc.starknet.lava.build",
+        "https://starknet-rpc.publicnode.com",
+        "https://starknet-mainnet.infura.io/v3/52be4d01250949baa85cad00e7b955ab"
+      ]
+    },
+    "analysisParams": {
+      "blockRange": 1000,
+      "whaleThreshold": 10,
+      "maxConcurrentRequests": 5,
+      "failoverTimeout": 30000,
+      "maxRetries": 2,
+      "outputFormats": [
+        "json",
+        "csv",
+        "markdown"
+      ]
+    },
+    "tags": [
+      "default",
+      "env-config"
+    ],
+    "isActive": true,
+    "lastAnalyzed": null,
+    "analysisCount": 0,
+    "createdAt": "2026-01-25T01:28:59.442Z",
+    "updatedAt": "2026-01-25T01:28:59.442Z"
+  },
+  {
+    "id": "983f6001-62d6-495b-a7ec-3cbbde8532ae",
+    "userId": "bfd508f1-70a5-43d0-8874-895a2d0ca6ca",
+    "name": "usdc Analysis",
+    "description": "Analysis for usdc on lisk",
+    "targetContract": {
+      "address": "0x05D032ac25d322df992303dCa074EE7392C117b9",
+      "chain": "lisk",
+      "name": "usdc",
+      "abi": "[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"implementationContract\",\"type\":\"address\"}],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"previousAdmin\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"newAdmin\",\"type\":\"address\"}],\"name\":\"AdminChanged\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"implementation\",\"type\":\"address\"}],\"name\":\"Upgraded\",\"type\":\"event\"},{\"stateMutability\":\"payable\",\"type\":\"fallback\"},{\"inputs\":[],\"name\":\"admin\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"newAdmin\",\"type\":\"address\"}],\"name\":\"changeAdmin\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"implementation\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"newImplementation\",\"type\":\"address\"}],\"name\":\"upgradeTo\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"newImplementation\",\"type\":\"address\"},{\"internalType\":\"bytes\",\"name\":\"data\",\"type\":\"bytes\"}],\"name\":\"upgradeToAndCall\",\"outputs\":[],\"stateMutability\":\"payable\",\"type\":\"function\"}]"
+    },
+    "competitors": [],
+    "rpcConfig": {
+      "ethereum": [
+        "https://ethereum-rpc.publicnode.com",
+        "https://eth.nownodes.io/2ca1a1a6-9040-4ca9-8727-33a186414a1f"
+      ],
+      "lisk": [
+        "https://rpc.api.lisk.com",
+        "https://lisk.drpc.org",
+        "https://lisk.gateway.tenderly.co/2o3VKjmisQNOJIPlLrt6Ye",
+        "https://site1.moralis-nodes.com/lisk/7f6b7ac6edf2456fa240535cc2d8fc6e"
+      ],
+      "starknet": [
+        "https://rpc.starknet.lava.build",
+        "https://starknet-rpc.publicnode.com",
+        "https://starknet-mainnet.infura.io/v3/52be4d01250949baa85cad00e7b955ab"
+      ]
+    },
+    "analysisParams": {
+      "blockRange": 7000,
+      "whaleThreshold": 10,
+      "maxConcurrentRequests": 5,
+      "failoverTimeout": 60000,
+      "maxRetries": 2,
+      "outputFormats": [
+        "json",
+        "csv",
+        "markdown"
+      ]
+    },
+    "tags": [],
+    "isActive": true,
+    "lastAnalyzed": "2026-01-25T02:02:23.114Z",
+    "analysisCount": 1,
+    "createdAt": "2026-01-25T02:02:19.678Z",
+    "updatedAt": "2026-01-25T02:02:23.114Z"
+  }
+]

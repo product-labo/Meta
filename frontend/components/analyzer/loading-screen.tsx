@@ -1,4 +1,4 @@
-export function LoadingScreen({ startupName }: { startupName: string }) {
+export function LoadingScreen({ startupName, status }: { startupName: string; status?: string }) {
   return (
     <div className="fixed inset-0 bg-background/95 flex items-center justify-center z-50 backdrop-blur-sm">
       <div className="text-center">
@@ -50,6 +50,11 @@ export function LoadingScreen({ startupName }: { startupName: string }) {
           Analyzing Blockchain Data...
         </h2>
         <p className="text-muted-foreground text-lg">Processing {startupName}</p>
+        {status && (
+          <p className="text-blue-600 text-sm mt-2 bg-blue-50 px-4 py-2 rounded-lg inline-block">
+            {status}
+          </p>
+        )}
         <style>{`
           @keyframes radarSweep {
             from { transform: rotate(0deg); }
