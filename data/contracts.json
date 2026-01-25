@@ -1194,5 +1194,101 @@
     "analysisCount": 1,
     "createdAt": "2026-01-25T02:02:19.678Z",
     "updatedAt": "2026-01-25T02:02:23.114Z"
+  },
+  {
+    "id": "c4c50221-2cbf-4a55-8de5-4aedf57a56be",
+    "userId": "bfd508f1-70a5-43d0-8874-895a2d0ca6ca",
+    "name": "MetaUSDC Analysis",
+    "description": "Analysis for MetaUSDC on lisk",
+    "targetContract": {
+      "address": "0x05D032ac25d322df992303dCa074EE7392C117b9",
+      "chain": "lisk",
+      "name": "MetaUSDC",
+      "abi": "[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"implementationContract\",\"type\":\"address\"}],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"previousAdmin\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"newAdmin\",\"type\":\"address\"}],\"name\":\"AdminChanged\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"implementation\",\"type\":\"address\"}],\"name\":\"Upgraded\",\"type\":\"event\"},{\"stateMutability\":\"payable\",\"type\":\"fallback\"},{\"inputs\":[],\"name\":\"admin\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"newAdmin\",\"type\":\"address\"}],\"name\":\"changeAdmin\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"implementation\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"newImplementation\",\"type\":\"address\"}],\"name\":\"upgradeTo\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"newImplementation\",\"type\":\"address\"},{\"internalType\":\"bytes\",\"name\":\"data\",\"type\":\"bytes\"}],\"name\":\"upgradeToAndCall\",\"outputs\":[],\"stateMutability\":\"payable\",\"type\":\"function\"}]"
+    },
+    "competitors": [],
+    "rpcConfig": {
+      "ethereum": [
+        "https://ethereum-rpc.publicnode.com",
+        "https://eth.nownodes.io/2ca1a1a6-9040-4ca9-8727-33a186414a1f"
+      ],
+      "lisk": [
+        "https://rpc.api.lisk.com",
+        "https://lisk.drpc.org",
+        "https://lisk.gateway.tenderly.co/2o3VKjmisQNOJIPlLrt6Ye",
+        "https://site1.moralis-nodes.com/lisk/7f6b7ac6edf2456fa240535cc2d8fc6e"
+      ],
+      "starknet": [
+        "https://rpc.starknet.lava.build",
+        "https://starknet-rpc.publicnode.com",
+        "https://starknet-mainnet.infura.io/v3/52be4d01250949baa85cad00e7b955ab"
+      ]
+    },
+    "analysisParams": {
+      "blockRange": 7000,
+      "whaleThreshold": 10,
+      "maxConcurrentRequests": 5,
+      "failoverTimeout": 60000,
+      "maxRetries": 2,
+      "outputFormats": [
+        "json",
+        "csv",
+        "markdown"
+      ]
+    },
+    "tags": [],
+    "isActive": true,
+    "lastAnalyzed": "2026-01-25T06:17:35.410Z",
+    "analysisCount": 1,
+    "createdAt": "2026-01-25T06:17:30.665Z",
+    "updatedAt": "2026-01-25T06:17:35.411Z"
+  },
+  {
+    "id": "b704aaba-b604-4170-bf38-4579b83fabfc",
+    "userId": "bfd508f1-70a5-43d0-8874-895a2d0ca6ca",
+    "name": "MetaUDC Analysis",
+    "description": "Analysis for MetaUDC on lisk",
+    "targetContract": {
+      "address": "0x05D032ac25d322df992303dCa074EE7392C117b9",
+      "chain": "lisk",
+      "name": "MetaUDC",
+      "abi": "[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"implementationContract\",\"type\":\"address\"}],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"previousAdmin\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"newAdmin\",\"type\":\"address\"}],\"name\":\"AdminChanged\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"implementation\",\"type\":\"address\"}],\"name\":\"Upgraded\",\"type\":\"event\"},{\"stateMutability\":\"payable\",\"type\":\"fallback\"},{\"inputs\":[],\"name\":\"admin\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"newAdmin\",\"type\":\"address\"}],\"name\":\"changeAdmin\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"implementation\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"newImplementation\",\"type\":\"address\"}],\"name\":\"upgradeTo\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"newImplementation\",\"type\":\"address\"},{\"internalType\":\"bytes\",\"name\":\"data\",\"type\":\"bytes\"}],\"name\":\"upgradeToAndCall\",\"outputs\":[],\"stateMutability\":\"payable\",\"type\":\"function\"}]"
+    },
+    "competitors": [],
+    "rpcConfig": {
+      "ethereum": [
+        "https://ethereum-rpc.publicnode.com",
+        "https://eth.nownodes.io/2ca1a1a6-9040-4ca9-8727-33a186414a1f"
+      ],
+      "lisk": [
+        "https://rpc.api.lisk.com",
+        "https://lisk.drpc.org",
+        "https://lisk.gateway.tenderly.co/2o3VKjmisQNOJIPlLrt6Ye",
+        "https://site1.moralis-nodes.com/lisk/7f6b7ac6edf2456fa240535cc2d8fc6e"
+      ],
+      "starknet": [
+        "https://rpc.starknet.lava.build",
+        "https://starknet-rpc.publicnode.com",
+        "https://starknet-mainnet.infura.io/v3/52be4d01250949baa85cad00e7b955ab"
+      ]
+    },
+    "analysisParams": {
+      "blockRange": 7000,
+      "whaleThreshold": 10,
+      "maxConcurrentRequests": 5,
+      "failoverTimeout": 60000,
+      "maxRetries": 2,
+      "outputFormats": [
+        "json",
+        "csv",
+        "markdown"
+      ]
+    },
+    "tags": [],
+    "isActive": true,
+    "lastAnalyzed": "2026-01-25T06:18:51.894Z",
+    "analysisCount": 1,
+    "createdAt": "2026-01-25T06:18:49.696Z",
+    "updatedAt": "2026-01-25T06:18:51.894Z"
   }
 ]

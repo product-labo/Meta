@@ -375,7 +375,7 @@ router.post('/:id/interpret', async (req, res) => {
     }
 
     // Generate AI interpretation
-    const interpretation = await GeminiAIService.interpretAnalysis(analysis, analysis.analysisType);
+    const interpretation = await GeminiAIService.interpretAnalysis(analysis, analysis.analysisType, req.user.id);
 
     // Store interpretation in analysis record
     await AnalysisStorage.update(analysis.id, {
@@ -438,7 +438,7 @@ router.get('/:id/quick-insights', async (req, res) => {
       });
     }
 
-    const insights = await GeminiAIService.generateQuickInsights(analysis);
+    const insights = await GeminiAIService.generateQuickInsights(analysis, req.user.id);
 
     res.json({
       analysisId: analysis.id,
@@ -505,7 +505,7 @@ router.post('/:id/recommendations', async (req, res) => {
     }
 
     const metrics = analysis.results?.target?.metrics || analysis.results?.target?.fullReport || {};
-    const recommendations = await GeminiAIService.generateRecommendations(metrics, contractType);
+    const recommendations = await GeminiAIService.generateRecommendations(metrics, contractType, req.user.id);
 
     res.json({
       analysisId: analysis.id,
