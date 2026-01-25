@@ -65,15 +65,15 @@ export default function LoginPage() {
       <div className="text-center mb-6">
         <h1 className="text-2xl font-bold">Sign In</h1>
         <p className="text-muted-foreground mt-1">Welcome back to MetaGauge</p>
-        {process.env.NODE_ENV === 'development' && (
+        {/* {process.env.NODE_ENV === 'development' && (
           <p className="text-sm text-blue-600 mt-2 bg-blue-50 p-2 rounded">
             Demo: Create an account or use existing credentials
           </p>
-        )}
+        )} */}
       </div>
 
-      <OAuthButtons mode="signin" />
-      <AuthDivider />
+      {/* <OAuthButtons mode="signin" />
+      <AuthDivider /> */}
 
       <form onSubmit={handleSubmit} className="space-y-4">
         {error && (

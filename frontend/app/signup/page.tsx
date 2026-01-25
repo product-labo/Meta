@@ -69,16 +69,16 @@ export default function SignupPage() {
       <div className="text-center mb-6">
         <h1 className="text-2xl font-bold">Sign Up</h1>
         <p className="text-muted-foreground mt-1">Unlock Your Meta-experience</p>
-        {process.env.NODE_ENV === 'development' && (
+        {/* {process.env.NODE_ENV === 'development' && (
           <p className="text-sm text-blue-600 mt-2 bg-blue-50 p-2 rounded">
             Create your account to access the analytics dashboard
           </p>
-        )}
+        )} */}
       </div>
 
-      <OAuthButtons mode="signup" />
+      {/* <OAuthButtons mode="signup" /> */}
 
-      <div className="relative my-6">
+      {/* <div className="relative my-6">
         <div className="absolute inset-0 flex items-center">
           <span className="w-full border-t" />
         </div>
@@ -87,7 +87,7 @@ export default function SignupPage() {
             Or Continue with email
           </span>
         </div>
-      </div>
+      </div> */}
 
       <form onSubmit={handleSubmit} className="space-y-4">
         {error && (
