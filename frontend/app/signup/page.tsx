@@ -1,11 +1,9 @@
 "use client"
 
-import { useState } from "react"
+import { useState, Suspense } from "react"
 import Link from "next/link"
 import { useRouter, useSearchParams } from "next/navigation"
 import { AuthCard } from "@/components/auth/auth-card"
-import { OAuthButtons } from "@/components/auth/oauth-buttons"
-import { AuthDivider } from "@/components/auth/divider"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -13,7 +11,7 @@ import { Mail, EyeOff, Eye, Loader2, User } from "lucide-react"
 import { api } from "@/lib/api"
 import { useAuth } from "@/components/auth/auth-provider"
 
-export default function SignupPage() {
+function SignupForm() {
   const router = useRouter()
   const searchParams = useSearchParams()
   const { login } = useAuth()
@@ -69,25 +67,7 @@ export default function SignupPage() {
       <div className="text-center mb-6">
         <h1 className="text-2xl font-bold">Sign Up</h1>
         <p className="text-muted-foreground mt-1">Unlock Your Meta-experience</p>
-        {/* {process.env.NODE_ENV === 'development' && (
-          <p className="text-sm text-blue-600 mt-2 bg-blue-50 p-2 rounded">
-            Create your account to access the analytics dashboard
-          </p>
-        )} */}
       </div>
-
-      {/* <OAuthButtons mode="signup" /> */}
-
-      {/* <div className="relative my-6">
-        <div className="absolute inset-0 flex items-center">
-          <span className="w-full border-t" />
-        </div>
-        <div className="relative flex justify-center text-xs uppercase">
-          <span className="bg-background px-2 text-muted-foreground">
-            Or Continue with email
-          </span>
-        </div>
-      </div> */}
 
       <form onSubmit={handleSubmit} className="space-y-4">
         {error && (
@@ -176,5 +156,20 @@ export default function SignupPage() {
         </Link>
       </p>
     </AuthCard>
+  )
+}
+
+export default function SignupPage() {
+  return (
+    <Suspense fallback={
+      <AuthCard>
+        <div className="text-center mb-6">
+          <h1 className="text-2xl font-bold">Sign Up</h1>
+          <p className="text-muted-foreground mt-1">Loading...</p>
+        </div>
+      </AuthCard>
+    }>
+      <SignupForm />
+    </Suspense>
   )
 }

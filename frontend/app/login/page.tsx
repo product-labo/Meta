@@ -1,11 +1,9 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, Suspense } from "react"
 import Link from "next/link"
 import { useRouter, useSearchParams } from "next/navigation"
 import { AuthCard } from "@/components/auth/auth-card"
-import { OAuthButtons } from "@/components/auth/oauth-buttons"
-import { AuthDivider } from "@/components/auth/divider"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -14,7 +12,7 @@ import { Mail, EyeOff, Eye, Loader2 } from "lucide-react"
 import { useAuth } from "@/components/auth/auth-provider"
 import { api } from "@/lib/api"
 
-export default function LoginPage() {
+function LoginForm() {
   const router = useRouter()
   const searchParams = useSearchParams()
   const { login } = useAuth()
@@ -65,15 +63,7 @@ export default function LoginPage() {
       <div className="text-center mb-6">
         <h1 className="text-2xl font-bold">Sign In</h1>
         <p className="text-muted-foreground mt-1">Welcome back to MetaGauge</p>
-        {/* {process.env.NODE_ENV === 'development' && (
-          <p className="text-sm text-blue-600 mt-2 bg-blue-50 p-2 rounded">
-            Demo: Create an account or use existing credentials
-          </p>
-        )} */}
       </div>
-
-      {/* <OAuthButtons mode="signin" />
-      <AuthDivider /> */}
 
       <form onSubmit={handleSubmit} className="space-y-4">
         {error && (
@@ -140,5 +130,20 @@ export default function LoginPage() {
         </Link>
       </p>
     </AuthCard>
+  )
+}
+
+export default function LoginPage() {
+  return (
+    <Suspense fallback={
+      <AuthCard>
+        <div className="text-center mb-6">
+          <h1 className="text-2xl font-bold">Sign In</h1>
+          <p className="text-muted-foreground mt-1">Loading...</p>
+        </div>
+      </AuthCard>
+    }>
+      <LoginForm />
+    </Suspense>
   )
 }

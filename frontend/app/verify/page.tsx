@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, Suspense } from "react"
 import { useRouter, useSearchParams } from "next/navigation"
 import { AuthCard } from "@/components/auth/auth-card"
 import { Button } from "@/components/ui/button"
@@ -8,7 +8,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { useAuth } from "@/components/auth/auth-provider"
 
-export default function VerifyPage() {
+function VerifyForm() {
   const router = useRouter()
   const searchParams = useSearchParams()
   const { login } = useAuth()
@@ -116,5 +116,20 @@ export default function VerifyPage() {
         </p>
       </div>
     </AuthCard>
+  )
+}
+
+export default function VerifyPage() {
+  return (
+    <Suspense fallback={
+      <AuthCard>
+        <div className="text-center mb-6">
+          <h1 className="text-2xl font-bold">Verify Your Email</h1>
+          <p className="text-muted-foreground mt-1">Loading...</p>
+        </div>
+      </AuthCard>
+    }>
+      <VerifyForm />
+    </Suspense>
   )
 }
