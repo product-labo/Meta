@@ -1,4 +1,4 @@
-# 🚀 Multi-Chain Smart Contract Analytics Platform
+# 🚀 Metagauge
 
 [![MVP Status](https://img.shields.io/badge/Status-Production%20Ready-brightgreen)](https://github.com/your-repo/multi-chain-analytics)
 [![Chains Supported](https://img.shields.io/badge/Chains-Lisk%20%7C%20Starknet%20%7C%20Ethereum-blue)](https://github.com/your-repo/multi-chain-analytics)

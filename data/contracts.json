@@ -1290,5 +1290,60 @@
     "analysisCount": 1,
     "createdAt": "2026-01-25T06:18:49.696Z",
     "updatedAt": "2026-01-25T06:18:51.894Z"
+  },
+  {
+    "id": "cb62bfe2-1688-4ed5-83e5-cbf6b8f4205f",
+    "userId": "bfd508f1-70a5-43d0-8874-895a2d0ca6ca",
+    "name": "Usdctest Analysis",
+    "description": "Analysis for Usdctest on lisk",
+    "targetContract": {
+      "address": "0x05D032ac25d322df992303dCa074EE7392C117b9",
+      "chain": "lisk",
+      "name": "Usdctest",
+      "abi": "[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"implementationContract\",\"type\":\"address\"}],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"previousAdmin\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"newAdmin\",\"type\":\"address\"}],\"name\":\"AdminChanged\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"implementation\",\"type\":\"address\"}],\"name\":\"Upgraded\",\"type\":\"event\"},{\"stateMutability\":\"payable\",\"type\":\"fallback\"},{\"inputs\":[],\"name\":\"admin\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"newAdmin\",\"type\":\"address\"}],\"name\":\"changeAdmin\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"implementation\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"newImplementation\",\"type\":\"address\"}],\"name\":\"upgradeTo\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"newImplementation\",\"type\":\"address\"},{\"internalType\":\"bytes\",\"name\":\"data\",\"type\":\"bytes\"}],\"name\":\"upgradeToAndCall\",\"outputs\":[],\"stateMutability\":\"payable\",\"type\":\"function\"}]"
+    },
+    "competitors": [
+      {
+        "address": "0xfc102D4807A92B08080D4d969Dfda59C3C01B02F",
+        "chain": "lisk",
+        "name": "udsc",
+        "abi": "[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"implementationContract\",\"type\":\"address\"}],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"previousAdmin\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"newAdmin\",\"type\":\"address\"}],\"name\":\"AdminChanged\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"implementation\",\"type\":\"address\"}],\"name\":\"Upgraded\",\"type\":\"event\"},{\"stateMutability\":\"payable\",\"type\":\"fallback\"},{\"inputs\":[],\"name\":\"admin\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"newAdmin\",\"type\":\"address\"}],\"name\":\"changeAdmin\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"implementation\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"newImplementation\",\"type\":\"address\"}],\"name\":\"upgradeTo\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"newImplementation\",\"type\":\"address\"},{\"internalType\":\"bytes\",\"name\":\"data\",\"type\":\"bytes\"}],\"name\":\"upgradeToAndCall\",\"outputs\":[],\"stateMutability\":\"payable\",\"type\":\"function\"}]"
+      }
+    ],
+    "rpcConfig": {
+      "ethereum": [
+        "https://ethereum-rpc.publicnode.com",
+        "https://eth.nownodes.io/2ca1a1a6-9040-4ca9-8727-33a186414a1f"
+      ],
+      "lisk": [
+        "https://rpc.api.lisk.com",
+        "https://lisk.drpc.org",
+        "https://lisk.gateway.tenderly.co/2o3VKjmisQNOJIPlLrt6Ye",
+        "https://site1.moralis-nodes.com/lisk/7f6b7ac6edf2456fa240535cc2d8fc6e"
+      ],
+      "starknet": [
+        "https://rpc.starknet.lava.build",
+        "https://starknet-rpc.publicnode.com",
+        "https://starknet-mainnet.infura.io/v3/52be4d01250949baa85cad00e7b955ab"
+      ]
+    },
+    "analysisParams": {
+      "blockRange": 7000,
+      "whaleThreshold": 10,
+      "maxConcurrentRequests": 5,
+      "failoverTimeout": 60000,
+      "maxRetries": 2,
+      "outputFormats": [
+        "json",
+        "csv",
+        "markdown"
+      ]
+    },
+    "tags": [],
+    "isActive": true,
+    "lastAnalyzed": "2026-01-26T10:09:14.055Z",
+    "analysisCount": 1,
+    "createdAt": "2026-01-26T10:09:00.445Z",
+    "updatedAt": "2026-01-26T10:09:14.059Z"
   }
 ]

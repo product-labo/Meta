@@ -1,0 +1,505 @@
+[
+  {
+    "id": "b93a9aea-2c6c-42fe-9205-33422d9de813",
+    "sessionId": "291259e1-75e7-4a17-8a07-c57a053d4c1e",
+    "role": "assistant",
+    "content": "Hello! I'm your AI assistant for analyzing the contract 0x05D032ac25d322df992303dCa074EE7392C117b9 on lisk. I can help you understand transaction patterns, user behavior, security insights, and competitive positioning. What would you like to know?",
+    "components": [
+      {
+        "type": "insight_card",
+        "data": {
+          "title": "Welcome to Contract Chat",
+          "insight": "Ask me anything about this contract's performance, security, users, or competitive position.",
+          "confidence": 100,
+          "category": "info"
+        }
+      }
+    ],
+    "metadata": {},
+    "isStreaming": false,
+    "createdAt": "2026-01-25T12:33:46.674Z"
+  },
+  {
+    "id": "1f21db49-4793-4fe0-a5d3-93d31e823d29",
+    "sessionId": "291259e1-75e7-4a17-8a07-c57a053d4c1e",
+    "role": "user",
+    "content": "What is the overall performance of this contract?",
+    "components": [],
+    "metadata": {},
+    "isStreaming": false,
+    "createdAt": "2026-01-25T13:09:11.833Z"
+  },
+  {
+    "id": "743f5b7e-6049-4342-96b9-6fa77521b10c",
+    "sessionId": "291259e1-75e7-4a17-8a07-c57a053d4c1e",
+    "role": "assistant",
+    "content": "I encountered an error processing your message: {\"error\":{\"code\":429,\"message\":\"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash-exp\\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash-exp\\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash-exp\\nPlease retry in 43.933656778s.\",\"status\":\"RESOURCE_EXHAUSTED\",\"details\":[{\"@type\":\"type.googleapis.com/google.rpc.Help\",\"links\":[{\"description\":\"Learn more about Gemini API quotas\",\"url\":\"https://ai.google.dev/gemini-api/docs/rate-limits\"}]},{\"@type\":\"type.googleapis.com/google.rpc.QuotaFailure\",\"violations\":[{\"quotaMetric\":\"generativelanguage.googleapis.com/generate_content_free_tier_requests\",\"quotaId\":\"GenerateRequestsPerDayPerProjectPerModel-FreeTier\",\"quotaDimensions\":{\"location\":\"global\",\"model\":\"gemini-2.0-flash-exp\"}},{\"quotaMetric\":\"generativelanguage.googleapis.com/generate_content_free_tier_requests\",\"quotaId\":\"GenerateRequestsPerMinutePerProjectPerModel-FreeTier\",\"quotaDimensions\":{\"location\":\"global\",\"model\":\"gemini-2.0-flash-exp\"}},{\"quotaMetric\":\"generativelanguage.googleapis.com/generate_content_free_tier_input_token_count\",\"quotaId\":\"GenerateContentInputTokensPerModelPerMinute-FreeTier\",\"quotaDimensions\":{\"location\":\"global\",\"model\":\"gemini-2.0-flash-exp\"}}]},{\"@type\":\"type.googleapis.com/google.rpc.RetryInfo\",\"retryDelay\":\"43s\"}]}}. Please try again or rephrase your question.",
+    "components": [
+      {
+        "type": "alert",
+        "data": {
+          "severity": "warning",
+          "title": "AI Chat Disabled",
+          "message": "Configure GEMINI_API_KEY environment variable to enable intelligent responses",
+          "actionable": true
+        }
+      }
+    ],
+    "metadata": {
+      "fallback": true,
+      "processingTime": 1769346556317
+    },
+    "isStreaming": false,
+    "createdAt": "2026-01-25T13:09:16.319Z"
+  },
+  {
+    "id": "4afad3a8-59c2-42ce-90bb-a005fedc7b28",
+    "sessionId": "2ead2c58-c7cd-4c80-8d0c-37fe3ef5f61e",
+    "role": "assistant",
+    "content": "Hello! I'm your AI assistant for analyzing the contract 0x05D032ac25d322df992303dCa074EE7392C117b9 on lisk. What would you like to know?",
+    "components": [],
+    "metadata": {},
+    "isStreaming": false,
+    "createdAt": "2026-01-25T13:32:19.399Z"
+  },
+  {
+    "id": "ece24091-9392-4f98-84dd-af92bdb8bde2",
+    "sessionId": "2ead2c58-c7cd-4c80-8d0c-37fe3ef5f61e",
+    "role": "user",
+    "content": "Hello, can you analyze this contract?",
+    "components": [],
+    "metadata": {},
+    "isStreaming": false,
+    "createdAt": "2026-01-25T13:32:19.413Z"
+  },
+  {
+    "id": "86124529-895e-4663-a8a7-b30e5649344c",
+    "sessionId": "2ead2c58-c7cd-4c80-8d0c-37fe3ef5f61e",
+    "role": "assistant",
+    "content": "I encountered an error processing your message: {\"error\":{\"code\":429,\"message\":\"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash-exp\\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash-exp\\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash-exp\\nPlease retry in 33.206954846s.\",\"status\":\"RESOURCE_EXHAUSTED\",\"details\":[{\"@type\":\"type.googleapis.com/google.rpc.Help\",\"links\":[{\"description\":\"Learn more about Gemini API quotas\",\"url\":\"https://ai.google.dev/gemini-api/docs/rate-limits\"}]},{\"@type\":\"type.googleapis.com/google.rpc.QuotaFailure\",\"violations\":[{\"quotaMetric\":\"generativelanguage.googleapis.com/generate_content_free_tier_input_token_count\",\"quotaId\":\"GenerateContentInputTokensPerModelPerMinute-FreeTier\",\"quotaDimensions\":{\"location\":\"global\",\"model\":\"gemini-2.0-flash-exp\"}},{\"quotaMetric\":\"generativelanguage.googleapis.com/generate_content_free_tier_requests\",\"quotaId\":\"GenerateRequestsPerMinutePerProjectPerModel-FreeTier\",\"quotaDimensions\":{\"location\":\"global\",\"model\":\"gemini-2.0-flash-exp\"}},{\"quotaMetric\":\"generativelanguage.googleapis.com/generate_content_free_tier_requests\",\"quotaId\":\"GenerateRequestsPerDayPerProjectPerModel-FreeTier\",\"quotaDimensions\":{\"location\":\"global\",\"model\":\"gemini-2.0-flash-exp\"}}]},{\"@type\":\"type.googleapis.com/google.rpc.RetryInfo\",\"retryDelay\":\"33s\"}]}}. Please try again or rephrase your question.",
+    "components": [
+      {
+        "type": "alert",
+        "data": {
+          "severity": "warning",
+          "title": "AI Chat Disabled",
+          "message": "Configure GEMINI_API_KEY environment variable to enable intelligent responses",
+          "actionable": true
+        }
+      }
+    ],
+    "metadata": {
+      "fallback": true,
+      "processingTime": 1769347960906
+    },
+    "isStreaming": false,
+    "createdAt": "2026-01-25T13:32:40.907Z"
+  },
+  {
+    "id": "bfc04d57-d996-4146-b851-9787f5ca1984",
+    "sessionId": "aaa5c343-bacd-4d20-944a-3aba08e74a3e",
+    "role": "assistant",
+    "content": "Hello! I'm your AI assistant for analyzing the contract 0x05D032ac25d322df992303dCa074EE7392C117b9 on lisk. What would you like to know?",
+    "components": [],
+    "metadata": {},
+    "isStreaming": false,
+    "createdAt": "2026-01-25T13:34:55.496Z"
+  },
+  {
+    "id": "5fbb14b2-b105-4c26-a8e5-0d162d2545f7",
+    "sessionId": "aaa5c343-bacd-4d20-944a-3aba08e74a3e",
+    "role": "user",
+    "content": "Show me the transaction volume trends",
+    "components": [],
+    "metadata": {},
+    "isStreaming": false,
+    "createdAt": "2026-01-25T13:35:07.890Z"
+  },
+  {
+    "id": "02c61f7e-77ea-4ea9-89f5-a68f5989c62c",
+    "sessionId": "aaa5c343-bacd-4d20-944a-3aba08e74a3e",
+    "role": "assistant",
+    "content": "I encountered an error processing your message: {\"error\":{\"code\":429,\"message\":\"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash-exp\\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash-exp\\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash-exp\\nPlease retry in 49.251127332s.\",\"status\":\"RESOURCE_EXHAUSTED\",\"details\":[{\"@type\":\"type.googleapis.com/google.rpc.Help\",\"links\":[{\"description\":\"Learn more about Gemini API quotas\",\"url\":\"https://ai.google.dev/gemini-api/docs/rate-limits\"}]},{\"@type\":\"type.googleapis.com/google.rpc.QuotaFailure\",\"violations\":[{\"quotaMetric\":\"generativelanguage.googleapis.com/generate_content_free_tier_input_token_count\",\"quotaId\":\"GenerateContentInputTokensPerModelPerMinute-FreeTier\",\"quotaDimensions\":{\"location\":\"global\",\"model\":\"gemini-2.0-flash-exp\"}},{\"quotaMetric\":\"generativelanguage.googleapis.com/generate_content_free_tier_requests\",\"quotaId\":\"GenerateRequestsPerMinutePerProjectPerModel-FreeTier\",\"quotaDimensions\":{\"location\":\"global\",\"model\":\"gemini-2.0-flash-exp\"}},{\"quotaMetric\":\"generativelanguage.googleapis.com/generate_content_free_tier_requests\",\"quotaId\":\"GenerateRequestsPerDayPerProjectPerModel-FreeTier\",\"quotaDimensions\":{\"location\":\"global\",\"model\":\"gemini-2.0-flash-exp\"}}]},{\"@type\":\"type.googleapis.com/google.rpc.RetryInfo\",\"retryDelay\":\"49s\"}]}}. Please try again or rephrase your question.",
+    "components": [
+      {
+        "type": "alert",
+        "data": {
+          "severity": "warning",
+          "title": "AI Chat Disabled",
+          "message": "Configure GEMINI_API_KEY environment variable to enable intelligent responses",
+          "actionable": true
+        }
+      }
+    ],
+    "metadata": {
+      "fallback": true,
+      "processingTime": 1769348110787
+    },
+    "isStreaming": false,
+    "createdAt": "2026-01-25T13:35:10.788Z"
+  },
+  {
+    "id": "24cd1bbc-5482-4402-9f87-a7b57979020d",
+    "sessionId": "aaa5c343-bacd-4d20-944a-3aba08e74a3e",
+    "role": "user",
+    "content": "Show me the transaction volume trends",
+    "components": [],
+    "metadata": {},
+    "isStreaming": false,
+    "createdAt": "2026-01-25T13:36:30.384Z"
+  },
+  {
+    "id": "c6854f7f-fb23-4da8-a0ff-adc40ca5cae3",
+    "sessionId": "aaa5c343-bacd-4d20-944a-3aba08e74a3e",
+    "role": "assistant",
+    "content": "I encountered an error processing your message: {\"error\":{\"code\":429,\"message\":\"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash-exp\\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash-exp\\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash-exp\\nPlease retry in 25.041180463s.\",\"status\":\"RESOURCE_EXHAUSTED\",\"details\":[{\"@type\":\"type.googleapis.com/google.rpc.Help\",\"links\":[{\"description\":\"Learn more about Gemini API quotas\",\"url\":\"https://ai.google.dev/gemini-api/docs/rate-limits\"}]},{\"@type\":\"type.googleapis.com/google.rpc.QuotaFailure\",\"violations\":[{\"quotaMetric\":\"generativelanguage.googleapis.com/generate_content_free_tier_requests\",\"quotaId\":\"GenerateRequestsPerDayPerProjectPerModel-FreeTier\",\"quotaDimensions\":{\"location\":\"global\",\"model\":\"gemini-2.0-flash-exp\"}},{\"quotaMetric\":\"generativelanguage.googleapis.com/generate_content_free_tier_requests\",\"quotaId\":\"GenerateRequestsPerMinutePerProjectPerModel-FreeTier\",\"quotaDimensions\":{\"model\":\"gemini-2.0-flash-exp\",\"location\":\"global\"}},{\"quotaMetric\":\"generativelanguage.googleapis.com/generate_content_free_tier_input_token_count\",\"quotaId\":\"GenerateContentInputTokensPerModelPerMinute-FreeTier\",\"quotaDimensions\":{\"location\":\"global\",\"model\":\"gemini-2.0-flash-exp\"}}]},{\"@type\":\"type.googleapis.com/google.rpc.RetryInfo\",\"retryDelay\":\"25s\"}]}}. Please try again or rephrase your question.",
+    "components": [
+      {
+        "type": "alert",
+        "data": {
+          "severity": "warning",
+          "title": "AI Chat Disabled",
+          "message": "Configure GEMINI_API_KEY environment variable to enable intelligent responses",
+          "actionable": true
+        }
+      }
+    ],
+    "metadata": {
+      "fallback": true,
+      "processingTime": 1769348195102
+    },
+    "isStreaming": false,
+    "createdAt": "2026-01-25T13:36:35.105Z"
+  },
+  {
+    "id": "f920775c-8c81-4cfa-9af6-532e6ba3874b",
+    "sessionId": "aaa5c343-bacd-4d20-944a-3aba08e74a3e",
+    "role": "user",
+    "content": "What's the overall performance of this contract?",
+    "components": [],
+    "metadata": {},
+    "isStreaming": false,
+    "createdAt": "2026-01-26T09:53:01.645Z"
+  },
+  {
+    "id": "3444b072-286d-4ae1-b7c2-581ec66ca52e",
+    "sessionId": "aaa5c343-bacd-4d20-944a-3aba08e74a3e",
+    "role": "assistant",
+    "content": "I encountered an error processing your message: {\"error\":{\"code\":429,\"message\":\"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash-exp\\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash-exp\\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash-exp\\nPlease retry in 56.247567853s.\",\"status\":\"RESOURCE_EXHAUSTED\",\"details\":[{\"@type\":\"type.googleapis.com/google.rpc.Help\",\"links\":[{\"description\":\"Learn more about Gemini API quotas\",\"url\":\"https://ai.google.dev/gemini-api/docs/rate-limits\"}]},{\"@type\":\"type.googleapis.com/google.rpc.QuotaFailure\",\"violations\":[{\"quotaMetric\":\"generativelanguage.googleapis.com/generate_content_free_tier_requests\",\"quotaId\":\"GenerateRequestsPerDayPerProjectPerModel-FreeTier\",\"quotaDimensions\":{\"model\":\"gemini-2.0-flash-exp\",\"location\":\"global\"}},{\"quotaMetric\":\"generativelanguage.googleapis.com/generate_content_free_tier_requests\",\"quotaId\":\"GenerateRequestsPerMinutePerProjectPerModel-FreeTier\",\"quotaDimensions\":{\"location\":\"global\",\"model\":\"gemini-2.0-flash-exp\"}},{\"quotaMetric\":\"generativelanguage.googleapis.com/generate_content_free_tier_input_token_count\",\"quotaId\":\"GenerateContentInputTokensPerModelPerMinute-FreeTier\",\"quotaDimensions\":{\"location\":\"global\",\"model\":\"gemini-2.0-flash-exp\"}}]},{\"@type\":\"type.googleapis.com/google.rpc.RetryInfo\",\"retryDelay\":\"56s\"}]}}. Please try again or rephrase your question.",
+    "components": [
+      {
+        "type": "alert",
+        "data": {
+          "severity": "warning",
+          "title": "AI Chat Disabled",
+          "message": "Configure GEMINI_API_KEY environment variable to enable intelligent responses",
+          "actionable": true
+        }
+      }
+    ],
+    "metadata": {
+      "fallback": true,
+      "processingTime": 1769421184044
+    },
+    "isStreaming": false,
+    "createdAt": "2026-01-26T09:53:04.048Z"
+  },
+  {
+    "id": "0243ce73-3827-42b5-a7d5-9fa51cb1ac99",
+    "sessionId": "aaa5c343-bacd-4d20-944a-3aba08e74a3e",
+    "role": "user",
+    "content": "What's the overall performance of this contract?",
+    "components": [],
+    "metadata": {},
+    "isStreaming": false,
+    "createdAt": "2026-01-26T10:14:17.651Z"
+  },
+  {
+    "id": "7a7d733c-c33e-4414-821f-5806db2ec4ce",
+    "sessionId": "aaa5c343-bacd-4d20-944a-3aba08e74a3e",
+    "role": "assistant",
+    "content": "I encountered an error processing your message: {\"error\":{\"code\":429,\"message\":\"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash-exp\\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash-exp\\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash-exp\\nPlease retry in 40.559327993s.\",\"status\":\"RESOURCE_EXHAUSTED\",\"details\":[{\"@type\":\"type.googleapis.com/google.rpc.Help\",\"links\":[{\"description\":\"Learn more about Gemini API quotas\",\"url\":\"https://ai.google.dev/gemini-api/docs/rate-limits\"}]},{\"@type\":\"type.googleapis.com/google.rpc.QuotaFailure\",\"violations\":[{\"quotaMetric\":\"generativelanguage.googleapis.com/generate_content_free_tier_requests\",\"quotaId\":\"GenerateRequestsPerDayPerProjectPerModel-FreeTier\",\"quotaDimensions\":{\"location\":\"global\",\"model\":\"gemini-2.0-flash-exp\"}},{\"quotaMetric\":\"generativelanguage.googleapis.com/generate_content_free_tier_requests\",\"quotaId\":\"GenerateRequestsPerMinutePerProjectPerModel-FreeTier\",\"quotaDimensions\":{\"model\":\"gemini-2.0-flash-exp\",\"location\":\"global\"}},{\"quotaMetric\":\"generativelanguage.googleapis.com/generate_content_free_tier_input_token_count\",\"quotaId\":\"GenerateContentInputTokensPerModelPerMinute-FreeTier\",\"quotaDimensions\":{\"location\":\"global\",\"model\":\"gemini-2.0-flash-exp\"}}]},{\"@type\":\"type.googleapis.com/google.rpc.RetryInfo\",\"retryDelay\":\"40s\"}]}}. Please try again or rephrase your question.",
+    "components": [
+      {
+        "type": "alert",
+        "data": {
+          "severity": "warning",
+          "title": "AI Chat Disabled",
+          "message": "Configure GEMINI_API_KEY environment variable to enable intelligent responses",
+          "actionable": true
+        }
+      }
+    ],
+    "metadata": {
+      "fallback": true,
+      "processingTime": 1769422459205
+    },
+    "isStreaming": false,
+    "createdAt": "2026-01-26T10:14:19.208Z"
+  },
+  {
+    "id": "0e0c4b84-f766-46e2-83b3-0f70d03e95c7",
+    "sessionId": "d89017de-c18e-4a59-9d7d-fb88700a25b1",
+    "role": "assistant",
+    "content": "Hello! I'm your AI assistant for analyzing the contract 0x05D032ac25d322df992303dCa074EE7392C117b9 on lisk. What would you like to know?",
+    "components": [],
+    "metadata": {},
+    "isStreaming": false,
+    "createdAt": "2026-01-26T10:14:59.330Z"
+  },
+  {
+    "id": "7f8df1b8-e7f6-4b22-b7f0-a5cc0c3b48d4",
+    "sessionId": "d89017de-c18e-4a59-9d7d-fb88700a25b1",
+    "role": "user",
+    "content": "What's the overall performance of this contract?",
+    "components": [],
+    "metadata": {},
+    "isStreaming": false,
+    "createdAt": "2026-01-26T10:15:05.413Z"
+  },
+  {
+    "id": "b869f7db-ef3b-4f1c-b62d-5c1521df28d8",
+    "sessionId": "d89017de-c18e-4a59-9d7d-fb88700a25b1",
+    "role": "assistant",
+    "content": "I encountered an error processing your message: {\"error\":{\"code\":429,\"message\":\"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash-exp\\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash-exp\\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash-exp\\nPlease retry in 52.987710811s.\",\"status\":\"RESOURCE_EXHAUSTED\",\"details\":[{\"@type\":\"type.googleapis.com/google.rpc.Help\",\"links\":[{\"description\":\"Learn more about Gemini API quotas\",\"url\":\"https://ai.google.dev/gemini-api/docs/rate-limits\"}]},{\"@type\":\"type.googleapis.com/google.rpc.QuotaFailure\",\"violations\":[{\"quotaMetric\":\"generativelanguage.googleapis.com/generate_content_free_tier_requests\",\"quotaId\":\"GenerateRequestsPerDayPerProjectPerModel-FreeTier\",\"quotaDimensions\":{\"model\":\"gemini-2.0-flash-exp\",\"location\":\"global\"}},{\"quotaMetric\":\"generativelanguage.googleapis.com/generate_content_free_tier_requests\",\"quotaId\":\"GenerateRequestsPerMinutePerProjectPerModel-FreeTier\",\"quotaDimensions\":{\"location\":\"global\",\"model\":\"gemini-2.0-flash-exp\"}},{\"quotaMetric\":\"generativelanguage.googleapis.com/generate_content_free_tier_input_token_count\",\"quotaId\":\"GenerateContentInputTokensPerModelPerMinute-FreeTier\",\"quotaDimensions\":{\"location\":\"global\",\"model\":\"gemini-2.0-flash-exp\"}}]},{\"@type\":\"type.googleapis.com/google.rpc.RetryInfo\",\"retryDelay\":\"52s\"}]}}. Please try again or rephrase your question.",
+    "components": [
+      {
+        "type": "alert",
+        "data": {
+          "severity": "warning",
+          "title": "AI Chat Disabled",
+          "message": "Configure GEMINI_API_KEY environment variable to enable intelligent responses",
+          "actionable": true
+        }
+      }
+    ],
+    "metadata": {
+      "fallback": true,
+      "processingTime": 1769422506766
+    },
+    "isStreaming": false,
+    "createdAt": "2026-01-26T10:15:06.768Z"
+  },
+  {
+    "id": "964d0e28-8df5-4b4d-97af-c51e50d8ca52",
+    "sessionId": "d89017de-c18e-4a59-9d7d-fb88700a25b1",
+    "role": "user",
+    "content": "What's the overall performance of this contract?",
+    "components": [],
+    "metadata": {},
+    "isStreaming": false,
+    "createdAt": "2026-01-26T10:17:02.099Z"
+  },
+  {
+    "id": "19f97596-292f-4481-b7d7-d37245d59910",
+    "sessionId": "d89017de-c18e-4a59-9d7d-fb88700a25b1",
+    "role": "assistant",
+    "content": "I've temporarily reached my AI processing limits. Here's what I can tell you about smart contract analysis while we wait for the limits to reset:",
+    "components": [
+      {
+        "type": "alert",
+        "data": {
+          "severity": "info",
+          "title": "AI Temporarily Unavailable",
+          "message": "The AI service has reached its quota limits. Please try again in a few minutes.",
+          "actionable": false
+        }
+      },
+      {
+        "type": "insight_card",
+        "data": {
+          "title": "Contract Analysis Basics",
+          "insight": "Smart contract analysis typically covers transaction volume, user behavior, security patterns, and competitive positioning. You can explore these areas through the main analyzer tool.",
+          "confidence": 100,
+          "category": "performance"
+        }
+      },
+      {
+        "type": "recommendation",
+        "data": {
+          "title": "Alternative Analysis Options",
+          "description": "While waiting for AI chat to be available, you can run a full contract analysis from the Analyzer page to get detailed metrics, charts, and insights.",
+          "priority": "medium",
+          "impact": "Get comprehensive contract insights",
+          "effort": "low"
+        }
+      }
+    ],
+    "metadata": {
+      "fallback": true,
+      "reason": "quota_exceeded",
+      "processingTime": 1769422624329
+    },
+    "isStreaming": false,
+    "createdAt": "2026-01-26T10:17:04.338Z"
+  },
+  {
+    "id": "6284e7b4-866b-43a4-8ac8-a7d95c0af772",
+    "sessionId": "21420c87-79f8-4fd8-b147-400c05831741",
+    "role": "assistant",
+    "content": "Hello! I'm your AI assistant for analyzing the contract 0x05D032ac25d322df992303dCa074EE7392C117b9 on lisk. What would you like to know?",
+    "components": [],
+    "metadata": {},
+    "isStreaming": false,
+    "createdAt": "2026-01-26T10:54:48.621Z"
+  },
+  {
+    "id": "e9728e64-3b6f-4781-bed0-548c948692ae",
+    "sessionId": "21420c87-79f8-4fd8-b147-400c05831741",
+    "role": "user",
+    "content": "Show me the transaction volume trends",
+    "components": [],
+    "metadata": {},
+    "isStreaming": false,
+    "createdAt": "2026-01-26T10:54:59.870Z"
+  },
+  {
+    "id": "4a98a42b-b7dc-4218-867f-2540db7757af",
+    "sessionId": "21420c87-79f8-4fd8-b147-400c05831741",
+    "role": "assistant",
+    "content": "I've temporarily reached my AI processing limits. Here's what I can tell you about smart contract analysis while we wait for the limits to reset:",
+    "components": [
+      {
+        "type": "alert",
+        "data": {
+          "severity": "info",
+          "title": "AI Temporarily Unavailable",
+          "message": "The AI service has reached its quota limits. Please try again in a few minutes.",
+          "actionable": false
+        }
+      },
+      {
+        "type": "insight_card",
+        "data": {
+          "title": "Contract Analysis Basics",
+          "insight": "Smart contract analysis typically covers transaction volume, user behavior, security patterns, and competitive positioning. You can explore these areas through the main analyzer tool.",
+          "confidence": 100,
+          "category": "performance"
+        }
+      },
+      {
+        "type": "recommendation",
+        "data": {
+          "title": "Alternative Analysis Options",
+          "description": "While waiting for AI chat to be available, you can run a full contract analysis from the Analyzer page to get detailed metrics, charts, and insights.",
+          "priority": "medium",
+          "impact": "Get comprehensive contract insights",
+          "effort": "low"
+        }
+      }
+    ],
+    "metadata": {
+      "fallback": true,
+      "reason": "quota_exceeded",
+      "processingTime": 1769424903997
+    },
+    "isStreaming": false,
+    "createdAt": "2026-01-26T10:55:03.997Z"
+  },
+  {
+    "id": "1c20c1d4-4f87-4b61-9e4a-1923bd77488b",
+    "sessionId": "21420c87-79f8-4fd8-b147-400c05831741",
+    "role": "user",
+    "content": "Show me the transaction volume trends",
+    "components": [],
+    "metadata": {},
+    "isStreaming": false,
+    "createdAt": "2026-01-26T11:00:21.680Z"
+  },
+  {
+    "id": "70d91c8d-76d1-4745-ac20-89735c9255d6",
+    "sessionId": "21420c87-79f8-4fd8-b147-400c05831741",
+    "role": "assistant",
+    "content": "I've temporarily reached my AI processing limits. Here's what I can tell you about smart contract analysis while we wait for the limits to reset:",
+    "components": [
+      {
+        "type": "alert",
+        "data": {
+          "severity": "info",
+          "title": "AI Temporarily Unavailable",
+          "message": "The AI service has reached its quota limits. Please try again in a few minutes.",
+          "actionable": false
+        }
+      },
+      {
+        "type": "insight_card",
+        "data": {
+          "title": "Contract Analysis Basics",
+          "insight": "Smart contract analysis typically covers transaction volume, user behavior, security patterns, and competitive positioning. You can explore these areas through the main analyzer tool.",
+          "confidence": 100,
+          "category": "performance"
+        }
+      },
+      {
+        "type": "recommendation",
+        "data": {
+          "title": "Alternative Analysis Options",
+          "description": "While waiting for AI chat to be available, you can run a full contract analysis from the Analyzer page to get detailed metrics, charts, and insights.",
+          "priority": "medium",
+          "impact": "Get comprehensive contract insights",
+          "effort": "low"
+        }
+      }
+    ],
+    "metadata": {
+      "fallback": true,
+      "reason": "quota_exceeded",
+      "processingTime": 1769425224109
+    },
+    "isStreaming": false,
+    "createdAt": "2026-01-26T11:00:24.111Z"
+  },
+  {
+    "id": "57c7a52b-b283-4a40-b7ba-78288d8db9d6",
+    "sessionId": "21420c87-79f8-4fd8-b147-400c05831741",
+    "role": "user",
+    "content": "Show me the transaction volume trends",
+    "components": [],
+    "metadata": {},
+    "isStreaming": false,
+    "createdAt": "2026-01-26T11:16:45.053Z"
+  },
+  {
+    "id": "727bb9d0-fdb7-4e74-8ccf-53490109ca0d",
+    "sessionId": "21420c87-79f8-4fd8-b147-400c05831741",
+    "role": "assistant",
+    "content": "I've temporarily reached my AI processing limits. Here's what I can tell you about smart contract analysis while we wait for the limits to reset:",
+    "components": [
+      {
+        "type": "alert",
+        "data": {
+          "severity": "info",
+          "title": "AI Temporarily Unavailable",
+          "message": "The AI service has reached its quota limits. Please try again in a few minutes.",
+          "actionable": false
+        }
+      },
+      {
+        "type": "insight_card",
+        "data": {
+          "title": "Contract Analysis Basics",
+          "insight": "Smart contract analysis typically covers transaction volume, user behavior, security patterns, and competitive positioning. You can explore these areas through the main analyzer tool.",
+          "confidence": 100,
+          "category": "performance"
+        }
+      },
+      {
+        "type": "recommendation",
+        "data": {
+          "title": "Alternative Analysis Options",
+          "description": "While waiting for AI chat to be available, you can run a full contract analysis from the Analyzer page to get detailed metrics, charts, and insights.",
+          "priority": "medium",
+          "impact": "Get comprehensive contract insights",
+          "effort": "low"
+        }
+      }
+    ],
+    "metadata": {
+      "fallback": true,
+      "reason": "quota_exceeded",
+      "processingTime": 1769426206248
+    },
+    "isStreaming": false,
+    "createdAt": "2026-01-26T11:16:46.250Z"
+  }
+]

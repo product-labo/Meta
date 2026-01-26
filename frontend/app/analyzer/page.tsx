@@ -214,7 +214,7 @@ export default function OnChainAnalyzer() {
             </TabsList>
 
             <TabsContent value="overview">
-              <OverviewTab analysisResults={analysisResults} analysisId={analysisId} />
+              <OverviewTab analysisResults={analysisResults} analysisId={analysisId || undefined} />
             </TabsContent>
 
             <TabsContent value="metrics">

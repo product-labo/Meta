@@ -17,6 +17,7 @@ import authRoutes from './routes/auth.js';
 import contractRoutes from './routes/contracts.js';
 import analysisRoutes from './routes/analysis.js';
 import userRoutes from './routes/users.js';
+import chatRoutes from './routes/chat.js';
 
 // Import middleware
 import { authenticateToken } from './middleware/auth.js';
@@ -25,6 +26,7 @@ import { requestLogger } from './middleware/logger.js';
 
 // Import database
 import { initializeDatabase } from './database/index.js';
+// import { initializeChatStorage } from './database/chatStorage.js'; // Temporarily disabled
 
 dotenv.config();
 
@@ -36,6 +38,7 @@ const PORT = process.env.PORT || 5000;
 
 // Initialize file-based storage
 await initializeDatabase();
+// await initializeChatStorage(); // Temporarily disabled
 
 // Middleware
 app.use(cors({
@@ -88,7 +91,8 @@ app.get('/', (req, res) => {
       auth: '/api/auth',
       contracts: '/api/contracts',
       analysis: '/api/analysis',
-      users: '/api/users'
+      users: '/api/users',
+      chat: '/api/chat'
     }
   });
 });
@@ -98,6 +102,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api/contracts', authenticateToken, contractRoutes);
 app.use('/api/analysis', authenticateToken, analysisRoutes); // analysisLimiter temporarily disabled for testing
 app.use('/api/users', authenticateToken, userRoutes);
+app.use('/api/chat', authenticateToken, chatRoutes);
 
 // Serve OpenAPI documentation
 app.use('/api-docs', express.static(join(__dirname, 'docs')));

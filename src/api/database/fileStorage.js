@@ -271,6 +271,180 @@ export class AnalysisStorage {
   }
 }
 
+// Chat Session operations
+export class ChatSessionStorage {
+  static async findAll() {
+    const data = await readJsonFile('./data/chat_sessions.json', []);
+    return data.map(item => ({
+      id: item.id,
+      userId: item.userId,
+      contractAddress: item.contractAddress,
+      contractChain: item.contractChain,
+      contractName: item.contractName || 'Unknown Contract',
+      title: item.title || `Chat: ${item.contractName}`,
+      isActive: item.isActive !== false,
+      lastMessageAt: item.lastMessageAt || null,
+      messageCount: item.messageCount || 0,
+      metadata: item.metadata || {},
+      createdAt: item.createdAt,
+      updatedAt: item.updatedAt
+    }));
+  }
+
+  static async findById(id) {
+    const sessions = await this.findAll();
+    return sessions.find(session => session.id === id);
+  }
+
+  static async findByUserId(userId, filters = {}) {
+    const sessions = await this.findAll();
+    let userSessions = sessions.filter(session => 
+      session.userId === userId && session.isActive !== false
+    );
+
+    // Apply filters
+    if (filters.contractAddress) {
+      userSessions = userSessions.filter(session =>
+        session.contractAddress.toLowerCase() === filters.contractAddress.toLowerCase()
+      );
+    }
+
+    if (filters.contractChain) {
+      userSessions = userSessions.filter(session =>
+        session.contractChain === filters.contractChain
+      );
+    }
+
+    // Sort by last message date (most recent first)
+    userSessions.sort((a, b) => {
+      const aDate = new Date(a.lastMessageAt || a.createdAt);
+      const bDate = new Date(b.lastMessageAt || b.createdAt);
+      return bDate - aDate;
+    });
+
+    return userSessions;
+  }
+
+  static async findByContract(userId, contractAddress, contractChain) {
+    const sessions = await this.findByUserId(userId, { contractAddress, contractChain });
+    return sessions[0] || null; // Return the most recent session for this contract
+  }
+
+  static async create(sessionData) {
+    const sessions = await readJsonFile('./data/chat_sessions.json', []);
+    const newSession = {
+      id: crypto.randomUUID(),
+      ...sessionData,
+      isActive: true,
+      messageCount: 0,
+      metadata: sessionData.metadata || {},
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString()
+    };
+    
+    sessions.push(newSession);
+    await writeJsonFile('./data/chat_sessions.json', sessions);
+    
+    // Return the session object directly (no need for toJSON method)
+    return newSession;
+  }
+
+  static async update(id, updates) {
+    const sessions = await readJsonFile('./data/chat_sessions.json', []);
+    const sessionIndex = sessions.findIndex(session => session.id === id);
+    if (sessionIndex === -1) return null;
+
+    sessions[sessionIndex] = {
+      ...sessions[sessionIndex],
+      ...updates,
+      updatedAt: new Date().toISOString()
+    };
+    
+    await writeJsonFile('./data/chat_sessions.json', sessions);
+    return sessions[sessionIndex];
+  }
+
+  static async delete(id) {
+    const sessions = await readJsonFile('./data/chat_sessions.json', []);
+    const sessionIndex = sessions.findIndex(session => session.id === id);
+    if (sessionIndex === -1) return null;
+
+    sessions[sessionIndex].isActive = false;
+    sessions[sessionIndex].updatedAt = new Date().toISOString();
+    await writeJsonFile('./data/chat_sessions.json', sessions);
+    return true;
+  }
+}
+
+// Chat Message operations
+export class ChatMessageStorage {
+  static async findAll() {
+    const data = await readJsonFile('./data/chat_messages.json', []);
+    return data.map(item => ({
+      id: item.id,
+      sessionId: item.sessionId,
+      role: item.role, // 'user' | 'assistant' | 'system'
+      content: item.content,
+      components: item.components || [],
+      metadata: item.metadata || {},
+      isStreaming: item.isStreaming || false,
+      createdAt: item.createdAt
+    }));
+  }
+
+  static async findBySessionId(sessionId, limit = 50, offset = 0) {
+    const messages = await this.findAll();
+    const sessionMessages = messages
+      .filter(message => message.sessionId === sessionId)
+      .sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt))
+      .slice(offset, offset + limit);
+    
+    return sessionMessages;
+  }
+
+  static async create(messageData) {
+    const messages = await readJsonFile('./data/chat_messages.json', []);
+    const newMessage = {
+      id: crypto.randomUUID(),
+      ...messageData,
+      components: messageData.components || [],
+      metadata: messageData.metadata || {},
+      isStreaming: messageData.isStreaming || false,
+      createdAt: new Date().toISOString()
+    };
+    
+    messages.push(newMessage);
+    await writeJsonFile('./data/chat_messages.json', messages);
+    
+    // Update session's last message time and count
+    await ChatSessionStorage.update(newMessage.sessionId, {
+      lastMessageAt: newMessage.createdAt,
+      messageCount: messages.filter(m => m.sessionId === newMessage.sessionId).length
+    });
+    
+    return newMessage;
+  }
+
+  static async update(id, updates) {
+    const messages = await readJsonFile('./data/chat_messages.json', []);
+    const messageIndex = messages.findIndex(message => message.id === id);
+    if (messageIndex === -1) return null;
+
+    messages[messageIndex] = {
+      ...messages[messageIndex],
+      ...updates
+    };
+    
+    await writeJsonFile('./data/chat_messages.json', messages);
+    return messages[messageIndex];
+  }
+
+  static async getRecentContext(sessionId, limit = 10) {
+    const messages = await this.findBySessionId(sessionId, limit);
+    return messages.slice(-limit); // Get the most recent messages
+  }
+}
+
 // Initialize storage
 export async function initializeStorage() {
   try {
@@ -287,5 +461,7 @@ export default {
   UserStorage,
   ContractStorage,
   AnalysisStorage,
+  ChatSessionStorage,
+  ChatMessageStorage,
   initialize: initializeStorage
 };

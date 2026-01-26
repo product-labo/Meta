@@ -2,7 +2,7 @@ import Link from "next/link"
 import { MetaGaugeLogo } from "@/components/icons/metagauge-logo"
 import { Button } from "@/components/ui/button"
 import { useAuth } from "@/components/auth/auth-provider"
-import { User, LogOut, BarChart3, History } from "lucide-react"
+import { User, LogOut, BarChart3, History, MessageCircle } from "lucide-react"
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -29,6 +29,9 @@ export function Header() {
           <Link href="/analyzer" className="text-sm font-medium hover:text-primary transition-colors">
             Analyzer
           </Link>
+          <Link href="/chat" className="text-sm font-medium hover:text-primary transition-colors">
+            Chat
+          </Link>
           <Link href="/history" className="text-sm font-medium hover:text-primary transition-colors">
             History
           </Link>
@@ -49,6 +52,12 @@ export function Header() {
                 <Link href="/dashboard" className="flex items-center gap-2">
                   <BarChart3 className="h-4 w-4" />
                   Dashboard
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link href="/chat" className="flex items-center gap-2">
+                  <MessageCircle className="h-4 w-4" />
+                  Contract Chat
                 </Link>
               </DropdownMenuItem>
               <DropdownMenuItem asChild>

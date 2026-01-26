@@ -228,6 +228,65 @@ export const api = {
     getUsage: async () => {
       return apiRequest('/api/users/usage');
     }
+  },
+
+  chat: {
+    getSessions: async (filters?: { contractAddress?: string; contractChain?: string }) => {
+      const params = new URLSearchParams();
+      if (filters?.contractAddress) params.append('contractAddress', filters.contractAddress);
+      if (filters?.contractChain) params.append('contractChain', filters.contractChain);
+      
+      const query = params.toString();
+      return apiRequest(`/api/chat/sessions${query ? `?${query}` : ''}`);
+    },
+
+    createSession: async (data: { contractAddress: string; contractChain: string; contractName?: string }) => {
+      return apiRequest('/api/chat/sessions', {
+        method: 'POST',
+        body: JSON.stringify(data),
+      });
+    },
+
+    getSession: async (sessionId: string) => {
+      return apiRequest(`/api/chat/sessions/${sessionId}`);
+    },
+
+    updateSession: async (sessionId: string, data: { title?: string; contractName?: string }) => {
+      return apiRequest(`/api/chat/sessions/${sessionId}`, {
+        method: 'PUT',
+        body: JSON.stringify(data),
+      });
+    },
+
+    deleteSession: async (sessionId: string) => {
+      return apiRequest(`/api/chat/sessions/${sessionId}`, {
+        method: 'DELETE',
+      });
+    },
+
+    getMessages: async (sessionId: string, limit: number = 50, offset: number = 0) => {
+      return apiRequest(`/api/chat/sessions/${sessionId}/messages?limit=${limit}&offset=${offset}`);
+    },
+
+    sendMessage: async (sessionId: string, content: string) => {
+      return apiRequest(`/api/chat/sessions/${sessionId}/messages`, {
+        method: 'POST',
+        body: JSON.stringify({ content }),
+      });
+    },
+
+    getSuggestedQuestions: async (contractAddress: string, contractChain: string) => {
+      // This would be a separate endpoint, but for now we'll generate them client-side
+      return {
+        questions: [
+          "What's the overall performance of this contract?",
+          "Show me the transaction volume trends",
+          "Who are the top users of this contract?",
+          "Are there any security concerns I should know about?",
+          "How does this contract compare to competitors?"
+        ]
+      };
+    }
   }
 };
 

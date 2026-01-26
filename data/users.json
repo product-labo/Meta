@@ -857,9 +857,61 @@
       "defaultChain": "ethereum"
     },
     "createdAt": "2026-01-25T01:38:12.085Z",
-    "updatedAt": "2026-01-25T06:18:51.893Z",
+    "updatedAt": "2026-01-26T10:09:14.052Z",
     "usage.analysisCount": 1,
     "usage.monthlyAnalysisCount": 1,
-    "usage.lastAnalysis": "2026-01-25T06:18:51.893Z"
+    "usage.lastAnalysis": "2026-01-26T10:09:14.048Z",
+    "lastLogin": "2026-01-25T12:38:05.017Z"
+  },
+  {
+    "id": "260b53f4-5e27-48ce-bcf3-a5e44d67fb8c",
+    "email": "chattest@example.com",
+    "password": "$2a$12$fflNtHQc35/BpKjCKhyrBO6HSZBKF9C1XjULDSjAfrsXltkcHMoE6",
+    "name": "Chat Test User",
+    "tier": "free",
+    "apiKey": "0dcca8190f4ada581f0b731dbec4c85777543f5148a8794590e4d9692f5aa452",
+    "isActive": true,
+    "emailVerified": false,
+    "usage": {
+      "analysisCount": 0,
+      "monthlyAnalysisCount": 0,
+      "lastAnalysis": null,
+      "monthlyResetDate": "2026-01-25T12:32:56.705Z"
+    },
+    "preferences": {
+      "notifications": {
+        "email": true,
+        "analysis": true
+      },
+      "defaultChain": "ethereum"
+    },
+    "createdAt": "2026-01-25T12:32:56.706Z",
+    "updatedAt": "2026-01-25T13:09:11.793Z",
+    "lastLogin": "2026-01-25T13:09:11.793Z"
+  },
+  {
+    "id": "6ab4dd81-9ac0-45eb-959c-06da25b569bd",
+    "email": "testchat@example.com",
+    "password": "$2a$12$KHhunxxlhN1e./YWM55zCOinZYxoTWRY0wiQ3lErf9zpMHQ5fWjpe",
+    "name": "Test Chat User",
+    "tier": "free",
+    "apiKey": "5f29d410023b68ee8c1e37f6d21532bb3836a2febb9644465bb10a0f83d10f8c",
+    "isActive": true,
+    "emailVerified": false,
+    "usage": {
+      "analysisCount": 0,
+      "monthlyAnalysisCount": 0,
+      "lastAnalysis": null,
+      "monthlyResetDate": "2026-01-25T13:32:19.385Z"
+    },
+    "preferences": {
+      "notifications": {
+        "email": true,
+        "analysis": true
+      },
+      "defaultChain": "ethereum"
+    },
+    "createdAt": "2026-01-25T13:32:19.385Z",
+    "updatedAt": "2026-01-25T13:32:19.386Z"
   }
 ]

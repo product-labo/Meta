@@ -1,6 +1,8 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { EnhancedAIInsights } from './enhanced-ai-insights';
+import { MessageCircle } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 
 interface OverviewTabProps {
   analysisResults: any;
@@ -8,6 +10,7 @@ interface OverviewTabProps {
 }
 
 export function OverviewTab({ analysisResults, analysisId }: OverviewTabProps) {
+  const router = useRouter();
   const results = analysisResults?.results?.target || {};
   const fullReport = results.fullReport || {};
   const summary = fullReport.summary || {};
@@ -151,6 +154,38 @@ export function OverviewTab({ analysisResults, analysisId }: OverviewTabProps) {
           analysisId={analysisId} 
           analysisResults={analysisResults} 
         />
+      )}
+
+      {/* Chat with AI Button */}
+      {results.contract && (
+        <Card className="border-primary/20 bg-primary/5">
+          <CardContent className="p-6">
+            <div className="flex items-center justify-between">
+              <div>
+                <h3 className="font-semibold text-lg mb-2">Chat with AI about this contract</h3>
+                <p className="text-muted-foreground text-sm">
+                  Get personalized insights, ask questions, and explore this contract's data with our AI assistant.
+                </p>
+              </div>
+              <Button 
+                onClick={() => {
+                  const contractData = results.contract || {};
+                  const params = new URLSearchParams({
+                    address: contractData.address || '',
+                    chain: contractData.chain || '',
+                    name: contractData.name || 'Unknown Contract'
+                  });
+                  
+                  router.push(`/chat?${params.toString()}`);
+                }}
+                className="ml-4"
+              >
+                <MessageCircle className="w-4 h-4 mr-2" />
+                Start Chat
+              </Button>
+            </div>
+          </CardContent>
+        </Card>
       )}
 
       {/* Show basic info if no detailed data available */}
