@@ -230,6 +230,48 @@ export const api = {
     }
   },
 
+  onboarding: {
+    getStatus: async () => {
+      return apiRequest('/api/onboarding/status');
+    },
+
+    complete: async (data: {
+      socialLinks: {
+        website?: string | null;
+        twitter?: string | null;
+        discord?: string | null;
+        telegram?: string | null;
+      };
+      logo?: string | null;
+      contractAddress: string;
+      chain: string;
+      contractName: string;
+      abi?: string | null;
+      purpose: string;
+      category: string;
+      startDate: string;
+    }) => {
+      return apiRequest('/api/onboarding/complete', {
+        method: 'POST',
+        body: JSON.stringify(data),
+      });
+    },
+
+    getDefaultContract: async () => {
+      return apiRequest('/api/onboarding/default-contract');
+    },
+
+    getUserMetrics: async () => {
+      return apiRequest('/api/onboarding/user-metrics');
+    },
+
+    refreshDefaultContract: async () => {
+      return apiRequest('/api/onboarding/refresh-default-contract', {
+        method: 'POST',
+      });
+    }
+  },
+
   chat: {
     getSessions: async (filters?: { contractAddress?: string; contractChain?: string }) => {
       const params = new URLSearchParams();

@@ -209,7 +209,7 @@ FAILOVER_TIMEOUT=30000         # RPC timeout (ms)
 ### AI Features Configuration
 ```env
 GEMINI_API_KEY=your-api-key    # Enable AI insights
-GEMINI_MODEL=gemini-2.0-flash-exp  # AI model selection
+GEMINI_MODEL=gemini-2.5-flash-lite  # AI model selection
 AI_RATE_LIMIT=50               # AI requests per 15 minutes
 ```
 

@@ -41,13 +41,13 @@ export class SmartContractFetcher extends EventEmitter {
       ethereum: [
         {
           name: 'publicnode',
-          url: 'https://ethereum-rpc.publicnode.com',
+          url: process.env.ETHEREUM_RPC_URL || 'https://ethereum-rpc.publicnode.com',
           priority: 1,
           type: 'http'
         },
         {
           name: 'nownodes',
-          url: process.env.ETHEREUM_RPC_URL || 'https://eth.nownodes.io/2ca1a1a6-9040-4ca9-8727-33a186414a1f',
+          url: process.env.ETHEREUM_RPC_URL_FALLBACK || 'https://eth.nownodes.io/2ca1a1a6-9040-4ca9-8727-33a186414a1f',
           priority: 2,
           type: 'http'
         }
@@ -115,32 +115,39 @@ export class SmartContractFetcher extends EventEmitter {
   }
 
   /**
-   * Initialize RPC providers - only for target chain if ANALYZE_CHAIN_ONLY is enabled
+   * Initialize RPC providers - always initialize all chains for dynamic analysis
    * @private
    */
   _initializeProviders() {
-    // Check if chain isolation is enabled
-    const analyzeChainOnly = process.env.ANALYZE_CHAIN_ONLY === 'true';
-    const targetChain = process.env.CONTRACT_CHAIN?.toLowerCase();
+    console.log(`🌐 Initializing all chain providers for dynamic analysis support`);
     
-    if (analyzeChainOnly && targetChain) {
-      console.log(`🔒 Chain isolation enabled - only initializing ${targetChain} providers`);
-      
-      // Only initialize providers for the target chain
-      const targetConfigs = this.providerConfigs[targetChain];
-      if (!targetConfigs) {
-        throw new Error(`No provider configuration found for target chain: ${targetChain}`);
-      }
-      
-      this._initializeChainProviders(targetChain, targetConfigs);
-    } else {
-      console.log(`🌐 Multi-chain mode - initializing all providers`);
-      
-      // Initialize all chains
-      for (const [chain, configs] of Object.entries(this.providerConfigs)) {
-        this._initializeChainProviders(chain, configs);
-      }
+    // Always initialize all chains to support dynamic analysis of different contracts
+    for (const [chain, configs] of Object.entries(this.providerConfigs)) {
+      this._initializeChainProviders(chain, configs);
     }
+  }
+
+  /**
+   * Ensure providers are initialized for a specific chain
+   * @param {string} chain - Chain name to ensure providers for
+   * @private
+   */
+  _ensureChainProviders(chain) {
+    const chainLower = chain.toLowerCase();
+    
+    // If providers already exist for this chain, return
+    if (this.providers[chainLower] && this.providers[chainLower].length > 0) {
+      return;
+    }
+    
+    // Get configuration for this chain
+    const chainConfigs = this.providerConfigs[chainLower];
+    if (!chainConfigs) {
+      throw new Error(`No provider configuration found for chain: ${chainLower}`);
+    }
+    
+    console.log(`🔧 Dynamically initializing ${chainLower} providers for analysis`);
+    this._initializeChainProviders(chainLower, chainConfigs);
   }
 
   /**
@@ -294,20 +301,25 @@ export class SmartContractFetcher extends EventEmitter {
    * @private
    */
   async _executeWithFailover(chain, operation, operationName) {
-    const providers = this.providers[chain];
+    const chainLower = chain.toLowerCase();
+    
+    // Ensure providers are initialized for this chain
+    this._ensureChainProviders(chainLower);
+    
+    const providers = this.providers[chainLower];
     if (!providers || providers.length === 0) {
-      throw new Error(`No providers configured for chain: ${chain}`);
+      throw new Error(`No providers configured for chain: ${chainLower}`);
     }
     
-    console.log(`🔗 Executing ${operationName} on ${chain} chain only`);
+    console.log(`🔗 Executing ${operationName} on ${chainLower} chain only`);
     
     let lastError;
     
     // STRICT: Only use providers for the exact requested chain
     for (const provider of providers) {
       // Double-check provider belongs to correct chain
-      if (!this._validateProviderChain(provider, chain)) {
-        console.warn(`⚠️ Skipping ${provider.name} - not for ${chain} chain`);
+      if (!this._validateProviderChain(provider, chainLower)) {
+        console.warn(`⚠️ Skipping ${provider.name} - not for ${chainLower} chain`);
         continue;
       }
       
@@ -322,16 +334,16 @@ export class SmartContractFetcher extends EventEmitter {
         ]);
         
         const duration = Date.now() - startTime;
-        console.log(`✅ ${operationName} successful via ${provider.name} (${chain}) in ${duration}ms`);
+        console.log(`✅ ${operationName} successful via ${provider.name} (${chainLower}) in ${duration}ms`);
         return result;
         
       } catch (error) {
         lastError = error;
-        console.warn(`⚠️ ${operationName} failed via ${provider.name} (${chain}): ${error.message}`);
+        console.warn(`⚠️ ${operationName} failed via ${provider.name} (${chainLower}): ${error.message}`);
       }
     }
     
-    throw new Error(`All ${chain} providers failed for ${operationName}: ${lastError?.message}`);
+    throw new Error(`All ${chainLower} providers failed for ${operationName}: ${lastError?.message}`);
   }
 
   _validateProviderChain(provider, expectedChain) {

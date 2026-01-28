@@ -81,5 +81,33 @@
     "createdAt": "2026-01-26T10:54:48.620Z",
     "updatedAt": "2026-01-26T11:16:46.256Z",
     "lastMessageAt": "2026-01-26T11:16:46.250Z"
+  },
+  {
+    "id": "e62071e4-7fc8-4731-aac5-44f538a693e0",
+    "userId": "3c07e664-7e86-47c5-8a86-33dea053cf9d",
+    "contractAddress": "0x05d032ac25d322df992303dca074ee7392c117b9",
+    "contractChain": "lisk",
+    "contractName": "public Node",
+    "title": "Chat: public Node...",
+    "isActive": true,
+    "messageCount": 21,
+    "metadata": {},
+    "createdAt": "2026-01-28T15:15:26.400Z",
+    "updatedAt": "2026-01-28T16:42:04.717Z",
+    "lastMessageAt": "2026-01-28T16:42:04.711Z"
+  },
+  {
+    "id": "dc8442db-d46e-480f-ae6b-afa97c46bca7",
+    "userId": "3c07e664-7e86-47c5-8a86-33dea053cf9d",
+    "contractAddress": "0x8315177ab297ba92a06054ce80a67ed4dbd7ed3a",
+    "contractChain": "ethereum",
+    "contractName": "Arbitrum bridge",
+    "title": "Chat: Arbitrum bridge...",
+    "isActive": false,
+    "messageCount": 3,
+    "metadata": {},
+    "createdAt": "2026-01-28T17:58:14.548Z",
+    "updatedAt": "2026-01-28T17:58:47.577Z",
+    "lastMessageAt": "2026-01-28T17:58:30.068Z"
   }
 ]

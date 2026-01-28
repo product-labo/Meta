@@ -63,7 +63,7 @@ export class RpcClientService {
   }
 
   /**
-   * Get transactions by contract address
+   * Get transactions by contract address using interaction-based fetching (events first)
    * @param {string} address - Contract address
    * @param {number} fromBlock - Starting block number
    * @param {number} toBlock - Ending block number
@@ -72,34 +72,133 @@ export class RpcClientService {
   async getTransactionsByAddress(address, fromBlock, toBlock) {
     return await this._retryOperation(async () => {
       const transactions = [];
+      const events = [];
+      const totalBlocks = toBlock - fromBlock + 1;
       
-      // Fetch transactions in batches to avoid overwhelming the RPC
-      const batchSize = 1000;
+      console.log(`   📦 ${this.chain} analysis: ${totalBlocks} blocks for contract ${address}`);
       
-      for (let block = fromBlock; block <= toBlock; block += batchSize) {
-        const endBlock = Math.min(block + batchSize - 1, toBlock);
+      try {
+        // Step 1: Fetch contract events (most efficient approach)
+        console.log(`   📋 Fetching contract events from blocks ${fromBlock}-${toBlock}...`);
         
-        // Get block range
-        const blockPromises = [];
-        for (let b = block; b <= endBlock; b++) {
-          blockPromises.push(this.provider.getBlock(b, true));
+        let allLogs = [];
+        try {
+          // Try to get logs using eth_getLogs (works for Ethereum-compatible chains)
+          const logsResult = await this.provider.send('eth_getLogs', [{
+            fromBlock: '0x' + fromBlock.toString(16),
+            toBlock: '0x' + toBlock.toString(16),
+            address: address
+          }]);
+          allLogs = logsResult || [];
+        } catch (logsError) {
+          console.log(`   ⚠️  eth_getLogs not supported, falling back to block scanning`);
+          allLogs = [];
         }
         
-        const blocks = await Promise.all(blockPromises);
+        console.log(`   📋 Found ${allLogs.length} contract events`);
         
-        // Filter transactions to/from the address
-        for (const blockData of blocks) {
-          if (blockData && blockData.transactions) {
-            for (const tx of blockData.transactions) {
-              if (tx.to && tx.to.toLowerCase() === address.toLowerCase()) {
-                transactions.push(await this._formatTransaction(tx, blockData));
+        // Process events
+        for (const log of allLogs) {
+          events.push({
+            address: log.address,
+            topics: log.topics,
+            data: log.data,
+            blockNumber: parseInt(log.blockNumber, 16),
+            transactionHash: log.transactionHash,
+            transactionIndex: parseInt(log.transactionIndex, 16),
+            blockHash: log.blockHash,
+            logIndex: parseInt(log.logIndex, 16),
+            removed: log.removed || false
+          });
+        }
+        
+        // Step 2: Get unique transaction hashes from events
+        const eventTxHashes = new Set(allLogs.map(log => log.transactionHash));
+        console.log(`   🔗 Found ${eventTxHashes.size} unique transactions from events`);
+        
+        // Step 3: Batch fetch transaction details for event transactions
+        if (eventTxHashes.size > 0) {
+          const batchSize = 10; // Conservative batch size for generic chains
+          const txHashArray = Array.from(eventTxHashes);
+          
+          for (let i = 0; i < txHashArray.length; i += batchSize) {
+            const batch = txHashArray.slice(i, i + batchSize);
+            const batchPromises = batch.map(async (txHash) => {
+              try {
+                const tx = await this.provider.getTransaction(txHash);
+                const receipt = await this.provider.getTransactionReceipt(txHash);
+                
+                if (tx) {
+                  const block = await this.provider.getBlock(tx.blockNumber);
+                  return await this._formatTransaction(tx, block, receipt, events.filter(e => e.transactionHash === txHash));
+                }
+              } catch (txError) {
+                console.warn(`   ⚠️  Failed to fetch transaction ${txHash}: ${txError.message}`);
+                return null;
               }
-            }
+            });
+            
+            const batchResults = await Promise.all(batchPromises);
+            transactions.push(...batchResults.filter(tx => tx !== null));
+            
+            console.log(`   📊 Progress: ${Math.min(i + batchSize, txHashArray.length)}/${txHashArray.length} transactions processed`);
           }
         }
+        
+        // Step 4: Limited direct transaction scanning (only for small ranges or when no events)
+        let directTxCount = 0;
+        if (eventTxHashes.size === 0 && totalBlocks <= 100) {
+          console.log(`   🔍 No events found, scanning ${totalBlocks} blocks for direct transactions...`);
+          
+          // Fetch transactions in smaller batches to avoid overwhelming the RPC
+          const blockBatchSize = 50;
+          
+          for (let block = fromBlock; block <= toBlock; block += blockBatchSize) {
+            const endBlock = Math.min(block + blockBatchSize - 1, toBlock);
+            
+            // Get block range
+            const blockPromises = [];
+            for (let b = block; b <= endBlock; b++) {
+              blockPromises.push(this.provider.getBlock(b, true));
+            }
+            
+            const blocks = await Promise.all(blockPromises);
+            
+            // Filter transactions to/from the address
+            for (const blockData of blocks) {
+              if (blockData && blockData.transactions) {
+                for (const tx of blockData.transactions) {
+                  const isToContract = tx.to && tx.to.toLowerCase() === address.toLowerCase();
+                  const isFromContract = tx.from && tx.from.toLowerCase() === address.toLowerCase();
+                  
+                  if (isToContract || isFromContract) {
+                    const receipt = await this.provider.getTransactionReceipt(tx.hash);
+                    transactions.push(await this._formatTransaction(tx, blockData, receipt, []));
+                    directTxCount++;
+                  }
+                }
+              }
+            }
+            
+            const progress = ((endBlock - fromBlock + 1) / totalBlocks * 100).toFixed(1);
+            console.log(`   📊 Progress: ${progress}% (${endBlock}/${toBlock})`);
+          }
+        } else if (totalBlocks > 100) {
+          console.log(`   ⚠️  Skipping direct transaction scan for ${totalBlocks} blocks (too many blocks, use events only)`);
+        }
+        
+        console.log(`   ✅ ${this.chain} analysis complete:`);
+        console.log(`      📋 Events: ${events.length}`);
+        console.log(`      🔗 Event transactions: ${eventTxHashes.size}`);
+        console.log(`      📤 Direct transactions: ${directTxCount}`);
+        console.log(`      📊 Total transactions: ${transactions.length}`);
+        
+        return transactions;
+        
+      } catch (error) {
+        console.error(`   ❌ Error in ${this.chain} analysis: ${error.message}`);
+        throw error;
       }
-      
-      return transactions;
     }, 'getTransactionsByAddress', this.timeouts.transaction);
   }
 
@@ -152,8 +251,11 @@ export class RpcClientService {
    * Format transaction data to standard format
    * @private
    */
-  async _formatTransaction(tx, blockData) {
-    const receipt = await this.getTransactionReceipt(tx.hash);
+  async _formatTransaction(tx, blockData, receipt = null, events = []) {
+    // Get receipt if not provided
+    if (!receipt) {
+      receipt = await this.getTransactionReceipt(tx.hash);
+    }
     
     return {
       hash: tx.hash,
@@ -168,7 +270,8 @@ export class RpcClientService {
       blockTimestamp: blockData.timestamp,
       status: receipt ? receipt.status === 1 : false,
       chain: this.chain,
-      nonce: tx.nonce
+      nonce: tx.nonce,
+      events: events || []
     };
   }
 

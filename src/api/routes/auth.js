@@ -89,6 +89,28 @@ router.post('/register', async (req, res) => {
         lastAnalysis: null,
         monthlyResetDate: new Date().toISOString()
       },
+      onboarding: {
+        completed: false,
+        socialLinks: {
+          website: null,
+          twitter: null,
+          discord: null,
+          telegram: null
+        },
+        logo: null,
+        defaultContract: {
+          address: null,
+          chain: null,
+          abi: null,
+          name: null,
+          purpose: null,
+          category: null,
+          startDate: null,
+          isIndexed: false,
+          indexingProgress: 0,
+          lastAnalysisId: null
+        }
+      },
       preferences: {
         notifications: {
           email: true,

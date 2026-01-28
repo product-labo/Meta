@@ -38,7 +38,7 @@
 - ✅ **Rate Limiting**: Prevents API abuse with user-specific limits
 - ✅ **Fallback System**: Works even when AI is disabled
 - ✅ **Structured Prompts**: Optimized for consistent JSON responses
-- ✅ **Model Configuration**: Uses latest `gemini-2.0-flash-exp` for best performance
+- ✅ **Model Configuration**: Uses latest `gemini-2.5-flash-lite` for best performance
 - ✅ **Temperature Control**: Balanced creativity vs consistency
 
 ### 🔧 Technical Implementation
@@ -181,7 +181,7 @@ const optimizations = await api.analysis.generateOptimizations(analysisId);
 - **Efficient Prompts**: Structured prompts for consistent responses
 - **Response Caching**: Rate limiting prevents unnecessary API calls
 - **Fallback System**: Always functional even without AI
-- **Optimized Models**: Uses `gemini-2.0-flash-exp` for best performance
+- **Optimized Models**: Uses `gemini-2.5-flash-lite` for best performance
 
 ### 🔮 Future Enhancements
 

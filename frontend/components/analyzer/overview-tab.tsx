@@ -19,9 +19,15 @@ export function OverviewTab({ analysisResults, analysisId }: OverviewTabProps) {
   const alerts = fullReport.alerts || [];
   
   // Format values safely
-  const formatValue = (value: any, fallback = 'N/A') => {
+  const formatValue = (value: any, fallback: any = 'N/A') => {
     if (value === null || value === undefined) return fallback;
     return value;
+  };
+
+  // Format numbers safely for display
+  const formatNumber = (value: any, fallback = 0) => {
+    if (value === null || value === undefined) return fallback;
+    return typeof value === 'number' ? value : fallback;
   };
 
   const formatCurrency = (value: any) => {
@@ -36,13 +42,13 @@ export function OverviewTab({ analysisResults, analysisId }: OverviewTabProps) {
   
   return (
     <div className="space-y-6">
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         <Card className="hover:shadow-lg transition-shadow">
           <CardHeader className="pb-2">
             <CardTitle className="text-sm font-medium text-muted-foreground">Total Transactions</CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-3xl font-bold">{formatValue(summary.totalTransactions, 0).toLocaleString()}</p>
+            <p className="text-3xl font-bold">{formatNumber(summary.totalTransactions, 0).toLocaleString()}</p>
             <p className="text-green-600 text-xs mt-1">
               {summary.successRate ? `${summary.successRate}% success rate` : 'Analysis complete'}
             </p>
@@ -55,7 +61,7 @@ export function OverviewTab({ analysisResults, analysisId }: OverviewTabProps) {
           </CardHeader>
           <CardContent>
             <div className="flex items-end gap-2">
-              <p className="text-3xl font-bold">{formatValue(summary.uniqueUsers, 0).toLocaleString()}</p>
+              <p className="text-3xl font-bold">{formatNumber(summary.uniqueUsers, 0).toLocaleString()}</p>
             </div>
             <div className="mt-3 bg-muted rounded-full h-2">
               <div className="bg-primary h-2 rounded-full w-3/4" />
@@ -75,34 +81,56 @@ export function OverviewTab({ analysisResults, analysisId }: OverviewTabProps) {
           </CardContent>
         </Card>
 
-        <Card className="hover:shadow-lg transition-shadow border-orange-200">
+        <Card className="hover:shadow-lg transition-shadow border-blue-200">
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-medium text-muted-foreground">Avg Gas Used</CardTitle>
+            <CardTitle className="text-sm font-medium text-muted-foreground">Transaction Volume</CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-3xl font-bold">{formatValue(summary.avgGasUsed, 0).toLocaleString()}</p>
-            <p className="text-orange-600 text-xs mt-1">
-              {defiMetrics.gasEfficiency ? `${defiMetrics.gasEfficiency} efficiency` : 'Gas tracked'}
-            </p>
+            <p className="text-3xl font-bold">{formatCurrency(defiMetrics.transactionVolume24h || summary.totalValue)}</p>
+            <p className="text-blue-600 text-xs mt-1">24h volume</p>
+          </CardContent>
+        </Card>
+      </div>
+
+      {/* Additional Key Metrics */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <Card className="hover:shadow-lg transition-shadow border-orange-200">
+          <CardHeader className="pb-2">
+            <CardTitle className="text-sm font-medium text-muted-foreground">Daily Active Users</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p className="text-3xl font-bold">{formatNumber(defiMetrics.dau, 0).toLocaleString()}</p>
+            <p className="text-orange-600 text-xs mt-1">Active today</p>
+          </CardContent>
+        </Card>
+
+        <Card className="hover:shadow-lg transition-shadow border-purple-200">
+          <CardHeader className="pb-2">
+            <CardTitle className="text-sm font-medium text-muted-foreground">Protocol Revenue</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p className="text-3xl font-bold">{formatCurrency(defiMetrics.protocolRevenue)}</p>
+            <p className="text-purple-600 text-xs mt-1">Total fees collected</p>
           </CardContent>
         </Card>
 
         <Card className="hover:shadow-lg transition-shadow border-emerald-200">
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-medium text-muted-foreground">Success Rate</CardTitle>
+            <CardTitle className="text-sm font-medium text-muted-foreground">Gas Efficiency</CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-3xl font-bold">{formatValue(summary.successRate, 100)}%</p>
-            <p className="text-emerald-600 text-xs mt-1">Transaction reliability</p>
+            <p className="text-3xl font-bold">{formatNumber(fullReport.gasAnalysis?.gasEfficiencyScore, 0)}%</p>
+            <p className="text-emerald-600 text-xs mt-1">Efficiency score</p>
           </CardContent>
         </Card>
 
-        <Card className="hover:shadow-lg transition-shadow">
+        <Card className="hover:shadow-lg transition-shadow border-cyan-200">
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-medium text-muted-foreground">Time Range</CardTitle>
+            <CardTitle className="text-sm font-medium text-muted-foreground">User Loyalty</CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-3xl font-bold text-center">{formatValue(summary.timeRange, '24h')}</p>
+            <p className="text-3xl font-bold">{formatNumber(fullReport.userBehavior?.loyaltyScore, 0)}%</p>
+            <p className="text-cyan-600 text-xs mt-1">Loyalty score</p>
           </CardContent>
         </Card>
       </div>

@@ -74,7 +74,7 @@ class GeminiAIService {
       const prompt = this.buildInterpretationPrompt(analysisResults, analysisType);
       
       const response = await this.genAI.models.generateContent({
-        model: 'gemini-2.0-flash-exp', // Latest model for best performance
+        model: 'gemini-2.5-flash-lite', // Latest model for best performance
         contents: [
           {
             text: prompt,
@@ -111,7 +111,7 @@ class GeminiAIService {
         success: true,
         interpretation,
         generatedAt: new Date().toISOString(),
-        model: 'gemini-2.0-flash-exp'
+        model: 'gemini-2.5-flash-lite'
       };
 
     } catch (error) {
@@ -267,7 +267,7 @@ Important rules:
 `;
 
       const response = await this.genAI.models.generateContent({
-        model: 'gemini-2.0-flash-exp',
+        model: 'gemini-2.5-flash-lite',
         contents: [{ text: prompt }],
         generationConfig: {
           temperature: 0.2,
@@ -353,7 +353,7 @@ Important rules:
 `;
 
       const response = await this.genAI.models.generateContent({
-        model: 'gemini-2.0-flash-exp',
+        model: 'gemini-2.5-flash-lite',
         contents: [{ text: prompt }],
         generationConfig: {
           temperature: 0.3,
@@ -452,7 +452,7 @@ Important rules:
 `;
 
       const response = await this.genAI.models.generateContent({
-        model: 'gemini-2.0-flash-exp',
+        model: 'gemini-2.5-flash-lite',
         contents: [{ text: prompt }],
         generationConfig: {
           temperature: 0.2,
@@ -554,7 +554,7 @@ Important rules:
 `;
 
       const response = await this.genAI.models.generateContent({
-        model: 'gemini-2.0-flash-exp',
+        model: 'gemini-2.5-flash-lite',
         contents: [{ text: prompt }],
         generationConfig: {
           temperature: 0.4,
@@ -650,7 +650,7 @@ Important rules:
 `;
 
       const response = await this.genAI.models.generateContent({
-        model: 'gemini-2.0-flash-exp',
+        model: 'gemini-2.5-flash-lite',
         contents: [{ text: prompt }],
         generationConfig: {
           temperature: 0.3,

@@ -1345,5 +1345,1353 @@
     "analysisCount": 1,
     "createdAt": "2026-01-26T10:09:00.445Z",
     "updatedAt": "2026-01-26T10:09:14.059Z"
+  },
+  {
+    "id": "2bc25358-13fd-46e5-bdbe-2b30582ba4cc",
+    "userId": "30daaff1-d2fa-4351-a5ee-076032709392",
+    "name": "Test DeFi Protocol",
+    "description": "Default contract for Test DeFi Protocol - A test DeFi protocol for automated market making and liquidity provision",
+    "targetContract": {
+      "address": "0x1234567890123456789012345678901234567890",
+      "chain": "ethereum",
+      "name": "Test DeFi Protocol",
+      "abi": "[{\"inputs\":[],\"name\":\"totalSupply\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"}]"
+    },
+    "competitors": [],
+    "rpcConfig": {
+      "ethereum": [
+        "https://ethereum-rpc.publicnode.com",
+        "https://eth.nownodes.io/2ca1a1a6-9040-4ca9-8727-33a186414a1f"
+      ],
+      "lisk": [
+        "https://rpc.api.lisk.com",
+        "https://lisk.drpc.org",
+        "https://lisk.gateway.tenderly.co/2o3VKjmisQNOJIPlLrt6Ye",
+        "https://site1.moralis-nodes.com/lisk/7f6b7ac6edf2456fa240535cc2d8fc6e"
+      ],
+      "starknet": [
+        "https://rpc.starknet.lava.build",
+        "https://starknet-rpc.publicnode.com",
+        "https://starknet-mainnet.infura.io/v3/52be4d01250949baa85cad00e7b955ab"
+      ]
+    },
+    "analysisParams": {
+      "blockRange": 10000,
+      "whaleThreshold": 10,
+      "maxConcurrentRequests": 5,
+      "failoverTimeout": 60000,
+      "maxRetries": 2,
+      "outputFormats": [
+        "json",
+        "csv",
+        "markdown"
+      ]
+    },
+    "tags": [
+      "default",
+      "defi"
+    ],
+    "isActive": true,
+    "isDefault": true,
+    "lastAnalyzed": null,
+    "analysisCount": 0,
+    "createdAt": "2026-01-27T20:40:44.901Z",
+    "updatedAt": "2026-01-27T20:40:44.901Z"
+  },
+  {
+    "id": "d68ab32b-f82b-4ecf-83c9-f8af2900debd",
+    "userId": "98a83b6d-9d1d-41a2-a133-9c242bbf6577",
+    "name": "Test DeFi Protocol",
+    "description": "Default contract for Test DeFi Protocol - A test DeFi protocol for automated market making and liquidity provision",
+    "targetContract": {
+      "address": "0x1234567890123456789012345678901234567890",
+      "chain": "ethereum",
+      "name": "Test DeFi Protocol",
+      "abi": "[{\"inputs\":[],\"name\":\"totalSupply\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"}]"
+    },
+    "competitors": [],
+    "rpcConfig": {
+      "ethereum": [
+        "https://ethereum-rpc.publicnode.com",
+        "https://eth.nownodes.io/2ca1a1a6-9040-4ca9-8727-33a186414a1f"
+      ],
+      "lisk": [
+        "https://rpc.api.lisk.com",
+        "https://lisk.drpc.org",
+        "https://lisk.gateway.tenderly.co/2o3VKjmisQNOJIPlLrt6Ye",
+        "https://site1.moralis-nodes.com/lisk/7f6b7ac6edf2456fa240535cc2d8fc6e"
+      ],
+      "starknet": [
+        "https://rpc.starknet.lava.build",
+        "https://starknet-rpc.publicnode.com",
+        "https://starknet-mainnet.infura.io/v3/52be4d01250949baa85cad00e7b955ab"
+      ]
+    },
+    "analysisParams": {
+      "blockRange": 10000,
+      "whaleThreshold": 10,
+      "maxConcurrentRequests": 5,
+      "failoverTimeout": 60000,
+      "maxRetries": 2,
+      "outputFormats": [
+        "json",
+        "csv",
+        "markdown"
+      ]
+    },
+    "tags": [
+      "default",
+      "defi"
+    ],
+    "isActive": true,
+    "isDefault": true,
+    "lastAnalyzed": null,
+    "analysisCount": 0,
+    "createdAt": "2026-01-28T11:23:42.707Z",
+    "updatedAt": "2026-01-28T11:23:42.708Z"
+  },
+  {
+    "id": "d1bd6e40-d886-479e-8ce2-f7b8562b6b32",
+    "userId": "78bd70ad-dd3a-484d-ab38-15fd9862b569",
+    "name": "Test DeFi Protocol",
+    "description": "Default contract for Test DeFi Protocol - A test DeFi protocol for automated market making and liquidity provision",
+    "targetContract": {
+      "address": "0x1234567890123456789012345678901234567890",
+      "chain": "ethereum",
+      "name": "Test DeFi Protocol",
+      "abi": "[{\"inputs\":[],\"name\":\"totalSupply\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"}]"
+    },
+    "competitors": [],
+    "rpcConfig": {
+      "ethereum": [
+        "https://ethereum-rpc.publicnode.com",
+        "https://eth.nownodes.io/2ca1a1a6-9040-4ca9-8727-33a186414a1f"
+      ],
+      "lisk": [
+        "https://rpc.api.lisk.com",
+        "https://lisk.drpc.org",
+        "https://lisk.gateway.tenderly.co/2o3VKjmisQNOJIPlLrt6Ye",
+        "https://site1.moralis-nodes.com/lisk/7f6b7ac6edf2456fa240535cc2d8fc6e"
+      ],
+      "starknet": [
+        "https://rpc.starknet.lava.build",
+        "https://starknet-rpc.publicnode.com",
+        "https://starknet-mainnet.infura.io/v3/52be4d01250949baa85cad00e7b955ab"
+      ]
+    },
+    "analysisParams": {
+      "blockRange": 10000,
+      "whaleThreshold": 10,
+      "maxConcurrentRequests": 5,
+      "failoverTimeout": 60000,
+      "maxRetries": 2,
+      "outputFormats": [
+        "json",
+        "csv",
+        "markdown"
+      ]
+    },
+    "tags": [
+      "default",
+      "defi"
+    ],
+    "isActive": true,
+    "isDefault": true,
+    "lastAnalyzed": null,
+    "analysisCount": 0,
+    "createdAt": "2026-01-28T12:06:12.157Z",
+    "updatedAt": "2026-01-28T12:06:12.157Z"
+  },
+  {
+    "id": "29aa7f63-1926-47a3-a21f-d60933186cfc",
+    "userId": "3b717088-b57f-431c-9407-220ee06987a5",
+    "name": "Test DeFi Protocol",
+    "description": "Default contract for Test DeFi Protocol - A test DeFi protocol for automated market making and liquidity provision",
+    "targetContract": {
+      "address": "0x1234567890123456789012345678901234567890",
+      "chain": "ethereum",
+      "name": "Test DeFi Protocol",
+      "abi": "[{\"inputs\":[],\"name\":\"totalSupply\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"}]"
+    },
+    "competitors": [],
+    "rpcConfig": {
+      "ethereum": [
+        "https://ethereum-rpc.publicnode.com",
+        "https://eth.nownodes.io/2ca1a1a6-9040-4ca9-8727-33a186414a1f"
+      ],
+      "lisk": [
+        "https://rpc.api.lisk.com",
+        "https://lisk.drpc.org",
+        "https://lisk.gateway.tenderly.co/2o3VKjmisQNOJIPlLrt6Ye",
+        "https://site1.moralis-nodes.com/lisk/7f6b7ac6edf2456fa240535cc2d8fc6e"
+      ],
+      "starknet": [
+        "https://rpc.starknet.lava.build",
+        "https://starknet-rpc.publicnode.com",
+        "https://starknet-mainnet.infura.io/v3/52be4d01250949baa85cad00e7b955ab"
+      ]
+    },
+    "analysisParams": {
+      "blockRange": 10000,
+      "whaleThreshold": 10,
+      "maxConcurrentRequests": 5,
+      "failoverTimeout": 60000,
+      "maxRetries": 2,
+      "outputFormats": [
+        "json",
+        "csv",
+        "markdown"
+      ]
+    },
+    "tags": [
+      "default",
+      "defi"
+    ],
+    "isActive": true,
+    "isDefault": true,
+    "lastAnalyzed": null,
+    "analysisCount": 0,
+    "createdAt": "2026-01-28T12:09:47.937Z",
+    "updatedAt": "2026-01-28T12:09:47.937Z"
+  },
+  {
+    "id": "9591a892-c461-4319-9d8f-a0089c94f3cc",
+    "userId": "60a17a78-9922-455a-8a8e-3bcfd6f4060e",
+    "name": "Test DeFi Protocol",
+    "description": "Default contract for Test DeFi Protocol - A test DeFi protocol for automated market making and liquidity provision",
+    "targetContract": {
+      "address": "0x1234567890123456789012345678901234567890",
+      "chain": "ethereum",
+      "name": "Test DeFi Protocol",
+      "abi": "[{\"inputs\":[],\"name\":\"totalSupply\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"}]"
+    },
+    "competitors": [],
+    "rpcConfig": {
+      "ethereum": [
+        "https://ethereum-rpc.publicnode.com",
+        "https://eth.nownodes.io/2ca1a1a6-9040-4ca9-8727-33a186414a1f"
+      ],
+      "lisk": [
+        "https://rpc.api.lisk.com",
+        "https://lisk.drpc.org",
+        "https://lisk.gateway.tenderly.co/2o3VKjmisQNOJIPlLrt6Ye",
+        "https://site1.moralis-nodes.com/lisk/7f6b7ac6edf2456fa240535cc2d8fc6e"
+      ],
+      "starknet": [
+        "https://rpc.starknet.lava.build",
+        "https://starknet-rpc.publicnode.com",
+        "https://starknet-mainnet.infura.io/v3/52be4d01250949baa85cad00e7b955ab"
+      ]
+    },
+    "analysisParams": {
+      "blockRange": 10000,
+      "whaleThreshold": 10,
+      "maxConcurrentRequests": 5,
+      "failoverTimeout": 60000,
+      "maxRetries": 2,
+      "outputFormats": [
+        "json",
+        "csv",
+        "markdown"
+      ]
+    },
+    "tags": [
+      "default",
+      "defi"
+    ],
+    "isActive": true,
+    "isDefault": true,
+    "lastAnalyzed": null,
+    "analysisCount": 0,
+    "createdAt": "2026-01-28T12:10:55.365Z",
+    "updatedAt": "2026-01-28T12:10:55.365Z"
+  },
+  {
+    "id": "64b73d14-361e-41e4-8e80-9721b21c51ec",
+    "userId": "bfd508f1-70a5-43d0-8874-895a2d0ca6ca",
+    "name": "Paywarp",
+    "description": "Default contract for Paywarp - money for making it",
+    "targetContract": {
+      "address": "0x05D032ac25d322df992303dCa074EE7392C117b9",
+      "chain": "lisk",
+      "name": "Paywarp",
+      "abi": "[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"implementationContract\",\"type\":\"address\"}],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"previousAdmin\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"newAdmin\",\"type\":\"address\"}],\"name\":\"AdminChanged\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"implementation\",\"type\":\"address\"}],\"name\":\"Upgraded\",\"type\":\"event\"},{\"stateMutability\":\"payable\",\"type\":\"fallback\"},{\"inputs\":[],\"name\":\"admin\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"newAdmin\",\"type\":\"address\"}],\"name\":\"changeAdmin\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"implementation\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"newImplementation\",\"type\":\"address\"}],\"name\":\"upgradeTo\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"newImplementation\",\"type\":\"address\"},{\"internalType\":\"bytes\",\"name\":\"data\",\"type\":\"bytes\"}],\"name\":\"upgradeToAndCall\",\"outputs\":[],\"stateMutability\":\"payable\",\"type\":\"function\"}]"
+    },
+    "competitors": [],
+    "rpcConfig": {
+      "ethereum": [
+        "https://ethereum-rpc.publicnode.com",
+        "https://eth.nownodes.io/2ca1a1a6-9040-4ca9-8727-33a186414a1f"
+      ],
+      "lisk": [
+        "https://rpc.api.lisk.com",
+        "https://lisk.drpc.org",
+        "https://lisk.gateway.tenderly.co/2o3VKjmisQNOJIPlLrt6Ye",
+        "https://site1.moralis-nodes.com/lisk/7f6b7ac6edf2456fa240535cc2d8fc6e"
+      ],
+      "starknet": [
+        "https://rpc.starknet.lava.build",
+        "https://starknet-rpc.publicnode.com",
+        "https://starknet-mainnet.infura.io/v3/52be4d01250949baa85cad00e7b955ab"
+      ]
+    },
+    "analysisParams": {
+      "blockRange": 10000,
+      "whaleThreshold": 10,
+      "maxConcurrentRequests": 5,
+      "failoverTimeout": 60000,
+      "maxRetries": 2,
+      "outputFormats": [
+        "json",
+        "csv",
+        "markdown"
+      ]
+    },
+    "tags": [
+      "default",
+      "defi"
+    ],
+    "isActive": true,
+    "isDefault": true,
+    "lastAnalyzed": null,
+    "analysisCount": 0,
+    "createdAt": "2026-01-28T12:15:10.581Z",
+    "updatedAt": "2026-01-28T12:15:10.581Z"
+  },
+  {
+    "id": "d9d50322-27b8-42c2-9a63-7ddf077b7d03",
+    "userId": "426b285d-1390-4f01-9dec-516c51cfe1ea",
+    "name": "Test DeFi Protocol",
+    "description": "Default contract for Test DeFi Protocol - A test DeFi protocol for automated market making and liquidity provision",
+    "targetContract": {
+      "address": "0x1234567890123456789012345678901234567890",
+      "chain": "ethereum",
+      "name": "Test DeFi Protocol",
+      "abi": "[{\"inputs\":[],\"name\":\"totalSupply\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"}]"
+    },
+    "competitors": [],
+    "rpcConfig": {
+      "ethereum": [
+        "https://ethereum-rpc.publicnode.com",
+        "https://eth.nownodes.io/2ca1a1a6-9040-4ca9-8727-33a186414a1f"
+      ],
+      "lisk": [
+        "https://rpc.api.lisk.com",
+        "https://lisk.drpc.org",
+        "https://lisk.gateway.tenderly.co/2o3VKjmisQNOJIPlLrt6Ye",
+        "https://site1.moralis-nodes.com/lisk/7f6b7ac6edf2456fa240535cc2d8fc6e"
+      ],
+      "starknet": [
+        "https://rpc.starknet.lava.build",
+        "https://starknet-rpc.publicnode.com",
+        "https://starknet-mainnet.infura.io/v3/52be4d01250949baa85cad00e7b955ab"
+      ]
+    },
+    "analysisParams": {
+      "blockRange": 10000,
+      "whaleThreshold": 10,
+      "maxConcurrentRequests": 5,
+      "failoverTimeout": 60000,
+      "maxRetries": 2,
+      "outputFormats": [
+        "json",
+        "csv",
+        "markdown"
+      ]
+    },
+    "tags": [
+      "default",
+      "defi"
+    ],
+    "isActive": true,
+    "isDefault": true,
+    "lastAnalyzed": null,
+    "analysisCount": 0,
+    "createdAt": "2026-01-28T12:22:07.791Z",
+    "updatedAt": "2026-01-28T12:22:07.791Z"
+  },
+  {
+    "id": "7d664f0b-2582-4695-a0a7-5b2b57899588",
+    "userId": "bc4d1396-24e6-448a-9102-49bbe8083e41",
+    "name": "Test DeFi Protocol",
+    "description": "Default contract for Test DeFi Protocol - A test DeFi protocol for automated market making and liquidity provision",
+    "targetContract": {
+      "address": "0x1234567890123456789012345678901234567890",
+      "chain": "ethereum",
+      "name": "Test DeFi Protocol",
+      "abi": "[{\"inputs\":[],\"name\":\"totalSupply\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"}]"
+    },
+    "competitors": [],
+    "rpcConfig": {
+      "ethereum": [
+        "https://ethereum-rpc.publicnode.com",
+        "https://eth.nownodes.io/2ca1a1a6-9040-4ca9-8727-33a186414a1f"
+      ],
+      "lisk": [
+        "https://rpc.api.lisk.com",
+        "https://lisk.drpc.org",
+        "https://lisk.gateway.tenderly.co/2o3VKjmisQNOJIPlLrt6Ye",
+        "https://site1.moralis-nodes.com/lisk/7f6b7ac6edf2456fa240535cc2d8fc6e"
+      ],
+      "starknet": [
+        "https://rpc.starknet.lava.build",
+        "https://starknet-rpc.publicnode.com",
+        "https://starknet-mainnet.infura.io/v3/52be4d01250949baa85cad00e7b955ab"
+      ]
+    },
+    "analysisParams": {
+      "blockRange": 10000,
+      "whaleThreshold": 10,
+      "maxConcurrentRequests": 5,
+      "failoverTimeout": 60000,
+      "maxRetries": 2,
+      "outputFormats": [
+        "json",
+        "csv",
+        "markdown"
+      ]
+    },
+    "tags": [
+      "default",
+      "defi"
+    ],
+    "isActive": true,
+    "isDefault": true,
+    "lastAnalyzed": null,
+    "analysisCount": 0,
+    "createdAt": "2026-01-28T12:33:14.633Z",
+    "updatedAt": "2026-01-28T12:33:14.633Z"
+  },
+  {
+    "id": "3695fc56-b7a2-4291-b077-850a691aeef1",
+    "userId": "c648a213-a1af-4e87-a53d-7782ceb716dd",
+    "name": "Test DeFi Protocol",
+    "description": "Default contract for Test DeFi Protocol - A test DeFi protocol for automated market making and liquidity provision",
+    "targetContract": {
+      "address": "0x1234567890123456789012345678901234567890",
+      "chain": "ethereum",
+      "name": "Test DeFi Protocol",
+      "abi": "[{\"inputs\":[],\"name\":\"totalSupply\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"}]"
+    },
+    "competitors": [],
+    "rpcConfig": {
+      "ethereum": [
+        "https://ethereum-rpc.publicnode.com",
+        "https://eth.nownodes.io/2ca1a1a6-9040-4ca9-8727-33a186414a1f"
+      ],
+      "lisk": [
+        "https://rpc.api.lisk.com",
+        "https://lisk.drpc.org",
+        "https://lisk.gateway.tenderly.co/2o3VKjmisQNOJIPlLrt6Ye",
+        "https://site1.moralis-nodes.com/lisk/7f6b7ac6edf2456fa240535cc2d8fc6e"
+      ],
+      "starknet": [
+        "https://rpc.starknet.lava.build",
+        "https://starknet-rpc.publicnode.com",
+        "https://starknet-mainnet.infura.io/v3/52be4d01250949baa85cad00e7b955ab"
+      ]
+    },
+    "analysisParams": {
+      "blockRange": 10000,
+      "whaleThreshold": 10,
+      "maxConcurrentRequests": 5,
+      "failoverTimeout": 60000,
+      "maxRetries": 2,
+      "outputFormats": [
+        "json",
+        "csv",
+        "markdown"
+      ]
+    },
+    "tags": [
+      "default",
+      "defi"
+    ],
+    "isActive": true,
+    "isDefault": true,
+    "lastAnalyzed": null,
+    "analysisCount": 0,
+    "createdAt": "2026-01-28T12:34:16.305Z",
+    "updatedAt": "2026-01-28T12:34:16.305Z"
+  },
+  {
+    "id": "b35302db-2ce9-4652-b738-31894bb3cae7",
+    "userId": "bab1225a-dc0e-46c2-ae20-710cac925b91",
+    "name": "Test DeFi Protocol",
+    "description": "Default contract for Test DeFi Protocol - A test DeFi protocol for automated market making and liquidity provision",
+    "targetContract": {
+      "address": "0x1234567890123456789012345678901234567890",
+      "chain": "ethereum",
+      "name": "Test DeFi Protocol",
+      "abi": "[{\"inputs\":[],\"name\":\"totalSupply\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"}]"
+    },
+    "competitors": [],
+    "rpcConfig": {
+      "ethereum": [
+        "https://ethereum-rpc.publicnode.com",
+        "https://eth.nownodes.io/2ca1a1a6-9040-4ca9-8727-33a186414a1f"
+      ],
+      "lisk": [
+        "https://rpc.api.lisk.com",
+        "https://lisk.drpc.org",
+        "https://lisk.gateway.tenderly.co/2o3VKjmisQNOJIPlLrt6Ye",
+        "https://site1.moralis-nodes.com/lisk/7f6b7ac6edf2456fa240535cc2d8fc6e"
+      ],
+      "starknet": [
+        "https://rpc.starknet.lava.build",
+        "https://starknet-rpc.publicnode.com",
+        "https://starknet-mainnet.infura.io/v3/52be4d01250949baa85cad00e7b955ab"
+      ]
+    },
+    "analysisParams": {
+      "blockRange": 10000,
+      "whaleThreshold": 10,
+      "maxConcurrentRequests": 5,
+      "failoverTimeout": 60000,
+      "maxRetries": 2,
+      "outputFormats": [
+        "json",
+        "csv",
+        "markdown"
+      ]
+    },
+    "tags": [
+      "default",
+      "defi"
+    ],
+    "isActive": true,
+    "isDefault": true,
+    "lastAnalyzed": null,
+    "analysisCount": 0,
+    "createdAt": "2026-01-28T12:44:01.564Z",
+    "updatedAt": "2026-01-28T12:44:01.564Z"
+  },
+  {
+    "id": "46c0425e-748c-4874-be5a-35cb90dab6d4",
+    "userId": "4ac73d5c-b902-4678-ba10-f6fd9f6ab2f8",
+    "name": "Test DeFi Protocol",
+    "description": "Default contract for Test DeFi Protocol - A test DeFi protocol for automated market making and liquidity provision",
+    "targetContract": {
+      "address": "0x1234567890123456789012345678901234567890",
+      "chain": "ethereum",
+      "name": "Test DeFi Protocol",
+      "abi": "[{\"inputs\":[],\"name\":\"totalSupply\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"}]"
+    },
+    "competitors": [],
+    "rpcConfig": {
+      "ethereum": [
+        "https://ethereum-rpc.publicnode.com",
+        "https://eth.nownodes.io/2ca1a1a6-9040-4ca9-8727-33a186414a1f"
+      ],
+      "lisk": [
+        "https://rpc.api.lisk.com",
+        "https://lisk.drpc.org",
+        "https://lisk.gateway.tenderly.co/2o3VKjmisQNOJIPlLrt6Ye",
+        "https://site1.moralis-nodes.com/lisk/7f6b7ac6edf2456fa240535cc2d8fc6e"
+      ],
+      "starknet": [
+        "https://rpc.starknet.lava.build",
+        "https://starknet-rpc.publicnode.com",
+        "https://starknet-mainnet.infura.io/v3/52be4d01250949baa85cad00e7b955ab"
+      ]
+    },
+    "analysisParams": {
+      "blockRange": 10000,
+      "whaleThreshold": 10,
+      "maxConcurrentRequests": 5,
+      "failoverTimeout": 60000,
+      "maxRetries": 2,
+      "outputFormats": [
+        "json",
+        "csv",
+        "markdown"
+      ]
+    },
+    "tags": [
+      "default",
+      "defi"
+    ],
+    "isActive": true,
+    "isDefault": true,
+    "lastAnalyzed": null,
+    "analysisCount": 0,
+    "createdAt": "2026-01-28T12:44:48.144Z",
+    "updatedAt": "2026-01-28T12:44:48.144Z"
+  },
+  {
+    "id": "5f2a06bc-2982-4797-b003-3b51b3dc832d",
+    "userId": "934cdb96-7873-41d9-b5f0-360c5fe5fda7",
+    "name": "Complete Test Protocol",
+    "description": "Default contract for Complete Test Protocol - A complete test protocol for dashboard refresh functionality",
+    "targetContract": {
+      "address": "0xA0b86a33E6441e6e80D0c4C34F4F6cA4227a6BB4",
+      "chain": "ethereum",
+      "name": "Complete Test Protocol",
+      "abi": null
+    },
+    "competitors": [],
+    "rpcConfig": {
+      "ethereum": [
+        "https://ethereum-rpc.publicnode.com",
+        "https://eth.nownodes.io/2ca1a1a6-9040-4ca9-8727-33a186414a1f"
+      ],
+      "lisk": [
+        "https://rpc.api.lisk.com",
+        "https://lisk.drpc.org",
+        "https://lisk.gateway.tenderly.co/2o3VKjmisQNOJIPlLrt6Ye",
+        "https://site1.moralis-nodes.com/lisk/7f6b7ac6edf2456fa240535cc2d8fc6e"
+      ],
+      "starknet": [
+        "https://rpc.starknet.lava.build",
+        "https://starknet-rpc.publicnode.com",
+        "https://starknet-mainnet.infura.io/v3/52be4d01250949baa85cad00e7b955ab"
+      ]
+    },
+    "analysisParams": {
+      "blockRange": 10000,
+      "whaleThreshold": 10,
+      "maxConcurrentRequests": 5,
+      "failoverTimeout": 60000,
+      "maxRetries": 2,
+      "outputFormats": [
+        "json",
+        "csv",
+        "markdown"
+      ]
+    },
+    "tags": [
+      "default",
+      "defi"
+    ],
+    "isActive": true,
+    "isDefault": true,
+    "lastAnalyzed": null,
+    "analysisCount": 0,
+    "createdAt": "2026-01-28T12:46:57.003Z",
+    "updatedAt": "2026-01-28T12:46:57.003Z"
+  },
+  {
+    "id": "eff6bea7-292c-40d4-afa2-816ce5d4a871",
+    "userId": "6eef9128-d3ae-444f-96fd-79c8bb081d2e",
+    "name": "Detailed Metrics Test Protocol",
+    "description": "Default contract for Detailed Metrics Test Protocol - A test protocol for detailed metrics display functionality",
+    "targetContract": {
+      "address": "0xA0b86a33E6441e6e80D0c4C34F4F6cA4227a6BB4",
+      "chain": "ethereum",
+      "name": "Detailed Metrics Test Protocol",
+      "abi": null
+    },
+    "competitors": [],
+    "rpcConfig": {
+      "ethereum": [
+        "https://ethereum-rpc.publicnode.com",
+        "https://eth.nownodes.io/2ca1a1a6-9040-4ca9-8727-33a186414a1f"
+      ],
+      "lisk": [
+        "https://rpc.api.lisk.com",
+        "https://lisk.drpc.org",
+        "https://lisk.gateway.tenderly.co/2o3VKjmisQNOJIPlLrt6Ye",
+        "https://site1.moralis-nodes.com/lisk/7f6b7ac6edf2456fa240535cc2d8fc6e"
+      ],
+      "starknet": [
+        "https://rpc.starknet.lava.build",
+        "https://starknet-rpc.publicnode.com",
+        "https://starknet-mainnet.infura.io/v3/52be4d01250949baa85cad00e7b955ab"
+      ]
+    },
+    "analysisParams": {
+      "blockRange": 10000,
+      "whaleThreshold": 10,
+      "maxConcurrentRequests": 5,
+      "failoverTimeout": 60000,
+      "maxRetries": 2,
+      "outputFormats": [
+        "json",
+        "csv",
+        "markdown"
+      ]
+    },
+    "tags": [
+      "default",
+      "defi"
+    ],
+    "isActive": true,
+    "isDefault": true,
+    "lastAnalyzed": null,
+    "analysisCount": 0,
+    "createdAt": "2026-01-28T13:02:56.435Z",
+    "updatedAt": "2026-01-28T13:02:56.435Z"
+  },
+  {
+    "id": "048a2f1f-6da3-4308-98ac-8014a7b48afb",
+    "userId": "ba2d5b60-6ced-4ccd-91f0-cbfa8890b92a",
+    "name": "Indexing Status Test Contract",
+    "description": "Default contract for Indexing Status Test Contract - A test contract to verify indexing status updates correctly",
+    "targetContract": {
+      "address": "0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984",
+      "chain": "ethereum",
+      "name": "Indexing Status Test Contract",
+      "abi": null
+    },
+    "competitors": [],
+    "rpcConfig": {
+      "ethereum": [
+        "https://ethereum-rpc.publicnode.com",
+        "https://eth.nownodes.io/2ca1a1a6-9040-4ca9-8727-33a186414a1f"
+      ],
+      "lisk": [
+        "https://rpc.api.lisk.com",
+        "https://lisk.drpc.org",
+        "https://lisk.gateway.tenderly.co/2o3VKjmisQNOJIPlLrt6Ye",
+        "https://site1.moralis-nodes.com/lisk/7f6b7ac6edf2456fa240535cc2d8fc6e"
+      ],
+      "starknet": [
+        "https://rpc.starknet.lava.build",
+        "https://starknet-rpc.publicnode.com",
+        "https://starknet-mainnet.infura.io/v3/52be4d01250949baa85cad00e7b955ab"
+      ]
+    },
+    "analysisParams": {
+      "blockRange": 10000,
+      "whaleThreshold": 10,
+      "maxConcurrentRequests": 5,
+      "failoverTimeout": 60000,
+      "maxRetries": 2,
+      "outputFormats": [
+        "json",
+        "csv",
+        "markdown"
+      ]
+    },
+    "tags": [
+      "default",
+      "defi"
+    ],
+    "isActive": true,
+    "isDefault": true,
+    "lastAnalyzed": null,
+    "analysisCount": 0,
+    "createdAt": "2026-01-28T13:20:13.004Z",
+    "updatedAt": "2026-01-28T13:20:13.004Z"
+  },
+  {
+    "id": "23617e72-9e35-432a-812d-c2a99c3c3e78",
+    "userId": "0dc52eb7-88d7-4c9b-a9cb-5969b827e53c",
+    "name": "Complete Test Protocol",
+    "description": "Default contract for Complete Test Protocol - A complete test protocol for dashboard refresh functionality",
+    "targetContract": {
+      "address": "0xA0b86a33E6441e6e80D0c4C34F4F6cA4227a6BB4",
+      "chain": "ethereum",
+      "name": "Complete Test Protocol",
+      "abi": null
+    },
+    "competitors": [],
+    "rpcConfig": {
+      "ethereum": [
+        "https://ethereum-rpc.publicnode.com",
+        "https://eth.nownodes.io/2ca1a1a6-9040-4ca9-8727-33a186414a1f"
+      ],
+      "lisk": [
+        "https://rpc.api.lisk.com",
+        "https://lisk.drpc.org",
+        "https://lisk.gateway.tenderly.co/2o3VKjmisQNOJIPlLrt6Ye",
+        "https://site1.moralis-nodes.com/lisk/7f6b7ac6edf2456fa240535cc2d8fc6e"
+      ],
+      "starknet": [
+        "https://rpc.starknet.lava.build",
+        "https://starknet-rpc.publicnode.com",
+        "https://starknet-mainnet.infura.io/v3/52be4d01250949baa85cad00e7b955ab"
+      ]
+    },
+    "analysisParams": {
+      "blockRange": 10000,
+      "whaleThreshold": 10,
+      "maxConcurrentRequests": 5,
+      "failoverTimeout": 60000,
+      "maxRetries": 2,
+      "outputFormats": [
+        "json",
+        "csv",
+        "markdown"
+      ]
+    },
+    "tags": [
+      "default",
+      "defi"
+    ],
+    "isActive": true,
+    "isDefault": true,
+    "lastAnalyzed": null,
+    "analysisCount": 0,
+    "createdAt": "2026-01-28T13:21:10.486Z",
+    "updatedAt": "2026-01-28T13:21:10.486Z"
+  },
+  {
+    "id": "f028f370-4d41-437e-8441-c53977af3079",
+    "userId": "cb1506ad-4179-421f-b9d5-428f7bdb5a36",
+    "name": "Simple Test Contract",
+    "description": "Default contract for Simple Test Contract - Simple test",
+    "targetContract": {
+      "address": "0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984",
+      "chain": "ethereum",
+      "name": "Simple Test Contract",
+      "abi": null
+    },
+    "competitors": [],
+    "rpcConfig": {
+      "ethereum": [
+        "https://ethereum-rpc.publicnode.com",
+        "https://eth.nownodes.io/2ca1a1a6-9040-4ca9-8727-33a186414a1f"
+      ],
+      "lisk": [
+        "https://rpc.api.lisk.com",
+        "https://lisk.drpc.org",
+        "https://lisk.gateway.tenderly.co/2o3VKjmisQNOJIPlLrt6Ye",
+        "https://site1.moralis-nodes.com/lisk/7f6b7ac6edf2456fa240535cc2d8fc6e"
+      ],
+      "starknet": [
+        "https://rpc.starknet.lava.build",
+        "https://starknet-rpc.publicnode.com",
+        "https://starknet-mainnet.infura.io/v3/52be4d01250949baa85cad00e7b955ab"
+      ]
+    },
+    "analysisParams": {
+      "blockRange": 10000,
+      "whaleThreshold": 10,
+      "maxConcurrentRequests": 5,
+      "failoverTimeout": 60000,
+      "maxRetries": 2,
+      "outputFormats": [
+        "json",
+        "csv",
+        "markdown"
+      ]
+    },
+    "tags": [
+      "default",
+      "defi"
+    ],
+    "isActive": true,
+    "isDefault": true,
+    "lastAnalyzed": null,
+    "analysisCount": 0,
+    "createdAt": "2026-01-28T13:26:40.329Z",
+    "updatedAt": "2026-01-28T13:26:40.329Z"
+  },
+  {
+    "id": "e6b60b6a-4075-434b-af19-e48e15cdf99a",
+    "userId": "82abf170-4528-4f89-bf78-d0c94d5afedf",
+    "name": "Analysis Completion Test Contract",
+    "description": "Default contract for Analysis Completion Test Contract - Test analysis completion",
+    "targetContract": {
+      "address": "0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984",
+      "chain": "ethereum",
+      "name": "Analysis Completion Test Contract",
+      "abi": null
+    },
+    "competitors": [],
+    "rpcConfig": {
+      "ethereum": [
+        "https://ethereum-rpc.publicnode.com",
+        "https://eth.nownodes.io/2ca1a1a6-9040-4ca9-8727-33a186414a1f"
+      ],
+      "lisk": [
+        "https://rpc.api.lisk.com",
+        "https://lisk.drpc.org",
+        "https://lisk.gateway.tenderly.co/2o3VKjmisQNOJIPlLrt6Ye",
+        "https://site1.moralis-nodes.com/lisk/7f6b7ac6edf2456fa240535cc2d8fc6e"
+      ],
+      "starknet": [
+        "https://rpc.starknet.lava.build",
+        "https://starknet-rpc.publicnode.com",
+        "https://starknet-mainnet.infura.io/v3/52be4d01250949baa85cad00e7b955ab"
+      ]
+    },
+    "analysisParams": {
+      "blockRange": 10000,
+      "whaleThreshold": 10,
+      "maxConcurrentRequests": 5,
+      "failoverTimeout": 60000,
+      "maxRetries": 2,
+      "outputFormats": [
+        "json",
+        "csv",
+        "markdown"
+      ]
+    },
+    "tags": [
+      "default",
+      "defi"
+    ],
+    "isActive": true,
+    "isDefault": true,
+    "lastAnalyzed": null,
+    "analysisCount": 0,
+    "createdAt": "2026-01-28T13:27:38.287Z",
+    "updatedAt": "2026-01-28T13:27:38.287Z"
+  },
+  {
+    "id": "dd595b5e-a6a9-4c6d-b776-5c4fa55eb74e",
+    "userId": "a4c131c8-3681-439f-aacd-05d1586c4262",
+    "name": "Simple Test Contract",
+    "description": "Default contract for Simple Test Contract - Simple test",
+    "targetContract": {
+      "address": "0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984",
+      "chain": "ethereum",
+      "name": "Simple Test Contract",
+      "abi": null
+    },
+    "competitors": [],
+    "rpcConfig": {
+      "ethereum": [
+        "https://ethereum-rpc.publicnode.com",
+        "https://eth.nownodes.io/2ca1a1a6-9040-4ca9-8727-33a186414a1f"
+      ],
+      "lisk": [
+        "https://rpc.api.lisk.com",
+        "https://lisk.drpc.org",
+        "https://lisk.gateway.tenderly.co/2o3VKjmisQNOJIPlLrt6Ye",
+        "https://site1.moralis-nodes.com/lisk/7f6b7ac6edf2456fa240535cc2d8fc6e"
+      ],
+      "starknet": [
+        "https://rpc.starknet.lava.build",
+        "https://starknet-rpc.publicnode.com",
+        "https://starknet-mainnet.infura.io/v3/52be4d01250949baa85cad00e7b955ab"
+      ]
+    },
+    "analysisParams": {
+      "blockRange": 10000,
+      "whaleThreshold": 10,
+      "maxConcurrentRequests": 5,
+      "failoverTimeout": 60000,
+      "maxRetries": 2,
+      "outputFormats": [
+        "json",
+        "csv",
+        "markdown"
+      ]
+    },
+    "tags": [
+      "default",
+      "defi"
+    ],
+    "isActive": true,
+    "isDefault": true,
+    "lastAnalyzed": null,
+    "analysisCount": 0,
+    "createdAt": "2026-01-28T13:29:13.573Z",
+    "updatedAt": "2026-01-28T13:29:13.573Z"
+  },
+  {
+    "id": "5f4490ac-4af0-484c-8c37-4cfd1df05581",
+    "userId": "4d41c8a2-3de6-48fb-a9bb-4d5988dbf706",
+    "name": "Simple Test Contract",
+    "description": "Default contract for Simple Test Contract - Simple test",
+    "targetContract": {
+      "address": "0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984",
+      "chain": "ethereum",
+      "name": "Simple Test Contract",
+      "abi": null
+    },
+    "competitors": [],
+    "rpcConfig": {
+      "ethereum": [
+        "https://ethereum-rpc.publicnode.com",
+        "https://eth.nownodes.io/2ca1a1a6-9040-4ca9-8727-33a186414a1f"
+      ],
+      "lisk": [
+        "https://rpc.api.lisk.com",
+        "https://lisk.drpc.org",
+        "https://lisk.gateway.tenderly.co/2o3VKjmisQNOJIPlLrt6Ye",
+        "https://site1.moralis-nodes.com/lisk/7f6b7ac6edf2456fa240535cc2d8fc6e"
+      ],
+      "starknet": [
+        "https://rpc.starknet.lava.build",
+        "https://starknet-rpc.publicnode.com",
+        "https://starknet-mainnet.infura.io/v3/52be4d01250949baa85cad00e7b955ab"
+      ]
+    },
+    "analysisParams": {
+      "blockRange": 10000,
+      "whaleThreshold": 10,
+      "maxConcurrentRequests": 5,
+      "failoverTimeout": 60000,
+      "maxRetries": 2,
+      "outputFormats": [
+        "json",
+        "csv",
+        "markdown"
+      ]
+    },
+    "tags": [
+      "default",
+      "defi"
+    ],
+    "isActive": true,
+    "isDefault": true,
+    "lastAnalyzed": null,
+    "analysisCount": 0,
+    "createdAt": "2026-01-28T13:31:09.906Z",
+    "updatedAt": "2026-01-28T13:31:09.906Z"
+  },
+  {
+    "id": "80ad60e4-51db-4415-a9e8-be3ba1984b33",
+    "userId": "c5fc5a84-35bc-471b-94ef-26d831843520",
+    "name": "Simple Test Contract",
+    "description": "Default contract for Simple Test Contract - Simple test",
+    "targetContract": {
+      "address": "0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984",
+      "chain": "ethereum",
+      "name": "Simple Test Contract",
+      "abi": null
+    },
+    "competitors": [],
+    "rpcConfig": {
+      "ethereum": [
+        "https://ethereum-rpc.publicnode.com",
+        "https://eth.nownodes.io/2ca1a1a6-9040-4ca9-8727-33a186414a1f"
+      ],
+      "lisk": [
+        "https://rpc.api.lisk.com",
+        "https://lisk.drpc.org",
+        "https://lisk.gateway.tenderly.co/2o3VKjmisQNOJIPlLrt6Ye",
+        "https://site1.moralis-nodes.com/lisk/7f6b7ac6edf2456fa240535cc2d8fc6e"
+      ],
+      "starknet": [
+        "https://rpc.starknet.lava.build",
+        "https://starknet-rpc.publicnode.com",
+        "https://starknet-mainnet.infura.io/v3/52be4d01250949baa85cad00e7b955ab"
+      ]
+    },
+    "analysisParams": {
+      "blockRange": 10000,
+      "whaleThreshold": 10,
+      "maxConcurrentRequests": 5,
+      "failoverTimeout": 60000,
+      "maxRetries": 2,
+      "outputFormats": [
+        "json",
+        "csv",
+        "markdown"
+      ]
+    },
+    "tags": [
+      "default",
+      "defi"
+    ],
+    "isActive": true,
+    "isDefault": true,
+    "lastAnalyzed": null,
+    "analysisCount": 0,
+    "createdAt": "2026-01-28T13:43:59.201Z",
+    "updatedAt": "2026-01-28T13:43:59.201Z"
+  },
+  {
+    "id": "8f0a8e32-ca75-49af-96ff-013a6f802ada",
+    "userId": "c8617c59-32ae-4e3f-a10f-7b7ed1604521",
+    "name": "Simple Test Contract",
+    "description": "Default contract for Simple Test Contract - Simple test",
+    "targetContract": {
+      "address": "0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984",
+      "chain": "ethereum",
+      "name": "Simple Test Contract",
+      "abi": null
+    },
+    "competitors": [],
+    "rpcConfig": {
+      "ethereum": [
+        "https://ethereum-rpc.publicnode.com",
+        "https://eth.nownodes.io/2ca1a1a6-9040-4ca9-8727-33a186414a1f"
+      ],
+      "lisk": [
+        "https://rpc.api.lisk.com",
+        "https://lisk.drpc.org",
+        "https://lisk.gateway.tenderly.co/2o3VKjmisQNOJIPlLrt6Ye",
+        "https://site1.moralis-nodes.com/lisk/7f6b7ac6edf2456fa240535cc2d8fc6e"
+      ],
+      "starknet": [
+        "https://rpc.starknet.lava.build",
+        "https://starknet-rpc.publicnode.com",
+        "https://starknet-mainnet.infura.io/v3/52be4d01250949baa85cad00e7b955ab"
+      ]
+    },
+    "analysisParams": {
+      "blockRange": 10000,
+      "whaleThreshold": 10,
+      "maxConcurrentRequests": 5,
+      "failoverTimeout": 60000,
+      "maxRetries": 2,
+      "outputFormats": [
+        "json",
+        "csv",
+        "markdown"
+      ]
+    },
+    "tags": [
+      "default",
+      "defi"
+    ],
+    "isActive": true,
+    "isDefault": true,
+    "lastAnalyzed": null,
+    "analysisCount": 0,
+    "createdAt": "2026-01-28T13:45:38.929Z",
+    "updatedAt": "2026-01-28T13:45:38.929Z"
+  },
+  {
+    "id": "c9c1bb4a-41ad-49f4-97e0-837db7613453",
+    "userId": "0f3c77b6-a246-4a3f-a641-8041dd5dcd29",
+    "name": "Simple Test Contract",
+    "description": "Default contract for Simple Test Contract - Simple test",
+    "targetContract": {
+      "address": "0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984",
+      "chain": "ethereum",
+      "name": "Simple Test Contract",
+      "abi": null
+    },
+    "competitors": [],
+    "rpcConfig": {
+      "ethereum": [
+        "https://ethereum-rpc.publicnode.com",
+        "https://eth.nownodes.io/2ca1a1a6-9040-4ca9-8727-33a186414a1f"
+      ],
+      "lisk": [
+        "https://rpc.api.lisk.com",
+        "https://lisk.drpc.org",
+        "https://lisk.gateway.tenderly.co/2o3VKjmisQNOJIPlLrt6Ye",
+        "https://site1.moralis-nodes.com/lisk/7f6b7ac6edf2456fa240535cc2d8fc6e"
+      ],
+      "starknet": [
+        "https://rpc.starknet.lava.build",
+        "https://starknet-rpc.publicnode.com",
+        "https://starknet-mainnet.infura.io/v3/52be4d01250949baa85cad00e7b955ab"
+      ]
+    },
+    "analysisParams": {
+      "blockRange": 10000,
+      "whaleThreshold": 10,
+      "maxConcurrentRequests": 5,
+      "failoverTimeout": 60000,
+      "maxRetries": 2,
+      "outputFormats": [
+        "json",
+        "csv",
+        "markdown"
+      ]
+    },
+    "tags": [
+      "default",
+      "defi"
+    ],
+    "isActive": true,
+    "isDefault": true,
+    "lastAnalyzed": null,
+    "analysisCount": 0,
+    "createdAt": "2026-01-28T13:46:48.742Z",
+    "updatedAt": "2026-01-28T13:46:48.742Z"
+  },
+  {
+    "id": "3a46e425-046b-4f83-9b1f-5d039653c527",
+    "userId": "c387addd-2811-4db1-946f-e4716d0bc6a9",
+    "name": "Simple Test Contract",
+    "description": "Default contract for Simple Test Contract - Simple test",
+    "targetContract": {
+      "address": "0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984",
+      "chain": "ethereum",
+      "name": "Simple Test Contract",
+      "abi": null
+    },
+    "competitors": [],
+    "rpcConfig": {
+      "ethereum": [
+        "https://ethereum-rpc.publicnode.com",
+        "https://eth.nownodes.io/2ca1a1a6-9040-4ca9-8727-33a186414a1f"
+      ],
+      "lisk": [
+        "https://rpc.api.lisk.com",
+        "https://lisk.drpc.org",
+        "https://lisk.gateway.tenderly.co/2o3VKjmisQNOJIPlLrt6Ye",
+        "https://site1.moralis-nodes.com/lisk/7f6b7ac6edf2456fa240535cc2d8fc6e"
+      ],
+      "starknet": [
+        "https://rpc.starknet.lava.build",
+        "https://starknet-rpc.publicnode.com",
+        "https://starknet-mainnet.infura.io/v3/52be4d01250949baa85cad00e7b955ab"
+      ]
+    },
+    "analysisParams": {
+      "blockRange": 10000,
+      "whaleThreshold": 10,
+      "maxConcurrentRequests": 5,
+      "failoverTimeout": 60000,
+      "maxRetries": 2,
+      "outputFormats": [
+        "json",
+        "csv",
+        "markdown"
+      ]
+    },
+    "tags": [
+      "default",
+      "defi"
+    ],
+    "isActive": true,
+    "isDefault": true,
+    "lastAnalyzed": null,
+    "analysisCount": 0,
+    "createdAt": "2026-01-28T13:52:57.428Z",
+    "updatedAt": "2026-01-28T13:52:57.428Z"
+  },
+  {
+    "id": "1961fd13-dcfe-489d-a836-715164af1a5c",
+    "userId": "a9217f83-3bc0-46e8-9721-c3d9e13ea7d3",
+    "name": "paywarp",
+    "description": "Default contract for paywarp - just testing the starknet flow",
+    "targetContract": {
+      "address": "0x049d36570d4e46f48e99674bd3fcc84644ddd6b96f7c741b1562b82f9e004dc7",
+      "chain": "starknet",
+      "name": "paywarp",
+      "abi": "[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"implementationContract\",\"type\":\"address\"}],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"previousAdmin\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"newAdmin\",\"type\":\"address\"}],\"name\":\"AdminChanged\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"implementation\",\"type\":\"address\"}],\"name\":\"Upgraded\",\"type\":\"event\"},{\"stateMutability\":\"payable\",\"type\":\"fallback\"},{\"inputs\":[],\"name\":\"admin\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"newAdmin\",\"type\":\"address\"}],\"name\":\"changeAdmin\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"implementation\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"newImplementation\",\"type\":\"address\"}],\"name\":\"upgradeTo\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"newImplementation\",\"type\":\"address\"},{\"internalType\":\"bytes\",\"name\":\"data\",\"type\":\"bytes\"}],\"name\":\"upgradeToAndCall\",\"outputs\":[],\"stateMutability\":\"payable\",\"type\":\"function\"}]"
+    },
+    "competitors": [],
+    "rpcConfig": {
+      "ethereum": [
+        "https://ethereum-rpc.publicnode.com",
+        "https://eth.nownodes.io/2ca1a1a6-9040-4ca9-8727-33a186414a1f"
+      ],
+      "lisk": [
+        "https://rpc.api.lisk.com",
+        "https://lisk.drpc.org",
+        "https://lisk.gateway.tenderly.co/2o3VKjmisQNOJIPlLrt6Ye",
+        "https://site1.moralis-nodes.com/lisk/7f6b7ac6edf2456fa240535cc2d8fc6e"
+      ],
+      "starknet": [
+        "https://rpc.starknet.lava.build",
+        "https://starknet-rpc.publicnode.com",
+        "https://starknet-mainnet.infura.io/v3/52be4d01250949baa85cad00e7b955ab"
+      ]
+    },
+    "analysisParams": {
+      "blockRange": 10000,
+      "whaleThreshold": 10,
+      "maxConcurrentRequests": 5,
+      "failoverTimeout": 60000,
+      "maxRetries": 2,
+      "outputFormats": [
+        "json",
+        "csv",
+        "markdown"
+      ]
+    },
+    "tags": [
+      "default",
+      "infrastructure"
+    ],
+    "isActive": true,
+    "isDefault": true,
+    "lastAnalyzed": null,
+    "analysisCount": 0,
+    "createdAt": "2026-01-28T14:21:51.999Z",
+    "updatedAt": "2026-01-28T14:21:51.999Z"
+  },
+  {
+    "id": "67650808-b760-4245-9e8c-c421d8282c84",
+    "userId": "3c07e664-7e86-47c5-8a86-33dea053cf9d",
+    "name": "public Node",
+    "description": "Default contract for public Node - Testing usdc to see it work",
+    "targetContract": {
+      "address": "0x05D032ac25d322df992303dCa074EE7392C117b9",
+      "chain": "lisk",
+      "name": "public Node",
+      "abi": "[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"implementationContract\",\"type\":\"address\"}],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"previousAdmin\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"newAdmin\",\"type\":\"address\"}],\"name\":\"AdminChanged\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"implementation\",\"type\":\"address\"}],\"name\":\"Upgraded\",\"type\":\"event\"},{\"stateMutability\":\"payable\",\"type\":\"fallback\"},{\"inputs\":[],\"name\":\"admin\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"newAdmin\",\"type\":\"address\"}],\"name\":\"changeAdmin\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"implementation\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"newImplementation\",\"type\":\"address\"}],\"name\":\"upgradeTo\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"newImplementation\",\"type\":\"address\"},{\"internalType\":\"bytes\",\"name\":\"data\",\"type\":\"bytes\"}],\"name\":\"upgradeToAndCall\",\"outputs\":[],\"stateMutability\":\"payable\",\"type\":\"function\"}]"
+    },
+    "competitors": [],
+    "rpcConfig": {
+      "ethereum": [
+        "https://ethereum-rpc.publicnode.com",
+        "https://eth.nownodes.io/2ca1a1a6-9040-4ca9-8727-33a186414a1f"
+      ],
+      "lisk": [
+        "https://rpc.api.lisk.com",
+        "https://lisk.drpc.org",
+        "https://lisk.gateway.tenderly.co/2o3VKjmisQNOJIPlLrt6Ye",
+        "https://site1.moralis-nodes.com/lisk/7f6b7ac6edf2456fa240535cc2d8fc6e"
+      ],
+      "starknet": [
+        "https://rpc.starknet.lava.build",
+        "https://starknet-rpc.publicnode.com",
+        "https://starknet-mainnet.infura.io/v3/52be4d01250949baa85cad00e7b955ab"
+      ]
+    },
+    "analysisParams": {
+      "blockRange": 10000,
+      "whaleThreshold": 10,
+      "maxConcurrentRequests": 5,
+      "failoverTimeout": 60000,
+      "maxRetries": 2,
+      "outputFormats": [
+        "json",
+        "csv",
+        "markdown"
+      ]
+    },
+    "tags": [
+      "default",
+      "defi"
+    ],
+    "isActive": true,
+    "isDefault": true,
+    "lastAnalyzed": null,
+    "analysisCount": 0,
+    "createdAt": "2026-01-28T15:11:26.876Z",
+    "updatedAt": "2026-01-28T15:11:26.876Z"
+  },
+  {
+    "id": "5479ff61-063b-4245-b252-72318649cc11",
+    "userId": "3c07e664-7e86-47c5-8a86-33dea053cf9d",
+    "name": "Arbitrum bridge Analysis",
+    "description": "Analysis for Arbitrum bridge on ethereum",
+    "targetContract": {
+      "address": "0x8315177aB297bA92A06054cE80a67Ed4DBd7ed3a",
+      "chain": "ethereum",
+      "name": "Arbitrum bridge",
+      "abi": "[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_logic\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"admin_\",\"type\":\"address\"},{\"internalType\":\"bytes\",\"name\":\"_data\",\"type\":\"bytes\"}],\"stateMutability\":\"payable\",\"type\":\"constructor\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"previousAdmin\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"newAdmin\",\"type\":\"address\"}],\"name\":\"AdminChanged\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"beacon\",\"type\":\"address\"}],\"name\":\"BeaconUpgraded\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"implementation\",\"type\":\"address\"}],\"name\":\"Upgraded\",\"type\":\"event\"},{\"stateMutability\":\"payable\",\"type\":\"fallback\"},{\"inputs\":[],\"name\":\"admin\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"admin_\",\"type\":\"address\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"newAdmin\",\"type\":\"address\"}],\"name\":\"changeAdmin\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"implementation\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"implementation_\",\"type\":\"address\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"newImplementation\",\"type\":\"address\"}],\"name\":\"upgradeTo\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"newImplementation\",\"type\":\"address\"},{\"internalType\":\"bytes\",\"name\":\"data\",\"type\":\"bytes\"}],\"name\":\"upgradeToAndCall\",\"outputs\":[],\"stateMutability\":\"payable\",\"type\":\"function\"},{\"stateMutability\":\"payable\",\"type\":\"receive\"}]"
+    },
+    "competitors": [],
+    "rpcConfig": {
+      "ethereum": [
+        "https://ethereum-rpc.publicnode.com",
+        "https://eth.nownodes.io/2ca1a1a6-9040-4ca9-8727-33a186414a1f"
+      ],
+      "lisk": [
+        "https://rpc.api.lisk.com",
+        "https://lisk.drpc.org",
+        "https://lisk.gateway.tenderly.co/2o3VKjmisQNOJIPlLrt6Ye",
+        "https://site1.moralis-nodes.com/lisk/7f6b7ac6edf2456fa240535cc2d8fc6e"
+      ],
+      "starknet": [
+        "https://rpc.starknet.lava.build",
+        "https://starknet-rpc.publicnode.com",
+        "https://starknet-mainnet.infura.io/v3/52be4d01250949baa85cad00e7b955ab"
+      ]
+    },
+    "analysisParams": {
+      "blockRange": 7000,
+      "whaleThreshold": 10,
+      "maxConcurrentRequests": 5,
+      "failoverTimeout": 60000,
+      "maxRetries": 2,
+      "outputFormats": [
+        "json",
+        "csv",
+        "markdown"
+      ]
+    },
+    "tags": [],
+    "isActive": true,
+    "lastAnalyzed": "2026-01-28T17:01:57.969Z",
+    "analysisCount": 1,
+    "createdAt": "2026-01-28T17:01:47.385Z",
+    "updatedAt": "2026-01-28T17:01:57.973Z"
   }
 ]

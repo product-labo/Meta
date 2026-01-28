@@ -1,548 +1,40 @@
 [
   {
-    "id": "029b96a3-4a95-44cf-aafe-77a089e3fdd3",
-    "email": "test1769296246588@example.com",
-    "password": "$2a$12$Ji7f.nKg.SUk/7irfDco0eXbqoVQRi13A7tWxhDNp7wmGRUEvDMGK",
-    "name": "Test User",
-    "tier": "free",
-    "apiKey": "6394112ef57baddf345e8910db7665e62f93f430164c4cbcec7ab713da0f0a14",
-    "isActive": true,
-    "emailVerified": false,
-    "usage": {
-      "analysisCount": 0,
-      "monthlyAnalysisCount": 0,
-      "lastAnalysis": null,
-      "monthlyResetDate": "2026-01-24T23:10:47.095Z"
-    },
-    "preferences": {
-      "notifications": {
-        "email": true,
-        "analysis": true
-      },
-      "defaultChain": "ethereum"
-    },
-    "createdAt": "2026-01-24T23:10:47.096Z",
-    "updatedAt": "2026-01-24T23:11:49.863Z",
-    "usage.analysisCount": 1,
-    "usage.monthlyAnalysisCount": 1,
-    "usage.lastAnalysis": "2026-01-24T23:11:49.863Z"
-  },
-  {
-    "id": "a1b1f860-4075-4ad0-9dc5-6440e44d1dbe",
-    "email": "test1769297527262@example.com",
-    "password": "$2a$12$U0./BJj/0NUvlP0PKeKR8uZJ2oOFmpFiuqEYi8pH/UtxSHj7JVBLC",
-    "name": "Test User",
-    "tier": "free",
-    "apiKey": "6bf9eeba53280d63eef600f42525b6c542dff97e2658bd54bf57f473806e2155",
-    "isActive": true,
-    "emailVerified": false,
-    "usage": {
-      "analysisCount": 0,
-      "monthlyAnalysisCount": 0,
-      "lastAnalysis": null,
-      "monthlyResetDate": "2026-01-24T23:32:07.739Z"
-    },
-    "preferences": {
-      "notifications": {
-        "email": true,
-        "analysis": true
-      },
-      "defaultChain": "ethereum"
-    },
-    "createdAt": "2026-01-24T23:32:07.739Z",
-    "updatedAt": "2026-01-24T23:33:08.950Z",
-    "usage.analysisCount": 1,
-    "usage.monthlyAnalysisCount": 1,
-    "usage.lastAnalysis": "2026-01-24T23:33:08.950Z"
-  },
-  {
-    "id": "614e0bfe-3343-4f13-8907-bbb1c3fa6333",
-    "email": "test1769298048784@example.com",
-    "password": "$2a$12$Zo2XqZTznzhq1HjTGzC9WOula9OBWqccqrn4uRNXk9VSu0XzxSq7W",
-    "name": "Test User",
-    "tier": "free",
-    "apiKey": "43ff183d811db3db383144585d5125959710b6b81f1ba9c92770d7fa28be166a",
-    "isActive": true,
-    "emailVerified": false,
-    "usage": {
-      "analysisCount": 0,
-      "monthlyAnalysisCount": 0,
-      "lastAnalysis": null,
-      "monthlyResetDate": "2026-01-24T23:40:49.388Z"
-    },
-    "preferences": {
-      "notifications": {
-        "email": true,
-        "analysis": true
-      },
-      "defaultChain": "ethereum"
-    },
-    "createdAt": "2026-01-24T23:40:49.389Z",
-    "updatedAt": "2026-01-24T23:41:49.892Z",
-    "usage.analysisCount": 1,
-    "usage.monthlyAnalysisCount": 1,
-    "usage.lastAnalysis": "2026-01-24T23:41:49.891Z"
-  },
-  {
-    "id": "81f8d2c8-8196-47c6-af9a-d9fb96fd7c1d",
-    "email": "test1769298181688@example.com",
-    "password": "$2a$12$IH/1/SeJXBWsPuOOJXi2kuKuiVyFxSgk0c/YXBYqMO1xNo3k3EEKK",
-    "name": "Test User",
-    "tier": "free",
-    "apiKey": "8be82bfcc0ee0970ce9f6998df07ec10caf68c9850c84ac45e164dce83582849",
-    "isActive": true,
-    "emailVerified": false,
-    "usage": {
-      "analysisCount": 0,
-      "monthlyAnalysisCount": 0,
-      "lastAnalysis": null,
-      "monthlyResetDate": "2026-01-24T23:43:02.174Z"
-    },
-    "preferences": {
-      "notifications": {
-        "email": true,
-        "analysis": true
-      },
-      "defaultChain": "ethereum"
-    },
-    "createdAt": "2026-01-24T23:43:02.175Z",
-    "updatedAt": "2026-01-24T23:44:02.946Z",
-    "usage.analysisCount": 1,
-    "usage.monthlyAnalysisCount": 1,
-    "usage.lastAnalysis": "2026-01-24T23:44:02.946Z"
-  },
-  {
-    "id": "7161c9fa-efa8-438e-a35a-f91cf3516bbb",
-    "email": "test1769298469513@example.com",
-    "password": "$2a$12$RSQdRtintxBOD5bY4njbp.nD89AO2sDzhZWsJysjSqFG0uwsP0l1y",
-    "name": "Test User",
-    "tier": "free",
-    "apiKey": "e7f852df1f7f597df71bbd6d7cb232be6b59579534a386de3fa01aa1587c74be",
-    "isActive": true,
-    "emailVerified": false,
-    "usage": {
-      "analysisCount": 0,
-      "monthlyAnalysisCount": 0,
-      "lastAnalysis": null,
-      "monthlyResetDate": "2026-01-24T23:47:50.024Z"
-    },
-    "preferences": {
-      "notifications": {
-        "email": true,
-        "analysis": true
-      },
-      "defaultChain": "ethereum"
-    },
-    "createdAt": "2026-01-24T23:47:50.025Z",
-    "updatedAt": "2026-01-24T23:48:50.301Z",
-    "usage.analysisCount": 1,
-    "usage.monthlyAnalysisCount": 1,
-    "usage.lastAnalysis": "2026-01-24T23:48:50.301Z"
-  },
-  {
-    "id": "4c401ef7-2aea-4e77-bd53-d907fd65def6",
-    "email": "test1769300270559@example.com",
-    "password": "$2a$12$oJq78HyCSMlpCq79r6nV3eWVtdJqVjYh4WXhLOowCSWdk4/u3ZfcC",
-    "name": "Test User",
-    "tier": "free",
-    "apiKey": "3aec76c1c49866f07f79cc11ce93d41d51126edb36c96cda39bfa5ee3c660b55",
-    "isActive": true,
-    "emailVerified": false,
-    "usage": {
-      "analysisCount": 0,
-      "monthlyAnalysisCount": 0,
-      "lastAnalysis": null,
-      "monthlyResetDate": "2026-01-25T00:17:51.117Z"
-    },
-    "preferences": {
-      "notifications": {
-        "email": true,
-        "analysis": true
-      },
-      "defaultChain": "ethereum"
-    },
-    "createdAt": "2026-01-25T00:17:51.118Z",
-    "updatedAt": "2026-01-25T00:18:51.791Z",
-    "usage.analysisCount": 1,
-    "usage.monthlyAnalysisCount": 1,
-    "usage.lastAnalysis": "2026-01-25T00:18:51.790Z"
-  },
-  {
-    "id": "647b8599-6795-4dfd-a32f-c519da3d451c",
-    "email": "test1769300385045@example.com",
-    "password": "$2a$12$NVRvgIbiTPVQoGyTuwqBbOapqz09XI96BnpiweCZTFX2IsnbFYfdq",
-    "name": "Test User",
-    "tier": "free",
-    "apiKey": "68874cd5ee2951950f4a4bb5073ababae07f20be857f472b5ed933d899bde65b",
-    "isActive": true,
-    "emailVerified": false,
-    "usage": {
-      "analysisCount": 0,
-      "monthlyAnalysisCount": 0,
-      "lastAnalysis": null,
-      "monthlyResetDate": "2026-01-25T00:19:45.648Z"
-    },
-    "preferences": {
-      "notifications": {
-        "email": true,
-        "analysis": true
-      },
-      "defaultChain": "ethereum"
-    },
-    "createdAt": "2026-01-25T00:19:45.649Z",
-    "updatedAt": "2026-01-25T00:20:46.435Z",
-    "usage.analysisCount": 1,
-    "usage.monthlyAnalysisCount": 1,
-    "usage.lastAnalysis": "2026-01-25T00:20:46.435Z"
-  },
-  {
-    "id": "3ddc917e-fda8-444f-9b82-5850d8216ebc",
-    "email": "test1769300514567@example.com",
-    "password": "$2a$12$foWDbRJLrVWtKBCcR2btNeXEREnT0pgYZAplrws/o/gbG8xVElPpO",
-    "name": "Test User",
-    "tier": "free",
-    "apiKey": "1599abc14866b94fa7a7b1c4e9139fe062c633d147b88d7a3c6669f714882322",
-    "isActive": true,
-    "emailVerified": false,
-    "usage": {
-      "analysisCount": 0,
-      "monthlyAnalysisCount": 0,
-      "lastAnalysis": null,
-      "monthlyResetDate": "2026-01-25T00:21:55.041Z"
-    },
-    "preferences": {
-      "notifications": {
-        "email": true,
-        "analysis": true
-      },
-      "defaultChain": "ethereum"
-    },
-    "createdAt": "2026-01-25T00:21:55.041Z",
-    "updatedAt": "2026-01-25T00:22:55.317Z",
-    "usage.analysisCount": 1,
-    "usage.monthlyAnalysisCount": 1,
-    "usage.lastAnalysis": "2026-01-25T00:22:55.316Z"
-  },
-  {
-    "id": "a3165141-b8eb-411d-a9d7-dfbedfecdec7",
-    "email": "debug1769300583613@example.com",
-    "password": "$2a$12$e5H3Bt0wEIWdwYjVZXjGAe0UXPnaVF0dWELXUTBme8Kle6Ze4pV6a",
-    "name": "Debug User",
-    "tier": "free",
-    "apiKey": "82b62e9546356a5d48e518782dc62589e5418872644353da1bb77e5cea29701e",
-    "isActive": true,
-    "emailVerified": false,
-    "usage": {
-      "analysisCount": 0,
-      "monthlyAnalysisCount": 0,
-      "lastAnalysis": null,
-      "monthlyResetDate": "2026-01-25T00:23:04.234Z"
-    },
-    "preferences": {
-      "notifications": {
-        "email": true,
-        "analysis": true
-      },
-      "defaultChain": "ethereum"
-    },
-    "createdAt": "2026-01-25T00:23:04.236Z",
-    "updatedAt": "2026-01-25T00:23:04.236Z"
-  },
-  {
-    "id": "dbe90138-e461-4493-a56f-eee10b677b0c",
-    "email": "test1769300714553@example.com",
-    "password": "$2a$12$BLJ/7P2Rn6f0.TQLsVBylOMJPa47fA2syq50WqMCapeZ7s6WujuvC",
-    "name": "Test User",
-    "tier": "free",
-    "apiKey": "fcac8882c7576e41c992cf1c6095e5f44830466142d3381e936807b8298a51b5",
-    "isActive": true,
-    "emailVerified": false,
-    "usage": {
-      "analysisCount": 0,
-      "monthlyAnalysisCount": 0,
-      "lastAnalysis": null,
-      "monthlyResetDate": "2026-01-25T00:25:15.057Z"
-    },
-    "preferences": {
-      "notifications": {
-        "email": true,
-        "analysis": true
-      },
-      "defaultChain": "ethereum"
-    },
-    "createdAt": "2026-01-25T00:25:15.057Z",
-    "updatedAt": "2026-01-25T00:26:15.776Z",
-    "usage.analysisCount": 1,
-    "usage.monthlyAnalysisCount": 1,
-    "usage.lastAnalysis": "2026-01-25T00:26:15.776Z"
-  },
-  {
-    "id": "8747583f-4a78-44ed-a8dc-bc9422c5c8ff",
-    "email": "test1769301167426@example.com",
-    "password": "$2a$12$1zHeAbakMds8TwcistCEKef2/K51dBwGqiDGE1J2WDQe31bUISvgi",
-    "name": "Test User",
-    "tier": "free",
-    "apiKey": "0b20cd22b17673439d7b6bc936fc6c6e63ec5ffece39f10794425222c9ac121e",
-    "isActive": true,
-    "emailVerified": false,
-    "usage": {
-      "analysisCount": 0,
-      "monthlyAnalysisCount": 0,
-      "lastAnalysis": null,
-      "monthlyResetDate": "2026-01-25T00:32:47.970Z"
-    },
-    "preferences": {
-      "notifications": {
-        "email": true,
-        "analysis": true
-      },
-      "defaultChain": "ethereum"
-    },
-    "createdAt": "2026-01-25T00:32:47.971Z",
-    "updatedAt": "2026-01-25T00:33:48.275Z",
-    "usage.analysisCount": 1,
-    "usage.monthlyAnalysisCount": 1,
-    "usage.lastAnalysis": "2026-01-25T00:33:48.274Z"
-  },
-  {
-    "id": "23918a9b-da4d-4369-a7e3-d1ab775054fb",
-    "email": "envtest1769301353687@example.com",
-    "password": "$2a$12$5tjl11h9ByrhaU7twI82h.pN9QQK4kSkGd8s7A56yLEhLbFFRXGY6",
-    "name": "Env Test User",
-    "tier": "free",
-    "apiKey": "34b1cbfa1a798521ef633c2b56d77fff3fecef7c59b21d9d75ceb279be0faaee",
-    "isActive": true,
-    "emailVerified": false,
-    "usage": {
-      "analysisCount": 0,
-      "monthlyAnalysisCount": 0,
-      "lastAnalysis": null,
-      "monthlyResetDate": "2026-01-25T00:35:54.149Z"
-    },
-    "preferences": {
-      "notifications": {
-        "email": true,
-        "analysis": true
-      },
-      "defaultChain": "ethereum"
-    },
-    "createdAt": "2026-01-25T00:35:54.150Z",
-    "updatedAt": "2026-01-25T00:35:54.150Z"
-  },
-  {
-    "id": "75f6f78e-9d08-4e31-af6d-58c46118cfbb",
-    "email": "envtest1769301435361@example.com",
-    "password": "$2a$12$qwjEkQkNGBLU7GWX8y9y.ONeQs0IHhbcgG14sBFGXXb1B9gDiorAS",
-    "name": "Env Test User",
-    "tier": "free",
-    "apiKey": "91354d93daf9167b3ae4d0a653003c57574da33ef596089e680a4b852ff57029",
-    "isActive": true,
-    "emailVerified": false,
-    "usage": {
-      "analysisCount": 0,
-      "monthlyAnalysisCount": 0,
-      "lastAnalysis": null,
-      "monthlyResetDate": "2026-01-25T00:37:15.835Z"
-    },
-    "preferences": {
-      "notifications": {
-        "email": true,
-        "analysis": true
-      },
-      "defaultChain": "ethereum"
-    },
-    "createdAt": "2026-01-25T00:37:15.835Z",
-    "updatedAt": "2026-01-25T00:37:15.835Z"
-  },
-  {
-    "id": "2f459c06-bb28-4e7a-9875-38bbf57ec5fc",
-    "email": "envtest1769301477764@example.com",
-    "password": "$2a$12$ls6JIbc4wFUFBt0B41RW3eYx9R1LaJWCsjrx3vNRmmtKOt5iM78oW",
-    "name": "Env Test User",
-    "tier": "free",
-    "apiKey": "05582cd47a8f515d136eda64b3f7b688d36c6d7ce198be1700d08b661e778379",
-    "isActive": true,
-    "emailVerified": false,
-    "usage": {
-      "analysisCount": 0,
-      "monthlyAnalysisCount": 0,
-      "lastAnalysis": null,
-      "monthlyResetDate": "2026-01-25T00:37:58.333Z"
-    },
-    "preferences": {
-      "notifications": {
-        "email": true,
-        "analysis": true
-      },
-      "defaultChain": "ethereum"
-    },
-    "createdAt": "2026-01-25T00:37:58.334Z",
-    "updatedAt": "2026-01-25T00:37:58.334Z"
-  },
-  {
-    "id": "403ae491-0d52-4240-8f08-4acad6ed1caa",
-    "email": "test1769301528116@example.com",
-    "password": "$2a$12$3qHqTPHMaeufrJezufuJlOzT0aymbht/7Lvn9iKyPkV9PDKgXe.zi",
-    "name": "Test User",
-    "tier": "free",
-    "apiKey": "bf111f263d026298dc5fb3febbe28759a89eb2aadce5428948e9f6bfd4889ba7",
-    "isActive": true,
-    "emailVerified": false,
-    "usage": {
-      "analysisCount": 0,
-      "monthlyAnalysisCount": 0,
-      "lastAnalysis": null,
-      "monthlyResetDate": "2026-01-25T00:38:48.556Z"
-    },
-    "preferences": {
-      "notifications": {
-        "email": true,
-        "analysis": true
-      },
-      "defaultChain": "ethereum"
-    },
-    "createdAt": "2026-01-25T00:38:48.556Z",
-    "updatedAt": "2026-01-25T00:38:48.556Z"
-  },
-  {
-    "id": "83ecbeb9-c2ed-4727-8b41-b46f95ecc603",
-    "email": "fix1769301626427@example.com",
-    "password": "$2a$12$evR1pNbmtw0P4axwl86qMu0.yrG2WUrOdFG6zBMi97o4X4GovYtky",
-    "name": "Fix Test User",
-    "tier": "free",
-    "apiKey": "e2d3edc1126993397f21343ce726cee6e57442e4660ae0bc0c92df951447a1aa",
-    "isActive": true,
-    "emailVerified": false,
-    "usage": {
-      "analysisCount": 0,
-      "monthlyAnalysisCount": 0,
-      "lastAnalysis": null,
-      "monthlyResetDate": "2026-01-25T00:40:26.840Z"
-    },
-    "preferences": {
-      "notifications": {
-        "email": true,
-        "analysis": true
-      },
-      "defaultChain": "ethereum"
-    },
-    "createdAt": "2026-01-25T00:40:26.841Z",
-    "updatedAt": "2026-01-25T00:40:26.841Z"
-  },
-  {
-    "id": "ff74b7ed-1b35-4e68-8a03-a4cf27df2700",
-    "email": "test1769301657363@example.com",
-    "password": "$2a$12$FRdRleDSn7rfcSbVf6c/I.hmRsrv6h6BHd3CWzRaUUk3xXXTYuix.",
-    "name": "Test User",
-    "tier": "free",
-    "apiKey": "36b819f4204441a516643541b9e53512c0d65eb1d2e72047c2d3d7cd37025e33",
-    "isActive": true,
-    "emailVerified": false,
-    "usage": {
-      "analysisCount": 0,
-      "monthlyAnalysisCount": 0,
-      "lastAnalysis": null,
-      "monthlyResetDate": "2026-01-25T00:40:57.815Z"
-    },
-    "preferences": {
-      "notifications": {
-        "email": true,
-        "analysis": true
-      },
-      "defaultChain": "ethereum"
-    },
-    "createdAt": "2026-01-25T00:40:57.816Z",
-    "updatedAt": "2026-01-25T00:40:57.816Z"
-  },
-  {
-    "id": "27a97218-415a-4511-8366-fcd00e647758",
-    "email": "test1769301729305@example.com",
-    "password": "$2a$12$BBciM7mjMOH/wPc4osHQye5RC4gWbsTo8.1D2I3gnHEyTFIwr3ozy",
-    "name": "Test User",
-    "tier": "free",
-    "apiKey": "f5f5bf922c076144e8e4520b10fc58b14f3d812ac96530e571cf8d4b702da579",
-    "isActive": true,
-    "emailVerified": false,
-    "usage": {
-      "analysisCount": 0,
-      "monthlyAnalysisCount": 0,
-      "lastAnalysis": null,
-      "monthlyResetDate": "2026-01-25T00:42:09.760Z"
-    },
-    "preferences": {
-      "notifications": {
-        "email": true,
-        "analysis": true
-      },
-      "defaultChain": "ethereum"
-    },
-    "createdAt": "2026-01-25T00:42:09.761Z",
-    "updatedAt": "2026-01-25T00:42:09.761Z"
-  },
-  {
-    "id": "6cfa276d-2608-4ec1-b149-920445291ff9",
-    "email": "test1769301790051@example.com",
-    "password": "$2a$12$2kgEnJC3.l9QgvKAYNu1.OzZk.zfqvQrMcT8iDH1m6w74MdqGOk4q",
-    "name": "Test User",
-    "tier": "free",
-    "apiKey": "793ba100aabc9d9a2f5b9ae922787b8d5bb14f6c7e8fa18d375a188b215d1648",
-    "isActive": true,
-    "emailVerified": false,
-    "usage": {
-      "analysisCount": 0,
-      "monthlyAnalysisCount": 0,
-      "lastAnalysis": null,
-      "monthlyResetDate": "2026-01-25T00:43:10.537Z"
-    },
-    "preferences": {
-      "notifications": {
-        "email": true,
-        "analysis": true
-      },
-      "defaultChain": "ethereum"
-    },
-    "createdAt": "2026-01-25T00:43:10.539Z",
-    "updatedAt": "2026-01-25T00:43:10.539Z"
-  },
-  {
-    "id": "f3588858-59ac-4d3e-97f3-60912dfc5afe",
-    "email": "test1769301852767@example.com",
-    "password": "$2a$12$jTikJZf52.Jav8TJ7I3Vi.FBfKR9dlsY2yc3Y2448E9eIaOdjZ/q2",
-    "name": "Test User",
-    "tier": "free",
-    "apiKey": "629158dd181c4d50b66d5673f3cf9ca7ffd98d05c18c5bfbd146eb35de1a64d9",
-    "isActive": true,
-    "emailVerified": false,
-    "usage": {
-      "analysisCount": 0,
-      "monthlyAnalysisCount": 0,
-      "lastAnalysis": null,
-      "monthlyResetDate": "2026-01-25T00:44:13.522Z"
-    },
-    "preferences": {
-      "notifications": {
-        "email": true,
-        "analysis": true
-      },
-      "defaultChain": "ethereum"
-    },
-    "createdAt": "2026-01-25T00:44:13.522Z",
-    "updatedAt": "2026-01-25T00:44:13.522Z"
-  },
-  {
-    "id": "be3f3644-b0d8-4bde-bd72-df7dff97d5ba",
-    "email": "simple1769301884950@example.com",
-    "password": "$2a$12$xe.Eh018md9rQHizmmiS9eFnOxc5Qdmm93z0nWcyWBMYc2CFJTZHq",
+    "id": "cb1506ad-4179-421f-b9d5-428f7bdb5a36",
+    "email": "test-simple-1769606799926@example.com",
+    "password": "$2a$12$8N70WNaJgQWPzPjxBf4rUeYcVIc4P5VMIRi432EDK/sQL1AmsPu5W",
     "name": "Simple Test User",
     "tier": "free",
-    "apiKey": "264154a8124cc5e67be42716f5600c65ad521bfcbdf6fc25239d30eb7744ec62",
+    "apiKey": "f460e4d7b9d791521a6fa1aea0b926718c23a46d194cef4a5f8a6c5598d5fe0a",
     "isActive": true,
     "emailVerified": false,
     "usage": {
       "analysisCount": 0,
       "monthlyAnalysisCount": 0,
       "lastAnalysis": null,
-      "monthlyResetDate": "2026-01-25T00:44:45.607Z"
+      "monthlyResetDate": "2026-01-28T13:26:40.307Z"
+    },
+    "onboarding": {
+      "completed": true,
+      "socialLinks": {
+        "website": null,
+        "twitter": null,
+        "discord": null,
+        "telegram": null
+      },
+      "logo": null,
+      "defaultContract": {
+        "address": "0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984",
+        "chain": "ethereum",
+        "abi": null,
+        "name": "Simple Test Contract",
+        "purpose": "Simple test",
+        "category": "defi",
+        "startDate": "2024-01-01T00:00:00.000Z",
+        "isIndexed": true,
+        "indexingProgress": 100,
+        "lastAnalysisId": "51370c57-42df-42cd-88f3-bf063d4ebcc8"
+      }
     },
     "preferences": {
       "notifications": {
@@ -551,23 +43,98 @@
       },
       "defaultChain": "ethereum"
     },
-    "createdAt": "2026-01-25T00:44:45.608Z",
-    "updatedAt": "2026-01-25T00:44:45.608Z"
+    "createdAt": "2026-01-28T13:26:40.308Z",
+    "updatedAt": "2026-01-28T13:52:45.117Z",
+    "onboarding.defaultContract.indexingProgress": 100,
+    "onboarding.defaultContract.lastAnalysisId": "51370c57-42df-42cd-88f3-bf063d4ebcc8",
+    "onboarding.defaultContract.isIndexed": true
   },
   {
-    "id": "c3fefa2f-7eda-4f99-9cab-95f113601391",
-    "email": "simple1769301909064@example.com",
-    "password": "$2a$12$trQZyZJoJHFyP22vaLWrZ.kNX9c6lEoDPFl8IwytOUMgiXQrWBnMa",
+    "id": "82abf170-4528-4f89-bf78-d0c94d5afedf",
+    "email": "test-completion-1769606857911@example.com",
+    "password": "$2a$12$hJcUOu7rseCzqt9qlw4Nb.I51M2tnuVYuHAKcAcXiF3Cwf0Fnqrte",
+    "name": "Analysis Completion Test User",
+    "tier": "free",
+    "apiKey": "1517ebace31131eab09d6587f25378a94808a1b575f2e3562ff034503378241f",
+    "isActive": true,
+    "emailVerified": false,
+    "usage": {
+      "analysisCount": 0,
+      "monthlyAnalysisCount": 0,
+      "lastAnalysis": null,
+      "monthlyResetDate": "2026-01-28T13:27:38.271Z"
+    },
+    "onboarding": {
+      "completed": true,
+      "socialLinks": {
+        "website": null,
+        "twitter": null,
+        "discord": null,
+        "telegram": null
+      },
+      "logo": null,
+      "defaultContract": {
+        "address": "0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984",
+        "chain": "ethereum",
+        "abi": null,
+        "name": "Analysis Completion Test Contract",
+        "purpose": "Test analysis completion",
+        "category": "defi",
+        "startDate": "2024-01-01T00:00:00.000Z",
+        "isIndexed": true,
+        "indexingProgress": 100,
+        "lastAnalysisId": "06b5d8df-2e23-4cdb-bd32-d62fa3057a5c"
+      }
+    },
+    "preferences": {
+      "notifications": {
+        "email": true,
+        "analysis": true
+      },
+      "defaultChain": "ethereum"
+    },
+    "createdAt": "2026-01-28T13:27:38.272Z",
+    "updatedAt": "2026-01-28T13:52:45.204Z",
+    "onboarding.defaultContract.indexingProgress": 100,
+    "onboarding.defaultContract.lastAnalysisId": "06b5d8df-2e23-4cdb-bd32-d62fa3057a5c",
+    "onboarding.defaultContract.isIndexed": true
+  },
+  {
+    "id": "a4c131c8-3681-439f-aacd-05d1586c4262",
+    "email": "test-simple-1769606953105@example.com",
+    "password": "$2a$12$ULassDljf/woBJZ8RM/g6.EANRvRNZ/k0iIEYS6aYOlsgN7eVn7DG",
     "name": "Simple Test User",
     "tier": "free",
-    "apiKey": "2234606dd57cb74187cc7b1923788127c83cf4bb2b847014f59d331693837a7c",
+    "apiKey": "4e53c9fcaa073322f32ad41b897d2f22af12abf55ed6e6104294c4698e223e04",
     "isActive": true,
     "emailVerified": false,
     "usage": {
       "analysisCount": 0,
       "monthlyAnalysisCount": 0,
       "lastAnalysis": null,
-      "monthlyResetDate": "2026-01-25T00:45:09.613Z"
+      "monthlyResetDate": "2026-01-28T13:29:13.559Z"
+    },
+    "onboarding": {
+      "completed": true,
+      "socialLinks": {
+        "website": null,
+        "twitter": null,
+        "discord": null,
+        "telegram": null
+      },
+      "logo": null,
+      "defaultContract": {
+        "address": "0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984",
+        "chain": "ethereum",
+        "abi": null,
+        "name": "Simple Test Contract",
+        "purpose": "Simple test",
+        "category": "defi",
+        "startDate": "2024-01-01T00:00:00.000Z",
+        "isIndexed": true,
+        "indexingProgress": 100,
+        "lastAnalysisId": "ab42a09f-ce0d-4f9c-8544-f5bcec1febd6"
+      }
     },
     "preferences": {
       "notifications": {
@@ -576,23 +143,48 @@
       },
       "defaultChain": "ethereum"
     },
-    "createdAt": "2026-01-25T00:45:09.614Z",
-    "updatedAt": "2026-01-25T00:45:09.614Z"
+    "createdAt": "2026-01-28T13:29:13.559Z",
+    "updatedAt": "2026-01-28T13:52:45.207Z",
+    "onboarding.defaultContract.indexingProgress": 100,
+    "onboarding.defaultContract.lastAnalysisId": "ab42a09f-ce0d-4f9c-8544-f5bcec1febd6",
+    "onboarding.defaultContract.isIndexed": true
   },
   {
-    "id": "e03ae0bc-ffae-4c04-95d5-d57521c4ee7c",
-    "email": "simple1769301972851@example.com",
-    "password": "$2a$12$cJbqfeyg7CgJ9nCNQD4cCu.uDBsDU9FX2k..ChKUntzOsl0IuXSRW",
+    "id": "4d41c8a2-3de6-48fb-a9bb-4d5988dbf706",
+    "email": "test-simple-1769607069296@example.com",
+    "password": "$2a$12$qHWnCabmDCYFOZV5vmq7Xud17wkihu4Sw9hlfKz5Jsi4ypa9japcu",
     "name": "Simple Test User",
     "tier": "free",
-    "apiKey": "aa32a655a1be9bd29ed87568cf365f59af7d757d278c372e5d741e52b2bbd7c2",
+    "apiKey": "c1ee7360d2abbc60505d46111b4d977322dc5917353098928bee6d006c271675",
     "isActive": true,
     "emailVerified": false,
     "usage": {
       "analysisCount": 0,
       "monthlyAnalysisCount": 0,
       "lastAnalysis": null,
-      "monthlyResetDate": "2026-01-25T00:46:13.352Z"
+      "monthlyResetDate": "2026-01-28T13:31:09.883Z"
+    },
+    "onboarding": {
+      "completed": true,
+      "socialLinks": {
+        "website": null,
+        "twitter": null,
+        "discord": null,
+        "telegram": null
+      },
+      "logo": null,
+      "defaultContract": {
+        "address": "0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984",
+        "chain": "ethereum",
+        "abi": null,
+        "name": "Simple Test Contract",
+        "purpose": "Simple test",
+        "category": "defi",
+        "startDate": "2024-01-01T00:00:00.000Z",
+        "isIndexed": true,
+        "indexingProgress": 100,
+        "lastAnalysisId": "6caa3730-b3fd-4c6b-92fa-fc0d3cf22440"
+      }
     },
     "preferences": {
       "notifications": {
@@ -601,23 +193,48 @@
       },
       "defaultChain": "ethereum"
     },
-    "createdAt": "2026-01-25T00:46:13.352Z",
-    "updatedAt": "2026-01-25T00:46:13.352Z"
+    "createdAt": "2026-01-28T13:31:09.884Z",
+    "updatedAt": "2026-01-28T13:52:45.209Z",
+    "onboarding.defaultContract.indexingProgress": 100,
+    "onboarding.defaultContract.lastAnalysisId": "6caa3730-b3fd-4c6b-92fa-fc0d3cf22440",
+    "onboarding.defaultContract.isIndexed": true
   },
   {
-    "id": "9790a251-5959-4287-bd64-3c4e040dc8fc",
-    "email": "simple1769302034773@example.com",
-    "password": "$2a$12$qwXEhIzikAY0JdC9STmXDuxUUqe9O3QIRbwp0d5M21Q/woRzJ3tn2",
+    "id": "c5fc5a84-35bc-471b-94ef-26d831843520",
+    "email": "test-simple-1769607838711@example.com",
+    "password": "$2a$12$0/9EFkfH5QbF79bJv4492Odd1MhZmCAjDsT1H7f46Hspca7KANzfO",
     "name": "Simple Test User",
     "tier": "free",
-    "apiKey": "172d33af2b383454c96a0c976e6245d634eddba1c531be946b4fae9c7105720f",
+    "apiKey": "5524be5a60ac0746a71b959828008d64a59cccc6b5b56f961e511362e1d2da2e",
     "isActive": true,
     "emailVerified": false,
     "usage": {
       "analysisCount": 0,
       "monthlyAnalysisCount": 0,
       "lastAnalysis": null,
-      "monthlyResetDate": "2026-01-25T00:47:15.247Z"
+      "monthlyResetDate": "2026-01-28T13:43:59.152Z"
+    },
+    "onboarding": {
+      "completed": true,
+      "socialLinks": {
+        "website": null,
+        "twitter": null,
+        "discord": null,
+        "telegram": null
+      },
+      "logo": null,
+      "defaultContract": {
+        "address": "0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984",
+        "chain": "ethereum",
+        "abi": null,
+        "name": "Simple Test Contract",
+        "purpose": "Simple test",
+        "category": "defi",
+        "startDate": "2024-01-01T00:00:00.000Z",
+        "isIndexed": true,
+        "indexingProgress": 100,
+        "lastAnalysisId": "8995afb1-0179-4d4b-92c4-5fecf7e679c1"
+      }
     },
     "preferences": {
       "notifications": {
@@ -626,23 +243,48 @@
       },
       "defaultChain": "ethereum"
     },
-    "createdAt": "2026-01-25T00:47:15.248Z",
-    "updatedAt": "2026-01-25T00:47:15.248Z"
+    "createdAt": "2026-01-28T13:43:59.152Z",
+    "updatedAt": "2026-01-28T13:52:45.211Z",
+    "onboarding.defaultContract.indexingProgress": 100,
+    "onboarding.defaultContract.lastAnalysisId": "8995afb1-0179-4d4b-92c4-5fecf7e679c1",
+    "onboarding.defaultContract.isIndexed": true
   },
   {
-    "id": "6505a1c2-99ec-4854-a39f-420cd2af2fc8",
-    "email": "simple1769302133907@example.com",
-    "password": "$2a$12$vuT8sJ/v/VBGzSWa1FUh9eTqbbC9a8xt7aadGirpHNma1VV4.cKQa",
+    "id": "c8617c59-32ae-4e3f-a10f-7b7ed1604521",
+    "email": "test-simple-1769607938469@example.com",
+    "password": "$2a$12$lLU7jpWYnDNYyS2qlC4kSOTevVRmHUydYTduFxgvtT5y1AYoHN2QO",
     "name": "Simple Test User",
     "tier": "free",
-    "apiKey": "4d0ca161199bc6c5f3d71a37bd34f56953c5e032a625d990084fd5833aa079cd",
+    "apiKey": "6fa52a82a4d482b209144ffda1a524cd63583f3de1aa289ea3845e92f08d1f63",
     "isActive": true,
     "emailVerified": false,
     "usage": {
       "analysisCount": 0,
       "monthlyAnalysisCount": 0,
       "lastAnalysis": null,
-      "monthlyResetDate": "2026-01-25T00:48:54.366Z"
+      "monthlyResetDate": "2026-01-28T13:45:38.909Z"
+    },
+    "onboarding": {
+      "completed": true,
+      "socialLinks": {
+        "website": null,
+        "twitter": null,
+        "discord": null,
+        "telegram": null
+      },
+      "logo": null,
+      "defaultContract": {
+        "address": "0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984",
+        "chain": "ethereum",
+        "abi": null,
+        "name": "Simple Test Contract",
+        "purpose": "Simple test",
+        "category": "defi",
+        "startDate": "2024-01-01T00:00:00.000Z",
+        "isIndexed": true,
+        "indexingProgress": 100,
+        "lastAnalysisId": "2ff0c997-1a9a-4e63-ba0e-07fe26e0f9a0"
+      }
     },
     "preferences": {
       "notifications": {
@@ -651,23 +293,48 @@
       },
       "defaultChain": "ethereum"
     },
-    "createdAt": "2026-01-25T00:48:54.366Z",
-    "updatedAt": "2026-01-25T00:48:54.366Z"
+    "createdAt": "2026-01-28T13:45:38.910Z",
+    "updatedAt": "2026-01-28T13:52:45.213Z",
+    "onboarding.defaultContract.indexingProgress": 100,
+    "onboarding.defaultContract.lastAnalysisId": "2ff0c997-1a9a-4e63-ba0e-07fe26e0f9a0",
+    "onboarding.defaultContract.isIndexed": true
   },
   {
-    "id": "84fd6a37-154e-4f3d-9e57-a34abaaa7f9c",
-    "email": "simple1769302302481@example.com",
-    "password": "$2a$12$1MiU4W2tE0rI0WVRFOUKJunEGR030ILb5bGZM/CcRfaz6V1vtDlCC",
+    "id": "0f3c77b6-a246-4a3f-a641-8041dd5dcd29",
+    "email": "test-simple-1769608008209@example.com",
+    "password": "$2a$12$FKreCHJuAt45tgiRsPM/Q.GsDyCQvJu5WJso2ZbgPyY4NtnC6SkHm",
     "name": "Simple Test User",
     "tier": "free",
-    "apiKey": "db71c3806fad45c753acfd3f99a4ebbba18c1607ca3c6748cf951b979b8944c6",
+    "apiKey": "15e5abb9cb54e76bff2545cf0aac88d1d3bbe8f2a3f605deb520e983bf7d8644",
     "isActive": true,
     "emailVerified": false,
     "usage": {
       "analysisCount": 0,
       "monthlyAnalysisCount": 0,
       "lastAnalysis": null,
-      "monthlyResetDate": "2026-01-25T00:51:43.046Z"
+      "monthlyResetDate": "2026-01-28T13:46:48.725Z"
+    },
+    "onboarding": {
+      "completed": true,
+      "socialLinks": {
+        "website": null,
+        "twitter": null,
+        "discord": null,
+        "telegram": null
+      },
+      "logo": null,
+      "defaultContract": {
+        "address": "0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984",
+        "chain": "ethereum",
+        "abi": null,
+        "name": "Simple Test Contract",
+        "purpose": "Simple test",
+        "category": "defi",
+        "startDate": "2024-01-01T00:00:00.000Z",
+        "isIndexed": true,
+        "indexingProgress": 100,
+        "lastAnalysisId": "1d6dc0fd-8d14-44c2-8b35-1b4c43e72571"
+      }
     },
     "preferences": {
       "notifications": {
@@ -676,23 +343,65 @@
       },
       "defaultChain": "ethereum"
     },
-    "createdAt": "2026-01-25T00:51:43.047Z",
-    "updatedAt": "2026-01-25T00:51:43.048Z"
+    "createdAt": "2026-01-28T13:46:48.726Z",
+    "updatedAt": "2026-01-28T14:05:06.668Z",
+    "onboarding.defaultContract.indexingProgress": 100,
+    "onboarding.defaultContract.lastAnalysisId": "2165357d-4d38-4b67-a089-b0cfa47b7893",
+    "onboarding.defaultContract.isIndexed": true,
+    "lastLogin": "2026-01-28T14:05:06.559Z"
   },
   {
-    "id": "15f5d65c-c091-4df8-a37e-936cf49d300d",
-    "email": "simple1769302328079@example.com",
-    "password": "$2a$12$fggNmyoSBo4Q0uH6TXDK.utOfDU0EcEPPTg/YIqE8/r4N0km1I1PO",
+    "id": "11928499-ddfa-4d35-aadc-ffbb00553eee",
+    "email": "test-update@example.com",
+    "name": "Test Update User",
+    "onboarding": {
+      "completed": true,
+      "defaultContract": {
+        "address": "0x123",
+        "isIndexed": true,
+        "indexingProgress": 100,
+        "lastAnalysisId": "test-analysis-123"
+      }
+    },
+    "createdAt": "2026-01-28T13:50:49.148Z",
+    "updatedAt": "2026-01-28T13:50:49.168Z"
+  },
+  {
+    "id": "c387addd-2811-4db1-946f-e4716d0bc6a9",
+    "email": "test-simple-1769608376748@example.com",
+    "password": "$2a$12$Ov.CWOvWfUyjZXOa5EHluuy4avnIFuPwr/uwn7i5XnZHU6fM1.xbq",
     "name": "Simple Test User",
     "tier": "free",
-    "apiKey": "74dab1ba08a3a963e717a0e9809dd430d99bcda6614e3d710b38b6fce3d7b050",
+    "apiKey": "dbdeb203bef36bd171b2314d68fbe3b9f515fdd3715ab74245590c7a8a50a87a",
     "isActive": true,
     "emailVerified": false,
     "usage": {
       "analysisCount": 0,
       "monthlyAnalysisCount": 0,
       "lastAnalysis": null,
-      "monthlyResetDate": "2026-01-25T00:52:08.547Z"
+      "monthlyResetDate": "2026-01-28T13:52:57.331Z"
+    },
+    "onboarding": {
+      "completed": true,
+      "socialLinks": {
+        "website": null,
+        "twitter": null,
+        "discord": null,
+        "telegram": null
+      },
+      "logo": null,
+      "defaultContract": {
+        "address": "0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984",
+        "chain": "ethereum",
+        "abi": null,
+        "name": "Simple Test Contract",
+        "purpose": "Simple test",
+        "category": "defi",
+        "startDate": "2024-01-01T00:00:00.000Z",
+        "isIndexed": false,
+        "indexingProgress": 0,
+        "lastAnalysisId": null
+      }
     },
     "preferences": {
       "notifications": {
@@ -701,153 +410,48 @@
       },
       "defaultChain": "ethereum"
     },
-    "createdAt": "2026-01-25T00:52:08.548Z",
-    "updatedAt": "2026-01-25T00:52:11.951Z",
-    "usage.analysisCount": 1,
-    "usage.monthlyAnalysisCount": 1,
-    "usage.lastAnalysis": "2026-01-25T00:52:11.950Z"
+    "createdAt": "2026-01-28T13:52:57.331Z",
+    "updatedAt": "2026-01-28T13:52:57.561Z",
+    "onboarding.defaultContract.indexingProgress": 100,
+    "onboarding.defaultContract.lastAnalysisId": "bb8a4671-9c60-417a-950a-bde3ae3d8c5e",
+    "onboarding.defaultContract.isIndexed": true
   },
   {
-    "id": "b6d14119-94b6-423e-b517-5b9b57ab16ec",
-    "email": "test@example.com",
-    "password": "$2a$12$TKQQ1OLZIIEw95AUpDMz.Og97THTTHPRicnv6VuTwK363N4rSsA96",
-    "name": "Test User",
-    "tier": "free",
-    "apiKey": "d87499dccd555b05af7cca06951589cfd642f1ee45a1a3254630229551c30fc5",
-    "isActive": true,
-    "emailVerified": false,
-    "usage": {
-      "analysisCount": 0,
-      "monthlyAnalysisCount": 0,
-      "lastAnalysis": null,
-      "monthlyResetDate": "2026-01-25T01:10:37.783Z"
-    },
-    "preferences": {
-      "notifications": {
-        "email": true,
-        "analysis": true
-      },
-      "defaultChain": "ethereum"
-    },
-    "createdAt": "2026-01-25T01:10:37.783Z",
-    "updatedAt": "2026-01-25T01:12:16.544Z",
-    "lastLogin": "2026-01-25T01:12:16.543Z"
-  },
-  {
-    "id": "8c09670f-027b-4381-9985-22584f98c782",
-    "email": "test1769303486895@example.com",
-    "password": "$2a$12$vqVDKP8tVMX/Y8WsoDDJvuSyQ64JaR86.zA6hAK2yl..r5mDuQlsW",
-    "name": "Frontend Test User",
-    "tier": "free",
-    "apiKey": "f19c108b59ebdb061f189cd5a1fa20eebf5b8bab729da5bdb2c5d4f48eafdefb",
-    "isActive": true,
-    "emailVerified": false,
-    "usage": {
-      "analysisCount": 0,
-      "monthlyAnalysisCount": 0,
-      "lastAnalysis": null,
-      "monthlyResetDate": "2026-01-25T01:11:27.574Z"
-    },
-    "preferences": {
-      "notifications": {
-        "email": true,
-        "analysis": true
-      },
-      "defaultChain": "ethereum"
-    },
-    "createdAt": "2026-01-25T01:11:27.575Z",
-    "updatedAt": "2026-01-25T01:11:27.575Z"
-  },
-  {
-    "id": "e764b02a-f326-4556-8a0c-203726d4029e",
-    "email": "test1769303525897@example.com",
-    "password": "$2a$12$LJZRubh.PTP7qrTjsFHg3OtbgJ9tSUPT3kgmIRlhsBZT0BIq30qfu",
-    "name": "Frontend Test User",
-    "tier": "free",
-    "apiKey": "16442fc932e24f7b62ef30ce704f03b91033ba4fc68c5913acf824d545c0e55e",
-    "isActive": true,
-    "emailVerified": false,
-    "usage": {
-      "analysisCount": 0,
-      "monthlyAnalysisCount": 0,
-      "lastAnalysis": null,
-      "monthlyResetDate": "2026-01-25T01:12:06.398Z"
-    },
-    "preferences": {
-      "notifications": {
-        "email": true,
-        "analysis": true
-      },
-      "defaultChain": "ethereum"
-    },
-    "createdAt": "2026-01-25T01:12:06.399Z",
-    "updatedAt": "2026-01-25T01:12:06.399Z"
-  },
-  {
-    "id": "a0879346-6653-4e80-a69f-866921b91095",
-    "email": "authtest1769304410304@example.com",
-    "password": "$2a$12$Vy3pqMnclL6l1Lz3NRu7ROXrEZr.4WiEAho/PbnBGdsq4V1J3phDC",
-    "name": "Auth Test User",
-    "tier": "free",
-    "apiKey": "f19f70111aa1e8d00efd3b8d63c70487d5370efd8e4bed7019de020ea62364a5",
-    "isActive": true,
-    "emailVerified": false,
-    "usage": {
-      "analysisCount": 0,
-      "monthlyAnalysisCount": 0,
-      "lastAnalysis": null,
-      "monthlyResetDate": "2026-01-25T01:26:50.771Z"
-    },
-    "preferences": {
-      "notifications": {
-        "email": true,
-        "analysis": true
-      },
-      "defaultChain": "ethereum"
-    },
-    "createdAt": "2026-01-25T01:26:50.771Z",
-    "updatedAt": "2026-01-25T01:26:50.771Z"
-  },
-  {
-    "id": "2b4257f2-843a-4622-aeeb-49a825ae9b32",
-    "email": "flowtest1769304537411@example.com",
-    "password": "$2a$12$YHJtCRHiEOAu0JaQnf9Zju7icoX.zz9p.fRq5c/ouIWknNfiGjz.m",
-    "name": "Flow Test User",
-    "tier": "free",
-    "apiKey": "28df770a3aac25904a3ce4bf9b7565f1bcd879c9a5042a15e0f27f85a1727a79",
-    "isActive": true,
-    "emailVerified": false,
-    "usage": {
-      "analysisCount": 0,
-      "monthlyAnalysisCount": 0,
-      "lastAnalysis": null,
-      "monthlyResetDate": "2026-01-25T01:28:58.336Z"
-    },
-    "preferences": {
-      "notifications": {
-        "email": true,
-        "analysis": true
-      },
-      "defaultChain": "ethereum"
-    },
-    "createdAt": "2026-01-25T01:28:58.345Z",
-    "updatedAt": "2026-01-25T01:28:59.077Z",
-    "lastLogin": "2026-01-25T01:28:59.076Z"
-  },
-  {
-    "id": "bfd508f1-70a5-43d0-8874-895a2d0ca6ca",
-    "email": "elgravicodesh@gmail.com",
-    "password": "$2a$12$RqEDNv/PAjn3.QsyZ3pKLeskLLEbQysoGwdmCjQvjSiziLDhOePrC",
+    "id": "a9217f83-3bc0-46e8-9721-c3d9e13ea7d3",
+    "email": "egyptfiafrica@gmail.com",
+    "password": "$2a$12$EPkOdbsRa74qN1N/aZHxzOFgZCi7rcqwqJeq7EmFBmfFA3zDtN.Uy",
     "name": "Ojo Emmanuel",
     "tier": "free",
-    "apiKey": "cb7029b03f52bbe488a3e658397d54871d0afc2669e3c255b6f27a751c88c208",
+    "apiKey": "4fb92339e9899c32548edd176c271993a1c6349767e5384d491d817219ccb497",
     "isActive": true,
     "emailVerified": false,
     "usage": {
       "analysisCount": 0,
       "monthlyAnalysisCount": 0,
       "lastAnalysis": null,
-      "monthlyResetDate": "2026-01-25T01:38:12.084Z"
+      "monthlyResetDate": "2026-01-28T14:19:38.534Z"
+    },
+    "onboarding": {
+      "completed": true,
+      "socialLinks": {
+        "website": "https://paywarp.vercel.app",
+        "twitter": "@paywarp",
+        "discord": null,
+        "telegram": null
+      },
+      "logo": null,
+      "defaultContract": {
+        "address": "0x049d36570d4e46f48e99674bd3fcc84644ddd6b96f7c741b1562b82f9e004dc7",
+        "chain": "starknet",
+        "abi": "[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"implementationContract\",\"type\":\"address\"}],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"previousAdmin\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"newAdmin\",\"type\":\"address\"}],\"name\":\"AdminChanged\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"implementation\",\"type\":\"address\"}],\"name\":\"Upgraded\",\"type\":\"event\"},{\"stateMutability\":\"payable\",\"type\":\"fallback\"},{\"inputs\":[],\"name\":\"admin\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"newAdmin\",\"type\":\"address\"}],\"name\":\"changeAdmin\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"implementation\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"newImplementation\",\"type\":\"address\"}],\"name\":\"upgradeTo\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"newImplementation\",\"type\":\"address\"},{\"internalType\":\"bytes\",\"name\":\"data\",\"type\":\"bytes\"}],\"name\":\"upgradeToAndCall\",\"outputs\":[],\"stateMutability\":\"payable\",\"type\":\"function\"}]",
+        "name": "paywarp",
+        "purpose": "just testing the starknet flow",
+        "category": "infrastructure",
+        "startDate": "2024-08-01T00:00:00.000Z",
+        "isIndexed": true,
+        "indexingProgress": 100,
+        "lastAnalysisId": "c9345d92-d87d-4fdb-aeab-e64ad1f83ec9"
+      }
     },
     "preferences": {
       "notifications": {
@@ -856,62 +460,57 @@
       },
       "defaultChain": "ethereum"
     },
-    "createdAt": "2026-01-25T01:38:12.085Z",
-    "updatedAt": "2026-01-26T10:09:14.052Z",
+    "createdAt": "2026-01-28T14:19:38.535Z",
+    "updatedAt": "2026-01-28T15:08:22.996Z"
+  },
+  {
+    "id": "3c07e664-7e86-47c5-8a86-33dea053cf9d",
+    "email": "elgravicodesh@gmail.com",
+    "password": "$2a$12$SNkdqbzPa5HiNgreqJrXmuol60zf8U5s84Zq5z/X4UuW4H4.l1LLy",
+    "name": "Kingsley John",
+    "tier": "free",
+    "apiKey": "88e054ae0c492f736d773db6954499411d96f066a15c39c1ecee1fe97038a898",
+    "isActive": true,
+    "emailVerified": false,
+    "usage": {
+      "analysisCount": 0,
+      "monthlyAnalysisCount": 0,
+      "lastAnalysis": null,
+      "monthlyResetDate": "2026-01-28T15:09:53.732Z"
+    },
+    "onboarding": {
+      "completed": true,
+      "socialLinks": {
+        "website": "https://publicnode.com",
+        "twitter": "@publicnode",
+        "discord": null,
+        "telegram": null
+      },
+      "logo": null,
+      "defaultContract": {
+        "address": "0x05D032ac25d322df992303dCa074EE7392C117b9",
+        "chain": "lisk",
+        "abi": "[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"implementationContract\",\"type\":\"address\"}],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"previousAdmin\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"newAdmin\",\"type\":\"address\"}],\"name\":\"AdminChanged\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"implementation\",\"type\":\"address\"}],\"name\":\"Upgraded\",\"type\":\"event\"},{\"stateMutability\":\"payable\",\"type\":\"fallback\"},{\"inputs\":[],\"name\":\"admin\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"newAdmin\",\"type\":\"address\"}],\"name\":\"changeAdmin\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"implementation\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"newImplementation\",\"type\":\"address\"}],\"name\":\"upgradeTo\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"newImplementation\",\"type\":\"address\"},{\"internalType\":\"bytes\",\"name\":\"data\",\"type\":\"bytes\"}],\"name\":\"upgradeToAndCall\",\"outputs\":[],\"stateMutability\":\"payable\",\"type\":\"function\"}]",
+        "name": "public Node",
+        "purpose": "Testing usdc to see it work",
+        "category": "defi",
+        "startDate": "2026-01-17T00:00:00.000Z",
+        "isIndexed": true,
+        "indexingProgress": 100,
+        "lastAnalysisId": "14ef20b1-12d3-44a4-91a4-253d0f55f6d6"
+      }
+    },
+    "preferences": {
+      "notifications": {
+        "email": true,
+        "analysis": true
+      },
+      "defaultChain": "ethereum"
+    },
+    "createdAt": "2026-01-28T15:09:53.733Z",
+    "updatedAt": "2026-01-28T17:32:00.838Z",
     "usage.analysisCount": 1,
     "usage.monthlyAnalysisCount": 1,
-    "usage.lastAnalysis": "2026-01-26T10:09:14.048Z",
-    "lastLogin": "2026-01-25T12:38:05.017Z"
-  },
-  {
-    "id": "260b53f4-5e27-48ce-bcf3-a5e44d67fb8c",
-    "email": "chattest@example.com",
-    "password": "$2a$12$fflNtHQc35/BpKjCKhyrBO6HSZBKF9C1XjULDSjAfrsXltkcHMoE6",
-    "name": "Chat Test User",
-    "tier": "free",
-    "apiKey": "0dcca8190f4ada581f0b731dbec4c85777543f5148a8794590e4d9692f5aa452",
-    "isActive": true,
-    "emailVerified": false,
-    "usage": {
-      "analysisCount": 0,
-      "monthlyAnalysisCount": 0,
-      "lastAnalysis": null,
-      "monthlyResetDate": "2026-01-25T12:32:56.705Z"
-    },
-    "preferences": {
-      "notifications": {
-        "email": true,
-        "analysis": true
-      },
-      "defaultChain": "ethereum"
-    },
-    "createdAt": "2026-01-25T12:32:56.706Z",
-    "updatedAt": "2026-01-25T13:09:11.793Z",
-    "lastLogin": "2026-01-25T13:09:11.793Z"
-  },
-  {
-    "id": "6ab4dd81-9ac0-45eb-959c-06da25b569bd",
-    "email": "testchat@example.com",
-    "password": "$2a$12$KHhunxxlhN1e./YWM55zCOinZYxoTWRY0wiQ3lErf9zpMHQ5fWjpe",
-    "name": "Test Chat User",
-    "tier": "free",
-    "apiKey": "5f29d410023b68ee8c1e37f6d21532bb3836a2febb9644465bb10a0f83d10f8c",
-    "isActive": true,
-    "emailVerified": false,
-    "usage": {
-      "analysisCount": 0,
-      "monthlyAnalysisCount": 0,
-      "lastAnalysis": null,
-      "monthlyResetDate": "2026-01-25T13:32:19.385Z"
-    },
-    "preferences": {
-      "notifications": {
-        "email": true,
-        "analysis": true
-      },
-      "defaultChain": "ethereum"
-    },
-    "createdAt": "2026-01-25T13:32:19.385Z",
-    "updatedAt": "2026-01-25T13:32:19.386Z"
+    "usage.lastAnalysis": "2026-01-28T17:01:57.966Z"
   }
 ]

@@ -49,6 +49,12 @@ export function CompetitiveTab({ analysisResults }: CompetitiveTabProps) {
     return value;
   };
 
+  // Format numbers safely for display
+  const formatNumber = (value: any, fallback = 0) => {
+    if (value === null || value === undefined) return fallback;
+    return typeof value === 'number' ? value : fallback;
+  };
+
   const formatCurrency = (value: any) => {
     if (!value || value === 0) return '$0';
     if (typeof value === 'number') {
@@ -89,7 +95,7 @@ export function CompetitiveTab({ analysisResults }: CompetitiveTabProps) {
               </p>
               <p className="text-gray-400 mt-2">Market Ranking</p>
               <p className="text-2xl font-bold text-white mt-4">
-                {formatValue(marketPosition.share, 0)}%
+                {formatNumber(marketPosition.share, 0)}%
               </p>
               <p className="text-gray-400">Market Share</p>
               
@@ -181,7 +187,7 @@ export function CompetitiveTab({ analysisResults }: CompetitiveTabProps) {
           </CardHeader>
           <CardContent>
             <p className="text-2xl font-bold text-white">
-              {formatValue(userBehavior.loyaltyScore, 0).toFixed(1)}
+              {formatNumber(userBehavior.loyaltyScore, 0).toFixed(1)}
             </p>
             <p className="text-blue-300 text-xs mt-1">vs 65.0 market avg</p>
           </CardContent>
@@ -193,7 +199,7 @@ export function CompetitiveTab({ analysisResults }: CompetitiveTabProps) {
           </CardHeader>
           <CardContent>
             <p className="text-2xl font-bold text-white">
-              {formatValue(userBehavior.mevExposure, 0).toFixed(1)}%
+              {formatNumber(userBehavior.mevExposure, 0).toFixed(1)}%
             </p>
             <p className="text-green-300 text-xs mt-1">vs 12.5% market avg</p>
           </CardContent>
@@ -205,7 +211,7 @@ export function CompetitiveTab({ analysisResults }: CompetitiveTabProps) {
           </CardHeader>
           <CardContent>
             <p className="text-2xl font-bold text-white">
-              {formatValue(defiMetrics.bridgeUtilization, 0).toFixed(1)}%
+              {formatNumber(defiMetrics.bridgeUtilization, 0).toFixed(1)}%
             </p>
             <p className="text-purple-300 text-xs mt-1">Cross-chain activity</p>
           </CardContent>

@@ -76,7 +76,7 @@ class ChatAIService {
       const prompt = this.buildChatPrompt(userMessage, sessionContext);
       
       const response = await this.genAI.models.generateContent({
-        model: 'gemini-2.0-flash-exp',
+        model: 'gemini-2.5-flash-lite',
         contents: [{ text: prompt }],
         generationConfig: {
           temperature: 0.4, // Slightly higher for more conversational responses
@@ -109,7 +109,7 @@ class ChatAIService {
               data: { text: jsonResponse }
             }],
             metadata: {
-              model: 'gemini-2.0-flash-exp',
+              model: 'gemini-2.5-flash-lite',
               processingTime: Date.now(),
               fallback: true
             }
@@ -121,7 +121,7 @@ class ChatAIService {
         content: chatResponse.content || chatResponse.text || '',
         components: chatResponse.components || [],
         metadata: {
-          model: 'gemini-2.0-flash-exp',
+          model: 'gemini-2.5-flash-lite',
           processingTime: Date.now(),
           tokens: response.usage?.totalTokens || null
         }
@@ -254,25 +254,74 @@ GUIDELINES:
     try {
       // Get the most recent analysis for this contract
       const analyses = await AnalysisStorage.findByUserId(userId);
-      const contractAnalyses = analyses.filter(analysis => 
-        analysis.results?.target?.contract?.address?.toLowerCase() === contractAddress.toLowerCase() &&
-        analysis.results?.target?.contract?.chain === contractChain &&
-        analysis.status === 'completed'
-      );
+      let contractAnalyses = analyses.filter(analysis => {
+        if (analysis.status !== 'completed') return false;
+        
+        // Handle both data structures: string contract address or object with address
+        const targetContract = analysis.results?.target?.contract;
+        if (!targetContract) return false;
+        
+        const contractAddr = typeof targetContract === 'string' 
+          ? targetContract 
+          : targetContract.address;
+        const contractChainName = analysis.results?.target?.chain || targetContract.chain;
+        
+        return contractAddr?.toLowerCase() === contractAddress.toLowerCase() &&
+               contractChainName === contractChain;
+      });
+
+      // If no analyses found for this user, try to find any analysis for this contract
+      if (contractAnalyses.length === 0) {
+        console.log(`No analyses found for user ${userId}, searching all analyses for contract ${contractAddress}`);
+        const allAnalyses = await AnalysisStorage.findAll();
+        contractAnalyses = allAnalyses.filter(analysis => {
+          if (analysis.status !== 'completed') return false;
+          
+          const targetContract = analysis.results?.target?.contract;
+          if (!targetContract) return false;
+          
+          const contractAddr = typeof targetContract === 'string' 
+            ? targetContract 
+            : targetContract.address;
+          const contractChainName = analysis.results?.target?.chain || targetContract.chain;
+          
+          return contractAddr?.toLowerCase() === contractAddress.toLowerCase() &&
+                 contractChainName === contractChain;
+        });
+      }
 
       const latestAnalysis = contractAnalyses.sort((a, b) => 
         new Date(b.completedAt) - new Date(a.completedAt)
       )[0];
 
+      if (latestAnalysis) {
+        // Extract contract data from the analysis
+        const targetContract = latestAnalysis.results.target.contract;
+        const contractData = typeof targetContract === 'string' 
+          ? {
+              address: targetContract,
+              chain: latestAnalysis.results.target.chain,
+              name: latestAnalysis.results.target.fullReport?.metadata?.contractName || 'Unknown Contract'
+            }
+          : targetContract;
+
+        return {
+          contractData,
+          analysisData: latestAnalysis,
+          hasRecentAnalysis: true,
+          lastAnalyzed: latestAnalysis.completedAt
+        };
+      }
+
       return {
-        contractData: latestAnalysis?.results?.target?.contract || {
+        contractData: {
           address: contractAddress,
           chain: contractChain,
           name: 'Unknown Contract'
         },
-        analysisData: latestAnalysis || null,
-        hasRecentAnalysis: !!latestAnalysis,
-        lastAnalyzed: latestAnalysis?.completedAt || null
+        analysisData: null,
+        hasRecentAnalysis: false,
+        lastAnalyzed: null
       };
     } catch (error) {
       console.error('Error getting contract context:', error);

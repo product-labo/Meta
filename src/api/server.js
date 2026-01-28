@@ -18,6 +18,7 @@ import contractRoutes from './routes/contracts.js';
 import analysisRoutes from './routes/analysis.js';
 import userRoutes from './routes/users.js';
 import chatRoutes from './routes/chat.js';
+import onboardingRoutes from './routes/onboarding.js';
 
 // Import middleware
 import { authenticateToken } from './middleware/auth.js';
@@ -92,7 +93,8 @@ app.get('/', (req, res) => {
       contracts: '/api/contracts',
       analysis: '/api/analysis',
       users: '/api/users',
-      chat: '/api/chat'
+      chat: '/api/chat',
+      onboarding: '/api/onboarding'
     }
   });
 });
@@ -103,6 +105,7 @@ app.use('/api/contracts', authenticateToken, contractRoutes);
 app.use('/api/analysis', authenticateToken, analysisRoutes); // analysisLimiter temporarily disabled for testing
 app.use('/api/users', authenticateToken, userRoutes);
 app.use('/api/chat', authenticateToken, chatRoutes);
+app.use('/api/onboarding', authenticateToken, onboardingRoutes);
 
 // Serve OpenAPI documentation
 app.use('/api-docs', express.static(join(__dirname, 'docs')));

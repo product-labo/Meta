@@ -8,6 +8,7 @@ import { UserBehaviorAnalyzer } from './services/UserBehaviorAnalyzer.js';
 import { SmartContractFetcher } from './services/SmartContractFetcher.js';
 import { ChainNormalizer } from './services/ChainNormalizer.js';
 import { ReportGenerator } from './services/ReportGenerator.js';
+import { priceService } from './services/PriceService.js';
 
 export class AnalyticsEngine {
   constructor(config = {}) {
@@ -83,7 +84,7 @@ export class AnalyticsEngine {
       const locks = this.extractLocks(normalizedTxs);
       
       // Gas analysis
-      const gasAnalysis = this.analyzeGas(normalizedTxs);
+      const gasAnalysis = await this.analyzeGas(normalizedTxs, chain);
       
       // Generate recommendations and alerts
       const recommendations = this.generateRecommendations(defiMetrics, userBehavior);
@@ -402,12 +403,14 @@ export class AnalyticsEngine {
    * Analyze gas usage patterns
    * @private
    */
-  analyzeGas(transactions) {
+  async analyzeGas(transactions, chain = 'ethereum') {
     if (transactions.length === 0) {
       return {
         averageGasPrice: '0',
         averageGasUsed: 0,
         totalGasCost: 0,
+        totalGasCostUSD: 0,
+        averageGasCostUSD: 0,
         gasEfficiencyScore: 0,
         failedTransactions: 0,
         failureRate: 0,
@@ -425,6 +428,17 @@ export class AnalyticsEngine {
     const totalGasCost = gasCosts.reduce((sum, g) => sum + g, 0);
     const failureRate = (failedTxs.length / transactions.length) * 100;
     
+    // Convert gas costs to USD
+    let totalGasCostUSD = 0;
+    let averageGasCostUSD = 0;
+    
+    try {
+      totalGasCostUSD = await priceService.ethToUSD(totalGasCost, chain);
+      averageGasCostUSD = transactions.length > 0 ? totalGasCostUSD / transactions.length : 0;
+    } catch (error) {
+      console.warn('Failed to convert gas costs to USD:', error.message);
+    }
+    
     // Calculate efficiency score based on gas usage patterns
     const gasVariance = gasUsed.reduce((sum, g) => sum + Math.pow(g - avgGasUsed, 2), 0) / gasUsed.length;
     const gasConsistency = 1 - (Math.sqrt(gasVariance) / avgGasUsed);
@@ -441,6 +455,8 @@ export class AnalyticsEngine {
       averageGasPrice: avgGasPrice.toString(),
       averageGasUsed: Math.round(avgGasUsed),
       totalGasCost: Math.round(totalGasCost * 1000000) / 1000000,
+      totalGasCostUSD: Math.round(totalGasCostUSD * 100) / 100,
+      averageGasCostUSD: Math.round(averageGasCostUSD * 100) / 100,
       gasEfficiencyScore: Math.round(gasEfficiencyScore * 100) / 100,
       failedTransactions: failedTxs.length,
       failureRate: Math.round(failureRate * 100) / 100,

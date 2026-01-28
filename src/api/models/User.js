@@ -72,6 +72,33 @@ const userSchema = new mongoose.Schema({
     type: Date,
     default: null
   },
+  // Onboarding data
+  onboarding: {
+    completed: { type: Boolean, default: false },
+    socialLinks: {
+      website: { type: String, default: null },
+      twitter: { type: String, default: null },
+      discord: { type: String, default: null },
+      telegram: { type: String, default: null }
+    },
+    logo: { type: String, default: null },
+    defaultContract: {
+      address: { type: String, default: null },
+      chain: { type: String, default: null },
+      abi: { type: String, default: null },
+      name: { type: String, default: null },
+      purpose: { type: String, default: null },
+      category: { 
+        type: String, 
+        enum: ['defi', 'nft', 'gaming', 'dao', 'infrastructure', 'other'],
+        default: null 
+      },
+      startDate: { type: Date, default: null },
+      isIndexed: { type: Boolean, default: false },
+      indexingProgress: { type: Number, default: 0 },
+      lastAnalysisId: { type: String, default: null }
+    }
+  },
   preferences: {
     notifications: {
       email: { type: Boolean, default: true },

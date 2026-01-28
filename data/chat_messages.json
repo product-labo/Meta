@@ -33,7 +33,7 @@
     "id": "743f5b7e-6049-4342-96b9-6fa77521b10c",
     "sessionId": "291259e1-75e7-4a17-8a07-c57a053d4c1e",
     "role": "assistant",
-    "content": "I encountered an error processing your message: {\"error\":{\"code\":429,\"message\":\"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash-exp\\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash-exp\\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash-exp\\nPlease retry in 43.933656778s.\",\"status\":\"RESOURCE_EXHAUSTED\",\"details\":[{\"@type\":\"type.googleapis.com/google.rpc.Help\",\"links\":[{\"description\":\"Learn more about Gemini API quotas\",\"url\":\"https://ai.google.dev/gemini-api/docs/rate-limits\"}]},{\"@type\":\"type.googleapis.com/google.rpc.QuotaFailure\",\"violations\":[{\"quotaMetric\":\"generativelanguage.googleapis.com/generate_content_free_tier_requests\",\"quotaId\":\"GenerateRequestsPerDayPerProjectPerModel-FreeTier\",\"quotaDimensions\":{\"location\":\"global\",\"model\":\"gemini-2.0-flash-exp\"}},{\"quotaMetric\":\"generativelanguage.googleapis.com/generate_content_free_tier_requests\",\"quotaId\":\"GenerateRequestsPerMinutePerProjectPerModel-FreeTier\",\"quotaDimensions\":{\"location\":\"global\",\"model\":\"gemini-2.0-flash-exp\"}},{\"quotaMetric\":\"generativelanguage.googleapis.com/generate_content_free_tier_input_token_count\",\"quotaId\":\"GenerateContentInputTokensPerModelPerMinute-FreeTier\",\"quotaDimensions\":{\"location\":\"global\",\"model\":\"gemini-2.0-flash-exp\"}}]},{\"@type\":\"type.googleapis.com/google.rpc.RetryInfo\",\"retryDelay\":\"43s\"}]}}. Please try again or rephrase your question.",
+    "content": "I encountered an error processing your message: {\"error\":{\"code\":429,\"message\":\"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.5-flash-lite\\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.5-flash-lite\\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.5-flash-lite\\nPlease retry in 43.933656778s.\",\"status\":\"RESOURCE_EXHAUSTED\",\"details\":[{\"@type\":\"type.googleapis.com/google.rpc.Help\",\"links\":[{\"description\":\"Learn more about Gemini API quotas\",\"url\":\"https://ai.google.dev/gemini-api/docs/rate-limits\"}]},{\"@type\":\"type.googleapis.com/google.rpc.QuotaFailure\",\"violations\":[{\"quotaMetric\":\"generativelanguage.googleapis.com/generate_content_free_tier_requests\",\"quotaId\":\"GenerateRequestsPerDayPerProjectPerModel-FreeTier\",\"quotaDimensions\":{\"location\":\"global\",\"model\":\"gemini-2.5-flash-lite\"}},{\"quotaMetric\":\"generativelanguage.googleapis.com/generate_content_free_tier_requests\",\"quotaId\":\"GenerateRequestsPerMinutePerProjectPerModel-FreeTier\",\"quotaDimensions\":{\"location\":\"global\",\"model\":\"gemini-2.5-flash-lite\"}},{\"quotaMetric\":\"generativelanguage.googleapis.com/generate_content_free_tier_input_token_count\",\"quotaId\":\"GenerateContentInputTokensPerModelPerMinute-FreeTier\",\"quotaDimensions\":{\"location\":\"global\",\"model\":\"gemini-2.5-flash-lite\"}}]},{\"@type\":\"type.googleapis.com/google.rpc.RetryInfo\",\"retryDelay\":\"43s\"}]}}. Please try again or rephrase your question.",
     "components": [
       {
         "type": "alert",
@@ -76,7 +76,7 @@
     "id": "86124529-895e-4663-a8a7-b30e5649344c",
     "sessionId": "2ead2c58-c7cd-4c80-8d0c-37fe3ef5f61e",
     "role": "assistant",
-    "content": "I encountered an error processing your message: {\"error\":{\"code\":429,\"message\":\"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash-exp\\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash-exp\\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash-exp\\nPlease retry in 33.206954846s.\",\"status\":\"RESOURCE_EXHAUSTED\",\"details\":[{\"@type\":\"type.googleapis.com/google.rpc.Help\",\"links\":[{\"description\":\"Learn more about Gemini API quotas\",\"url\":\"https://ai.google.dev/gemini-api/docs/rate-limits\"}]},{\"@type\":\"type.googleapis.com/google.rpc.QuotaFailure\",\"violations\":[{\"quotaMetric\":\"generativelanguage.googleapis.com/generate_content_free_tier_input_token_count\",\"quotaId\":\"GenerateContentInputTokensPerModelPerMinute-FreeTier\",\"quotaDimensions\":{\"location\":\"global\",\"model\":\"gemini-2.0-flash-exp\"}},{\"quotaMetric\":\"generativelanguage.googleapis.com/generate_content_free_tier_requests\",\"quotaId\":\"GenerateRequestsPerMinutePerProjectPerModel-FreeTier\",\"quotaDimensions\":{\"location\":\"global\",\"model\":\"gemini-2.0-flash-exp\"}},{\"quotaMetric\":\"generativelanguage.googleapis.com/generate_content_free_tier_requests\",\"quotaId\":\"GenerateRequestsPerDayPerProjectPerModel-FreeTier\",\"quotaDimensions\":{\"location\":\"global\",\"model\":\"gemini-2.0-flash-exp\"}}]},{\"@type\":\"type.googleapis.com/google.rpc.RetryInfo\",\"retryDelay\":\"33s\"}]}}. Please try again or rephrase your question.",
+    "content": "I encountered an error processing your message: {\"error\":{\"code\":429,\"message\":\"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.5-flash-lite\\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.5-flash-lite\\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.5-flash-lite\\nPlease retry in 33.206954846s.\",\"status\":\"RESOURCE_EXHAUSTED\",\"details\":[{\"@type\":\"type.googleapis.com/google.rpc.Help\",\"links\":[{\"description\":\"Learn more about Gemini API quotas\",\"url\":\"https://ai.google.dev/gemini-api/docs/rate-limits\"}]},{\"@type\":\"type.googleapis.com/google.rpc.QuotaFailure\",\"violations\":[{\"quotaMetric\":\"generativelanguage.googleapis.com/generate_content_free_tier_input_token_count\",\"quotaId\":\"GenerateContentInputTokensPerModelPerMinute-FreeTier\",\"quotaDimensions\":{\"location\":\"global\",\"model\":\"gemini-2.5-flash-lite\"}},{\"quotaMetric\":\"generativelanguage.googleapis.com/generate_content_free_tier_requests\",\"quotaId\":\"GenerateRequestsPerMinutePerProjectPerModel-FreeTier\",\"quotaDimensions\":{\"location\":\"global\",\"model\":\"gemini-2.5-flash-lite\"}},{\"quotaMetric\":\"generativelanguage.googleapis.com/generate_content_free_tier_requests\",\"quotaId\":\"GenerateRequestsPerDayPerProjectPerModel-FreeTier\",\"quotaDimensions\":{\"location\":\"global\",\"model\":\"gemini-2.5-flash-lite\"}}]},{\"@type\":\"type.googleapis.com/google.rpc.RetryInfo\",\"retryDelay\":\"33s\"}]}}. Please try again or rephrase your question.",
     "components": [
       {
         "type": "alert",
@@ -119,7 +119,7 @@
     "id": "02c61f7e-77ea-4ea9-89f5-a68f5989c62c",
     "sessionId": "aaa5c343-bacd-4d20-944a-3aba08e74a3e",
     "role": "assistant",
-    "content": "I encountered an error processing your message: {\"error\":{\"code\":429,\"message\":\"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash-exp\\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash-exp\\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash-exp\\nPlease retry in 49.251127332s.\",\"status\":\"RESOURCE_EXHAUSTED\",\"details\":[{\"@type\":\"type.googleapis.com/google.rpc.Help\",\"links\":[{\"description\":\"Learn more about Gemini API quotas\",\"url\":\"https://ai.google.dev/gemini-api/docs/rate-limits\"}]},{\"@type\":\"type.googleapis.com/google.rpc.QuotaFailure\",\"violations\":[{\"quotaMetric\":\"generativelanguage.googleapis.com/generate_content_free_tier_input_token_count\",\"quotaId\":\"GenerateContentInputTokensPerModelPerMinute-FreeTier\",\"quotaDimensions\":{\"location\":\"global\",\"model\":\"gemini-2.0-flash-exp\"}},{\"quotaMetric\":\"generativelanguage.googleapis.com/generate_content_free_tier_requests\",\"quotaId\":\"GenerateRequestsPerMinutePerProjectPerModel-FreeTier\",\"quotaDimensions\":{\"location\":\"global\",\"model\":\"gemini-2.0-flash-exp\"}},{\"quotaMetric\":\"generativelanguage.googleapis.com/generate_content_free_tier_requests\",\"quotaId\":\"GenerateRequestsPerDayPerProjectPerModel-FreeTier\",\"quotaDimensions\":{\"location\":\"global\",\"model\":\"gemini-2.0-flash-exp\"}}]},{\"@type\":\"type.googleapis.com/google.rpc.RetryInfo\",\"retryDelay\":\"49s\"}]}}. Please try again or rephrase your question.",
+    "content": "I encountered an error processing your message: {\"error\":{\"code\":429,\"message\":\"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.5-flash-lite\\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.5-flash-lite\\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.5-flash-lite\\nPlease retry in 49.251127332s.\",\"status\":\"RESOURCE_EXHAUSTED\",\"details\":[{\"@type\":\"type.googleapis.com/google.rpc.Help\",\"links\":[{\"description\":\"Learn more about Gemini API quotas\",\"url\":\"https://ai.google.dev/gemini-api/docs/rate-limits\"}]},{\"@type\":\"type.googleapis.com/google.rpc.QuotaFailure\",\"violations\":[{\"quotaMetric\":\"generativelanguage.googleapis.com/generate_content_free_tier_input_token_count\",\"quotaId\":\"GenerateContentInputTokensPerModelPerMinute-FreeTier\",\"quotaDimensions\":{\"location\":\"global\",\"model\":\"gemini-2.5-flash-lite\"}},{\"quotaMetric\":\"generativelanguage.googleapis.com/generate_content_free_tier_requests\",\"quotaId\":\"GenerateRequestsPerMinutePerProjectPerModel-FreeTier\",\"quotaDimensions\":{\"location\":\"global\",\"model\":\"gemini-2.5-flash-lite\"}},{\"quotaMetric\":\"generativelanguage.googleapis.com/generate_content_free_tier_requests\",\"quotaId\":\"GenerateRequestsPerDayPerProjectPerModel-FreeTier\",\"quotaDimensions\":{\"location\":\"global\",\"model\":\"gemini-2.5-flash-lite\"}}]},{\"@type\":\"type.googleapis.com/google.rpc.RetryInfo\",\"retryDelay\":\"49s\"}]}}. Please try again or rephrase your question.",
     "components": [
       {
         "type": "alert",
@@ -152,7 +152,7 @@
     "id": "c6854f7f-fb23-4da8-a0ff-adc40ca5cae3",
     "sessionId": "aaa5c343-bacd-4d20-944a-3aba08e74a3e",
     "role": "assistant",
-    "content": "I encountered an error processing your message: {\"error\":{\"code\":429,\"message\":\"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash-exp\\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash-exp\\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash-exp\\nPlease retry in 25.041180463s.\",\"status\":\"RESOURCE_EXHAUSTED\",\"details\":[{\"@type\":\"type.googleapis.com/google.rpc.Help\",\"links\":[{\"description\":\"Learn more about Gemini API quotas\",\"url\":\"https://ai.google.dev/gemini-api/docs/rate-limits\"}]},{\"@type\":\"type.googleapis.com/google.rpc.QuotaFailure\",\"violations\":[{\"quotaMetric\":\"generativelanguage.googleapis.com/generate_content_free_tier_requests\",\"quotaId\":\"GenerateRequestsPerDayPerProjectPerModel-FreeTier\",\"quotaDimensions\":{\"location\":\"global\",\"model\":\"gemini-2.0-flash-exp\"}},{\"quotaMetric\":\"generativelanguage.googleapis.com/generate_content_free_tier_requests\",\"quotaId\":\"GenerateRequestsPerMinutePerProjectPerModel-FreeTier\",\"quotaDimensions\":{\"model\":\"gemini-2.0-flash-exp\",\"location\":\"global\"}},{\"quotaMetric\":\"generativelanguage.googleapis.com/generate_content_free_tier_input_token_count\",\"quotaId\":\"GenerateContentInputTokensPerModelPerMinute-FreeTier\",\"quotaDimensions\":{\"location\":\"global\",\"model\":\"gemini-2.0-flash-exp\"}}]},{\"@type\":\"type.googleapis.com/google.rpc.RetryInfo\",\"retryDelay\":\"25s\"}]}}. Please try again or rephrase your question.",
+    "content": "I encountered an error processing your message: {\"error\":{\"code\":429,\"message\":\"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.5-flash-lite\\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.5-flash-lite\\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.5-flash-lite\\nPlease retry in 25.041180463s.\",\"status\":\"RESOURCE_EXHAUSTED\",\"details\":[{\"@type\":\"type.googleapis.com/google.rpc.Help\",\"links\":[{\"description\":\"Learn more about Gemini API quotas\",\"url\":\"https://ai.google.dev/gemini-api/docs/rate-limits\"}]},{\"@type\":\"type.googleapis.com/google.rpc.QuotaFailure\",\"violations\":[{\"quotaMetric\":\"generativelanguage.googleapis.com/generate_content_free_tier_requests\",\"quotaId\":\"GenerateRequestsPerDayPerProjectPerModel-FreeTier\",\"quotaDimensions\":{\"location\":\"global\",\"model\":\"gemini-2.5-flash-lite\"}},{\"quotaMetric\":\"generativelanguage.googleapis.com/generate_content_free_tier_requests\",\"quotaId\":\"GenerateRequestsPerMinutePerProjectPerModel-FreeTier\",\"quotaDimensions\":{\"model\":\"gemini-2.5-flash-lite\",\"location\":\"global\"}},{\"quotaMetric\":\"generativelanguage.googleapis.com/generate_content_free_tier_input_token_count\",\"quotaId\":\"GenerateContentInputTokensPerModelPerMinute-FreeTier\",\"quotaDimensions\":{\"location\":\"global\",\"model\":\"gemini-2.5-flash-lite\"}}]},{\"@type\":\"type.googleapis.com/google.rpc.RetryInfo\",\"retryDelay\":\"25s\"}]}}. Please try again or rephrase your question.",
     "components": [
       {
         "type": "alert",
@@ -185,7 +185,7 @@
     "id": "3444b072-286d-4ae1-b7c2-581ec66ca52e",
     "sessionId": "aaa5c343-bacd-4d20-944a-3aba08e74a3e",
     "role": "assistant",
-    "content": "I encountered an error processing your message: {\"error\":{\"code\":429,\"message\":\"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash-exp\\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash-exp\\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash-exp\\nPlease retry in 56.247567853s.\",\"status\":\"RESOURCE_EXHAUSTED\",\"details\":[{\"@type\":\"type.googleapis.com/google.rpc.Help\",\"links\":[{\"description\":\"Learn more about Gemini API quotas\",\"url\":\"https://ai.google.dev/gemini-api/docs/rate-limits\"}]},{\"@type\":\"type.googleapis.com/google.rpc.QuotaFailure\",\"violations\":[{\"quotaMetric\":\"generativelanguage.googleapis.com/generate_content_free_tier_requests\",\"quotaId\":\"GenerateRequestsPerDayPerProjectPerModel-FreeTier\",\"quotaDimensions\":{\"model\":\"gemini-2.0-flash-exp\",\"location\":\"global\"}},{\"quotaMetric\":\"generativelanguage.googleapis.com/generate_content_free_tier_requests\",\"quotaId\":\"GenerateRequestsPerMinutePerProjectPerModel-FreeTier\",\"quotaDimensions\":{\"location\":\"global\",\"model\":\"gemini-2.0-flash-exp\"}},{\"quotaMetric\":\"generativelanguage.googleapis.com/generate_content_free_tier_input_token_count\",\"quotaId\":\"GenerateContentInputTokensPerModelPerMinute-FreeTier\",\"quotaDimensions\":{\"location\":\"global\",\"model\":\"gemini-2.0-flash-exp\"}}]},{\"@type\":\"type.googleapis.com/google.rpc.RetryInfo\",\"retryDelay\":\"56s\"}]}}. Please try again or rephrase your question.",
+    "content": "I encountered an error processing your message: {\"error\":{\"code\":429,\"message\":\"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.5-flash-lite\\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.5-flash-lite\\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.5-flash-lite\\nPlease retry in 56.247567853s.\",\"status\":\"RESOURCE_EXHAUSTED\",\"details\":[{\"@type\":\"type.googleapis.com/google.rpc.Help\",\"links\":[{\"description\":\"Learn more about Gemini API quotas\",\"url\":\"https://ai.google.dev/gemini-api/docs/rate-limits\"}]},{\"@type\":\"type.googleapis.com/google.rpc.QuotaFailure\",\"violations\":[{\"quotaMetric\":\"generativelanguage.googleapis.com/generate_content_free_tier_requests\",\"quotaId\":\"GenerateRequestsPerDayPerProjectPerModel-FreeTier\",\"quotaDimensions\":{\"model\":\"gemini-2.5-flash-lite\",\"location\":\"global\"}},{\"quotaMetric\":\"generativelanguage.googleapis.com/generate_content_free_tier_requests\",\"quotaId\":\"GenerateRequestsPerMinutePerProjectPerModel-FreeTier\",\"quotaDimensions\":{\"location\":\"global\",\"model\":\"gemini-2.5-flash-lite\"}},{\"quotaMetric\":\"generativelanguage.googleapis.com/generate_content_free_tier_input_token_count\",\"quotaId\":\"GenerateContentInputTokensPerModelPerMinute-FreeTier\",\"quotaDimensions\":{\"location\":\"global\",\"model\":\"gemini-2.5-flash-lite\"}}]},{\"@type\":\"type.googleapis.com/google.rpc.RetryInfo\",\"retryDelay\":\"56s\"}]}}. Please try again or rephrase your question.",
     "components": [
       {
         "type": "alert",
@@ -218,7 +218,7 @@
     "id": "7a7d733c-c33e-4414-821f-5806db2ec4ce",
     "sessionId": "aaa5c343-bacd-4d20-944a-3aba08e74a3e",
     "role": "assistant",
-    "content": "I encountered an error processing your message: {\"error\":{\"code\":429,\"message\":\"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash-exp\\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash-exp\\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash-exp\\nPlease retry in 40.559327993s.\",\"status\":\"RESOURCE_EXHAUSTED\",\"details\":[{\"@type\":\"type.googleapis.com/google.rpc.Help\",\"links\":[{\"description\":\"Learn more about Gemini API quotas\",\"url\":\"https://ai.google.dev/gemini-api/docs/rate-limits\"}]},{\"@type\":\"type.googleapis.com/google.rpc.QuotaFailure\",\"violations\":[{\"quotaMetric\":\"generativelanguage.googleapis.com/generate_content_free_tier_requests\",\"quotaId\":\"GenerateRequestsPerDayPerProjectPerModel-FreeTier\",\"quotaDimensions\":{\"location\":\"global\",\"model\":\"gemini-2.0-flash-exp\"}},{\"quotaMetric\":\"generativelanguage.googleapis.com/generate_content_free_tier_requests\",\"quotaId\":\"GenerateRequestsPerMinutePerProjectPerModel-FreeTier\",\"quotaDimensions\":{\"model\":\"gemini-2.0-flash-exp\",\"location\":\"global\"}},{\"quotaMetric\":\"generativelanguage.googleapis.com/generate_content_free_tier_input_token_count\",\"quotaId\":\"GenerateContentInputTokensPerModelPerMinute-FreeTier\",\"quotaDimensions\":{\"location\":\"global\",\"model\":\"gemini-2.0-flash-exp\"}}]},{\"@type\":\"type.googleapis.com/google.rpc.RetryInfo\",\"retryDelay\":\"40s\"}]}}. Please try again or rephrase your question.",
+    "content": "I encountered an error processing your message: {\"error\":{\"code\":429,\"message\":\"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.5-flash-lite\\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.5-flash-lite\\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.5-flash-lite\\nPlease retry in 40.559327993s.\",\"status\":\"RESOURCE_EXHAUSTED\",\"details\":[{\"@type\":\"type.googleapis.com/google.rpc.Help\",\"links\":[{\"description\":\"Learn more about Gemini API quotas\",\"url\":\"https://ai.google.dev/gemini-api/docs/rate-limits\"}]},{\"@type\":\"type.googleapis.com/google.rpc.QuotaFailure\",\"violations\":[{\"quotaMetric\":\"generativelanguage.googleapis.com/generate_content_free_tier_requests\",\"quotaId\":\"GenerateRequestsPerDayPerProjectPerModel-FreeTier\",\"quotaDimensions\":{\"location\":\"global\",\"model\":\"gemini-2.5-flash-lite\"}},{\"quotaMetric\":\"generativelanguage.googleapis.com/generate_content_free_tier_requests\",\"quotaId\":\"GenerateRequestsPerMinutePerProjectPerModel-FreeTier\",\"quotaDimensions\":{\"model\":\"gemini-2.5-flash-lite\",\"location\":\"global\"}},{\"quotaMetric\":\"generativelanguage.googleapis.com/generate_content_free_tier_input_token_count\",\"quotaId\":\"GenerateContentInputTokensPerModelPerMinute-FreeTier\",\"quotaDimensions\":{\"location\":\"global\",\"model\":\"gemini-2.5-flash-lite\"}}]},{\"@type\":\"type.googleapis.com/google.rpc.RetryInfo\",\"retryDelay\":\"40s\"}]}}. Please try again or rephrase your question.",
     "components": [
       {
         "type": "alert",
@@ -261,7 +261,7 @@
     "id": "b869f7db-ef3b-4f1c-b62d-5c1521df28d8",
     "sessionId": "d89017de-c18e-4a59-9d7d-fb88700a25b1",
     "role": "assistant",
-    "content": "I encountered an error processing your message: {\"error\":{\"code\":429,\"message\":\"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash-exp\\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash-exp\\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash-exp\\nPlease retry in 52.987710811s.\",\"status\":\"RESOURCE_EXHAUSTED\",\"details\":[{\"@type\":\"type.googleapis.com/google.rpc.Help\",\"links\":[{\"description\":\"Learn more about Gemini API quotas\",\"url\":\"https://ai.google.dev/gemini-api/docs/rate-limits\"}]},{\"@type\":\"type.googleapis.com/google.rpc.QuotaFailure\",\"violations\":[{\"quotaMetric\":\"generativelanguage.googleapis.com/generate_content_free_tier_requests\",\"quotaId\":\"GenerateRequestsPerDayPerProjectPerModel-FreeTier\",\"quotaDimensions\":{\"model\":\"gemini-2.0-flash-exp\",\"location\":\"global\"}},{\"quotaMetric\":\"generativelanguage.googleapis.com/generate_content_free_tier_requests\",\"quotaId\":\"GenerateRequestsPerMinutePerProjectPerModel-FreeTier\",\"quotaDimensions\":{\"location\":\"global\",\"model\":\"gemini-2.0-flash-exp\"}},{\"quotaMetric\":\"generativelanguage.googleapis.com/generate_content_free_tier_input_token_count\",\"quotaId\":\"GenerateContentInputTokensPerModelPerMinute-FreeTier\",\"quotaDimensions\":{\"location\":\"global\",\"model\":\"gemini-2.0-flash-exp\"}}]},{\"@type\":\"type.googleapis.com/google.rpc.RetryInfo\",\"retryDelay\":\"52s\"}]}}. Please try again or rephrase your question.",
+    "content": "I encountered an error processing your message: {\"error\":{\"code\":429,\"message\":\"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.5-flash-lite\\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.5-flash-lite\\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.5-flash-lite\\nPlease retry in 52.987710811s.\",\"status\":\"RESOURCE_EXHAUSTED\",\"details\":[{\"@type\":\"type.googleapis.com/google.rpc.Help\",\"links\":[{\"description\":\"Learn more about Gemini API quotas\",\"url\":\"https://ai.google.dev/gemini-api/docs/rate-limits\"}]},{\"@type\":\"type.googleapis.com/google.rpc.QuotaFailure\",\"violations\":[{\"quotaMetric\":\"generativelanguage.googleapis.com/generate_content_free_tier_requests\",\"quotaId\":\"GenerateRequestsPerDayPerProjectPerModel-FreeTier\",\"quotaDimensions\":{\"model\":\"gemini-2.5-flash-lite\",\"location\":\"global\"}},{\"quotaMetric\":\"generativelanguage.googleapis.com/generate_content_free_tier_requests\",\"quotaId\":\"GenerateRequestsPerMinutePerProjectPerModel-FreeTier\",\"quotaDimensions\":{\"location\":\"global\",\"model\":\"gemini-2.5-flash-lite\"}},{\"quotaMetric\":\"generativelanguage.googleapis.com/generate_content_free_tier_input_token_count\",\"quotaId\":\"GenerateContentInputTokensPerModelPerMinute-FreeTier\",\"quotaDimensions\":{\"location\":\"global\",\"model\":\"gemini-2.5-flash-lite\"}}]},{\"@type\":\"type.googleapis.com/google.rpc.RetryInfo\",\"retryDelay\":\"52s\"}]}}. Please try again or rephrase your question.",
     "components": [
       {
         "type": "alert",
@@ -501,5 +501,967 @@
     },
     "isStreaming": false,
     "createdAt": "2026-01-26T11:16:46.250Z"
+  },
+  {
+    "id": "72be3cc2-2839-4c39-96e0-e74a56de1f40",
+    "sessionId": "e62071e4-7fc8-4731-aac5-44f538a693e0",
+    "role": "assistant",
+    "content": "Hello! I'm your AI assistant for analyzing the contract 0x05D032ac25d322df992303dCa074EE7392C117b9 on lisk. What would you like to know?",
+    "components": [],
+    "metadata": {},
+    "isStreaming": false,
+    "createdAt": "2026-01-28T15:15:26.473Z"
+  },
+  {
+    "id": "4ae79221-28cb-463b-8691-ffd25e2fe6ee",
+    "sessionId": "e62071e4-7fc8-4731-aac5-44f538a693e0",
+    "role": "user",
+    "content": "What's the overall performance of this contract?",
+    "components": [],
+    "metadata": {},
+    "isStreaming": false,
+    "createdAt": "2026-01-28T15:15:31.424Z"
+  },
+  {
+    "id": "344c1ac7-b191-46a4-bdd7-ad9c2a6eaa13",
+    "sessionId": "e62071e4-7fc8-4731-aac5-44f538a693e0",
+    "role": "assistant",
+    "content": "I encountered an error processing your message: {\"error\":{\"code\":404,\"message\":\"models/gemini-2.5-flash-lite is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.\",\"status\":\"NOT_FOUND\"}}. Please try again or rephrase your question.",
+    "components": [
+      {
+        "type": "alert",
+        "data": {
+          "severity": "error",
+          "title": "Processing Error",
+          "message": "There was an issue processing your request. Please try again.",
+          "actionable": true
+        }
+      }
+    ],
+    "metadata": {
+      "fallback": true,
+      "reason": "processing_error",
+      "processingTime": 1769613332559
+    },
+    "isStreaming": false,
+    "createdAt": "2026-01-28T15:15:32.560Z"
+  },
+  {
+    "id": "a36b0835-5737-4213-b8f8-78bb069a57bf",
+    "sessionId": "e62071e4-7fc8-4731-aac5-44f538a693e0",
+    "role": "user",
+    "content": "What's the overall performance of this contract?",
+    "components": [],
+    "metadata": {},
+    "isStreaming": false,
+    "createdAt": "2026-01-28T15:16:54.587Z"
+  },
+  {
+    "id": "10f7509f-cf7f-4122-906b-362c8d5d6174",
+    "sessionId": "e62071e4-7fc8-4731-aac5-44f538a693e0",
+    "role": "assistant",
+    "content": "I encountered an error processing your message: {\"error\":{\"code\":404,\"message\":\"models/gemini-2.0-flash-exp is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.\",\"status\":\"NOT_FOUND\"}}. Please try again or rephrase your question.",
+    "components": [
+      {
+        "type": "alert",
+        "data": {
+          "severity": "error",
+          "title": "Processing Error",
+          "message": "There was an issue processing your request. Please try again.",
+          "actionable": true
+        }
+      }
+    ],
+    "metadata": {
+      "fallback": true,
+      "reason": "processing_error",
+      "processingTime": 1769613416015
+    },
+    "isStreaming": false,
+    "createdAt": "2026-01-28T15:16:56.016Z"
+  },
+  {
+    "id": "f910a1ca-8968-4bd1-8fb0-ff4a6a833552",
+    "sessionId": "e62071e4-7fc8-4731-aac5-44f538a693e0",
+    "role": "user",
+    "content": "Show me the transaction volume trends",
+    "components": [],
+    "metadata": {},
+    "isStreaming": false,
+    "createdAt": "2026-01-28T15:50:07.065Z"
+  },
+  {
+    "id": "9e8d580b-0fd3-4869-86f1-1c715f3d552c",
+    "sessionId": "e62071e4-7fc8-4731-aac5-44f538a693e0",
+    "role": "assistant",
+    "content": "I encountered an error processing your message: {\"error\":{\"code\":404,\"message\":\"models/gemini-2.0-flash-exp is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.\",\"status\":\"NOT_FOUND\"}}. Please try again or rephrase your question.",
+    "components": [
+      {
+        "type": "alert",
+        "data": {
+          "severity": "error",
+          "title": "Processing Error",
+          "message": "There was an issue processing your request. Please try again.",
+          "actionable": true
+        }
+      }
+    ],
+    "metadata": {
+      "fallback": true,
+      "reason": "processing_error",
+      "processingTime": 1769615408140
+    },
+    "isStreaming": false,
+    "createdAt": "2026-01-28T15:50:08.141Z"
+  },
+  {
+    "id": "8334bbee-70ce-489f-8567-7144c6c65e01",
+    "sessionId": "e62071e4-7fc8-4731-aac5-44f538a693e0",
+    "role": "user",
+    "content": "What's the overall performance of this contract?",
+    "components": [],
+    "metadata": {},
+    "isStreaming": false,
+    "createdAt": "2026-01-28T16:24:03.477Z"
+  },
+  {
+    "id": "022ef20e-d93a-448b-be0c-709fc49bcf81",
+    "sessionId": "e62071e4-7fc8-4731-aac5-44f538a693e0",
+    "role": "assistant",
+    "content": "I'm sorry, but I don't have enough data to provide a comprehensive performance analysis for contract 0x05d032ac25d322df992303dca074ee7392c117b9 on Lisk at this moment. The available data indicates there have been 0 transactions and no identified competitors. To offer insights into its performance, I would need access to transaction history, user activity, and potentially comparisons with similar contracts.",
+    "components": [
+      {
+        "type": "text",
+        "data": {
+          "text": "To get a better understanding of this contract's performance, we would need to look at metrics such as transaction volume over time, the number of active users, gas fees, and potentially its role within the Lisk ecosystem. Without this data, it's difficult to assess its current state or potential."
+        }
+      },
+      {
+        "type": "alert",
+        "data": {
+          "severity": "info",
+          "title": "Limited Data Available",
+          "message": "Currently, there is no transaction data or competitor information available for contract 0x05d032ac25d322df992303dca074ee7392c117b9 on Lisk. Further analysis requires more on-chain data.",
+          "actionable": false
+        }
+      }
+    ],
+    "metadata": {
+      "model": "gemini-2.5-flash-lite",
+      "processingTime": 1769617446350,
+      "tokens": null
+    },
+    "isStreaming": false,
+    "createdAt": "2026-01-28T16:24:06.353Z"
+  },
+  {
+    "id": "22571a65-dec8-4dcc-aa96-045ce91d6ad5",
+    "sessionId": "e62071e4-7fc8-4731-aac5-44f538a693e0",
+    "role": "user",
+    "content": "What's the overall performance of this contract?",
+    "components": [],
+    "metadata": {},
+    "isStreaming": false,
+    "createdAt": "2026-01-28T16:36:13.468Z"
+  },
+  {
+    "id": "e1f4ab77-a04c-40eb-ae68-9fbb07692b37",
+    "sessionId": "e62071e4-7fc8-4731-aac5-44f538a693e0",
+    "role": "assistant",
+    "content": "I understand you're looking for the overall performance of contract 0x05d032ac25d322df992303dca074ee7392c117b9 on Lisk. Unfortunately, based on the data I have, this contract appears to be quite inactive. It shows 0 transactions and no identified competitors. Without any transaction history or engagement, it's impossible to assess its performance, security, user base, or competitive standing at this time. To gain insights, there would need to be some activity on the contract.",
+    "components": [
+      {
+        "type": "alert",
+        "data": {
+          "severity": "info",
+          "title": "Limited Contract Activity",
+          "message": "The contract 0x05d032ac25d322df992303dca074ee7392c117b9 on Lisk has recorded 0 transactions. Consequently, performance metrics, security analysis, and competitive positioning cannot be evaluated at this time.",
+          "actionable": false
+        }
+      }
+    ],
+    "metadata": {
+      "model": "gemini-2.5-flash-lite",
+      "processingTime": 1769618175858,
+      "tokens": null
+    },
+    "isStreaming": false,
+    "createdAt": "2026-01-28T16:36:15.859Z"
+  },
+  {
+    "id": "c15b5018-579f-4c8f-88df-4d84bc26ec9a",
+    "sessionId": "e62071e4-7fc8-4731-aac5-44f538a693e0",
+    "role": "user",
+    "content": "What's the overall performance of this contract?",
+    "components": [],
+    "metadata": {},
+    "isStreaming": false,
+    "createdAt": "2026-01-28T16:37:23.792Z"
+  },
+  {
+    "id": "a07e3d41-e3f2-488c-b516-30c58bed390b",
+    "sessionId": "e62071e4-7fc8-4731-aac5-44f538a693e0",
+    "role": "assistant",
+    "content": "Let's dive into the overall performance of the 'public Node' contract on Lisk. Based on the data from the last 24 hours, this contract has shown some interesting activity. It processed 96 transactions involving 39 unique users, with a total transaction value of approximately 0.00239 ETH. The contract operates with a 100% success rate for its transactions, which is a positive sign for stability. However, the gas efficiency is currently rated as 'Low', suggesting there might be opportunities for optimization within the smart contract's execution.",
+    "components": [
+      {
+        "type": "metric_card",
+        "data": {
+          "title": "Total Transactions",
+          "value": "96",
+          "unit": "count",
+          "change": null,
+          "trend": "neutral",
+          "description": "Total number of transactions processed by the contract in the last 24 hours."
+        }
+      },
+      {
+        "type": "metric_card",
+        "data": {
+          "title": "Unique Users",
+          "value": "39",
+          "unit": "count",
+          "change": null,
+          "trend": "neutral",
+          "description": "Number of distinct users interacting with the contract in the last 24 hours."
+        }
+      },
+      {
+        "type": "metric_card",
+        "data": {
+          "title": "Total Transaction Value",
+          "value": "0.00239",
+          "unit": "ETH",
+          "change": null,
+          "trend": "neutral",
+          "description": "The total value of all transactions processed by the contract in the last 24 hours."
+        }
+      },
+      {
+        "type": "metric_card",
+        "data": {
+          "title": "Gas Efficiency",
+          "value": "Low",
+          "unit": null,
+          "change": null,
+          "trend": "down",
+          "description": "Indicates the current efficiency of gas usage by the contract. 'Low' suggests potential for optimization."
+        }
+      },
+      {
+        "type": "insight_card",
+        "data": {
+          "title": "High Transaction Volume, Low Gas Efficiency",
+          "insight": "The contract is seeing a decent amount of user activity with 96 transactions and 39 unique users. However, the 'Low' gas efficiency suggests that the smart contract's operations might be consuming more gas than optimal, which could lead to higher transaction costs for users.",
+          "confidence": 90,
+          "category": "performance"
+        }
+      },
+      {
+        "type": "recommendation",
+        "data": {
+          "title": "Investigate Gas Optimization Opportunities",
+          "description": "The 'Low' gas efficiency indicates potential for cost savings. Developers should review the contract's functions for areas where gas consumption can be reduced, such as optimizing loops, storage usage, and computational operations.",
+          "priority": "medium",
+          "impact": "Reduced transaction fees for users, potentially increased contract adoption.",
+          "effort": "medium"
+        }
+      }
+    ],
+    "metadata": {
+      "model": "gemini-2.5-flash-lite",
+      "processingTime": 1769618249795,
+      "tokens": null
+    },
+    "isStreaming": false,
+    "createdAt": "2026-01-28T16:37:29.797Z"
+  },
+  {
+    "id": "744e3444-67c5-43cd-a6b3-b642e29804e8",
+    "sessionId": "e62071e4-7fc8-4731-aac5-44f538a693e0",
+    "role": "user",
+    "content": "Show me the transaction volume trends",
+    "components": [],
+    "metadata": {},
+    "isStreaming": false,
+    "createdAt": "2026-01-28T16:39:12.011Z"
+  },
+  {
+    "id": "790d1742-6653-40b2-8498-d62e49c098ba",
+    "sessionId": "e62071e4-7fc8-4731-aac5-44f538a693e0",
+    "role": "assistant",
+    "content": "Looking at the transaction volume trends for the 'public Node' contract on Lisk, we see a total volume of approximately 0.00239 ETH over the last 24 hours. While this might seem like a modest figure, it's important to consider it in the context of the contract's overall activity.",
+    "components": [
+      {
+        "type": "metric_card",
+        "data": {
+          "title": "Total Transaction Volume (24h)",
+          "value": "0.0023900178241232847",
+          "unit": "ETH",
+          "change": null,
+          "trend": "neutral",
+          "description": "The total value of transactions processed by the contract in the last 24 hours."
+        }
+      },
+      {
+        "type": "line",
+        "data": [
+          {
+            "label": "27433828",
+            "value": 0
+          },
+          {
+            "label": "27434275",
+            "value": 0
+          },
+          {
+            "label": "27434592",
+            "value": 0.001
+          },
+          {
+            "label": "27434608",
+            "value": 0
+          },
+          {
+            "label": "27434613",
+            "value": 0
+          },
+          {
+            "label": "27434621",
+            "value": 0
+          },
+          {
+            "label": "27434626",
+            "value": 0
+          },
+          {
+            "label": "27434635",
+            "value": 0
+          },
+          {
+            "label": "27434640",
+            "value": 0
+          },
+          {
+            "label": "27434649",
+            "value": 0
+          },
+          {
+            "label": "27434655",
+            "value": 0
+          },
+          {
+            "label": "27434663",
+            "value": 0
+          },
+          {
+            "label": "27434669",
+            "value": 0
+          },
+          {
+            "label": "27434678",
+            "value": 0
+          },
+          {
+            "label": "27434683",
+            "value": 0
+          },
+          {
+            "label": "27434690",
+            "value": 0
+          },
+          {
+            "label": "27434695",
+            "value": 0
+          },
+          {
+            "label": "27434703",
+            "value": 0
+          },
+          {
+            "label": "27434708",
+            "value": 0
+          },
+          {
+            "label": "27434719",
+            "value": 0
+          },
+          {
+            "label": "27434724",
+            "value": 0
+          },
+          {
+            "label": "27434732",
+            "value": 0
+          },
+          {
+            "label": "27434737",
+            "value": 0
+          },
+          {
+            "label": "27434745",
+            "value": 0
+          },
+          {
+            "label": "27434749",
+            "value": 0
+          },
+          {
+            "label": "27434756",
+            "value": 0
+          },
+          {
+            "label": "27434761",
+            "value": 0
+          },
+          {
+            "label": "27434768",
+            "value": 0
+          },
+          {
+            "label": "27434773",
+            "value": 0
+          },
+          {
+            "label": "27434780",
+            "value": 0
+          },
+          {
+            "label": "27434785",
+            "value": 0
+          },
+          {
+            "label": "27434906",
+            "value": 0
+          },
+          {
+            "label": "27435822",
+            "value": 0
+          },
+          {
+            "label": "27435836",
+            "value": 0
+          },
+          {
+            "label": "27436104",
+            "value": 0
+          },
+          {
+            "label": "27436105",
+            "value": 0
+          },
+          {
+            "label": "27436131",
+            "value": 0
+          },
+          {
+            "label": "27436332",
+            "value": 0
+          },
+          {
+            "label": "27436406",
+            "value": 0
+          },
+          {
+            "label": "27436605",
+            "value": 0
+          },
+          {
+            "label": "27436800",
+            "value": 0.000773961531810251
+          },
+          {
+            "label": "27436892",
+            "value": 0
+          },
+          {
+            "label": "27436897",
+            "value": 0
+          },
+          {
+            "label": "27436911",
+            "value": 0
+          },
+          {
+            "label": "27436927",
+            "value": 0.000316056292313034
+          },
+          {
+            "label": "27436929",
+            "value": 0
+          },
+          {
+            "label": "27437391",
+            "value": 0
+          },
+          {
+            "label": "27437481",
+            "value": 0
+          },
+          {
+            "label": "27437490",
+            "value": 0
+          },
+          {
+            "label": "27437492",
+            "value": 0
+          },
+          {
+            "label": "27437495",
+            "value": 0
+          },
+          {
+            "label": "27437641",
+            "value": 0
+          },
+          {
+            "label": "27437651",
+            "value": 0
+          },
+          {
+            "label": "27437851",
+            "value": 0
+          },
+          {
+            "label": "27437977",
+            "value": 0
+          },
+          {
+            "label": "27437992",
+            "value": 0.0003
+          },
+          {
+            "label": "27438277",
+            "value": 0
+          },
+          {
+            "label": "27438597",
+            "value": 0
+          },
+          {
+            "label": "27438683",
+            "value": 0
+          },
+          {
+            "label": "27438689",
+            "value": 0
+          },
+          {
+            "label": "27438879",
+            "value": 0
+          },
+          {
+            "label": "27438952",
+            "value": 0
+          },
+          {
+            "label": "27439071",
+            "value": 0
+          },
+          {
+            "label": "27439120",
+            "value": 0
+          },
+          {
+            "label": "27439188",
+            "value": 0
+          },
+          {
+            "label": "27439304",
+            "value": 0
+          },
+          {
+            "label": "27439429",
+            "value": 0
+          },
+          {
+            "label": "27439489",
+            "value": 0
+          },
+          {
+            "label": "27439614",
+            "value": 0
+          },
+          {
+            "label": "27439616",
+            "value": 0
+          },
+          {
+            "label": "27439651",
+            "value": 0
+          },
+          {
+            "label": "27439835",
+            "value": 0
+          },
+          {
+            "label": "27439870",
+            "value": 0
+          },
+          {
+            "label": "27439925",
+            "value": 0
+          },
+          {
+            "label": "27440043",
+            "value": 0
+          },
+          {
+            "label": "27440512",
+            "value": 0
+          },
+          {
+            "label": "27440681",
+            "value": 0
+          },
+          {
+            "label": "27440746",
+            "value": 0
+          },
+          {
+            "label": "27440960",
+            "value": 0
+          },
+          {
+            "label": "27441033",
+            "value": 0
+          },
+          {
+            "label": "27441597",
+            "value": 0
+          },
+          {
+            "label": "27441680",
+            "value": 0
+          },
+          {
+            "label": "27441904",
+            "value": 0
+          },
+          {
+            "label": "27441916",
+            "value": 0
+          },
+          {
+            "label": "27441917",
+            "value": 0
+          },
+          {
+            "label": "27441920",
+            "value": 0
+          },
+          {
+            "label": "27441960",
+            "value": 0
+          },
+          {
+            "label": "27442042",
+            "value": 0
+          },
+          {
+            "label": "27442199",
+            "value": 0
+          },
+          {
+            "label": "27442230",
+            "value": 0
+          },
+          {
+            "label": "27442790",
+            "value": 0
+          },
+          {
+            "label": "27442814",
+            "value": 0
+          },
+          {
+            "label": "27443559",
+            "value": 0
+          },
+          {
+            "label": "27443758",
+            "value": 0
+          },
+          {
+            "label": "27443766",
+            "value": 0
+          },
+          {
+            "label": "27443771",
+            "value": 0
+          }
+        ],
+        "xAxis": "Block Number",
+        "yAxis": "Transaction Value (ETH)",
+        "description": "Transaction volume over the analyzed block range."
+      },
+      {
+        "type": "insight_card",
+        "data": {
+          "title": "Transaction Volume Activity",
+          "insight": "The transaction volume is primarily driven by a few significant transfers to another contract (0x01d40099fcd87c018969b0e8d4ab1633fb34763c). The contract itself ('public Node') is receiving zero-value transactions, suggesting it might be an oracle or a data provider rather than a direct value-transfer protocol.",
+          "confidence": 90,
+          "category": "performance"
+        }
+      }
+    ],
+    "metadata": {
+      "model": "gemini-2.5-flash-lite",
+      "processingTime": 1769618360861,
+      "tokens": null
+    },
+    "isStreaming": false,
+    "createdAt": "2026-01-28T16:39:20.862Z"
+  },
+  {
+    "id": "2dcd0870-ad32-41e9-8839-8b37a0feb922",
+    "sessionId": "e62071e4-7fc8-4731-aac5-44f538a693e0",
+    "role": "user",
+    "content": "can you tell me about churn",
+    "components": [],
+    "metadata": {},
+    "isStreaming": false,
+    "createdAt": "2026-01-28T16:39:58.659Z"
+  },
+  {
+    "id": "8ccfe009-ba11-441b-aa97-dba10a8b2150",
+    "sessionId": "e62071e4-7fc8-4731-aac5-44f538a693e0",
+    "role": "assistant",
+    "content": "Regarding churn for the 'public Node' contract on Lisk, the data indicates a churn rate of 8.2%. This suggests that a small but notable portion of users are not returning after their initial engagement. While not alarmingly high, it's an area worth monitoring to ensure sustained user growth and retention.",
+    "components": [
+      {
+        "type": "metric_card",
+        "data": {
+          "title": "Churn Rate",
+          "value": "8.2",
+          "unit": "%",
+          "change": null,
+          "trend": "neutral",
+          "description": "The percentage of users who stop using the contract within a given period."
+        }
+      },
+      {
+        "type": "insight_card",
+        "data": {
+          "title": "User Retention Opportunity",
+          "insight": "A churn rate of 8.2% indicates that a portion of users are not returning. Focusing on improving user experience and engagement could help reduce this rate.",
+          "confidence": 75,
+          "category": "growth"
+        }
+      },
+      {
+        "type": "recommendation",
+        "data": {
+          "title": "Address User Churn",
+          "description": "Implement strategies to improve user retention, such as personalized onboarding, loyalty programs, or proactive customer support to re-engage users who have churned.",
+          "priority": "medium",
+          "impact": "Potentially increase user lifetime value and overall contract adoption.",
+          "effort": "medium"
+        }
+      }
+    ],
+    "metadata": {
+      "model": "gemini-2.5-flash-lite",
+      "processingTime": 1769618403879,
+      "tokens": null
+    },
+    "isStreaming": false,
+    "createdAt": "2026-01-28T16:40:03.883Z"
+  },
+  {
+    "id": "5a6538a7-3aab-421a-88be-0a6d0d94bd71",
+    "sessionId": "e62071e4-7fc8-4731-aac5-44f538a693e0",
+    "role": "user",
+    "content": "what about activation rate",
+    "components": [],
+    "metadata": {},
+    "isStreaming": false,
+    "createdAt": "2026-01-28T16:40:50.604Z"
+  },
+  {
+    "id": "68ba1d54-586d-403a-af6f-59728b00cb06",
+    "sessionId": "e62071e4-7fc8-4731-aac5-44f538a693e0",
+    "role": "assistant",
+    "content": "Regarding the activation rate for the 'public Node' contract on Lisk, the provided data indicates that there were **39 unique users** interacting with the contract in the last 24 hours. This gives us a Daily Active Users (DAU) and Monthly Active Users (MAU) of 39.  While the raw number of active users is available, the specific \"activation rate\" as a percentage of potential users isn't directly calculable without knowing the total addressable market or a defined activation threshold. However, we can infer that the contract saw consistent engagement within the analyzed period.",
+    "components": [
+      {
+        "type": "metric_card",
+        "data": {
+          "title": "Daily Active Users (DAU)",
+          "value": "39",
+          "unit": "count",
+          "change": null,
+          "trend": "neutral",
+          "description": "Number of unique users interacting with the contract in the last 24 hours."
+        }
+      },
+      {
+        "type": "metric_card",
+        "data": {
+          "title": "Monthly Active Users (MAU)",
+          "value": "39",
+          "unit": "count",
+          "change": null,
+          "trend": "neutral",
+          "description": "Number of unique users interacting with the contract in the last 30 days."
+        }
+      },
+      {
+        "type": "insight_card",
+        "data": {
+          "title": "Consistent User Engagement",
+          "insight": "The contract shows steady user activity, with 39 unique users engaging within the last 24 hours, matching the 30-day active user count. This suggests a stable, albeit not rapidly growing, user base within the analyzed period.",
+          "confidence": 90,
+          "category": "growth"
+        }
+      }
+    ],
+    "metadata": {
+      "model": "gemini-2.5-flash-lite",
+      "processingTime": 1769618457130,
+      "tokens": null
+    },
+    "isStreaming": false,
+    "createdAt": "2026-01-28T16:40:57.133Z"
+  },
+  {
+    "id": "342caecf-4030-4890-bdf9-f1004fc9fdb7",
+    "sessionId": "e62071e4-7fc8-4731-aac5-44f538a693e0",
+    "role": "user",
+    "content": "where is my contract or project strugling ?",
+    "components": [],
+    "metadata": {},
+    "isStreaming": false,
+    "createdAt": "2026-01-28T16:41:58.458Z"
+  },
+  {
+    "id": "59985ffe-8031-4fb2-9d1e-fe822ab38948",
+    "sessionId": "e62071e4-7fc8-4731-aac5-44f538a693e0",
+    "role": "assistant",
+    "content": "Based on the recent analysis, the 'public Node' contract on Lisk appears to be struggling in a few key areas. The most prominent challenge is its `gasEfficiency`, which is currently rated as 'Low'. This suggests that the contract's operations might be consuming more gas than optimal, potentially leading to higher transaction costs for users. Additionally, the `volumeToTvlRatio` is quite low (0.05), indicating that the current transaction volume is not effectively utilizing the total value locked in the protocol, if any. The `liquidityUtilization` at 75.2% seems healthy, but the low volume suggests that perhaps the liquidity is not being actively used in profitable ways for the protocol. From a competitive standpoint, there are `challenges` noted such as 'Limited ecosystem' and 'User acquisition needed', which are significant hurdles for growth.",
+    "components": [
+      {
+        "type": "insight_card",
+        "data": {
+          "title": "Key Areas of Struggle for 'public Node' Contract",
+          "insight": "The contract is facing challenges with low gas efficiency, a low volume-to-TVL ratio, and external factors like a limited ecosystem and the need for user acquisition.",
+          "confidence": 90,
+          "category": "performance"
+        }
+      },
+      {
+        "type": "metric_card",
+        "data": {
+          "title": "Gas Efficiency",
+          "value": "Low",
+          "unit": "%",
+          "change": null,
+          "trend": "down",
+          "description": "Indicates that the contract's operations are not optimized for gas consumption, potentially increasing transaction costs for users."
+        }
+      },
+      {
+        "type": "metric_card",
+        "data": {
+          "title": "Volume to TVL Ratio",
+          "value": "0.05",
+          "unit": "ratio",
+          "change": null,
+          "trend": "down",
+          "description": "Suggests that the current transaction volume is low relative to the total value locked, indicating underutilization of assets."
+        }
+      },
+      {
+        "type": "competitive_comparison",
+        "data": {
+          "title": "Competitive Challenges",
+          "challenges": [
+            "Limited ecosystem",
+            "User acquisition needed"
+          ],
+          "advantages": [
+            "Low transaction fees",
+            "Fast confirmation times",
+            "Active development team"
+          ],
+          "recommendations": [
+            {
+              "title": "Enhance Ecosystem and User Acquisition",
+              "description": "Focus on expanding the contract's utility within the Lisk ecosystem and implement targeted marketing strategies to attract new users. Consider partnerships and developer incentives.",
+              "priority": "high",
+              "impact": "Significant growth in user base and transaction volume.",
+              "effort": "high"
+            }
+          ]
+        }
+      },
+      {
+        "type": "recommendation",
+        "data": {
+          "title": "Address Gas Inefficiencies",
+          "description": "Review the contract's code for potential gas optimizations. This could involve refactoring functions, optimizing storage operations, or utilizing more efficient data structures to reduce the gas cost per transaction.",
+          "priority": "high",
+          "impact": "Reduced transaction fees for users, leading to potentially higher adoption and engagement.",
+          "effort": "medium"
+        }
+      }
+    ],
+    "metadata": {
+      "model": "gemini-2.5-flash-lite",
+      "processingTime": 1769618524708,
+      "tokens": null
+    },
+    "isStreaming": false,
+    "createdAt": "2026-01-28T16:42:04.711Z"
+  },
+  {
+    "id": "8064f637-2e33-4833-b124-e0d24dfa002e",
+    "sessionId": "dc8442db-d46e-480f-ae6b-afa97c46bca7",
+    "role": "assistant",
+    "content": "Hello! I'm your AI assistant for analyzing the contract 0x8315177aB297bA92A06054cE80a67Ed4DBd7ed3a on ethereum. What would you like to know?",
+    "components": [],
+    "metadata": {},
+    "isStreaming": false,
+    "createdAt": "2026-01-28T17:58:14.555Z"
+  },
+  {
+    "id": "fcd2ec88-6399-4427-acb0-c341263bbed1",
+    "sessionId": "dc8442db-d46e-480f-ae6b-afa97c46bca7",
+    "role": "user",
+    "content": "Who are the top users of this contract?",
+    "components": [],
+    "metadata": {},
+    "isStreaming": false,
+    "createdAt": "2026-01-28T17:58:27.071Z"
+  },
+  {
+    "id": "1cafcaf2-7b33-41ed-994b-150a8798fb95",
+    "sessionId": "dc8442db-d46e-480f-ae6b-afa97c46bca7",
+    "role": "assistant",
+    "content": "I cannot provide a list of top users for the Arbitrum bridge contract at this address (0x8315177aB297bA92A06054cE80a67Ed4DBd7ed3a). My analysis of the on-chain data for this contract is currently encountering an error, preventing me from fetching transaction details. This means I cannot analyze user activity or identify top users at this time.  The error message indicates a failure to retrieve transactions from the Ethereum providers.",
+    "components": [
+      {
+        "type": "alert",
+        "data": {
+          "severity": "error",
+          "title": "Data Fetching Error",
+          "message": "Unable to retrieve transaction data for the Arbitrum bridge contract. This prevents detailed user analysis.",
+          "actionable": false
+        }
+      },
+      {
+        "type": "text",
+        "data": {
+          "text": "To identify top users, I would typically analyze transaction volume and frequency from different addresses interacting with the contract. However, due to the current data retrieval issue, this analysis is not possible. I will keep trying to fetch the data, and hopefully, I can provide you with the user analysis soon."
+        }
+      }
+    ],
+    "metadata": {
+      "model": "gemini-2.5-flash-lite",
+      "processingTime": 1769623110066,
+      "tokens": null
+    },
+    "isStreaming": false,
+    "createdAt": "2026-01-28T17:58:30.068Z"
   }
 ]

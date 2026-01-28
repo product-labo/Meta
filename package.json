@@ -13,7 +13,15 @@
     "analyze:comparative": "node src/main.js --comparative",
     "reports": "node report-manager.js",
     "test": "node --test",
-    "test:api": "node test/api-test.js"
+    "test:api": "node test/api-test.js",
+    "test:interaction": "node test-contract-interaction-fetching.js",
+    "test:lisk-optimization": "node test-lisk-interaction-optimization.js",
+    "test:interaction-suite": "node test-interaction-suite.js",
+    "demo:interaction": "node test-interaction-demo.js",
+    "test:multi-chain-indexing": "node test-multi-chain-indexing-scenarios.js",
+    "test:complete-indexing": "node test-complete-multi-chain-indexing.js",
+    "test:indexing-scenarios": "node test-multi-chain-indexing-scenarios.js",
+    "test:cross-chain-competitive": "node test-cross-chain-competitive-analysis.js"
   },
   "keywords": [
     "blockchain",

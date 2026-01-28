@@ -255,4 +255,31 @@ export class LiskRpcClient {
     
     return transactions;
   }
+
+  /**
+   * Test connection to Lisk RPC
+   */
+  async testConnection() {
+    try {
+      await this._makeRpcCall('eth_blockNumber', [], 5000);
+      return true;
+    } catch (error) {
+      console.error(`Lisk RPC test failed: ${error.message}`);
+      return false;
+    }
+  }
+
+  /**
+   * Get chain info
+   */
+  getChain() {
+    return 'lisk';
+  }
+
+  /**
+   * Get RPC URL
+   */
+  getRpcUrl() {
+    return this.rpcUrl;
+  }
 }

@@ -89,7 +89,36 @@ export default function OnChainAnalyzer() {
       router.push('/login?redirect=analyzer');
       return;
     }
+
+    if (isAuthenticated) {
+      checkOnboardingStatus();
+    }
   }, [authLoading, isAuthenticated, router]);
+
+  const checkOnboardingStatus = async () => {
+    try {
+      const onboardingStatus = await api.onboarding.getStatus();
+      if (!onboardingStatus.completed) {
+        router.push('/onboarding');
+        return;
+      }
+      
+      // Load user metrics for the analysis page
+      loadUserMetrics();
+    } catch (error) {
+      console.error('Failed to check onboarding status:', error);
+    }
+  };
+
+  const loadUserMetrics = async () => {
+    try {
+      const metrics = await api.onboarding.getUserMetrics();
+      // You can use these metrics to show user's overall analysis statistics
+      console.log('User metrics loaded:', metrics);
+    } catch (error) {
+      console.error('Failed to load user metrics:', error);
+    }
+  };
 
   // Load pending address from localStorage
   useEffect(() => {
@@ -337,7 +366,7 @@ export default function OnChainAnalyzer() {
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium mb-2">Contract ABI (Optional)</label>
+                    <label className="block text-sm font-medium mb-2">Contract ABI</label>
                     <textarea
                       placeholder="Paste your contract ABI JSON here..."
                       {...form.register('abi')}
@@ -412,7 +441,7 @@ export default function OnChainAnalyzer() {
                         </div>
 
                         <div>
-                          <label className="block text-sm font-medium text-muted-foreground mb-2">ABI (Optional)</label>
+                          <label className="block text-sm font-medium text-muted-foreground mb-2">ABI</label>
                           <textarea
                             placeholder="Paste competitor ABI JSON here..."
                             {...form.register(`competitors.${index}.abi`)}

@@ -1,7 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import {
   AreaChart, Area, LineChart, Line, PieChart, Pie, Cell, ResponsiveContainer,
-  XAxis, YAxis, CartesianGrid, Tooltip, Legend
+  XAxis, YAxis, CartesianGrid, Tooltip, Legend, BarChart, Bar
 } from 'recharts';
 
 interface MetricsTabProps {
@@ -13,6 +13,8 @@ export function MetricsTab({ analysisResults }: MetricsTabProps) {
   const fullReport = results.fullReport || {};
   const defiMetrics = fullReport.defiMetrics || {};
   const userBehavior = fullReport.userBehavior || {};
+  const gasAnalysis = fullReport.gasAnalysis || {};
+  const summary = fullReport.summary || {};
   
   // Create chart data from real metrics
   const tvlData = [
@@ -34,30 +36,57 @@ export function MetricsTab({ analysisResults }: MetricsTabProps) {
     { name: 'Slippage', value: Math.round((defiMetrics.slippageTolerance || 0) * 100) },
   ];
 
+  // User behavior chart data
+  const behaviorData = [
+    { name: 'Loyalty', value: userBehavior.loyaltyScore || 0 },
+    { name: 'Risk Tolerance', value: userBehavior.riskToleranceLevel || 0 },
+    { name: 'Bot Activity', value: userBehavior.botActivity || 0 },
+    { name: 'Whale Ratio', value: userBehavior.whaleRatio || 0 },
+  ];
+
+  // User classification data
+  const userClassifications = fullReport.userBehavior?.userClassifications || {};
+  const classificationData = Object.entries(userClassifications).map(([key, value]) => ({
+    name: key.replace('_', ' ').toUpperCase(),
+    value: value || 0
+  }));
+
   const formatValue = (value: any, fallback = 'N/A') => {
     if (value === null || value === undefined) return fallback;
     return value;
   };
 
+  // Format numbers safely for display
+  const formatNumber = (value: any, fallback = 0) => {
+    if (value === null || value === undefined) return fallback;
+    return typeof value === 'number' ? value : fallback;
+  };
+
   const formatCurrency = (value: any) => {
     if (!value || value === 0) return '$0';
     if (typeof value === 'number') {
-      return value >= 1000000 ? `$${(value / 1000000).toFixed(1)}M` : 
-             value >= 1000 ? `$${(value / 1000).toFixed(1)}K` : 
-             `$${value.toFixed(2)}`;
+      return value >= 1000000 ? `${(value / 1000000).toFixed(1)}M` : 
+             value >= 1000 ? `${(value / 1000).toFixed(1)}K` : 
+             `${value.toFixed(2)}`;
     }
     return value;
+  };
+
+  const formatPercentage = (value: any) => {
+    if (!value || value === 0) return '0%';
+    return `${parseFloat(value).toFixed(1)}%`;
   };
   
   return (
     <div className="space-y-6">
+      {/* DeFi Metrics Section */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <Card className="bg-gray-800 border-gray-600/30">
           <CardHeader>
-            <CardTitle className="text-white">TVL Overview</CardTitle>
+            <CardTitle className="text-white">TVL & Liquidity</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-center py-8">
+            <div className="text-center py-4">
               <p className="text-4xl font-bold text-white mb-2">
                 {formatCurrency(defiMetrics.tvl)}
               </p>
@@ -65,11 +94,19 @@ export function MetricsTab({ analysisResults }: MetricsTabProps) {
               <div className="mt-4 grid grid-cols-2 gap-4 text-sm">
                 <div>
                   <p className="text-gray-400">Utilization</p>
-                  <p className="text-white font-semibold">{formatValue(defiMetrics.liquidityUtilization, 0)}%</p>
+                  <p className="text-white font-semibold">{formatPercentage(defiMetrics.liquidityUtilization)}</p>
                 </div>
                 <div>
                   <p className="text-gray-400">Active Pools</p>
-                  <p className="text-white font-semibold">{formatValue(defiMetrics.activePoolsCount, 0)}</p>
+                  <p className="text-white font-semibold">{formatNumber(defiMetrics.activePoolsCount, 0)}</p>
+                </div>
+                <div>
+                  <p className="text-gray-400">Net Flow</p>
+                  <p className="text-white font-semibold">{formatCurrency(defiMetrics.netFlow)}</p>
+                </div>
+                <div>
+                  <p className="text-gray-400">Cross-Chain Volume</p>
+                  <p className="text-white font-semibold">{formatCurrency(defiMetrics.crossChainVolume)}</p>
                 </div>
               </div>
             </div>
@@ -78,34 +115,59 @@ export function MetricsTab({ analysisResults }: MetricsTabProps) {
 
         <Card className="bg-gray-800 border-gray-600/30">
           <CardHeader>
-            <CardTitle className="text-white">Borrowing & Lending Rates</CardTitle>
+            <CardTitle className="text-white">User Activity Metrics</CardTitle>
           </CardHeader>
           <CardContent>
-            <ResponsiveContainer width="100%" height={300}>
-              <LineChart data={ratesData}>
-                <CartesianGrid strokeDasharray="3 3" stroke="#444" />
-                <XAxis dataKey="name" stroke="#888" />
-                <YAxis stroke="#888" />
-                <Tooltip contentStyle={{ backgroundColor: '#1f2937', border: '1px solid #3B82F6' }} />
-                <Legend />
-                <Line type="monotone" dataKey="borrowing" stroke="#9CA3AF" strokeWidth={2} name="Borrowing Rate %" />
-                <Line type="monotone" dataKey="lending" stroke="#6B7280" strokeWidth={2} name="Lending Rate %" />
-              </LineChart>
-            </ResponsiveContainer>
+            <div className="space-y-4">
+              <div className="flex justify-between items-center p-3 bg-gray-700/50 rounded-lg">
+                <span className="text-gray-300">Daily Active Users</span>
+                <span className="text-white font-bold">{formatNumber(defiMetrics.dau, 0).toLocaleString()}</span>
+              </div>
+              <div className="flex justify-between items-center p-3 bg-gray-700/50 rounded-lg">
+                <span className="text-gray-300">Weekly Active Users</span>
+                <span className="text-white font-bold">{formatNumber(defiMetrics.wau, 0).toLocaleString()}</span>
+              </div>
+              <div className="flex justify-between items-center p-3 bg-gray-700/50 rounded-lg">
+                <span className="text-gray-300">Monthly Active Users</span>
+                <span className="text-white font-bold">{formatNumber(defiMetrics.mau, 0).toLocaleString()}</span>
+              </div>
+              <div className="flex justify-between items-center p-3 bg-gray-700/50 rounded-lg">
+                <span className="text-gray-300">Avg Transaction Size</span>
+                <span className="text-white font-bold">{formatCurrency(defiMetrics.averageTransactionSize)}</span>
+              </div>
+            </div>
           </CardContent>
         </Card>
       </div>
 
+      {/* User Behavior Analysis */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <Card className="bg-gray-800 border-green-500/30">
+        <Card className="bg-gray-800 border-blue-500/30">
           <CardHeader>
-            <CardTitle className="text-white">DeFi Ratios</CardTitle>
+            <CardTitle className="text-white">User Behavior Scores</CardTitle>
           </CardHeader>
           <CardContent>
-            <ResponsiveContainer width="100%" height={250}>
+            <ResponsiveContainer width="100%" height={300}>
+              <BarChart data={behaviorData}>
+                <CartesianGrid strokeDasharray="3 3" stroke="#444" />
+                <XAxis dataKey="name" stroke="#888" />
+                <YAxis stroke="#888" />
+                <Tooltip contentStyle={{ backgroundColor: '#1f2937', border: '1px solid #3B82F6' }} />
+                <Bar dataKey="value" fill="#3B82F6" />
+              </BarChart>
+            </ResponsiveContainer>
+          </CardContent>
+        </Card>
+
+        <Card className="bg-gray-800 border-green-500/30">
+          <CardHeader>
+            <CardTitle className="text-white">User Classifications</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <ResponsiveContainer width="100%" height={300}>
               <PieChart>
                 <Pie
-                  data={ratiosData}
+                  data={classificationData}
                   cx="50%"
                   cy="50%"
                   labelLine={false}
@@ -114,8 +176,8 @@ export function MetricsTab({ analysisResults }: MetricsTabProps) {
                   fill="#8884d8"
                   dataKey="value"
                 >
-                  {ratiosData.map((entry, index) => (
-                    <Cell key={`cell-${index}`} fill={['#A855F7', '#3B82F6', '#10B981', '#F59E0B'][index]} />
+                  {classificationData.map((entry, index) => (
+                    <Cell key={`cell-${index}`} fill={['#A855F7', '#3B82F6', '#10B981', '#F59E0B', '#EF4444', '#8B5CF6', '#06B6D4', '#84CC16'][index % 8]} />
                   ))}
                 </Pie>
                 <Tooltip />
@@ -123,69 +185,139 @@ export function MetricsTab({ analysisResults }: MetricsTabProps) {
             </ResponsiveContainer>
           </CardContent>
         </Card>
-
-        <Card className="bg-gray-800 border-orange-500/30">
-          <CardHeader>
-            <CardTitle className="text-white">Key Metrics</CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            <div className="flex justify-between items-center p-3 bg-gray-700/50 rounded-lg">
-              <span className="text-gray-300">Daily Active Users</span>
-              <span className="text-white font-bold">{formatValue(defiMetrics.dau, 0).toLocaleString()}</span>
-            </div>
-            <div className="flex justify-between items-center p-3 bg-gray-700/50 rounded-lg">
-              <span className="text-gray-300">Monthly Active Users</span>
-              <span className="text-white font-bold">{formatValue(defiMetrics.mau, 0).toLocaleString()}</span>
-            </div>
-            <div className="flex justify-between items-center p-3 bg-gray-700/50 rounded-lg">
-              <span className="text-gray-300">24h Volume</span>
-              <span className="text-white font-bold">{formatCurrency(defiMetrics.transactionVolume24h)}</span>
-            </div>
-            <div className="flex justify-between items-center p-3 bg-gray-700/50 rounded-lg">
-              <span className="text-gray-300">Revenue Per User</span>
-              <span className="text-white font-bold">{formatCurrency(defiMetrics.revenuePerUser)}</span>
-            </div>
-            <div className="flex justify-between items-center p-3 bg-gray-700/50 rounded-lg">
-              <span className="text-gray-300">Gas Efficiency</span>
-              <span className="text-white font-bold">{formatValue(defiMetrics.gasEfficiency, 'N/A')}</span>
-            </div>
-            <div className="flex justify-between items-center p-3 bg-gray-700/50 rounded-lg">
-              <span className="text-gray-300">Cross-Chain Volume</span>
-              <span className="text-white font-bold">{formatCurrency(defiMetrics.crossChainVolume)}</span>
-            </div>
-          </CardContent>
-        </Card>
       </div>
 
-      {/* Additional metrics cards */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+      {/* Financial Metrics */}
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
         <Card className="bg-gradient-to-br from-blue-900/20 to-blue-800/20 border-blue-500/30">
           <CardHeader className="pb-2">
-            <CardTitle className="text-blue-400 text-sm">Protocol Fees</CardTitle>
+            <CardTitle className="text-blue-400 text-sm">Protocol Revenue</CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-2xl font-bold text-white">{formatCurrency(defiMetrics.protocolFees)}</p>
+            <p className="text-2xl font-bold text-white">{formatCurrency(defiMetrics.protocolRevenue)}</p>
             <p className="text-blue-300 text-xs mt-1">Total collected</p>
           </CardContent>
         </Card>
 
         <Card className="bg-gradient-to-br from-green-900/20 to-green-800/20 border-green-500/30">
           <CardHeader className="pb-2">
-            <CardTitle className="text-green-400 text-sm">Yield Generated</CardTitle>
+            <CardTitle className="text-green-400 text-sm">Revenue Per User</CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-2xl font-bold text-white">{formatCurrency(defiMetrics.yieldGenerated)}</p>
-            <p className="text-green-300 text-xs mt-1">For users</p>
+            <p className="text-2xl font-bold text-white">{formatCurrency(defiMetrics.revenuePerUser)}</p>
+            <p className="text-green-300 text-xs mt-1">Average</p>
           </CardContent>
         </Card>
 
         <Card className="bg-gradient-to-br from-purple-900/20 to-purple-800/20 border-purple-500/30">
           <CardHeader className="pb-2">
-            <CardTitle className="text-purple-400 text-sm">Staking Rewards</CardTitle>
+            <CardTitle className="text-purple-400 text-sm">Yield Generated</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p className="text-2xl font-bold text-white">{formatCurrency(defiMetrics.yieldGenerated)}</p>
+            <p className="text-purple-300 text-xs mt-1">For users</p>
+          </CardContent>
+        </Card>
+
+        <Card className="bg-gradient-to-br from-orange-900/20 to-orange-800/20 border-orange-500/30">
+          <CardHeader className="pb-2">
+            <CardTitle className="text-orange-400 text-sm">Staking Rewards</CardTitle>
           </CardHeader>
           <CardContent>
             <p className="text-2xl font-bold text-white">{formatCurrency(defiMetrics.stakingRewards)}</p>
-            <p className="text-purple-300 text-xs mt-1">Distributed</p>
+            <p className="text-orange-300 text-xs mt-1">Distributed</p>
+          </CardContent>
+        </Card>
+      </div>
+
+      {/* Advanced Metrics */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <Card className="bg-gray-800 border-yellow-500/30">
+          <CardHeader>
+            <CardTitle className="text-white">Gas Analysis</CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div className="flex justify-between items-center p-3 bg-gray-700/50 rounded-lg">
+              <span className="text-gray-300">Average Gas Price</span>
+              <span className="text-white font-bold">{gasAnalysis.averageGasPrice || 'N/A'}</span>
+            </div>
+            <div className="flex justify-between items-center p-3 bg-gray-700/50 rounded-lg">
+              <span className="text-gray-300">Average Gas Used</span>
+              <span className="text-white font-bold">{formatNumber(gasAnalysis.averageGasUsed, 0).toLocaleString()}</span>
+            </div>
+            <div className="flex justify-between items-center p-3 bg-gray-700/50 rounded-lg">
+              <span className="text-gray-300">Total Gas Cost (USD)</span>
+              <span className="text-white font-bold">${formatNumber(gasAnalysis.totalGasCostUSD, 0).toLocaleString()}</span>
+            </div>
+            <div className="flex justify-between items-center p-3 bg-gray-700/50 rounded-lg">
+              <span className="text-gray-300">Average Gas Cost (USD)</span>
+              <span className="text-white font-bold">${formatNumber(gasAnalysis.averageGasCostUSD, 0).toFixed(2)}</span>
+            </div>
+            <div className="flex justify-between items-center p-3 bg-gray-700/50 rounded-lg">
+              <span className="text-gray-300">Gas Efficiency Score</span>
+              <span className="text-white font-bold">{formatPercentage(gasAnalysis.gasEfficiencyScore)}</span>
+            </div>
+            <div className="flex justify-between items-center p-3 bg-gray-700/50 rounded-lg">
+              <span className="text-gray-300">Failed Transactions</span>
+              <span className="text-white font-bold">{formatNumber(gasAnalysis.failedTransactions, 0)}</span>
+            </div>
+          </CardContent>
+        </Card>
+
+        <Card className="bg-gray-800 border-red-500/30">
+          <CardHeader>
+            <CardTitle className="text-white">Risk & Security Metrics</CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div className="flex justify-between items-center p-3 bg-gray-700/50 rounded-lg">
+              <span className="text-gray-300">MEV Exposure</span>
+              <span className="text-white font-bold">{formatNumber(userBehavior.mevExposure, 0)}</span>
+            </div>
+            <div className="flex justify-between items-center p-3 bg-gray-700/50 rounded-lg">
+              <span className="text-gray-300">Front Running Detection</span>
+              <span className="text-white font-bold">{formatNumber(userBehavior.frontRunningDetection, 0)}</span>
+            </div>
+            <div className="flex justify-between items-center p-3 bg-gray-700/50 rounded-lg">
+              <span className="text-gray-300">Sandwich Attacks</span>
+              <span className="text-white font-bold">{formatNumber(userBehavior.sandwichAttacks, 0)}</span>
+            </div>
+            <div className="flex justify-between items-center p-3 bg-gray-700/50 rounded-lg">
+              <span className="text-gray-300">Arbitrage Opportunities</span>
+              <span className="text-white font-bold">{formatNumber(userBehavior.arbitrageOpportunities, 0)}</span>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+
+      {/* Performance Metrics */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <Card className="bg-gradient-to-br from-cyan-900/20 to-cyan-800/20 border-cyan-500/30">
+          <CardHeader className="pb-2">
+            <CardTitle className="text-cyan-400 text-sm">Function Success Rate</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p className="text-2xl font-bold text-white">{formatPercentage(defiMetrics.functionSuccessRate)}</p>
+            <p className="text-cyan-300 text-xs mt-1">Transaction reliability</p>
+          </CardContent>
+        </Card>
+
+        <Card className="bg-gradient-to-br from-indigo-900/20 to-indigo-800/20 border-indigo-500/30">
+          <CardHeader className="pb-2">
+            <CardTitle className="text-indigo-400 text-sm">Protocol Stickiness</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p className="text-2xl font-bold text-white">{formatPercentage(defiMetrics.protocolStickiness)}</p>
+            <p className="text-indigo-300 text-xs mt-1">Repeat users</p>
+          </CardContent>
+        </Card>
+
+        <Card className="bg-gradient-to-br from-pink-900/20 to-pink-800/20 border-pink-500/30">
+          <CardHeader className="pb-2">
+            <CardTitle className="text-pink-400 text-sm">Cross-Chain Users</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p className="text-2xl font-bold text-white">{formatNumber(userBehavior.crossChainUsers, 0)}</p>
+            <p className="text-pink-300 text-xs mt-1">Multi-chain activity</p>
           </CardContent>
         </Card>
       </div>
