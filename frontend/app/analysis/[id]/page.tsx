@@ -19,6 +19,7 @@ import { MetricsTab } from "@/components/analyzer/metrics-tab"
 import { UsersTab } from "@/components/analyzer/users-tab"
 import { TransactionsTab } from "@/components/analyzer/transactions-tab"
 import { CompetitiveTab } from "@/components/analyzer/competitive-tab"
+import { UxTab } from "@/components/analyzer/ux-tab"
 
 interface AnalysisResult {
   id: string
@@ -263,11 +264,12 @@ export default function AnalysisResultPage() {
             />
 
             <Tabs value={dashboardTab} onValueChange={setDashboardTab} className="w-full">
-              <TabsList className="grid w-full grid-cols-5">
+              <TabsList className="grid w-full grid-cols-6">
                 <TabsTrigger value="overview">Overview</TabsTrigger>
                 <TabsTrigger value="metrics">Metrics</TabsTrigger>
                 <TabsTrigger value="users">Users</TabsTrigger>
                 <TabsTrigger value="transactions">Transactions</TabsTrigger>
+                <TabsTrigger value="ux">UX Analysis</TabsTrigger>
                 <TabsTrigger value="competitive">Competitive</TabsTrigger>
               </TabsList>
 
@@ -285,6 +287,10 @@ export default function AnalysisResultPage() {
 
               <TabsContent value="transactions">
                 <TransactionsTab analysisResults={analysis.results} />
+              </TabsContent>
+
+              <TabsContent value="ux">
+                <UxTab analysisResults={analysis.results} />
               </TabsContent>
 
               <TabsContent value="competitive">

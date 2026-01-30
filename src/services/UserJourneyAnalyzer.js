@@ -219,17 +219,30 @@ export class UserJourneyAnalyzer {
 
     for (const tx of transactions) {
       // Skip transactions with invalid timestamps
-      if (!tx.timestamp || isNaN(tx.timestamp.getTime())) {
+      const timestamp = this._normalizeTimestamp(tx);
+      if (!timestamp || isNaN(timestamp.getTime())) {
         continue;
       }
       
-      const wallet = tx.wallet.toLowerCase();
+      // Use from_address as the wallet identifier for normalized transactions
+      const wallet = (tx.from_address || tx.wallet || '').toLowerCase();
+      
+      if (!wallet) {
+        console.warn('Transaction missing wallet/from_address:', tx);
+        continue;
+      }
       
       if (!walletMap.has(wallet)) {
         walletMap.set(wallet, []);
       }
       
-      walletMap.get(wallet).push(tx);
+      // Add normalized transaction with proper timestamp and function name
+      walletMap.get(wallet).push({
+        ...tx,
+        timestamp,
+        functionName: tx.functionName || this._extractFunctionName(tx),
+        wallet
+      });
     }
 
     // Sort each wallet's transactions by timestamp (with stable secondary sort)
@@ -238,7 +251,7 @@ export class UserJourneyAnalyzer {
         const timeDiff = a.timestamp.getTime() - b.timestamp.getTime();
         if (timeDiff !== 0) return timeDiff;
         // Secondary sort by blockNumber for stability when timestamps are equal
-        const blockDiff = (a.blockNumber || 0) - (b.blockNumber || 0);
+        const blockDiff = (a.block_number || a.blockNumber || 0) - (b.block_number || b.blockNumber || 0);
         if (blockDiff !== 0) return blockDiff;
         // Tertiary sort by hash for stability
         return (a.hash || '').localeCompare(b.hash || '');
@@ -348,6 +361,46 @@ export class UserJourneyAnalyzer {
       dropoffPoints: [],
       journeyDistribution: {}
     };
+  }
+
+  /**
+   * Normalize timestamp to Date object
+   * @private
+   */
+  _normalizeTimestamp(tx) {
+    // Try different timestamp fields
+    const timestamp = tx.timestamp || tx.block_timestamp || tx.blockTimestamp;
+    
+    if (!timestamp) return null;
+    
+    if (timestamp instanceof Date) {
+      return timestamp;
+    }
+    
+    if (typeof timestamp === 'string') {
+      const date = new Date(timestamp);
+      return isNaN(date.getTime()) ? null : date;
+    }
+    
+    if (typeof timestamp === 'number') {
+      // Handle both seconds and milliseconds
+      const date = timestamp > 1e12 ? new Date(timestamp) : new Date(timestamp * 1000);
+      return isNaN(date.getTime()) ? null : date;
+    }
+    
+    return null;
+  }
+
+  /**
+   * Extract function name from transaction
+   * @private
+   */
+  _extractFunctionName(tx) {
+    if (tx.functionName) return tx.functionName;
+    if (tx.function_name) return tx.function_name;
+    if (tx.method_id) return tx.method_id;
+    if (tx.methodId) return tx.methodId;
+    return 'unknown';
   }
 }
 

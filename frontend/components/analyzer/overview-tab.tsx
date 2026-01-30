@@ -39,6 +39,45 @@ export function OverviewTab({ analysisResults, analysisId }: OverviewTabProps) {
     }
     return value;
   };
+
+  // Get transaction type overview
+  const getTransactionTypeOverview = () => {
+    const transactions = fullReport.transactions || [];
+    const typeCount: { [key: string]: number } = {};
+    
+    transactions.forEach((tx: any) => {
+      const type = tx.type || determineTransactionType(tx.methodId);
+      typeCount[type] = (typeCount[type] || 0) + 1;
+    });
+
+    const total = transactions.length;
+    return Object.entries(typeCount)
+      .sort(([,a], [,b]) => b - a)
+      .slice(0, 4)
+      .map(([type, count]) => ({
+        name: formatTransactionType(type),
+        count,
+        percentage: ((count / total) * 100).toFixed(1)
+      }));
+  };
+
+  // Helper functions for transaction types
+  const determineTransactionType = (methodId: string) => {
+    if (!methodId) return 'transfer';
+    
+    switch (methodId) {
+      case '0xa9059cbb': return 'transfer';
+      case '0x095ea7b3': return 'approval';
+      case '0x23b872dd': return 'transferFrom';
+      case '0x40c10f19': return 'mint';
+      case '0x42966c68': return 'burn';
+      default: return 'contract_call';
+    }
+  };
+
+  const formatTransactionType = (type: string) => {
+    return type.charAt(0).toUpperCase() + type.slice(1).replace('_', ' ');
+  };
   
   return (
     <div className="space-y-6">
@@ -91,6 +130,179 @@ export function OverviewTab({ analysisResults, analysisId }: OverviewTabProps) {
           </CardContent>
         </Card>
       </div>
+
+      {/* UX Quality Metrics */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <Card className="hover:shadow-lg transition-shadow border-purple-200">
+          <CardHeader className="pb-2">
+            <CardTitle className="text-sm font-medium text-muted-foreground">UX Grade</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="flex items-center gap-2">
+              <p className={`text-3xl font-bold px-2 py-1 rounded ${
+                fullReport.uxAnalysis?.uxGrade?.grade === 'A' ? 'text-green-600 bg-green-100' :
+                fullReport.uxAnalysis?.uxGrade?.grade === 'B' ? 'text-blue-600 bg-blue-100' :
+                fullReport.uxAnalysis?.uxGrade?.grade === 'C' ? 'text-yellow-600 bg-yellow-100' :
+                fullReport.uxAnalysis?.uxGrade?.grade === 'D' ? 'text-orange-600 bg-orange-100' :
+                'text-red-600 bg-red-100'
+              }`}>
+                {fullReport.uxAnalysis?.uxGrade?.grade || 'N/A'}
+              </p>
+              <div className="text-xs text-muted-foreground">
+                <div>{fullReport.uxAnalysis?.uxGrade?.completionRate ? 
+                  `${(fullReport.uxAnalysis.uxGrade.completionRate * 100).toFixed(1)}% completion` : 
+                  'No data'}</div>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
+        <Card className="hover:shadow-lg transition-shadow border-cyan-200">
+          <CardHeader className="pb-2">
+            <CardTitle className="text-sm font-medium text-muted-foreground">Session Duration</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p className="text-3xl font-bold">
+              {fullReport.uxAnalysis?.sessionDurations?.averageDuration ? 
+                `${fullReport.uxAnalysis.sessionDurations.averageDuration.toFixed(1)}m` : 
+                'N/A'}
+            </p>
+            <p className="text-cyan-600 text-xs mt-1">Average user session</p>
+          </CardContent>
+        </Card>
+
+        <Card className="hover:shadow-lg transition-shadow border-orange-200">
+          <CardHeader className="pb-2">
+            <CardTitle className="text-sm font-medium text-muted-foreground">UX Bottlenecks</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p className="text-3xl font-bold text-orange-600">
+              {fullReport.uxAnalysis?.bottlenecks?.length || 0}
+            </p>
+            <p className="text-orange-600 text-xs mt-1">Friction points</p>
+          </CardContent>
+        </Card>
+
+        <Card className="hover:shadow-lg transition-shadow border-emerald-200">
+          <CardHeader className="pb-2">
+            <CardTitle className="text-sm font-medium text-muted-foreground">User Retention</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p className="text-3xl font-bold">
+              {fullReport.userLifecycle?.summary?.retentionRate ? 
+                `${fullReport.userLifecycle.summary.retentionRate.toFixed(1)}%` : 
+                'N/A'}
+            </p>
+            <p className="text-emerald-600 text-xs mt-1">Retention rate</p>
+          </CardContent>
+        </Card>
+      </div>
+
+      {/* Additional Key Metrics */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <Card className="hover:shadow-lg transition-shadow border-orange-200">
+          <CardHeader className="pb-2">
+            <CardTitle className="text-sm font-medium text-muted-foreground">Daily Active Users</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p className="text-3xl font-bold">{formatNumber(defiMetrics.dau, 0).toLocaleString()}</p>
+            <p className="text-orange-600 text-xs mt-1">Active today</p>
+          </CardContent>
+        </Card>
+
+        <Card className="hover:shadow-lg transition-shadow border-purple-200">
+          <CardHeader className="pb-2">
+            <CardTitle className="text-sm font-medium text-muted-foreground">Protocol Revenue</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p className="text-3xl font-bold">{formatCurrency(defiMetrics.protocolRevenue)}</p>
+            <p className="text-purple-600 text-xs mt-1">Total fees collected</p>
+          </CardContent>
+        </Card>
+
+        <Card className="hover:shadow-lg transition-shadow border-emerald-200">
+          <CardHeader className="pb-2">
+            <CardTitle className="text-sm font-medium text-muted-foreground">Gas Efficiency</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p className="text-3xl font-bold">{formatNumber(fullReport.gasAnalysis?.gasEfficiencyScore, 0)}%</p>
+            <p className="text-emerald-600 text-xs mt-1">Efficiency score</p>
+          </CardContent>
+        </Card>
+
+        <Card className="hover:shadow-lg transition-shadow border-cyan-200">
+          <CardHeader className="pb-2">
+            <CardTitle className="text-sm font-medium text-muted-foreground">User Loyalty</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p className="text-3xl font-bold">{formatNumber(fullReport.userBehavior?.loyaltyScore, 0)}%</p>
+            <p className="text-cyan-600 text-xs mt-1">Loyalty score</p>
+          </CardContent>
+        </Card>
+      </div>
+
+      {/* Advanced Overview Metrics */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <Card className="hover:shadow-lg transition-shadow border-amber-200">
+          <CardHeader className="pb-2">
+            <CardTitle className="text-sm font-medium text-muted-foreground">Function Success Rate</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p className="text-3xl font-bold">{formatNumber(defiMetrics.functionSuccessRate, 0)}%</p>
+            <p className="text-amber-600 text-xs mt-1">Transaction reliability</p>
+          </CardContent>
+        </Card>
+
+        <Card className="hover:shadow-lg transition-shadow border-teal-200">
+          <CardHeader className="pb-2">
+            <CardTitle className="text-sm font-medium text-muted-foreground">Event Driven Volume</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p className="text-3xl font-bold">{formatCurrency(defiMetrics.eventDrivenVolume)}</p>
+            <p className="text-teal-600 text-xs mt-1">From contract events</p>
+          </CardContent>
+        </Card>
+
+        <Card className="hover:shadow-lg transition-shadow border-indigo-200">
+          <CardHeader className="pb-2">
+            <CardTitle className="text-sm font-medium text-muted-foreground">Cross-Chain Users</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p className="text-3xl font-bold">{formatNumber(fullReport.userBehavior?.crossChainUsers, 0)}</p>
+            <p className="text-indigo-600 text-xs mt-1">Multi-chain activity</p>
+          </CardContent>
+        </Card>
+
+        <Card className="hover:shadow-lg transition-shadow border-rose-200">
+          <CardHeader className="pb-2">
+            <CardTitle className="text-sm font-medium text-muted-foreground">MEV Exposure</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p className="text-3xl font-bold">{formatNumber(fullReport.userBehavior?.mevExposure, 0)}</p>
+            <p className="text-rose-600 text-xs mt-1">MEV risk level</p>
+          </CardContent>
+        </Card>
+      </div>
+
+      {/* Transaction Type Overview */}
+      {fullReport.transactions && fullReport.transactions.length > 0 && (
+        <Card className="hover:shadow-lg transition-shadow border-blue-200">
+          <CardHeader>
+            <CardTitle className="text-lg font-semibold">Transaction Type Distribution</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              {getTransactionTypeOverview().map((type, i) => (
+                <div key={i} className="text-center p-3 bg-muted/50 rounded-lg">
+                  <p className="text-2xl font-bold text-primary">{type.count}</p>
+                  <p className="text-sm text-muted-foreground">{type.name}</p>
+                  <p className="text-xs text-muted-foreground">{type.percentage}%</p>
+                </div>
+              ))}
+            </div>
+          </CardContent>
+        </Card>
+      )}
 
       {/* Additional Key Metrics */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">

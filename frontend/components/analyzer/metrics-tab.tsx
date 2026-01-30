@@ -76,6 +76,17 @@ export function MetricsTab({ analysisResults }: MetricsTabProps) {
     if (!value || value === 0) return '0%';
     return `${parseFloat(value).toFixed(1)}%`;
   };
+
+  // Helper function to get peak interaction hours
+  const getPeakHours = () => {
+    const peakTimes = fullReport.interactions?.peakInteractionTimes || [];
+    if (peakTimes.length === 0) return 'N/A';
+    
+    return peakTimes
+      .slice(0, 2)
+      .map((peak: any) => `${peak.hour}:00`)
+      .join(', ');
+  };
   
   return (
     <div className="space-y-6">
@@ -226,6 +237,163 @@ export function MetricsTab({ analysisResults }: MetricsTabProps) {
           <CardContent>
             <p className="text-2xl font-bold text-white">{formatCurrency(defiMetrics.stakingRewards)}</p>
             <p className="text-orange-300 text-xs mt-1">Distributed</p>
+          </CardContent>
+        </Card>
+      </div>
+
+      {/* Advanced Metrics */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <Card className="bg-gray-800 border-yellow-500/30">
+          <CardHeader>
+            <CardTitle className="text-white">Gas Analysis</CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div className="flex justify-between items-center p-3 bg-gray-700/50 rounded-lg">
+              <span className="text-gray-300">Average Gas Price</span>
+              <span className="text-white font-bold">{gasAnalysis.averageGasPrice || 'N/A'}</span>
+            </div>
+            <div className="flex justify-between items-center p-3 bg-gray-700/50 rounded-lg">
+              <span className="text-gray-300">Average Gas Used</span>
+              <span className="text-white font-bold">{formatNumber(gasAnalysis.averageGasUsed, 0).toLocaleString()}</span>
+            </div>
+            <div className="flex justify-between items-center p-3 bg-gray-700/50 rounded-lg">
+              <span className="text-gray-300">Total Gas Cost (USD)</span>
+              <span className="text-white font-bold">${formatNumber(gasAnalysis.totalGasCostUSD, 0).toLocaleString()}</span>
+            </div>
+            <div className="flex justify-between items-center p-3 bg-gray-700/50 rounded-lg">
+              <span className="text-gray-300">Average Gas Cost (USD)</span>
+              <span className="text-white font-bold">${formatNumber(gasAnalysis.averageGasCostUSD, 0).toFixed(2)}</span>
+            </div>
+            <div className="flex justify-between items-center p-3 bg-gray-700/50 rounded-lg">
+              <span className="text-gray-300">Gas Efficiency Score</span>
+              <span className="text-white font-bold">{formatPercentage(gasAnalysis.gasEfficiencyScore)}</span>
+            </div>
+            <div className="flex justify-between items-center p-3 bg-gray-700/50 rounded-lg">
+              <span className="text-gray-300">Failed Transactions</span>
+              <span className="text-white font-bold">{formatNumber(gasAnalysis.failedTransactions, 0)}</span>
+            </div>
+          </CardContent>
+        </Card>
+
+        <Card className="bg-gray-800 border-red-500/30">
+          <CardHeader>
+            <CardTitle className="text-white">Risk & Security Metrics</CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div className="flex justify-between items-center p-3 bg-gray-700/50 rounded-lg">
+              <span className="text-gray-300">MEV Exposure</span>
+              <span className="text-white font-bold">{formatNumber(userBehavior.mevExposure, 0)}</span>
+            </div>
+            <div className="flex justify-between items-center p-3 bg-gray-700/50 rounded-lg">
+              <span className="text-gray-300">Front Running Detection</span>
+              <span className="text-white font-bold">{formatNumber(userBehavior.frontRunningDetection, 0)}</span>
+            </div>
+            <div className="flex justify-between items-center p-3 bg-gray-700/50 rounded-lg">
+              <span className="text-gray-300">Sandwich Attacks</span>
+              <span className="text-white font-bold">{formatNumber(userBehavior.sandwichAttacks, 0)}</span>
+            </div>
+            <div className="flex justify-between items-center p-3 bg-gray-700/50 rounded-lg">
+              <span className="text-gray-300">Arbitrage Opportunities</span>
+              <span className="text-white font-bold">{formatNumber(userBehavior.arbitrageOpportunities, 0)}</span>
+            </div>
+            <div className="flex justify-between items-center p-3 bg-gray-700/50 rounded-lg">
+              <span className="text-gray-300">Liquidation Events</span>
+              <span className="text-white font-bold">{formatNumber(userBehavior.liquidationEvents, 0)}</span>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+
+      {/* Enhanced DeFi Metrics */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <Card className="bg-gradient-to-br from-emerald-900/20 to-emerald-800/20 border-emerald-500/30">
+          <CardHeader className="pb-2">
+            <CardTitle className="text-emerald-400 text-sm">Impermanent Loss</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p className="text-2xl font-bold text-white">{formatPercentage(defiMetrics.impermanentLoss)}</p>
+            <p className="text-emerald-300 text-xs mt-1">Current IL exposure</p>
+          </CardContent>
+        </Card>
+
+        <Card className="bg-gradient-to-br from-amber-900/20 to-amber-800/20 border-amber-500/30">
+          <CardHeader className="pb-2">
+            <CardTitle className="text-amber-400 text-sm">Slippage Tolerance</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p className="text-2xl font-bold text-white">{formatPercentage(defiMetrics.slippageTolerance)}</p>
+            <p className="text-amber-300 text-xs mt-1">Average slippage</p>
+          </CardContent>
+        </Card>
+
+        <Card className="bg-gradient-to-br from-teal-900/20 to-teal-800/20 border-teal-500/30">
+          <CardHeader className="pb-2">
+            <CardTitle className="text-teal-400 text-sm">Bridge Utilization</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p className="text-2xl font-bold text-white">{formatPercentage(defiMetrics.bridgeUtilization)}</p>
+            <p className="text-teal-300 text-xs mt-1">Cross-chain activity</p>
+          </CardContent>
+        </Card>
+
+        <Card className="bg-gradient-to-br from-rose-900/20 to-rose-800/20 border-rose-500/30">
+          <CardHeader className="pb-2">
+            <CardTitle className="text-rose-400 text-sm">Governance Participation</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p className="text-2xl font-bold text-white">{formatPercentage(defiMetrics.governanceParticipation)}</p>
+            <p className="text-rose-300 text-xs mt-1">Voting participation</p>
+          </CardContent>
+        </Card>
+      </div>
+
+      {/* Interaction Metrics */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <Card className="bg-gray-800 border-purple-500/30">
+          <CardHeader>
+            <CardTitle className="text-white">Contract Interaction Metrics</CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div className="flex justify-between items-center p-3 bg-gray-700/50 rounded-lg">
+              <span className="text-gray-300">Event Driven Volume</span>
+              <span className="text-white font-bold">{formatCurrency(defiMetrics.eventDrivenVolume)}</span>
+            </div>
+            <div className="flex justify-between items-center p-3 bg-gray-700/50 rounded-lg">
+              <span className="text-gray-300">Interaction Complexity</span>
+              <span className="text-white font-bold">{defiMetrics.interactionComplexity || 'N/A'}</span>
+            </div>
+            <div className="flex justify-between items-center p-3 bg-gray-700/50 rounded-lg">
+              <span className="text-gray-300">Contract Utilization</span>
+              <span className="text-white font-bold">{formatNumber(defiMetrics.contractUtilization, 0).toFixed(2)}</span>
+            </div>
+            <div className="flex justify-between items-center p-3 bg-gray-700/50 rounded-lg">
+              <span className="text-gray-300">Peak Interaction Times</span>
+              <span className="text-white font-bold">{getPeakHours()}</span>
+            </div>
+          </CardContent>
+        </Card>
+
+        <Card className="bg-gray-800 border-indigo-500/30">
+          <CardHeader>
+            <CardTitle className="text-white">Advanced Performance</CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div className="flex justify-between items-center p-3 bg-gray-700/50 rounded-lg">
+              <span className="text-gray-300">Function Success Rate</span>
+              <span className="text-white font-bold">{formatPercentage(defiMetrics.functionSuccessRate)}</span>
+            </div>
+            <div className="flex justify-between items-center p-3 bg-gray-700/50 rounded-lg">
+              <span className="text-gray-300">Protocol Stickiness</span>
+              <span className="text-white font-bold">{formatPercentage(defiMetrics.protocolStickiness)}</span>
+            </div>
+            <div className="flex justify-between items-center p-3 bg-gray-700/50 rounded-lg">
+              <span className="text-gray-300">Cross-Chain Volume</span>
+              <span className="text-white font-bold">{formatCurrency(defiMetrics.crossChainVolume)}</span>
+            </div>
+            <div className="flex justify-between items-center p-3 bg-gray-700/50 rounded-lg">
+              <span className="text-gray-300">Active Pools Count</span>
+              <span className="text-white font-bold">{formatNumber(defiMetrics.activePoolsCount, 0)}</span>
+            </div>
           </CardContent>
         </Card>
       </div>

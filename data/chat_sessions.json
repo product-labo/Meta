@@ -90,11 +90,11 @@
     "contractName": "public Node",
     "title": "Chat: public Node...",
     "isActive": true,
-    "messageCount": 21,
+    "messageCount": 41,
     "metadata": {},
     "createdAt": "2026-01-28T15:15:26.400Z",
-    "updatedAt": "2026-01-28T16:42:04.717Z",
-    "lastMessageAt": "2026-01-28T16:42:04.711Z"
+    "updatedAt": "2026-01-29T15:22:41.186Z",
+    "lastMessageAt": "2026-01-29T15:22:41.174Z"
   },
   {
     "id": "dc8442db-d46e-480f-ae6b-afa97c46bca7",
@@ -109,5 +109,19 @@
     "createdAt": "2026-01-28T17:58:14.548Z",
     "updatedAt": "2026-01-28T17:58:47.577Z",
     "lastMessageAt": "2026-01-28T17:58:30.068Z"
+  },
+  {
+    "id": "0507aa07-903f-482b-ba9f-fde49eca69c9",
+    "userId": "3c07e664-7e86-47c5-8a86-33dea053cf9d",
+    "contractAddress": "0x8315177ab297ba92a06054ce80a67ed4dbd7ed3a",
+    "contractChain": "ethereum",
+    "contractName": "Arbitrum bridge",
+    "title": "Chat: Arbitrum bridge...",
+    "isActive": false,
+    "messageCount": 1,
+    "metadata": {},
+    "createdAt": "2026-01-29T00:30:11.456Z",
+    "updatedAt": "2026-01-29T00:30:21.532Z",
+    "lastMessageAt": "2026-01-29T00:30:11.465Z"
   }
 ]

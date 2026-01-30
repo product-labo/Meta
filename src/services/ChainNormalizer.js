@@ -46,6 +46,10 @@ export class ChainNormalizer {
       throw new Error('Transactions must be an array');
     }
 
+    if (!chain) {
+      throw new Error('Chain parameter is required and cannot be null or undefined');
+    }
+
     const chainLower = chain.toLowerCase();
     if (!this.supportedChains.includes(chainLower)) {
       throw new Error(`Unsupported chain: ${chain}`);

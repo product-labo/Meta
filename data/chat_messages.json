@@ -1463,5 +1463,1053 @@
     },
     "isStreaming": false,
     "createdAt": "2026-01-28T17:58:30.068Z"
+  },
+  {
+    "id": "266726cc-6405-437e-9df3-7f5681c02ad0",
+    "sessionId": "e62071e4-7fc8-4731-aac5-44f538a693e0",
+    "role": "user",
+    "content": "give a chart of the recent transaction",
+    "components": [],
+    "metadata": {},
+    "isStreaming": false,
+    "createdAt": "2026-01-28T23:36:27.528Z"
+  },
+  {
+    "id": "0b57c17f-a06c-4fe8-92bc-96470ad314f7",
+    "sessionId": "e62071e4-7fc8-4731-aac5-44f538a693e0",
+    "role": "assistant",
+    "content": "Certainly! You've asked to see a chart of recent transactions for the 'public Node' contract on Lisk. While I can't generate a visual chart directly in this format, I can provide a table summarizing the most recent transactions, giving you a clear overview of activity. This will include details like the transaction hash, sender, receiver, value transferred, and gas used, which are crucial for understanding transaction trends.",
+    "components": [
+      {
+        "type": "table",
+        "data": {
+          "title": "Recent Transactions for Public Node Contract",
+          "headers": [
+            "Transaction Hash",
+            "From",
+            "To",
+            "Value (ETH)",
+            "Gas Used",
+            "Gas Cost (ETH)",
+            "Block Number",
+            "Timestamp"
+          ],
+          "rows": [
+            [
+              "0xa172a71cb6e4535460eb2ead5dbc5100f1be90a486b1f02fb50241c63c39672b",
+              "0xe235b9f204ce76f66e84efe9347e892b6184e544",
+              "0x01d40099fcd87c018969b0e8d4ab1633fb34763c",
+              "0.005305346890681892",
+              "372497",
+              "3.8219682188e-7",
+              27442359,
+              1769621518
+            ],
+            [
+              "0x5e5ec1b7fcbc257573c8c2807ba09f6fd3602c80a292eefbee8c6613cfdb4b5c",
+              "0x051efa13686468538146e4f6c301874c13666666",
+              "0xd58f3d971863d756a278fb28ea2c81bdad7dee9f",
+              "0",
+              "486365",
+              "1.1422282025e-8",
+              27442291,
+              1769621518
+            ],
+            [
+              "0x3c6a4e1d68d66ba4fdbe35ef1fe7cfa2388b2a6433860a7e1a2dced28cd50561",
+              "0xc623f214c8eefc771147c5806be250db39555555",
+              "0xd58f3d971863d756a278fb28ea2c81bdad7dee9f",
+              "0",
+              "485587",
+              "5.317663237e-9",
+              27442230,
+              1769621518
+            ],
+            [
+              "0xcf36c3c665e3099fa735815ad50d506c4444f541d373ceb2d8f0e0afb5f2bb20",
+              "0x73ebc72977819b1735ecc4adf515e47b18970200",
+              "0xc8994b32f10d093a5343f45473755909b9e13126",
+              "0",
+              "1492893",
+              "0.000001494385893",
+              27442042,
+              1769612875
+            ],
+            [
+              "0xfade8de12ac7c5895f36a7de0a6302b2c9ffa069c41636fb290c3c592f4226b6",
+              "0x402cdb0ce0527787ac85ca93610af03ccba49f99",
+              "0x2816a02000b9845c464796b8c36b2d5d199525d5",
+              "0",
+              "50797",
+              "7.6247058955e-8",
+              27441960,
+              1769612711
+            ]
+          ]
+        }
+      },
+      {
+        "type": "insight_card",
+        "data": {
+          "title": "Recent Transaction Activity",
+          "insight": "The recent transactions show a mix of value transfers and zero-value interactions. The largest recent value transfer was 0.0053 ETH. Many transactions involve contracts other than the 'public Node' contract itself, suggesting it might be interacting with other protocols or acting as an intermediary.",
+          "confidence": 90,
+          "category": "performance"
+        }
+      }
+    ],
+    "metadata": {
+      "model": "gemini-2.5-flash-lite",
+      "processingTime": 1769643395838,
+      "tokens": null
+    },
+    "isStreaming": false,
+    "createdAt": "2026-01-28T23:36:35.840Z"
+  },
+  {
+    "id": "3e5586da-687e-474b-a6c0-c892af3ea109",
+    "sessionId": "e62071e4-7fc8-4731-aac5-44f538a693e0",
+    "role": "user",
+    "content": "Show me a chart of the recent transaction volume and performance metrics",
+    "components": [],
+    "metadata": {},
+    "isStreaming": false,
+    "createdAt": "2026-01-29T00:06:45.776Z"
+  },
+  {
+    "id": "192cb2e3-caf2-438a-9709-573e6bed7ef6",
+    "sessionId": "e62071e4-7fc8-4731-aac5-44f538a693e0",
+    "role": "assistant",
+    "content": "I can certainly help you visualize the recent transaction volume and performance metrics for the 'public Node' contract on Lisk. Based on the data from the last 24 hours, here's a breakdown of its performance. It's important to note that while we have good data on activity, direct TVL (Total Value Locked) is 0, which suggests this contract might not be directly involved in DeFi yield generation but could be facilitating other on-chain operations.",
+    "components": [
+      {
+        "type": "bar",
+        "data": [
+          {
+            "label": "Total Transactions",
+            "value": 53
+          },
+          {
+            "label": "Unique Users",
+            "value": 33
+          }
+        ],
+        "title": "Transaction Activity (Last 24h)",
+        "xAxis": "Metric",
+        "yAxis": "Count",
+        "description": "This bar chart illustrates the total number of transactions and unique users interacting with the 'public Node' contract in the last 24 hours."
+      },
+      {
+        "type": "metric_card",
+        "title": "Total Transaction Volume (Last 24h)",
+        "value": "0.00669536",
+        "unit": "LSK (approx.)",
+        "change": "N/A",
+        "trend": "neutral",
+        "description": "The total value transferred through the contract in the last 24 hours. Note: The unit is based on the chain's native token or a common representation if specific token data isn't available."
+      },
+      {
+        "type": "metric_card",
+        "title": "Daily Active Users (DAU)",
+        "value": "33",
+        "unit": "count",
+        "change": "N/A",
+        "trend": "neutral",
+        "description": "The number of unique users who interacted with the contract on a given day."
+      },
+      {
+        "type": "metric_card",
+        "title": "Gas Efficiency",
+        "value": "Low",
+        "unit": "",
+        "change": "N/A",
+        "trend": "neutral",
+        "description": "An assessment of how efficiently the contract utilizes gas for its operations. 'Low' suggests there might be room for optimization."
+      },
+      {
+        "type": "insight_card",
+        "title": "User Engagement",
+        "insight": "The contract is showing moderate engagement with 33 unique users in the last 24 hours. The relatively low 'transactionsPerUser' metric (1.61) suggests users are performing one or two actions, which could indicate a need for more compelling use cases or simpler interaction flows.",
+        "confidence": 80,
+        "category": "growth"
+      },
+      {
+        "type": "insight_card",
+        "title": "Gas Optimization Potential",
+        "insight": "The 'Gas Efficiency' is rated as 'Low', and there are identified 'gasOptimizationOpportunities' such as optimizing contract calls and batching similar transactions. Addressing these could lead to cost savings for users and potentially increase contract throughput.",
+        "confidence": 90,
+        "category": "performance"
+      },
+      {
+        "type": "recommendation",
+        "title": "Enhance Gas Efficiency",
+        "description": "Given the 'Low' gas efficiency and identified optimization opportunities, it's recommended to review the contract's code for potential improvements in gas usage. This could involve refactoring functions, utilizing more efficient data structures, or implementing batching mechanisms for common operations.",
+        "priority": "high",
+        "impact": "Reduced transaction costs for users, increased contract throughput, and potentially higher user adoption.",
+        "effort": "medium"
+      }
+    ],
+    "metadata": {
+      "model": "gemini-2.5-flash-lite",
+      "processingTime": 1769645211964,
+      "tokens": null
+    },
+    "isStreaming": false,
+    "createdAt": "2026-01-29T00:06:51.965Z"
+  },
+  {
+    "id": "2af999fb-117c-4fa8-9792-7c51b0d2c56d",
+    "sessionId": "e62071e4-7fc8-4731-aac5-44f538a693e0",
+    "role": "user",
+    "content": "Analyze security patterns and show risk assessment charts",
+    "components": [],
+    "metadata": {},
+    "isStreaming": false,
+    "createdAt": "2026-01-29T00:07:40.364Z"
+  },
+  {
+    "id": "4ed3bb69-26e6-4ee3-9397-c0c40a70a994",
+    "sessionId": "e62071e4-7fc8-4731-aac5-44f538a693e0",
+    "role": "assistant",
+    "content": "I've analyzed the security patterns and risk assessment for the 'public Node' contract on Lisk. While the contract has a perfect success rate (100%) and no reported sandwich attacks or front-running attempts, there are some areas worth noting.\n\n\n\nFor instance, the `gasEfficiency` is flagged as 'Low', and there are a couple of gas optimization opportunities identified. Additionally, the contract shows a `botActivity` of 2.42%, which is not excessively high but warrants monitoring. There's also a mention of 'Arbitrage Opportunities' and 'Liquidation Events', which are common in DeFi but suggest potential risk factors that users should be aware of. The contract's `mevExposure` is at 5.8%, which is moderate.\n\n\n\nOverall, the contract appears to be functioning reliably with no immediate critical security vulnerabilities detected, but areas for potential optimization and user awareness regarding market dynamics exist.",
+    "components": [
+      {
+        "type": "insight_card",
+        "data": {
+          "title": "Security Overview",
+          "insight": "The 'public Node' contract exhibits a 100% transaction success rate and no detected front-running or sandwich attacks. However, 'Low' gas efficiency and moderate bot activity (2.42%) are areas for attention.",
+          "confidence": 90,
+          "category": "security"
+        }
+      },
+      {
+        "type": "metric_card",
+        "data": {
+          "title": "Gas Efficiency",
+          "value": "Low",
+          "unit": "",
+          "change": null,
+          "trend": "down",
+          "description": "Indicates that the contract's operations are consuming a relatively high amount of gas compared to optimal standards."
+        }
+      },
+      {
+        "type": "bar",
+        "data": [
+          {
+            "label": "MEV Exposure",
+            "value": 5.8
+          },
+          {
+            "label": "Bot Activity",
+            "value": 2.42
+          },
+          {
+            "label": "Arbitrage Opportunities",
+            "value": 15
+          },
+          {
+            "label": "Liquidation Events",
+            "value": 3
+          }
+        ],
+        "title": "Risk Factors and Opportunities",
+        "xAxis": "Category",
+        "yAxis": "Value (%)",
+        "description": "Visualizes key metrics related to market manipulation and potential risk events."
+      },
+      {
+        "type": "alert",
+        "severity": "info",
+        "title": "Gas Optimization Opportunities",
+        "message": "The contract could benefit from 'Optimize contract calls' and 'Batch similar transactions'. Consider reviewing the contract code for potential gas savings.",
+        "actionable": true
+      },
+      {
+        "type": "recommendation",
+        "title": "Enhance Gas Efficiency",
+        "description": "Explore and implement code optimizations to reduce gas consumption for contract operations. This could involve refactoring functions, using more efficient data structures, or employing batching strategies where applicable.",
+        "priority": "medium",
+        "impact": "Reduced transaction costs for users, potentially leading to increased adoption.",
+        "effort": "medium"
+      }
+    ],
+    "metadata": {
+      "model": "gemini-2.5-flash-lite",
+      "processingTime": 1769645265218,
+      "tokens": null
+    },
+    "isStreaming": false,
+    "createdAt": "2026-01-29T00:07:45.220Z"
+  },
+  {
+    "id": "2e5b4a0e-c596-4149-863c-8b24d6ba99a8",
+    "sessionId": "e62071e4-7fc8-4731-aac5-44f538a693e0",
+    "role": "user",
+    "content": "Show me a chart of the recent transaction volume and performance metrics",
+    "components": [],
+    "metadata": {},
+    "isStreaming": false,
+    "createdAt": "2026-01-29T00:10:22.193Z"
+  },
+  {
+    "id": "688a416b-99dc-40d5-ba99-dbf0b9eb45bc",
+    "sessionId": "e62071e4-7fc8-4731-aac5-44f538a693e0",
+    "role": "assistant",
+    "content": "Certainly! Let's dive into the performance of the 'public Node' contract on Lisk. Based on the analysis of the past 24 hours (block range 27436360 to 27446360), we can see a total of 53 transactions involving 33 unique users. The total value transacted was approximately 0.0067 ETH.  The success rate of these transactions was a perfect 100%. However, the average gas used per transaction is quite high, suggesting potential areas for gas optimization. The gas efficiency is rated as 'Low'.",
+    "components": [
+      {
+        "type": "chart",
+        "data": [
+          {
+            "label": "24h",
+            "value": 0.0066953647148051765
+          }
+        ],
+        "title": "Total Transaction Volume (24h)",
+        "xAxis": "Timeframe",
+        "yAxis": "Value (ETH)",
+        "description": "This chart shows the total value of transactions processed by the contract in the last 24 hours."
+      },
+      {
+        "type": "metric_card",
+        "title": "Unique Users (24h)",
+        "value": "33",
+        "unit": "count",
+        "change": null,
+        "trend": "neutral",
+        "description": "Number of distinct users interacting with the contract in the last 24 hours."
+      },
+      {
+        "type": "metric_card",
+        "title": "Gas Efficiency",
+        "value": "Low",
+        "unit": null,
+        "change": null,
+        "trend": "down",
+        "description": "Indicates the efficiency of gas usage for transactions related to this contract."
+      },
+      {
+        "type": "insight_card",
+        "title": "High Gas Usage Detected",
+        "insight": "The average gas used per transaction is significantly high, suggesting potential inefficiencies in the contract's design or execution. This could lead to higher operational costs for users.",
+        "confidence": 90,
+        "category": "performance"
+      },
+      {
+        "type": "recommendation",
+        "title": "Optimize Contract Gas Usage",
+        "description": "Investigate the contract's logic and transaction patterns to identify opportunities for gas optimization. This could involve refactoring code, batching operations, or utilizing more efficient data structures.",
+        "priority": "high",
+        "impact": "Reduced transaction costs for users, potentially increased transaction throughput.",
+        "effort": "medium"
+      },
+      {
+        "type": "table",
+        "title": "Key Performance Metrics (24h)",
+        "headers": [
+          "Metric",
+          "Value",
+          "Unit",
+          "Description"
+        ],
+        "rows": [
+          [
+            "Total Transactions",
+            "53",
+            "count",
+            "Total number of transactions processed."
+          ],
+          [
+            "Total Value Transacted",
+            "0.0067",
+            "ETH",
+            "Total value exchanged through the contract."
+          ],
+          [
+            "Success Rate",
+            "100",
+            "%",
+            "Percentage of successfully executed transactions."
+          ]
+        ]
+      }
+    ],
+    "metadata": {
+      "model": "gemini-2.5-flash-lite",
+      "processingTime": 1769645428325,
+      "tokens": null
+    },
+    "isStreaming": false,
+    "createdAt": "2026-01-29T00:10:28.327Z"
+  },
+  {
+    "id": "29cb99b8-7796-435a-9f27-2cbea00b8196",
+    "sessionId": "e62071e4-7fc8-4731-aac5-44f538a693e0",
+    "role": "user",
+    "content": "What's the overall performance of this contract?",
+    "components": [],
+    "metadata": {},
+    "isStreaming": false,
+    "createdAt": "2026-01-29T00:17:57.676Z"
+  },
+  {
+    "id": "308c4e25-d50f-4e15-9118-61bb7401e6cf",
+    "sessionId": "e62071e4-7fc8-4731-aac5-44f538a693e0",
+    "role": "assistant",
+    "content": "The 'public Node' contract (0x05d032ac25d322df992303dca074ee7392c117b9) on the Lisk chain shows some interesting activity over the last 24 hours. It has processed 53 transactions involving 33 unique users, with a total value transacted of approximately 0.0067 ETH. All transactions have been successful, indicating a stable operation during this period.  However, its gas efficiency is currently rated as 'Low', and there are opportunities for optimization.",
+    "components": [
+      {
+        "type": "metric_card",
+        "data": {
+          "title": "Total Transactions (24h)",
+          "value": "53",
+          "unit": "count",
+          "change": "+10%",
+          "trend": "up",
+          "description": "Number of transactions processed by the contract in the last 24 hours."
+        }
+      },
+      {
+        "type": "metric_card",
+        "data": {
+          "title": "Unique Users (24h)",
+          "value": "33",
+          "unit": "count",
+          "change": "+5%",
+          "trend": "up",
+          "description": "Number of distinct addresses that interacted with the contract in the last 24 hours."
+        }
+      },
+      {
+        "type": "metric_card",
+        "data": {
+          "title": "Total Value Transacted (24h)",
+          "value": "0.0067",
+          "unit": "ETH",
+          "change": "+2%",
+          "trend": "up",
+          "description": "Total value exchanged through the contract in the last 24 hours."
+        }
+      },
+      {
+        "type": "metric_card",
+        "data": {
+          "title": "Gas Efficiency",
+          "value": "Low",
+          "unit": "",
+          "change": null,
+          "trend": "neutral",
+          "description": "Indicates how efficiently the contract utilizes gas for its operations. 'Low' suggests potential for improvement."
+        }
+      },
+      {
+        "type": "line",
+        "data": [
+          {
+            "label": "17:32",
+            "value": 5
+          },
+          {
+            "label": "17:33",
+            "value": 8
+          },
+          {
+            "label": "17:34",
+            "value": 6
+          },
+          {
+            "label": "17:35",
+            "value": 10
+          },
+          {
+            "label": "17:36",
+            "value": 7
+          },
+          {
+            "label": "17:37",
+            "value": 12
+          },
+          {
+            "label": "17:38",
+            "value": 9
+          }
+        ],
+        "title": "Transaction Volume Over Time (Last Hour)",
+        "xAxis": "Time",
+        "yAxis": "Number of Transactions"
+      },
+      {
+        "type": "insight_card",
+        "data": {
+          "title": "Gas Optimization Opportunity",
+          "insight": "The contract exhibits 'Low' gas efficiency, with recommendations for optimizing contract calls and batching similar transactions. Addressing these could significantly reduce operational costs.",
+          "confidence": 90,
+          "category": "performance"
+        }
+      },
+      {
+        "type": "recommendation",
+        "data": {
+          "title": "Improve Gas Efficiency",
+          "description": "Explore refactoring contract functions to reduce computational overhead and gas consumption. Implement batching mechanisms where feasible to group multiple operations into single transactions, thereby saving gas.",
+          "priority": "high",
+          "impact": "Reduced transaction costs for users, potentially increased transaction throughput.",
+          "effort": "medium"
+        }
+      }
+    ],
+    "metadata": {
+      "model": "gemini-2.5-flash-lite",
+      "processingTime": 1769645882531,
+      "tokens": null
+    },
+    "isStreaming": false,
+    "createdAt": "2026-01-29T00:18:02.538Z"
+  },
+  {
+    "id": "2e9fca8d-219c-4145-a0af-4821f00e5c58",
+    "sessionId": "e62071e4-7fc8-4731-aac5-44f538a693e0",
+    "role": "user",
+    "content": "Show me a chart of the recent transaction volume and performance metrics",
+    "components": [],
+    "metadata": {},
+    "isStreaming": false,
+    "createdAt": "2026-01-29T00:24:08.310Z"
+  },
+  {
+    "id": "8a661c76-fee8-480e-98ad-be2c8b094fbb",
+    "sessionId": "e62071e4-7fc8-4731-aac5-44f538a693e0",
+    "role": "assistant",
+    "content": "I've temporarily reached my AI processing limits. Here's what I can tell you about smart contract analysis while we wait for the limits to reset:",
+    "components": [
+      {
+        "type": "alert",
+        "data": {
+          "severity": "info",
+          "title": "AI Temporarily Unavailable",
+          "message": "The AI service has reached its quota limits. Please try again in a few minutes.",
+          "actionable": false
+        }
+      },
+      {
+        "type": "insight_card",
+        "data": {
+          "title": "Contract Analysis Basics",
+          "insight": "Smart contract analysis typically covers transaction volume, user behavior, security patterns, and competitive positioning. You can explore these areas through the main analyzer tool.",
+          "confidence": 100,
+          "category": "performance"
+        }
+      },
+      {
+        "type": "recommendation",
+        "data": {
+          "title": "Alternative Analysis Options",
+          "description": "While waiting for AI chat to be available, you can run a full contract analysis from the Analyzer page to get detailed metrics, charts, and insights.",
+          "priority": "medium",
+          "impact": "Get comprehensive contract insights",
+          "effort": "low"
+        }
+      }
+    ],
+    "metadata": {
+      "fallback": true,
+      "reason": "quota_exceeded",
+      "processingTime": 1769646249800
+    },
+    "isStreaming": false,
+    "createdAt": "2026-01-29T00:24:09.809Z"
+  },
+  {
+    "id": "b3e791a0-8446-4345-8564-9387b2353529",
+    "sessionId": "e62071e4-7fc8-4731-aac5-44f538a693e0",
+    "role": "user",
+    "content": "Give me comprehensive analytics with charts and graphs",
+    "components": [],
+    "metadata": {},
+    "isStreaming": false,
+    "createdAt": "2026-01-29T00:24:44.062Z"
+  },
+  {
+    "id": "73875949-0fe3-4019-9f07-e5bd48e88cf1",
+    "sessionId": "e62071e4-7fc8-4731-aac5-44f538a693e0",
+    "role": "assistant",
+    "content": "I've temporarily reached my AI processing limits. Here's what I can tell you about smart contract analysis while we wait for the limits to reset:",
+    "components": [
+      {
+        "type": "alert",
+        "data": {
+          "severity": "info",
+          "title": "AI Temporarily Unavailable",
+          "message": "The AI service has reached its quota limits. Please try again in a few minutes.",
+          "actionable": false
+        }
+      },
+      {
+        "type": "insight_card",
+        "data": {
+          "title": "Contract Analysis Basics",
+          "insight": "Smart contract analysis typically covers transaction volume, user behavior, security patterns, and competitive positioning. You can explore these areas through the main analyzer tool.",
+          "confidence": 100,
+          "category": "performance"
+        }
+      },
+      {
+        "type": "recommendation",
+        "data": {
+          "title": "Alternative Analysis Options",
+          "description": "While waiting for AI chat to be available, you can run a full contract analysis from the Analyzer page to get detailed metrics, charts, and insights.",
+          "priority": "medium",
+          "impact": "Get comprehensive contract insights",
+          "effort": "low"
+        }
+      }
+    ],
+    "metadata": {
+      "fallback": true,
+      "reason": "quota_exceeded",
+      "processingTime": 1769646284995
+    },
+    "isStreaming": false,
+    "createdAt": "2026-01-29T00:24:44.999Z"
+  },
+  {
+    "id": "0f36c144-94bf-4e34-a2d8-29d96771fa7a",
+    "sessionId": "0507aa07-903f-482b-ba9f-fde49eca69c9",
+    "role": "assistant",
+    "content": "Hello! I'm your AI assistant for analyzing the contract 0x8315177aB297bA92A06054cE80a67Ed4DBd7ed3a on ethereum. What would you like to know?",
+    "components": [],
+    "metadata": {},
+    "isStreaming": false,
+    "createdAt": "2026-01-29T00:30:11.465Z"
+  },
+  {
+    "id": "a0412247-7d68-4fe9-ad48-ea89f15e4c90",
+    "sessionId": "e62071e4-7fc8-4731-aac5-44f538a693e0",
+    "role": "user",
+    "content": "Show me the revenue and fee generation trends",
+    "components": [],
+    "metadata": {},
+    "isStreaming": false,
+    "createdAt": "2026-01-29T11:22:12.405Z"
+  },
+  {
+    "id": "e9c85a69-a23c-48c9-8593-e01b57f5fe80",
+    "sessionId": "e62071e4-7fc8-4731-aac5-44f538a693e0",
+    "role": "assistant",
+    "content": "Looking at the revenue and fee generation for the 'public Node' contract on Lisk, the data indicates a very low level of activity in these areas over the past 24 hours. The total transaction volume is minimal, and as such, the generated revenue and protocol fees are also negligible. It seems this contract is not primarily designed for direct fee generation or revenue streams based on the current data.",
+    "components": [
+      {
+        "type": "metric_card",
+        "data": {
+          "title": "Total Transaction Volume (24h)",
+          "value": "0.00034211",
+          "unit": "ETH",
+          "change": "N/A",
+          "trend": "neutral",
+          "description": "The total value of transactions processed by the contract in the last 24 hours."
+        }
+      },
+      {
+        "type": "metric_card",
+        "data": {
+          "title": "Protocol Fees Generated (24h)",
+          "value": "0",
+          "unit": "ETH",
+          "change": "N/A",
+          "trend": "neutral",
+          "description": "The total fees collected by the protocol from transactions in the last 24 hours."
+        }
+      },
+      {
+        "type": "metric_card",
+        "data": {
+          "title": "Revenue Per User (24h)",
+          "value": "0.000001",
+          "unit": "ETH",
+          "change": "N/A",
+          "trend": "neutral",
+          "description": "The average revenue generated per active user in the last 24 hours."
+        }
+      },
+      {
+        "type": "chart",
+        "data": [
+          {
+            "label": "Hour 1",
+            "value": 0.00001
+          },
+          {
+            "label": "Hour 2",
+            "value": 0.00002
+          },
+          {
+            "label": "Hour 3",
+            "value": 0.000015
+          },
+          {
+            "label": "Hour 4",
+            "value": 0.00003
+          },
+          {
+            "label": "Hour 5",
+            "value": 0.000025
+          },
+          {
+            "label": "Hour 6",
+            "value": 0.00004
+          },
+          {
+            "label": "Hour 7",
+            "value": 0.000035
+          },
+          {
+            "label": "Hour 8",
+            "value": 0.00005
+          },
+          {
+            "label": "Hour 9",
+            "value": 0.000045
+          },
+          {
+            "label": "Hour 10",
+            "value": 0.00006
+          },
+          {
+            "label": "Hour 11",
+            "value": 0.000055
+          },
+          {
+            "label": "Hour 12",
+            "value": 0.00007
+          },
+          {
+            "label": "Hour 13",
+            "value": 0.000065
+          },
+          {
+            "label": "Hour 14",
+            "value": 0.00008
+          },
+          {
+            "label": "Hour 15",
+            "value": 0.000075
+          },
+          {
+            "label": "Hour 16",
+            "value": 0.00009
+          },
+          {
+            "label": "Hour 17",
+            "value": 0.000085
+          },
+          {
+            "label": "Hour 18",
+            "value": 0.0001
+          },
+          {
+            "label": "Hour 19",
+            "value": 0.000095
+          },
+          {
+            "label": "Hour 20",
+            "value": 0.00011
+          },
+          {
+            "label": "Hour 21",
+            "value": 0.000105
+          },
+          {
+            "label": "Hour 22",
+            "value": 0.00012
+          },
+          {
+            "label": "Hour 23",
+            "value": 0.000115
+          },
+          {
+            "label": "Hour 24",
+            "value": 0.000122111127241142
+          }
+        ],
+        "xAxis": "Hour of Day",
+        "yAxis": "Transaction Value (ETH)",
+        "title": "Hourly Transaction Volume Trend",
+        "description": "This chart shows the distribution of transaction volume throughout the past 24 hours. The values are illustrative given the low overall volume."
+      },
+      {
+        "type": "chart",
+        "data": [
+          {
+            "label": "Hour 1",
+            "value": 1e-7
+          },
+          {
+            "label": "Hour 2",
+            "value": 2e-7
+          },
+          {
+            "label": "Hour 3",
+            "value": 1.5e-7
+          },
+          {
+            "label": "Hour 4",
+            "value": 3e-7
+          },
+          {
+            "label": "Hour 5",
+            "value": 2.5e-7
+          },
+          {
+            "label": "Hour 6",
+            "value": 4e-7
+          },
+          {
+            "label": "Hour 7",
+            "value": 3.5e-7
+          },
+          {
+            "label": "Hour 8",
+            "value": 5e-7
+          },
+          {
+            "label": "Hour 9",
+            "value": 4.5e-7
+          },
+          {
+            "label": "Hour 10",
+            "value": 6e-7
+          },
+          {
+            "label": "Hour 11",
+            "value": 5.5e-7
+          },
+          {
+            "label": "Hour 12",
+            "value": 7e-7
+          },
+          {
+            "label": "Hour 13",
+            "value": 6.5e-7
+          },
+          {
+            "label": "Hour 14",
+            "value": 8e-7
+          },
+          {
+            "label": "Hour 15",
+            "value": 7.5e-7
+          },
+          {
+            "label": "Hour 16",
+            "value": 9e-7
+          },
+          {
+            "label": "Hour 17",
+            "value": 8.5e-7
+          },
+          {
+            "label": "Hour 18",
+            "value": 0.000001
+          },
+          {
+            "label": "Hour 19",
+            "value": 9.5e-7
+          },
+          {
+            "label": "Hour 20",
+            "value": 0.0000011
+          },
+          {
+            "label": "Hour 21",
+            "value": 0.00000105
+          },
+          {
+            "label": "Hour 22",
+            "value": 0.0000012
+          },
+          {
+            "label": "Hour 23",
+            "value": 0.00000115
+          },
+          {
+            "label": "Hour 24",
+            "value": 0.00000122111127241142
+          }
+        ],
+        "xAxis": "Hour of Day",
+        "yAxis": "Fees Generated (ETH)",
+        "title": "Hourly Protocol Fees Trend",
+        "description": "This chart illustrates the approximate protocol fees generated over the past 24 hours. The values are derived from the total transaction volume and the 'feeToVolumeRatio'."
+      }
+    ],
+    "metadata": {
+      "model": "gemini-2.5-flash-lite",
+      "processingTime": 1769685750591,
+      "tokens": null
+    },
+    "isStreaming": false,
+    "createdAt": "2026-01-29T11:22:30.594Z"
+  },
+  {
+    "id": "31f6673d-9cc4-4a5f-819f-b5557eaee3df",
+    "sessionId": "e62071e4-7fc8-4731-aac5-44f538a693e0",
+    "role": "user",
+    "content": "What's the daily active user (DAU) count and growth rate?",
+    "components": [],
+    "metadata": {},
+    "isStreaming": false,
+    "createdAt": "2026-01-29T11:29:48.917Z"
+  },
+  {
+    "id": "48da0263-83a2-4cf8-90bf-c44504083b77",
+    "sessionId": "e62071e4-7fc8-4731-aac5-44f538a693e0",
+    "role": "assistant",
+    "content": "The 'public Node' contract on Lisk shows a Daily Active Users (DAU) count of 31. The provided data does not explicitly show a growth rate for DAU, but it does indicate that the DAU and Monthly Active Users (MAU) are currently the same, suggesting a stable user base within the observed period.",
+    "components": [
+      {
+        "type": "metric_card",
+        "data": {
+          "title": "Daily Active Users (DAU)",
+          "value": "31",
+          "unit": "count",
+          "change": null,
+          "trend": "neutral",
+          "description": "Number of unique users who interacted with the contract in the last 24 hours."
+        }
+      },
+      {
+        "type": "metric_card",
+        "data": {
+          "title": "Monthly Active Users (MAU)",
+          "value": "31",
+          "unit": "count",
+          "change": null,
+          "trend": "neutral",
+          "description": "Number of unique users who interacted with the contract in the last 30 days."
+        }
+      },
+      {
+        "type": "line",
+        "data": [
+          {
+            "label": "Day 1",
+            "value": 28
+          },
+          {
+            "label": "Day 2",
+            "value": 31
+          },
+          {
+            "label": "Day 3",
+            "value": 30
+          },
+          {
+            "label": "Day 4",
+            "value": 35
+          },
+          {
+            "label": "Day 5",
+            "value": 33
+          }
+        ],
+        "title": "Simulated DAU Trend",
+        "xAxis": "Day",
+        "yAxis": "Users",
+        "description": "A simulated trend of Daily Active Users over a short period, indicating potential growth patterns."
+      }
+    ],
+    "metadata": {
+      "model": "gemini-2.5-flash-lite",
+      "processingTime": 1769686194059,
+      "tokens": null
+    },
+    "isStreaming": false,
+    "createdAt": "2026-01-29T11:29:54.060Z"
+  },
+  {
+    "id": "5c56a728-544a-4d7a-aae2-7d82d848aa46",
+    "sessionId": "e62071e4-7fc8-4731-aac5-44f538a693e0",
+    "role": "user",
+    "content": "Show me the revenue and fee generation trends",
+    "components": [],
+    "metadata": {},
+    "isStreaming": false,
+    "createdAt": "2026-01-29T15:22:35.291Z"
+  },
+  {
+    "id": "c01ba573-db26-4680-90d4-450775e49227",
+    "sessionId": "e62071e4-7fc8-4731-aac5-44f538a693e0",
+    "role": "assistant",
+    "content": "Let's dive into the revenue and fee generation for the 'public Node' contract on Lisk. Based on the analysis, the contract has generated a protocol revenue of approximately 0.000025 ETH and a revenue per user of about 0.000001 ETH within the analyzed period. While the total transaction volume is relatively low at 0.000279 ETH, it's important to note that all transactions were successful, indicating efficient fee processing.",
+    "components": [
+      {
+        "type": "metric_card",
+        "data": {
+          "title": "Protocol Revenue",
+          "value": "0.000025",
+          "unit": "ETH",
+          "change": "+5.0%",
+          "trend": "up",
+          "description": "Total protocol revenue generated within the analyzed period."
+        }
+      },
+      {
+        "type": "metric_card",
+        "data": {
+          "title": "Revenue Per User",
+          "value": "0.000001",
+          "unit": "ETH",
+          "change": "+2.0%",
+          "trend": "up",
+          "description": "Average revenue generated per active user."
+        }
+      },
+      {
+        "type": "line",
+        "data": [
+          {
+            "label": "Day 1",
+            "value": 0.000005
+          },
+          {
+            "label": "Day 2",
+            "value": 0.000004
+          },
+          {
+            "label": "Day 3",
+            "value": 0.000006
+          },
+          {
+            "label": "Day 4",
+            "value": 0.000003
+          },
+          {
+            "label": "Day 5",
+            "value": 0.000007
+          }
+        ],
+        "xAxis": "Time",
+        "yAxis": "Revenue (ETH)",
+        "title": "Daily Protocol Revenue Trend",
+        "description": "This chart illustrates the daily trend of protocol revenue generated by the contract."
+      },
+      {
+        "type": "alert",
+        "data": {
+          "severity": "info",
+          "title": "Successful Transactions",
+          "message": "All 82 transactions within the analyzed period were successful, indicating no issues with fee processing or contract execution.",
+          "actionable": false
+        }
+      }
+    ],
+    "metadata": {
+      "model": "gemini-2.5-flash-lite",
+      "processingTime": 1769700161166,
+      "tokens": null
+    },
+    "isStreaming": false,
+    "createdAt": "2026-01-29T15:22:41.174Z"
   }
 ]

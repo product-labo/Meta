@@ -5,9 +5,10 @@
 
 import express from 'express';
 import { UserStorage, ContractStorage, AnalysisStorage } from '../database/fileStorage.js';
-import { AnalyticsEngine } from '../../index.js';
+import { EnhancedAnalyticsEngine } from '../../services/EnhancedAnalyticsEngine.js';
+import { performContinuousContractSync } from './continuous-sync-improved.js';
 
-console.log('🔍 Checking AnalyticsEngine import:', typeof AnalyticsEngine);
+console.log('🔍 Checking EnhancedAnalyticsEngine import:', typeof EnhancedAnalyticsEngine);
 
 const router = express.Router();
 
@@ -33,11 +34,21 @@ router.get('/status', async (req, res) => {
       });
     }
 
+    // Check for running continuous sync
+    const allAnalyses = await AnalysisStorage.findByUserId(req.user.id);
+    const runningContinuousSync = allAnalyses.find(analysis => 
+      (analysis.status === 'running' || analysis.status === 'pending') &&
+      analysis.metadata?.isDefaultContract === true &&
+      analysis.metadata?.continuous === true
+    );
+
     res.json({
       completed: user.onboarding?.completed || false,
       hasDefaultContract: !!(user.onboarding?.defaultContract?.address),
       isIndexed: user.onboarding?.defaultContract?.isIndexed || false,
-      indexingProgress: user.onboarding?.defaultContract?.indexingProgress || 0
+      indexingProgress: user.onboarding?.defaultContract?.indexingProgress || 0,
+      continuousSync: !!(runningContinuousSync || user.onboarding?.defaultContract?.continuousSync),
+      continuousSyncActive: !!runningContinuousSync
     });
   } catch (error) {
     res.status(500).json({
@@ -435,6 +446,16 @@ router.post('/test-refresh', async (req, res) => {
  *     tags: [Onboarding]
  *     security:
  *       - bearerAuth: []
+ *     requestBody:
+ *       required: false
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               continuous:
+ *                 type: boolean
+ *                 description: Enable continuous syncing mode
  *     responses:
  *       200:
  *         description: Default contract refresh started successfully
@@ -443,6 +464,9 @@ router.post('/test-refresh', async (req, res) => {
  */
 router.post('/refresh-default-contract', async (req, res) => {
   try {
+    const { continuous = false } = req.body;
+    console.log(`🔍 DEBUG: Received continuous parameter: ${continuous}, type: ${typeof continuous}`);
+    
     const user = await UserStorage.findById(req.user.id);
     if (!user || !user.onboarding?.defaultContract?.address) {
       return res.status(404).json({
@@ -461,12 +485,47 @@ router.post('/refresh-default-contract', async (req, res) => {
     );
 
     if (runningAnalysis) {
-      return res.json({
-        message: 'Default contract refresh already in progress',
-        analysisId: runningAnalysis.id,
-        status: runningAnalysis.status,
-        progress: runningAnalysis.progress || 10
-      });
+      // If requesting continuous sync but current is not continuous, stop current and start new
+      if (continuous && !runningAnalysis.metadata?.continuous) {
+        console.log(`🔄 Stopping non-continuous analysis to start continuous sync`);
+        await AnalysisStorage.update(runningAnalysis.id, {
+          status: 'completed',
+          progress: 100,
+          metadata: {
+            ...runningAnalysis.metadata,
+            stoppedForContinuous: true,
+            stoppedAt: new Date().toISOString()
+          },
+          completedAt: new Date().toISOString()
+        });
+        // Continue to start new continuous sync
+      } 
+      // If requesting non-continuous but current is continuous, stop continuous and start new
+      else if (!continuous && runningAnalysis.metadata?.continuous) {
+        console.log(`🛑 Stopping continuous sync to start regular refresh`);
+        await AnalysisStorage.update(runningAnalysis.id, {
+          status: 'completed',
+          progress: 100,
+          metadata: {
+            ...runningAnalysis.metadata,
+            continuous: false,
+            stoppedForRegular: true,
+            stoppedAt: new Date().toISOString()
+          },
+          completedAt: new Date().toISOString()
+        });
+        // Continue to start new regular sync
+      }
+      // If same type is already running, return existing
+      else {
+        return res.json({
+          message: continuous ? 'Continuous sync already in progress' : 'Default contract refresh already in progress',
+          analysisId: runningAnalysis.id,
+          status: runningAnalysis.status,
+          progress: runningAnalysis.progress || 10,
+          continuous: runningAnalysis.metadata?.continuous || false
+        });
+      }
     }
     
     // Find the default contract configuration
@@ -504,28 +563,33 @@ router.post('/refresh-default-contract', async (req, res) => {
     
     if (existingAnalysis) {
       // Update existing analysis instead of creating new one
-      console.log(`🔄 Updating existing analysis ${existingAnalysis.id} for refresh`);
+      console.log(`🔄 Updating existing analysis ${existingAnalysis.id} for refresh (continuous: ${continuous})`);
       
       await AnalysisStorage.update(existingAnalysis.id, {
         status: 'running',
         progress: 10,
-        results: null, // Clear old results
+        results: continuous ? existingAnalysis.results : null, // Keep existing results in continuous mode
         metadata: {
           ...existingAnalysis.metadata,
           isDefaultContract: true,
           isRefresh: true,
+          continuous: continuous,
+          continuousStarted: continuous ? new Date().toISOString() : undefined,
           refreshStarted: new Date().toISOString(),
-          originalCreatedAt: existingAnalysis.createdAt // Preserve original creation time
+          originalCreatedAt: existingAnalysis.createdAt, // Preserve original creation time
+          syncCycle: continuous ? (existingAnalysis.metadata?.syncCycle || 0) + 1 : 1
         },
         errorMessage: null,
-        logs: ['Starting default contract data refresh...'],
+        logs: continuous ? 
+          [...(existingAnalysis.logs || []), `Starting continuous sync cycle ${(existingAnalysis.metadata?.syncCycle || 0) + 1}...`] :
+          ['Starting default contract data refresh...'],
         completedAt: null
       });
       
       analysisId = existingAnalysis.id;
     } else {
       // Create new analysis only if no existing one found
-      console.log(`📝 Creating new analysis for default contract refresh`);
+      console.log(`📝 Creating new analysis for default contract refresh (continuous: ${continuous})`);
       
       const analysisData = {
         userId: req.user.id,
@@ -537,10 +601,15 @@ router.post('/refresh-default-contract', async (req, res) => {
         metadata: {
           isDefaultContract: true,
           isRefresh: true,
-          refreshStarted: new Date().toISOString()
+          continuous: continuous,
+          continuousStarted: continuous ? new Date().toISOString() : undefined,
+          refreshStarted: new Date().toISOString(),
+          syncCycle: 1
         },
         errorMessage: null,
-        logs: ['Starting default contract data refresh...'],
+        logs: continuous ? 
+          ['Starting continuous sync mode...'] :
+          ['Starting default contract data refresh...'],
         completedAt: null
       };
 
@@ -556,51 +625,256 @@ router.post('/refresh-default-contract', async (req, res) => {
         ...refreshUser.onboarding.defaultContract,
         lastAnalysisId: analysisId,
         isIndexed: false,
-        indexingProgress: 10
+        indexingProgress: 10,
+        continuousSync: continuous,
+        continuousSyncStarted: continuous ? new Date().toISOString() : undefined
       }
     };
     await UserStorage.update(req.user.id, { onboarding: refreshOnboarding });
 
     // Start analysis asynchronously
-    performDefaultContractRefresh(analysisId, defaultConfig, req.user.id)
-      .catch(error => {
-        console.error('Default contract refresh error:', error);
-        AnalysisStorage.update(analysisId, {
-          status: 'failed',
-          errorMessage: error.message,
-          completedAt: new Date().toISOString()
+    if (continuous) {
+      console.log(`🚀 Starting continuous sync for analysis ${analysisId}`);
+      // Use the improved continuous sync function directly
+      performContinuousContractSync(analysisId, defaultConfig, req.user.id)
+        .then(() => {
+          console.log(`✅ Continuous sync completed for analysis ${analysisId}`);
+        })
+        .catch(error => {
+          console.error('Continuous contract sync error:', error);
+          console.error('Error stack:', error.stack);
+          AnalysisStorage.update(analysisId, {
+            status: 'failed',
+            errorMessage: error.message,
+            completedAt: new Date().toISOString(),
+            metadata: { ...existingAnalysis?.metadata, continuous: false }
+          });
+          
+          // Update user status on error (async)
+          (async () => {
+            try {
+              const errorUser = await UserStorage.findById(req.user.id);
+              const errorOnboarding = {
+                ...errorUser.onboarding,
+                defaultContract: {
+                  ...errorUser.onboarding.defaultContract,
+                  indexingProgress: 0,
+                  isIndexed: false,
+                  continuousSync: false
+                }
+              };
+              await UserStorage.update(req.user.id, { onboarding: errorOnboarding });
+            } catch (updateError) {
+              console.error('Failed to update user on error:', updateError);
+            }
+          })();
         });
-        
-        // Update user status on error (async)
-        (async () => {
-          try {
-            const errorUser = await UserStorage.findById(req.user.id);
-            const errorOnboarding = {
-              ...errorUser.onboarding,
-              defaultContract: {
-                ...errorUser.onboarding.defaultContract,
-                indexingProgress: 0,
-                isIndexed: false
-              }
-            };
-            await UserStorage.update(req.user.id, { onboarding: errorOnboarding });
-          } catch (updateError) {
-            console.error('Failed to update user on error:', updateError);
-          }
-        })();
-      });
+    } else {
+      console.log(`🚀 Starting regular refresh for analysis ${analysisId}`);
+      performDefaultContractRefresh(analysisId, defaultConfig, req.user.id)
+        .catch(error => {
+          console.error('Default contract refresh error:', error);
+          console.error('Error stack:', error.stack);
+          AnalysisStorage.update(analysisId, {
+            status: 'failed',
+            errorMessage: error.message,
+            completedAt: new Date().toISOString()
+          });
+          
+          // Update user status on error (async)
+          (async () => {
+            try {
+              const errorUser = await UserStorage.findById(req.user.id);
+              const errorOnboarding = {
+                ...errorUser.onboarding,
+                defaultContract: {
+                  ...errorUser.onboarding.defaultContract,
+                  indexingProgress: 0,
+                  isIndexed: false
+                }
+              };
+              await UserStorage.update(req.user.id, { onboarding: errorOnboarding });
+            } catch (updateError) {
+              console.error('Failed to update user on error:', updateError);
+            }
+          })();
+        });
+    }
 
+    console.log(`🔍 DEBUG: About to send response with continuous: ${continuous}`);
     res.json({
-      message: 'Default contract refresh started successfully',
+      message: continuous ? 'Continuous contract sync started successfully' : 'Default contract refresh started successfully',
       analysisId: analysisId,
       status: 'running',
       progress: 10,
+      continuous: continuous,
       isUpdate: !!existingAnalysis
     });
 
   } catch (error) {
     res.status(500).json({
       error: 'Failed to refresh default contract',
+      message: error.message
+    });
+  }
+});
+
+/**
+ * @swagger
+ * /api/onboarding/debug-analysis:
+ *   get:
+ *     summary: Debug analysis status (development only)
+ *     tags: [Onboarding]
+ *     security:
+ *       - bearerAuth: []
+ *     responses:
+ *       200:
+ *         description: Analysis debug information
+ */
+router.get('/debug-analysis', async (req, res) => {
+  try {
+    const user = await UserStorage.findById(req.user.id);
+    if (!user) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+
+    // Get all analyses for this user
+    const allAnalyses = await AnalysisStorage.findByUserId(req.user.id);
+    
+    // Find running analyses
+    const runningAnalyses = allAnalyses.filter(analysis => 
+      analysis.status === 'running' || analysis.status === 'pending'
+    );
+    
+    // Find continuous sync analyses
+    const continuousAnalyses = allAnalyses.filter(analysis => 
+      analysis.metadata?.continuous === true
+    );
+    
+    // Find default contract analyses
+    const defaultContractAnalyses = allAnalyses.filter(analysis => 
+      analysis.metadata?.isDefaultContract === true
+    );
+
+    res.json({
+      user: {
+        id: user.id,
+        onboarding: user.onboarding
+      },
+      analyses: {
+        total: allAnalyses.length,
+        running: runningAnalyses.length,
+        continuous: continuousAnalyses.length,
+        defaultContract: defaultContractAnalyses.length
+      },
+      runningAnalyses: runningAnalyses.map(a => ({
+        id: a.id,
+        status: a.status,
+        progress: a.progress,
+        continuous: a.metadata?.continuous,
+        isDefaultContract: a.metadata?.isDefaultContract,
+        syncCycle: a.metadata?.syncCycle,
+        createdAt: a.createdAt,
+        logs: a.logs?.slice(-3) // Last 3 log entries
+      })),
+      continuousAnalyses: continuousAnalyses.map(a => ({
+        id: a.id,
+        status: a.status,
+        progress: a.progress,
+        syncCycle: a.metadata?.syncCycle,
+        continuousStarted: a.metadata?.continuousStarted,
+        lastCycleStarted: a.metadata?.lastCycleStarted
+      }))
+    });
+
+  } catch (error) {
+    res.status(500).json({
+      error: 'Failed to get debug information',
+      message: error.message
+    });
+  }
+});
+
+/**
+ * @swagger
+ * /api/onboarding/stop-continuous-sync:
+ *   post:
+ *     summary: Stop continuous syncing for default contract
+ *     tags: [Onboarding]
+ *     security:
+ *       - bearerAuth: []
+ *     responses:
+ *       200:
+ *         description: Continuous sync stopped successfully
+ *       404:
+ *         description: No continuous sync in progress
+ */
+router.post('/stop-continuous-sync', async (req, res) => {
+  try {
+    const user = await UserStorage.findById(req.user.id);
+    if (!user || !user.onboarding?.defaultContract?.address) {
+      return res.status(404).json({
+        error: 'No default contract found',
+        message: 'User has not completed onboarding or has no default contract'
+      });
+    }
+
+    // Find running continuous sync analysis
+    const allAnalyses = await AnalysisStorage.findByUserId(req.user.id);
+    const continuousAnalysis = allAnalyses.find(analysis => 
+      (analysis.status === 'running' || analysis.status === 'pending') &&
+      analysis.metadata?.isDefaultContract === true &&
+      analysis.metadata?.continuous === true
+    );
+
+    if (!continuousAnalysis) {
+      return res.status(404).json({
+        error: 'No continuous sync in progress',
+        message: 'No continuous sync is currently running for the default contract'
+      });
+    }
+
+    // Mark analysis as stopped but completed
+    await AnalysisStorage.update(continuousAnalysis.id, {
+      status: 'completed',
+      progress: 100,
+      metadata: {
+        ...continuousAnalysis.metadata,
+        continuous: false,
+        continuousStopped: new Date().toISOString(),
+        stoppedByCycle: continuousAnalysis.metadata?.syncCycle || 1
+      },
+      logs: [
+        ...(continuousAnalysis.logs || []),
+        `Continuous sync stopped by user after ${continuousAnalysis.metadata?.syncCycle || 1} cycles`
+      ],
+      completedAt: new Date().toISOString()
+    });
+
+    // Update user's continuous sync status
+    const stopUser = await UserStorage.findById(req.user.id);
+    const stopOnboarding = {
+      ...stopUser.onboarding,
+      defaultContract: {
+        ...stopUser.onboarding.defaultContract,
+        continuousSync: false,
+        continuousSyncStopped: new Date().toISOString(),
+        isIndexed: true,
+        indexingProgress: 100
+      }
+    };
+    await UserStorage.update(req.user.id, { onboarding: stopOnboarding });
+
+    res.json({
+      message: 'Continuous sync stopped successfully',
+      analysisId: continuousAnalysis.id,
+      cyclesCompleted: continuousAnalysis.metadata?.syncCycle || 1,
+      totalDuration: new Date().getTime() - new Date(continuousAnalysis.metadata?.continuousStarted || continuousAnalysis.createdAt).getTime()
+    });
+
+  } catch (error) {
+    res.status(500).json({
+      error: 'Failed to stop continuous sync',
       message: error.message
     });
   }
@@ -724,18 +998,115 @@ async function startDefaultContractIndexing(userId, configId, config) {
       });
 
   } catch (error) {
-    console.error('Failed to start default contract indexing:', error);
+    console.error('Analysis failed with timeout protection:', error);
+    
+    // Update progress with error
+    try {
+      // analysisId is not defined in this scope, we need to handle this differently
+      console.error('Failed to start default contract indexing:', error.message);
+      // analysisId is not defined in this scope, we need to handle this differently
+      console.error('Failed to start default contract indexing:', error.message);
+      
+      const currentUser = await UserStorage.findById(userId);
+      if (currentUser?.onboarding?.defaultContract) {
+        const updatedOnboarding = {
+          ...currentUser.onboarding,
+          defaultContract: {
+            ...currentUser.onboarding.defaultContract,
+            indexingProgress: 0,
+            error: error.message,
+            status: 'failed',
+            lastUpdate: new Date().toISOString()
+          }
+        };
+        await UserStorage.update(userId, { onboarding: updatedOnboarding });
+      }
+    } catch (updateError) {
+      console.error('Failed to update error state:', updateError);
+    }
+    
+    throw error;
   }
 }
 
-// Perform analysis for default contract
+// Perform analysis for default contract with timeout and progress reporting
 async function performDefaultContractAnalysis(analysisId, config, userId) {
+  const ANALYSIS_TIMEOUT = 5 * 60 * 1000; // 5 minutes timeout
+  
+  // Progress reporter for granular updates
+  class ProgressReporter {
+    constructor(analysisId, userId, totalSteps = 8) {
+      this.analysisId = analysisId;
+      this.userId = userId;
+      this.totalSteps = totalSteps;
+      this.currentStep = 0;
+      this.baseProgress = 30; // Start from 30%
+      this.maxProgress = 80;  // End at 80%
+    }
+
+    async updateProgress(step, message = '') {
+      this.currentStep = step;
+      const progress = Math.min(
+        this.maxProgress,
+        this.baseProgress + ((step / this.totalSteps) * (this.maxProgress - this.baseProgress))
+      );
+      
+      console.log(`📊 Progress: ${progress}% - ${message}`);
+      
+      try {
+        // Update analysis progress
+        await AnalysisStorage.update(this.analysisId, { 
+          progress,
+          lastUpdate: new Date().toISOString(),
+          currentStep: message
+        });
+        
+        // Update user progress
+        const currentUser = await UserStorage.findById(this.userId);
+        if (currentUser?.onboarding?.defaultContract) {
+          const updatedOnboarding = {
+            ...currentUser.onboarding,
+            defaultContract: {
+              ...currentUser.onboarding.defaultContract,
+              indexingProgress: progress,
+              lastUpdate: new Date().toISOString(),
+              currentStep: message
+            }
+          };
+          await UserStorage.update(this.userId, { onboarding: updatedOnboarding });
+        }
+      } catch (error) {
+        console.error('Failed to update progress:', error);
+      }
+    }
+  }
+
+  // Timeout wrapper
+  function withTimeout(promise, timeoutMs, operation = 'operation') {
+    return Promise.race([
+      promise,
+      new Promise((_, reject) => {
+        setTimeout(() => {
+          reject(new Error(`${operation} timed out after ${timeoutMs}ms`));
+        }, timeoutMs);
+      })
+    ]);
+  }
+
   try {
-    console.log(`🔍 Starting analysis for ${analysisId}`);
-    const engine = new AnalyticsEngine(config.rpcConfig);
-    console.log(`⚙️  AnalyticsEngine created`);
+    console.log(`🔍 Starting analysis for ${analysisId} with timeout protection`);
     
-    // Update progress
+    const progressReporter = new ProgressReporter(analysisId, userId, 8);
+    
+    // Initialize progress
+    await progressReporter.updateProgress(0, 'Initializing analysis engine');
+    
+    const engine = new EnhancedAnalyticsEngine(config.rpcConfig);
+    console.log(`⚙️  EnhancedAnalyticsEngine created`);
+    
+    await progressReporter.updateProgress(1, 'Engine initialized');
+    
+    // Update initial progress to 30%
     await AnalysisStorage.update(analysisId, { progress: 30 });
     
     // Get current user data and update nested properties
@@ -750,17 +1121,30 @@ async function performDefaultContractAnalysis(analysisId, config, userId) {
     await UserStorage.update(userId, { onboarding: updatedOnboarding });
     console.log(`📊 Progress updated to 30%`);
 
-    // Analyze target contract
+    await progressReporter.updateProgress(2, 'Starting contract analysis');
+    
+    // Analyze target contract with timeout protection
     console.log(`🎯 Analyzing contract: ${config.targetContract.address} on ${config.targetContract.chain}`);
-    const targetResults = await engine.analyzeContract(
+    
+    const analysisPromise = engine.analyzeContract(
       config.targetContract.address,
       config.targetContract.chain,
       config.targetContract.name,
-      config.analysisParams.blockRange
+      config.analysisParams.blockRange,
+      progressReporter // Pass progress reporter
     );
-    console.log(`✅ Contract analysis completed`);
+    
+    // Execute with timeout
+    const targetResults = await withTimeout(
+      analysisPromise,
+      ANALYSIS_TIMEOUT,
+      'Contract analysis'
+    );
+    
+    console.log(`✅ Contract analysis completed successfully`);
+    await progressReporter.updateProgress(7, 'Finalizing results');
 
-    // Update progress
+    // Update progress to 80%
     await AnalysisStorage.update(analysisId, { progress: 80 });
     
     // Get current user data and update nested properties
@@ -813,19 +1197,58 @@ async function performDefaultContractAnalysis(analysisId, config, userId) {
     await UserStorage.update(userId, { onboarding: finalOnboarding });
 
     console.log(`✅ Default contract indexing completed for user ${userId}`);
-
+    
+    return targetResults;
+    
   } catch (error) {
     console.error('Default contract analysis failed:', error);
+    
+    // Update analysis status to failed
+    await AnalysisStorage.update(analysisId, {
+      status: 'failed',
+      errorMessage: error.message,
+      completedAt: new Date().toISOString()
+    });
+    
+    // Update user status on error
+    const errorUser = await UserStorage.findById(userId);
+    if (errorUser?.onboarding?.defaultContract) {
+      const errorOnboarding = {
+        ...errorUser.onboarding,
+        defaultContract: {
+          ...errorUser.onboarding.defaultContract,
+          indexingProgress: 0,
+          isIndexed: false,
+          error: error.message
+        }
+      };
+      await UserStorage.update(userId, { onboarding: errorOnboarding });
+    }
+    
     throw error;
   }
 }
 
 // Perform refresh analysis for default contract
 async function performDefaultContractRefresh(analysisId, config, userId) {
+  const REFRESH_TIMEOUT = 2 * 60 * 1000; // 2 minutes timeout for Quick Sync
+  
+  // Timeout wrapper
+  function withTimeout(promise, timeoutMs, operation = 'operation') {
+    return Promise.race([
+      promise,
+      new Promise((_, reject) => {
+        setTimeout(() => {
+          reject(new Error(`${operation} timed out after ${timeoutMs}ms`));
+        }, timeoutMs);
+      })
+    ]);
+  }
+  
   try {
-    console.log(`🔄 Starting default contract refresh for user ${userId}`);
+    console.log(`🔄 Starting default contract refresh for user ${userId} with timeout protection`);
     
-    const engine = new AnalyticsEngine(config.rpcConfig);
+    const engine = new EnhancedAnalyticsEngine(config.rpcConfig);
     
     // Update progress
     await AnalysisStorage.update(analysisId, { progress: 30 });
@@ -840,13 +1263,77 @@ async function performDefaultContractRefresh(analysisId, config, userId) {
     };
     await UserStorage.update(userId, { onboarding: refreshOnboarding1 });
 
-    // Analyze target contract with fresh data
-    const targetResults = await engine.analyzeContract(
-      config.targetContract.address,
-      config.targetContract.chain,
-      config.targetContract.name,
-      config.analysisParams.blockRange
-    );
+    // Analyze target contract with fresh data (with timeout protection)
+    console.log(`🎯 Analyzing contract with timeout protection: ${config.targetContract.address}`);
+    let targetResults;
+    try {
+      targetResults = await withTimeout(
+        engine.analyzeContract(
+          config.targetContract.address,
+          config.targetContract.chain,
+          config.targetContract.name,
+          config.analysisParams.blockRange
+        ),
+        REFRESH_TIMEOUT,
+        'Quick Sync contract analysis'
+      );
+    } catch (analysisError) {
+      console.error(`❌ Analysis error: ${analysisError.message}`);
+      
+      // Create fallback results if analysis fails
+      targetResults = {
+        metadata: {
+          contractAddress: config.targetContract.address,
+          contractName: config.targetContract.name,
+          contractChain: config.targetContract.chain,
+          generatedAt: new Date().toISOString(),
+          analysisType: "fallback_due_to_error",
+          error: analysisError.message
+        },
+        summary: {
+          totalTransactions: 0,
+          uniqueUsers: 0,
+          totalValue: 0,
+          avgGasUsed: 0,
+          successRate: 0,
+          timeRange: "24h"
+        },
+        defiMetrics: {
+          totalValue: 0,
+          avgTransactionValue: 0,
+          totalFees: 0,
+          totalTransactions: 0,
+          uniqueUsers: 0,
+          gasEfficiency: 0,
+          successRate: 0,
+          error: analysisError.message
+        },
+        userBehavior: {
+          totalUsers: 0,
+          activeUsers: 0,
+          newUsers: 0,
+          returningUsers: 0
+        },
+        transactions: [],
+        events: [],
+        users: [],
+        locks: [],
+        gasAnalysis: {
+          gasEfficiencyScore: 0,
+          avgGasPrice: 0,
+          totalGasUsed: 0
+        },
+        recommendations: [],
+        alerts: [{
+          type: 'error',
+          severity: 'high',
+          message: `Analysis failed: ${analysisError.message}`,
+          timestamp: new Date().toISOString()
+        }]
+      };
+      
+      console.log(`   ✅ Using fallback results due to analysis error`);
+    }
 
     // Update progress
     await AnalysisStorage.update(analysisId, { progress: 80 });
@@ -877,15 +1364,16 @@ async function performDefaultContractRefresh(analysisId, config, userId) {
       }
     };
 
-    // Complete analysis
+    // Complete analysis (always complete, even with errors)
     await AnalysisStorage.update(analysisId, {
       status: 'completed',
       progress: 100,
       results,
-      completedAt: new Date().toISOString()
+      completedAt: new Date().toISOString(),
+      hasErrors: !!(targetResults.defiMetrics?.error || targetResults.metadata?.error)
     });
 
-    // Mark as indexed with fresh data and update lastAnalysisId
+    // Mark as indexed with fresh data and update lastAnalysisId (always update)
     const refreshFinalUser = await UserStorage.findById(userId);
     const refreshFinalOnboarding = {
       ...refreshFinalUser.onboarding,
@@ -893,7 +1381,9 @@ async function performDefaultContractRefresh(analysisId, config, userId) {
         ...refreshFinalUser.onboarding.defaultContract,
         isIndexed: true,
         indexingProgress: 100,
-        lastAnalysisId: analysisId
+        lastAnalysisId: analysisId,
+        lastUpdate: new Date().toISOString(),
+        hasErrors: !!(targetResults.defiMetrics?.error || targetResults.metadata?.error)
       }
     };
     await UserStorage.update(userId, { onboarding: refreshFinalOnboarding });
@@ -902,6 +1392,40 @@ async function performDefaultContractRefresh(analysisId, config, userId) {
 
   } catch (error) {
     console.error('Default contract refresh failed:', error);
+    
+    // Even on failure, try to update user status to prevent getting stuck
+    try {
+      console.log(`🔄 Attempting to update user status despite error...`);
+      
+      // Mark analysis as failed but completed
+      await AnalysisStorage.update(analysisId, {
+        status: 'failed',
+        progress: 100, // Set to 100% so frontend doesn't get stuck
+        errorMessage: error.message,
+        completedAt: new Date().toISOString()
+      });
+
+      // Update user status to prevent getting stuck at 30%
+      const errorUser = await UserStorage.findById(userId);
+      if (errorUser && errorUser.onboarding?.defaultContract) {
+        const errorOnboarding = {
+          ...errorUser.onboarding,
+          defaultContract: {
+            ...errorUser.onboarding.defaultContract,
+            isIndexed: false, // Mark as not indexed due to error
+            indexingProgress: 0, // Reset to 0 so user can retry
+            lastAnalysisId: analysisId,
+            lastUpdate: new Date().toISOString(),
+            lastError: error.message
+          }
+        };
+        await UserStorage.update(userId, { onboarding: errorOnboarding });
+        console.log(`✅ User status updated to prevent stuck progress (reset to 0% for retry)`);
+      }
+    } catch (updateError) {
+      console.error('Failed to update user status on error:', updateError);
+    }
+    
     throw error;
   }
 }

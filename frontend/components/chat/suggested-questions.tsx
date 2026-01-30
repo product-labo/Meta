@@ -13,18 +13,18 @@ export function SuggestedQuestions({ questions, onQuestionClick }: SuggestedQues
 
   return (
     <div className="max-w-4xl mx-auto">
-      <p className="text-sm font-medium text-muted-foreground mb-2">
+      <p className="text-sm font-medium text-muted-foreground mb-3">
         Suggested questions:
       </p>
-      <ScrollArea className="w-full">
-        <div className="flex gap-2 pb-2">
+      <ScrollArea className="w-full max-h-32">
+        <div className="space-y-2 pr-4">
           {questions.map((question, index) => (
             <Button
               key={index}
-              variant="outline"
+              variant="ghost"
               size="sm"
               onClick={() => onQuestionClick(question)}
-              className="whitespace-nowrap text-xs h-8 px-3 flex-shrink-0"
+              className="w-full justify-start text-left h-auto py-2 px-3 text-sm hover:bg-primary/10 transition-colors whitespace-normal"
             >
               {question}
             </Button>

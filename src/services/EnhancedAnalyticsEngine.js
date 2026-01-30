@@ -9,6 +9,9 @@ import { UserBehaviorAnalyzer } from './UserBehaviorAnalyzer.js';
 import { ContractInteractionFetcher } from './ContractInteractionFetcher.js';
 import { ChainNormalizer } from './ChainNormalizer.js';
 import { ReportGenerator } from './ReportGenerator.js';
+import { UxBottleneckDetector } from './UxBottleneckDetector.js';
+import { UserJourneyAnalyzer } from './UserJourneyAnalyzer.js';
+import { UserLifecycleAnalyzer } from './UserLifecycleAnalyzer.js';
 
 export class EnhancedAnalyticsEngine {
   constructor(config = {}) {
@@ -24,6 +27,25 @@ export class EnhancedAnalyticsEngine {
     this.defiCalculator = new DeFiMetricsCalculator();
     this.behaviorAnalyzer = new UserBehaviorAnalyzer();
     this.reportGenerator = new ReportGenerator();
+    
+    // Initialize UX and Journey analyzers
+    this.uxBottleneckDetector = new UxBottleneckDetector();
+    this.userJourneyAnalyzer = new UserJourneyAnalyzer();
+    this.userLifecycleAnalyzer = new UserLifecycleAnalyzer();
+  }
+
+  /**
+   * Timeout wrapper for long-running operations
+   */
+  _withTimeout(promise, timeoutMs, operation = 'operation') {
+    return Promise.race([
+      promise,
+      new Promise((_, reject) => {
+        setTimeout(() => {
+          reject(new Error(`${operation} timed out after ${timeoutMs}ms`));
+        }, timeoutMs);
+      })
+    ]);
   }
 
   /**
@@ -32,10 +54,13 @@ export class EnhancedAnalyticsEngine {
    * @param {string} chain - Blockchain network
    * @param {string} contractName - Contract name (optional)
    * @param {number} blockRange - Block range for analysis (optional)
+   * @param {Object} progressReporter - Progress reporter (optional)
    * @returns {Promise<Object>} Analysis results
    */
-  async analyzeContract(contractAddress, chain = 'ethereum', contractName = null, blockRange = null) {
+  async analyzeContract(contractAddress, chain = 'ethereum', contractName = null, blockRange = null, progressReporter = null) {
     console.log(`🎯 Enhanced Analysis: ${contractAddress} on ${chain} (interaction-based)`);
+    
+    const ANALYSIS_TIMEOUT = 5 * 60 * 1000; // 5 minutes timeout
     
     try {
       // Get block range
@@ -48,12 +73,21 @@ export class EnhancedAnalyticsEngine {
       
       console.log(`   📊 Analyzing interactions from block ${fromBlock} to ${toBlock} (${toBlock - fromBlock + 1} blocks)`);
       
-      // Fetch contract interactions (events + direct calls)
-      const interactionData = await this.fetcher.fetchContractInteractions(
-        contractAddress, 
-        fromBlock, 
-        toBlock, 
-        chain
+      // Report progress if available
+      if (progressReporter) {
+        await progressReporter.updateProgress(3, 'Fetching contract interactions');
+      }
+      
+      // Fetch contract interactions (events + direct calls) with timeout
+      const interactionData = await this._withTimeout(
+        this.fetcher.fetchContractInteractions(
+          contractAddress, 
+          fromBlock, 
+          toBlock, 
+          chain
+        ),
+        2 * 60 * 1000, // 2 minutes timeout for fetching
+        'Contract interaction fetching'
       );
       
       console.log(`   🎯 Interaction Summary:`);
@@ -67,16 +101,65 @@ export class EnhancedAnalyticsEngine {
       const normalizedTxs = this.normalizer.normalizeTransactions(interactionData.transactions, chain);
       console.log(`   ✅ Normalized ${normalizedTxs.length} transactions`);
       
+      // Report progress if available
+      if (progressReporter) {
+        await progressReporter.updateProgress(4, 'Calculating DeFi metrics');
+      }
+      
       // Add transaction data to calculators
       this.defiCalculator.addTransactionData(normalizedTxs, chain);
       
-      // Calculate comprehensive metrics
+      // Calculate comprehensive metrics with error handling
       console.log(`   📊 Calculating enhanced DeFi metrics...`);
-      const defiMetrics = this.defiCalculator.calculateAllMetrics();
+      let defiMetrics;
+      try {
+        defiMetrics = this.defiCalculator.calculateAllMetrics();
+      } catch (error) {
+        console.error(`   ❌ Enhanced analysis error: ${error.message}`);
+        // Use fallback metrics if calculation fails
+        defiMetrics = {
+          financial: {
+            totalValue: normalizedTxs.reduce((sum, tx) => sum + parseFloat(tx.value_eth || 0), 0),
+            avgTransactionValue: 0,
+            totalFees: normalizedTxs.reduce((sum, tx) => sum + parseFloat(tx.gas_cost_eth || 0), 0)
+          },
+          activity: {
+            totalTransactions: normalizedTxs.length,
+            uniqueUsers: new Set(normalizedTxs.map(tx => tx.from_address)).size,
+            avgTransactionsPerUser: 0
+          },
+          performance: {
+            gasEfficiency: 0,
+            successRate: normalizedTxs.length > 0 ? 
+              (normalizedTxs.filter(tx => tx.status).length / normalizedTxs.length) * 100 : 0
+          }
+        };
+        console.log(`   ✅ Using fallback metrics due to calculation error`);
+      }
+      
+      // Report progress if available
+      if (progressReporter) {
+        await progressReporter.updateProgress(5, 'Analyzing user behavior');
+      }
       
       // Analyze user behavior with interaction data
       console.log(`   👥 Analyzing user behavior patterns...`);
       const userBehaviorAnalysis = this.behaviorAnalyzer.analyzeUserBehavior(normalizedTxs, chain);
+      
+      // Report progress if available
+      if (progressReporter) {
+        await progressReporter.updateProgress(6, 'Analyzing UX and user journeys');
+      }
+      
+      // Analyze UX bottlenecks and journey patterns
+      console.log(`   🎯 Analyzing UX bottlenecks and user journeys...`);
+      const uxBottlenecks = this.uxBottleneckDetector.analyzeUxBottlenecks(normalizedTxs);
+      const userJourneys = this.userJourneyAnalyzer.analyzeJourneys(normalizedTxs);
+      const userLifecycle = this.userLifecycleAnalyzer.analyzeUserLifecycle(normalizedTxs);
+      
+      console.log(`      🚧 UX bottlenecks detected: ${uxBottlenecks.bottlenecks.length}`);
+      console.log(`      🛤️  Common user paths: ${userJourneys.commonPaths.length}`);
+      console.log(`      📊 User lifecycle stages: ${Object.keys(userLifecycle.lifecycleDistribution).length}`);
       
       // Extract enhanced user behavior metrics
       const userBehavior = this._extractUserBehaviorMetrics(userBehaviorAnalysis, normalizedTxs);
@@ -141,6 +224,31 @@ export class EnhancedAnalyticsEngine {
           eventEngagement: this._calculateEventEngagement(users, processedEvents),
           contractLoyalty: this._calculateContractLoyalty(users, normalizedTxs)
         },
+        uxAnalysis: {
+          bottlenecks: uxBottlenecks.bottlenecks,
+          sessionDurations: uxBottlenecks.sessionDurations,
+          failurePatterns: uxBottlenecks.failurePatterns,
+          uxGrade: uxBottlenecks.uxGrade,
+          timeToFirstSuccess: uxBottlenecks.timeToFirstSuccess,
+          summary: uxBottlenecks.summary
+        },
+        userJourneys: {
+          totalUsers: userJourneys.totalUsers,
+          averageJourneyLength: userJourneys.averageJourneyLength,
+          commonPaths: userJourneys.commonPaths,
+          entryPoints: userJourneys.entryPoints,
+          featureAdoption: userJourneys.featureAdoption,
+          dropoffPoints: userJourneys.dropoffPoints,
+          journeyDistribution: userJourneys.journeyDistribution
+        },
+        userLifecycle: {
+          lifecycleDistribution: userLifecycle.lifecycleDistribution,
+          walletClassification: userLifecycle.walletClassification,
+          cohortAnalysis: userLifecycle.cohortAnalysis,
+          activationMetrics: userLifecycle.activationMetrics,
+          progressionAnalysis: userLifecycle.progressionAnalysis,
+          summary: userLifecycle.summary
+        },
         interactions: {
           totalEvents: processedEvents.length,
           eventTypes: this._categorizeEvents(processedEvents),
@@ -193,6 +301,9 @@ export class EnhancedAnalyticsEngine {
         chain,
         metrics: report.defiMetrics,
         behavior: report.userBehavior,
+        uxAnalysis: report.uxAnalysis,
+        userJourneys: report.userJourneys,
+        userLifecycle: report.userLifecycle,
         transactions: normalizedTxs.length,
         blockRange: { from: fromBlock, to: toBlock },
         users: users.slice(0, 5),

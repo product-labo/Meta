@@ -6,7 +6,7 @@ import { Input } from '@/components/ui/input';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { ChatMessage } from './chat-message';
 import { SuggestedQuestions } from './suggested-questions';
-import { Send } from 'lucide-react';
+import { Send, Lightbulb } from 'lucide-react';
 import { api } from '@/lib/api';
 
 interface ChatSession {
@@ -39,6 +39,7 @@ export function ChatInterface({ session, onSessionUpdate, onContractContextUpdat
   const [inputValue, setInputValue] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [suggestedQuestions, setSuggestedQuestions] = useState<string[]>([]);
+  const [showSuggestions, setShowSuggestions] = useState(false);
   const [contractContext, setContractContext] = useState<any>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -91,7 +92,7 @@ export function ChatInterface({ session, onSessionUpdate, onContractContextUpdat
     const messageContent = content.trim();
     setInputValue('');
     setIsLoading(true);
-    setSuggestedQuestions([]); // Hide suggestions after first message
+    setShowSuggestions(false); // Hide suggestions panel when sending message
 
     try {
       const response = await api.chat.sendMessage(session.id, messageContent);
@@ -147,7 +148,21 @@ export function ChatInterface({ session, onSessionUpdate, onContractContextUpdat
 
   const handleSuggestedQuestion = (question: string) => {
     setInputValue(question);
+    setShowSuggestions(false);
     inputRef.current?.focus();
+  };
+
+  const toggleSuggestions = async () => {
+    if (!showSuggestions && suggestedQuestions.length === 0) {
+      // Load suggestions if not already loaded
+      try {
+        const suggestedResponse = await api.chat.getSuggestedQuestions(session.contractAddress, session.contractChain);
+        setSuggestedQuestions(suggestedResponse.questions || []);
+      } catch (error) {
+        console.error('Failed to load suggestions:', error);
+      }
+    }
+    setShowSuggestions(!showSuggestions);
   };
 
   return (
@@ -155,7 +170,7 @@ export function ChatInterface({ session, onSessionUpdate, onContractContextUpdat
       {/* Messages Area */}
       <div className="flex-1 overflow-hidden">
         <ScrollArea className="h-full">
-          <div className="max-w-4xl mx-auto py-4 px-4">
+          <div className="max-w-4xl mx-auto py-4 px-2 sm:px-4">
             {messages.map((message) => (
               <ChatMessage
                 key={message.id}
@@ -186,8 +201,8 @@ export function ChatInterface({ session, onSessionUpdate, onContractContextUpdat
       </div>
 
       {/* Suggested Questions */}
-      {suggestedQuestions.length > 0 && (
-        <div className="flex-shrink-0 px-4 py-2 border-t border-border">
+      {showSuggestions && suggestedQuestions.length > 0 && (
+        <div className="flex-shrink-0 px-2 sm:px-4 py-3 border-t border-border bg-muted/20">
           <SuggestedQuestions
             questions={suggestedQuestions}
             onQuestionClick={handleSuggestedQuestion}
@@ -196,10 +211,10 @@ export function ChatInterface({ session, onSessionUpdate, onContractContextUpdat
       )}
 
       {/* Input Area */}
-      <div className="flex-shrink-0 p-4 border-t border-border bg-background">
+      <div className="flex-shrink-0 p-2 sm:p-4 border-t border-border bg-background">
         <div className="max-w-4xl mx-auto">
           <div className="flex items-end space-x-2">
-            <div className="flex-1">
+            <div className="flex-1 min-w-0 relative">
               <Input
                 ref={inputRef}
                 value={inputValue}
@@ -207,21 +222,36 @@ export function ChatInterface({ session, onSessionUpdate, onContractContextUpdat
                 onKeyDown={handleKeyDown}
                 placeholder="Ask me anything about this contract..."
                 disabled={isLoading}
-                className="min-h-[44px] resize-none"
+                className="min-h-[44px] resize-none w-full pr-12"
               />
+              
+              {/* Suggestions Button - Inside input on the right */}
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={toggleSuggestions}
+                className={`absolute right-1 top-1/2 -translate-y-1/2 h-8 w-8 p-0 hover:bg-muted transition-colors z-10 ${
+                  showSuggestions ? 'bg-primary/10 text-primary' : ''
+                }`}
+                title={showSuggestions ? "Hide suggestions" : "Show suggestions"}
+                type="button"
+              >
+                <Lightbulb className="h-4 w-4" />
+              </Button>
             </div>
+            
             <Button
               onClick={() => handleSendMessage(inputValue)}
               disabled={!inputValue.trim() || isLoading}
               size="sm"
-              className="h-[44px] px-3"
+              className="h-[44px] px-3 flex-shrink-0"
             >
               <Send className="h-4 w-4" />
             </Button>
           </div>
           
           <p className="text-xs text-muted-foreground mt-2 text-center">
-            AI responses are generated based on available contract data and may not always be accurate.
+            AI responses include interactive charts and visualizations based on contract data.
           </p>
         </div>
       </div>

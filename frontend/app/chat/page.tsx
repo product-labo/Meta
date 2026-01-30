@@ -159,9 +159,9 @@ function ChatPageContent() {
     <div className="min-h-screen bg-background">
       <Header />
       
-      <div className="flex h-[calc(100vh-4rem)] overflow-hidden relative">
+      <div className="flex h-[calc(100vh-4rem)] overflow-hidden">
         {/* Left Sidebar - Sessions */}
-        <div className="flex-shrink-0 hidden md:block h-full">
+        <div className="flex-shrink-0 w-80 hidden lg:block h-full border-r border-border">
           <ChatSidebar
             sessions={sessions}
             currentSession={currentSession}
@@ -178,16 +178,16 @@ function ChatPageContent() {
             {currentSession ? (
               <>
                 {/* Mobile Contract Details Toggle */}
-                <div className="lg:hidden border-b border-border p-2 flex items-center justify-between bg-card flex-shrink-0">
-                  <div className="flex items-center gap-2">
+                <div className="2xl:hidden border-b border-border p-2 flex items-center justify-between bg-card flex-shrink-0">
+                  <div className="flex items-center gap-2 min-w-0">
                     <span className="text-sm font-medium truncate">{currentSession.contractName}</span>
-                    <span className="text-xs text-muted-foreground">({currentSession.contractChain})</span>
+                    <span className="text-xs text-muted-foreground flex-shrink-0">({currentSession.contractChain})</span>
                   </div>
                   <Button
                     variant="ghost"
                     size="sm"
                     onClick={() => setShowContractDetails(!showContractDetails)}
-                    className="h-8 w-8 p-0"
+                    className="h-8 w-8 p-0 flex-shrink-0"
                   >
                     {showContractDetails ? (
                       <PanelRightClose className="h-4 w-4" />
@@ -239,22 +239,22 @@ function ChatPageContent() {
           </div>
 
           {/* Right Sidebar - Contract Details */}
-          {/* Desktop: Always visible on lg+ screens */}
-          <div className="flex-shrink-0 hidden lg:block h-full">
+          {/* Desktop: Only visible on 2xl+ screens (1536px+) to ensure enough space */}
+          <div className="flex-shrink-0 w-80 hidden 2xl:block h-full border-l border-border">
             <ContractDetailsSidebar 
               session={currentSession}
               contractContext={contractContext}
             />
           </div>
           
-          {/* Mobile: Overlay when toggled */}
+          {/* Mobile/Tablet: Overlay when toggled */}
           {showContractDetails && currentSession && (
-            <div className="lg:hidden absolute inset-0 z-50 flex">
+            <div className="2xl:hidden absolute inset-0 z-50 flex">
               <div 
                 className="flex-1 bg-black/20 backdrop-blur-sm"
                 onClick={() => setShowContractDetails(false)}
               />
-              <div className="flex-shrink-0 h-full">
+              <div className="flex-shrink-0 w-80 h-full">
                 <ContractDetailsSidebar 
                   session={currentSession}
                   contractContext={contractContext}

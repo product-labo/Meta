@@ -440,12 +440,36 @@ export class ReportGenerator {
   _createContractSummary(contractInfo, exportResults) {
     try {
       const contractAddress = contractInfo.contractAddress || contractInfo.address || 'unknown';
-      const contractName = contractInfo.contractName || contractInfo.name || 'Unknown Contract';
-      const chain = contractInfo.contractChain || contractInfo.chain || 'unknown';
+      let contractName = contractInfo.contractName || contractInfo.name || contractAddress || 'Unknown Contract';
+      let chain = contractInfo.contractChain || contractInfo.chain || 'unknown';
+      
+      // Ensure all path components are valid strings
+      if (!contractName || typeof contractName !== 'string') {
+        console.warn('Invalid contract name for summary creation, using address');
+        contractName = contractAddress || 'unknown-contract';
+      }
+      
+      if (!chain || typeof chain !== 'string') {
+        console.warn('Invalid chain for summary creation, using default');
+        chain = 'unknown';
+      }
       
       const contractFolder = this._sanitizeFolderName(contractName);
       const chainFolder = this._sanitizeFolderName(chain);
+      
+      // Validate that folder names are not empty
+      if (!contractFolder || !chainFolder) {
+        console.warn('Invalid folder names generated, skipping summary creation');
+        console.warn(`Contract folder: "${contractFolder}", Chain folder: "${chainFolder}"`);
+        return;
+      }
+      
       const summaryPath = path.join('./reports', contractFolder, chainFolder, 'README.md');
+      
+      console.log(`📝 Creating contract summary at: ${summaryPath}`);
+      console.log(`   Contract: ${contractName}`);
+      console.log(`   Chain: ${chain}`);
+      console.log(`   Address: ${contractAddress}`);
       
       // Check if summary already exists and read it
       let existingContent = '';
@@ -454,14 +478,20 @@ export class ReportGenerator {
       }
 
       const timestamp = new Date().toISOString();
+      
+      // Validate export results paths
+      const jsonPath = exportResults?.json?.path ? path.basename(exportResults.json.path) : 'analysis.json';
+      const csvPath = exportResults?.csv?.path ? path.basename(exportResults.csv.path) : 'analysis.csv';
+      const markdownPath = exportResults?.markdown?.path ? path.basename(exportResults.markdown.path) : 'analysis.md';
+      
       const newEntry = `
 ## Analysis Report - ${new Date().toLocaleDateString()}
 
 **Generated:** ${timestamp}
 **Files:**
-- JSON: [${path.basename(exportResults.json.path)}](./${path.basename(exportResults.json.path)})
-- CSV: [${path.basename(exportResults.csv.path)}](./${path.basename(exportResults.csv.path)})
-- Markdown: [${path.basename(exportResults.markdown.path)}](./${path.basename(exportResults.markdown.path)})
+- JSON: [${jsonPath}](./${jsonPath})
+- CSV: [${csvPath}](./${csvPath})
+- Markdown: [${markdownPath}](./${markdownPath})
 
 ---
 `;
@@ -489,6 +519,12 @@ ${newEntry}`;
       console.log(`📁 Contract summary updated: ${summaryPath}`);
     } catch (error) {
       console.warn(`Failed to create contract summary: ${error.message}`);
+      console.warn(`Contract info:`, JSON.stringify(contractInfo, null, 2));
+      console.warn(`Export results paths:`, {
+        json: exportResults?.json?.path,
+        csv: exportResults?.csv?.path,
+        markdown: exportResults?.markdown?.path
+      });
     }
   }
 

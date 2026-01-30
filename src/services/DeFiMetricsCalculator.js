@@ -230,9 +230,31 @@ export class DeFiMetricsCalculator {
     const protocolRevenue = totalRevenue;
 
     // 5. Whale Activity Ratio
-    const whaleTransactions = transactions.filter(tx => 
-      ethers.parseEther(tx.valueEth.toString()) >= this.config.whaleThreshold
-    ).length;
+    const whaleTransactions = transactions.filter(tx => {
+      try {
+        // Convert scientific notation to decimal string if needed
+        const valueStr = tx.valueEth.toString();
+        const valueInEth = parseFloat(valueStr);
+        
+        // Skip extremely small values that would cause parseEther to fail
+        if (valueInEth < 1e-15) {
+          return false;
+        }
+        
+        // Skip extremely large values that would overflow
+        if (valueInEth > 1e18) {
+          console.warn(`Value too large for parseEther: ${valueInEth}`);
+          return true; // Assume it's a whale transaction
+        }
+        
+        // Convert to proper decimal string format
+        const decimalStr = valueInEth.toFixed(18);
+        return ethers.parseEther(decimalStr) >= this.config.whaleThreshold;
+      } catch (error) {
+        console.warn(`Failed to parse value for whale detection: ${tx.valueEth}`, error);
+        return false;
+      }
+    }).length;
     const whaleActivityRatio = transactions.length > 0 ? 
       (whaleTransactions / transactions.length) * 100 : 0;
 

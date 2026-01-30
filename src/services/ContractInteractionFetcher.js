@@ -72,6 +72,21 @@ export class ContractInteractionFetcher extends EventEmitter {
   }
 
   /**
+   * Timeout wrapper for RPC operations
+   * @private
+   */
+  _withTimeout(promise, timeoutMs, operation = 'operation') {
+    return Promise.race([
+      promise,
+      new Promise((_, reject) => {
+        setTimeout(() => {
+          reject(new Error(`${operation} timed out after ${timeoutMs}ms`));
+        }, timeoutMs);
+      })
+    ]);
+  }
+
+  /**
    * Initialize RPC providers
    * @private
    */
@@ -232,10 +247,13 @@ export class ContractInteractionFetcher extends EventEmitter {
     console.log(`🎯 Fetching contract interactions for ${contractAddress} on ${chain}`);
     console.log(`   📊 Block range: ${fromBlock} to ${toBlock} (${toBlock - fromBlock + 1} blocks)`);
     
+    const FETCH_TIMEOUT = 2 * 60 * 1000; // 2 minutes timeout
+    
     return await this._executeWithRateLimit(async () => {
-      return await this._executeWithFailover(
-        chain.toLowerCase(),
-        async (client) => {
+      return await this._withTimeout(
+        this._executeWithFailover(
+          chain.toLowerCase(),
+          async (client) => {
           // Use the optimized method from LiskRpcClient if available
           if (client.getTransactionsByAddress && typeof client.getTransactionsByAddress === 'function') {
             const result = await client.getTransactionsByAddress(contractAddress, fromBlock, toBlock);
@@ -271,8 +289,11 @@ export class ContractInteractionFetcher extends EventEmitter {
           return await this._fetchByEvents(client, contractAddress, fromBlock, toBlock, chain);
         },
         'fetchContractInteractions'
-      );
-    });
+      ),
+      FETCH_TIMEOUT,
+      'Contract interaction fetching'
+    );
+  });
   }
 
   /**

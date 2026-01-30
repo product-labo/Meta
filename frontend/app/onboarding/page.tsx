@@ -523,9 +523,37 @@ export default function OnboardingPage() {
                   
                   <div className="space-y-2">
                     <Progress value={indexingProgress} className="h-3" />
-                    <p className="text-sm text-muted-foreground">
-                      {indexingProgress}% complete
-                    </p>
+                    <div className="flex items-center justify-between">
+                      <p className="text-sm text-muted-foreground">
+                        {indexingProgress}% complete
+                      </p>
+                      {indexingProgress === 30 && (
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          onClick={async () => {
+                            try {
+                              setError('');
+                              const status = await api.onboarding.getStatus();
+                              setIndexingProgress(status.indexingProgress || 0);
+                              
+                              // If backend shows 100% but frontend shows 30%, force refresh
+                              if (status.isIndexed && status.indexingProgress >= 100) {
+                                setIndexingProgress(100);
+                                setTimeout(() => {
+                                  window.location.reload();
+                                }, 1000);
+                              }
+                            } catch (err) {
+                              setError('Failed to refresh status');
+                            }
+                          }}
+                          className="text-xs"
+                        >
+                          Refresh Status
+                        </Button>
+                      )}
+                    </div>
                   </div>
                 </div>
 

@@ -101,6 +101,51 @@ app.get('/', (req, res) => {
 
 // Routes
 app.use('/api/auth', authRoutes);
+
+// Public chat routes (no authentication required)
+app.get('/api/chat/suggested-questions', async (req, res) => {
+  try {
+    console.log('Public suggested questions endpoint hit:', req.query);
+    
+    const { contractAddress, contractChain } = req.query;
+
+    if (!contractAddress || !contractChain) {
+      return res.status(400).json({
+        error: 'Missing required parameters',
+        message: 'contractAddress and contractChain are required'
+      });
+    }
+
+    // Import ChatAIService
+    const { default: ChatAIService } = await import('../services/ChatAIService.js');
+
+    // Get contract context (using anonymous user)
+    const contractContext = await ChatAIService.getContractContext(
+      'anonymous', 
+      contractAddress, 
+      contractChain
+    );
+
+    // Generate suggested questions
+    const questions = await ChatAIService.generateSuggestedQuestions(contractContext);
+
+    res.json({
+      questions: questions,
+      contractAddress,
+      contractChain,
+      total: questions.length,
+      aiEnabled: ChatAIService.isEnabled()
+    });
+
+  } catch (error) {
+    console.error('Suggested questions error:', error);
+    res.status(500).json({
+      error: 'Failed to generate suggested questions',
+      message: error.message
+    });
+  }
+});
+
 app.use('/api/contracts', authenticateToken, contractRoutes);
 app.use('/api/analysis', authenticateToken, analysisRoutes); // analysisLimiter temporarily disabled for testing
 app.use('/api/users', authenticateToken, userRoutes);

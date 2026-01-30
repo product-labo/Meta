@@ -161,7 +161,7 @@ ${chatHistory.map(msg => `${msg.role}: ${msg.content}`).join('\n')}
 
 USER MESSAGE: "${userMessage}"
 
-Respond as a knowledgeable blockchain analyst. Provide helpful insights, answer questions about the contract's performance, security, users, transactions, and competitive position. 
+Respond as a knowledgeable blockchain analyst. When users ask for charts, graphs, or visual data, ALWAYS provide appropriate chart components with real or realistic sample data. Focus on creating interactive visualizations that help users understand contract performance.
 
 IMPORTANT: Return your response in the following JSON format (return ONLY valid JSON):
 
@@ -233,17 +233,36 @@ COMPONENT TYPES AND DATA STRUCTURES:
   "effort": "low|medium|high"
 }
 
+CHART GENERATION GUIDELINES:
+- When users ask for "charts", "graphs", or "visual data", ALWAYS include chart components
+- Use realistic sample data if actual data is not available
+- For transaction volume: use line or area charts with time series data
+- For user analysis: use bar charts or pie charts showing user segments
+- For performance metrics: use multiple metric cards with trend indicators
+- For competitive analysis: use bar charts comparing metrics
+- For security analysis: use alert components and metric cards
+- Always include descriptive titles and explanations for charts
+
+SAMPLE CHART DATA PATTERNS:
+- Transaction Volume: [{"label": "Week 1", "value": 1250}, {"label": "Week 2", "value": 1890}, ...]
+- User Growth: [{"label": "New Users", "value": 45}, {"label": "Returning", "value": 78}, ...]
+- Performance Metrics: Multiple metric_card components with different KPIs
+- Gas Usage: Line chart showing gas consumption over time
+- Token Distribution: Pie chart showing holder distribution
+
 GUIDELINES:
 - Be conversational and helpful
+- ALWAYS provide visual components when users ask for charts or data visualization
 - Use actual data from the contract analysis when available
-- If data is limited, acknowledge it and suggest how to get more insights
+- If data is limited, create realistic sample data that demonstrates the concept
 - Provide actionable insights and recommendations
 - Use appropriate components to visualize data
 - Keep responses focused and relevant to the user's question
 - If asked about specific metrics, create metric cards or charts
-- For transaction analysis, use tables or transaction lists
+- For transaction analysis, use tables or charts
 - For alerts or warnings, use alert components
 - Always include at least one component in your response
+- When users ask for "charts" or "graphs", prioritize chart components over text
 `;
   }
 
@@ -344,20 +363,49 @@ GUIDELINES:
   async generateSuggestedQuestions(contractContext) {
     const { contractData, analysisData } = contractContext;
     
-    const baseQuestions = [
+    // Business metrics focused questions
+    const businessMetricQuestions = [
+      "What's the total value locked (TVL) in this contract?",
+      "Show me the revenue and fee generation trends",
+      "What's the daily active user (DAU) count and growth rate?",
+      "How much transaction volume does this contract process monthly?",
+      "What's the average transaction size and frequency?",
+      "Show me the user acquisition and retention metrics",
+      "What's the contract's market share compared to competitors?",
+      "How efficient is the gas usage and what are the cost implications?",
+      "What's the user lifetime value (LTV) and engagement patterns?",
+      "Show me the seasonal trends and usage patterns"
+    ];
+
+    const performanceQuestions = [
       "What's the overall performance of this contract?",
-      "Show me the transaction volume trends",
-      "Who are the top users of this contract?",
+      "Show me the transaction volume trends with charts",
+      "How does this contract compare to competitors?",
+      "What are the key performance indicators (KPIs)?",
+      "Show me the growth metrics and projections"
+    ];
+
+    const analyticsQuestions = [
+      "Who are the top users and whale addresses?",
+      "What's the user distribution and segmentation?",
+      "Show me transaction patterns and behavior analysis",
+      "What are the peak usage times and patterns?",
+      "Analyze the contract's network effects"
+    ];
+
+    const securityQuestions = [
       "Are there any security concerns I should know about?",
-      "How does this contract compare to competitors?"
+      "What's the risk assessment for this contract?",
+      "Show me unusual transaction patterns or anomalies"
     ];
 
     if (!analysisData) {
       return [
         "Can you analyze this contract for me?",
-        "What data do you have about this contract?",
-        "How can I get insights about this contract's performance?",
-        ...baseQuestions.slice(0, 2)
+        "What business metrics are available for this contract?",
+        "Show me the key performance indicators with charts",
+        ...businessMetricQuestions.slice(0, 4),
+        ...performanceQuestions.slice(0, 3)
       ];
     }
 
@@ -365,21 +413,35 @@ GUIDELINES:
     const contextQuestions = [];
     
     if (analysisData.results?.target?.transactions > 0) {
-      contextQuestions.push("Show me the transaction patterns over time");
-      contextQuestions.push("What's the average transaction value?");
+      contextQuestions.push(...businessMetricQuestions.slice(0, 3));
+      contextQuestions.push("Show me transaction patterns and volume trends");
+      contextQuestions.push("What's the transaction success rate and efficiency?");
     }
 
     if (analysisData.results?.target?.behavior?.userCount > 0) {
-      contextQuestions.push("Analyze user behavior and engagement");
-      contextQuestions.push("Who are the whale users?");
+      contextQuestions.push("Analyze user acquisition and retention rates");
+      contextQuestions.push("What's the user engagement and activity metrics?");
+      contextQuestions.push("Show me user segmentation and behavior patterns");
     }
 
     if (analysisData.results?.competitors?.length > 0) {
-      contextQuestions.push("Compare this contract with its competitors");
-      contextQuestions.push("What's our market position?");
+      contextQuestions.push("Compare business metrics with competitors");
+      contextQuestions.push("What's our competitive advantage and market position?");
+      contextQuestions.push("Show me market share and growth comparison");
     }
 
-    return [...contextQuestions, ...baseQuestions].slice(0, 5);
+    // Combine all questions and return up to 10
+    const allQuestions = [
+      ...contextQuestions,
+      ...businessMetricQuestions,
+      ...performanceQuestions,
+      ...analyticsQuestions,
+      ...securityQuestions
+    ];
+
+    // Remove duplicates and return up to 10 questions
+    const uniqueQuestions = [...new Set(allQuestions)];
+    return uniqueQuestions.slice(0, 10);
   }
 
   /**

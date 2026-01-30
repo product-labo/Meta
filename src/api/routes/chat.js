@@ -505,4 +505,70 @@ router.delete('/sessions/:sessionId', async (req, res) => {
   }
 });
 
+/**
+ * @swagger
+ * /api/chat/suggested-questions:
+ *   get:
+ *     summary: Get suggested questions for a contract (public endpoint)
+ *     tags: [Chat]
+ *     parameters:
+ *       - in: query
+ *         name: contractAddress
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: Contract address to get suggestions for
+ *       - in: query
+ *         name: contractChain
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: Contract chain to get suggestions for
+ *     responses:
+ *       200:
+ *         description: Suggested questions retrieved successfully
+ *       400:
+ *         description: Missing required parameters
+ */
+router.get('/suggested-questions', async (req, res) => {
+  try {
+    const { contractAddress, contractChain } = req.query;
+
+    if (!contractAddress || !contractChain) {
+      return res.status(400).json({
+        error: 'Missing required parameters',
+        message: 'contractAddress and contractChain are required'
+      });
+    }
+
+    // Use anonymous user for public access
+    const userId = 'anonymous';
+
+    // Get contract context
+    const contractContext = await ChatAIService.getContractContext(
+      userId, 
+      contractAddress, 
+      contractChain
+    );
+
+    // Generate suggested questions
+    const questions = await ChatAIService.generateSuggestedQuestions(contractContext);
+
+    res.json({
+      questions: questions,
+      contractAddress,
+      contractChain,
+      total: questions.length,
+      aiEnabled: ChatAIService.isEnabled()
+    });
+
+  } catch (error) {
+    console.error('Suggested questions error:', error);
+    res.status(500).json({
+      error: 'Failed to generate suggested questions',
+      message: error.message
+    });
+  }
+});
+
 export default router;

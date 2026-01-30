@@ -191,7 +191,7 @@ export class UpgradeImpactAnalyzer {
       };
     }
 
-    const uniqueUsers = new Set(transactions.map(tx => tx.wallet.toLowerCase())).size;
+    const uniqueUsers = new Set(transactions.filter(tx => tx.from_address || tx.wallet).map(tx => (tx.from_address || tx.wallet).toLowerCase())).size;
     const totalValue = transactions.reduce((sum, tx) => sum + tx.valueEth, 0);
     const failedCount = transactions.filter(tx => !tx.success).length;
     const failureRate = failedCount / transactions.length;
@@ -220,8 +220,8 @@ export class UpgradeImpactAnalyzer {
    * @private
    */
   _measureUserResponse(beforeTxs, afterTxs) {
-    const beforeUsers = new Set(beforeTxs.map(tx => tx.wallet.toLowerCase()));
-    const afterUsers = new Set(afterTxs.map(tx => tx.wallet.toLowerCase()));
+    const beforeUsers = new Set(beforeTxs.filter(tx => tx.from_address || tx.wallet).map(tx => (tx.from_address || tx.wallet).toLowerCase()));
+    const afterUsers = new Set(afterTxs.filter(tx => tx.from_address || tx.wallet).map(tx => (tx.from_address || tx.wallet).toLowerCase()));
 
     // Calculate user retention
     const retainedUsers = Array.from(beforeUsers).filter(u => afterUsers.has(u));
@@ -232,12 +232,18 @@ export class UpgradeImpactAnalyzer {
     const churnRate = beforeUsers.size > 0 ? churnedUsers.length / beforeUsers.size : 0;
 
     // Calculate activity changes for retained users
-    const activityChanges = retainedUsers.map(wallet => {
-      const beforeCount = beforeTxs.filter(tx => tx.wallet.toLowerCase() === wallet).length;
-      const afterCount = afterTxs.filter(tx => tx.wallet.toLowerCase() === wallet).length;
+    const activityChanges = retainedUsers.map(walletAddr => {
+      const beforeCount = beforeTxs.filter(tx => {
+        const wallet = tx.from_address || tx.wallet;
+        return wallet && wallet.toLowerCase() === walletAddr;
+      }).length;
+      const afterCount = afterTxs.filter(tx => {
+        const wallet = tx.from_address || tx.wallet;
+        return wallet && wallet.toLowerCase() === walletAddr;
+      }).length;
       
       return {
-        wallet,
+        wallet: walletAddr,
         beforeCount,
         afterCount,
         change: this._calculateChange(beforeCount, afterCount)
@@ -275,11 +281,11 @@ export class UpgradeImpactAnalyzer {
       };
     }
 
-    const totalUsers = new Set(afterTxs.map(tx => tx.wallet.toLowerCase())).size;
+    const totalUsers = new Set(afterTxs.filter(tx => tx.from_address || tx.wallet).map(tx => (tx.from_address || tx.wallet).toLowerCase())).size;
     
     const adoptionByFunction = newFunctions.map(funcSig => {
       const funcTxs = afterTxs.filter(tx => tx.functionSignature === funcSig);
-      const funcUsers = new Set(funcTxs.map(tx => tx.wallet.toLowerCase())).size;
+      const funcUsers = new Set(funcTxs.filter(tx => tx.from_address || tx.wallet).map(tx => (tx.from_address || tx.wallet).toLowerCase())).size;
       
       return {
         functionSignature: funcSig,
@@ -319,8 +325,8 @@ export class UpgradeImpactAnalyzer {
     }
 
     // Check for significant user churn
-    const beforeUsers = new Set(beforeTxs.map(tx => tx.wallet.toLowerCase())).size;
-    const afterUsers = new Set(afterTxs.map(tx => tx.wallet.toLowerCase())).size;
+    const beforeUsers = new Set(beforeTxs.filter(tx => tx.from_address || tx.wallet).map(tx => (tx.from_address || tx.wallet).toLowerCase())).size;
+    const afterUsers = new Set(afterTxs.filter(tx => tx.from_address || tx.wallet).map(tx => (tx.from_address || tx.wallet).toLowerCase())).size;
     const userChange = this._calculateChange(beforeUsers, afterUsers);
     
     if (userChange < -20) {

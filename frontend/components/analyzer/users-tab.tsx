@@ -13,6 +13,8 @@ export function UsersTab({ analysisResults }: UsersTabProps) {
   const fullReport = results.fullReport || {};
   const userBehavior = fullReport.userBehavior || {};
   const users = fullReport.users || [];
+  const userLifecycle = fullReport.userLifecycle || {};
+  const userJourneys = fullReport.userJourneys || {};
   
   // Create behavior chart data from real metrics
   const behaviorData = [
@@ -130,7 +132,7 @@ export function UsersTab({ analysisResults }: UsersTabProps) {
           </CardHeader>
           <CardContent>
             <p className="text-2xl font-bold text-white">
-              {formatValue(userBehavior.crossChainUsers, 0)}
+              {userBehavior.crossChainUsers ?? 0}
             </p>
             <p className="text-purple-300 text-xs mt-1">Multi-chain active</p>
           </CardContent>
@@ -142,9 +144,117 @@ export function UsersTab({ analysisResults }: UsersTabProps) {
           </CardHeader>
           <CardContent>
             <p className="text-2xl font-bold text-white">
-              {formatValue(userBehavior.churRate, 0)}%
+              {userBehavior.churRate ?? 0}%
             </p>
             <p className="text-orange-300 text-xs mt-1">User attrition</p>
+          </CardContent>
+        </Card>
+      </div>
+
+      {/* User Lifecycle Metrics */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <Card className="bg-gradient-to-br from-violet-900/20 to-violet-800/20 border-violet-500/30">
+          <CardHeader className="pb-2">
+            <CardTitle className="text-violet-400 text-sm">Activation Rate</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p className="text-2xl font-bold text-white">
+              {userLifecycle.activationMetrics?.activationRate ? 
+                `${userLifecycle.activationMetrics.activationRate.toFixed(1)}%` : 
+                'N/A'}
+            </p>
+            <p className="text-violet-300 text-xs mt-1">User activation success</p>
+          </CardContent>
+        </Card>
+
+        <Card className="bg-gradient-to-br from-teal-900/20 to-teal-800/20 border-teal-500/30">
+          <CardHeader className="pb-2">
+            <CardTitle className="text-teal-400 text-sm">Retention Rate</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p className="text-2xl font-bold text-white">
+              {userLifecycle.summary?.retentionRate ? 
+                `${userLifecycle.summary.retentionRate.toFixed(1)}%` : 
+                'N/A'}
+            </p>
+            <p className="text-teal-300 text-xs mt-1">User retention</p>
+          </CardContent>
+        </Card>
+
+        <Card className="bg-gradient-to-br from-amber-900/20 to-amber-800/20 border-amber-500/30">
+          <CardHeader className="pb-2">
+            <CardTitle className="text-amber-400 text-sm">Journey Length</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p className="text-2xl font-bold text-white">
+              {userJourneys.averageJourneyLength ? 
+                userJourneys.averageJourneyLength.toFixed(1) : 
+                'N/A'}
+            </p>
+            <p className="text-amber-300 text-xs mt-1">Avg steps per user</p>
+          </CardContent>
+        </Card>
+
+        <Card className="bg-gradient-to-br from-pink-900/20 to-pink-800/20 border-pink-500/30">
+          <CardHeader className="pb-2">
+            <CardTitle className="text-pink-400 text-sm">Lifecycle Stage</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p className="text-2xl font-bold text-white">
+              {userLifecycle.summary?.activeUsers || 0}
+            </p>
+            <p className="text-pink-300 text-xs mt-1">Active users</p>
+          </CardContent>
+        </Card>
+      </div>
+
+      {/* Enhanced User Metrics */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <Card className="bg-gradient-to-br from-cyan-900/20 to-cyan-800/20 border-cyan-500/30">
+          <CardHeader className="pb-2">
+            <CardTitle className="text-cyan-400 text-sm">Multi-Protocol Users</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p className="text-2xl font-bold text-white">
+              {userBehavior.multiProtocolUsers ?? 0}
+            </p>
+            <p className="text-cyan-300 text-xs mt-1">Using multiple protocols</p>
+          </CardContent>
+        </Card>
+
+        <Card className="bg-gradient-to-br from-emerald-900/20 to-emerald-800/20 border-emerald-500/30">
+          <CardHeader className="pb-2">
+            <CardTitle className="text-emerald-400 text-sm">Early Adopter Potential</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p className="text-2xl font-bold text-white">
+              {userBehavior.earlyAdopterPotential || 'Medium'}
+            </p>
+            <p className="text-emerald-300 text-xs mt-1">Innovation adoption</p>
+          </CardContent>
+        </Card>
+
+        <Card className="bg-gradient-to-br from-rose-900/20 to-rose-800/20 border-rose-500/30">
+          <CardHeader className="pb-2">
+            <CardTitle className="text-rose-400 text-sm">User Growth Rate</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p className="text-2xl font-bold text-white">
+              {userBehavior.growthRate ?? 0}%
+            </p>
+            <p className="text-rose-300 text-xs mt-1">Monthly growth</p>
+          </CardContent>
+        </Card>
+
+        <Card className="bg-gradient-to-br from-indigo-900/20 to-indigo-800/20 border-indigo-500/30">
+          <CardHeader className="pb-2">
+            <CardTitle className="text-indigo-400 text-sm">Risk Tolerance</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p className="text-2xl font-bold text-white">
+              {userBehavior.riskToleranceLevel ?? 0}
+            </p>
+            <p className="text-indigo-300 text-xs mt-1">Risk appetite score</p>
           </CardContent>
         </Card>
       </div>
@@ -173,7 +283,7 @@ export function UsersTab({ analysisResults }: UsersTabProps) {
                       {formatAddress(user.address)}
                     </td>
                     <td className="text-right py-3 px-4 text-white">
-                      {formatValue(user.transactionCount, 0)}
+                      {user.transactionCount ?? 0}
                     </td>
                     <td className="text-right py-3 px-4 text-gray-300">
                       {formatCurrency(user.totalValue)}

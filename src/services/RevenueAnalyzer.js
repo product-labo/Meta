@@ -142,7 +142,13 @@ export class RevenueAnalyzer {
         monthlyUsers.set(monthKey, new Set());
       }
       
-      monthlyUsers.get(monthKey).add(tx.wallet.toLowerCase());
+      // Skip transactions without wallet address
+      // Use from_address as the wallet identifier for normalized transactions
+      const wallet = tx.from_address || tx.wallet;
+      
+      if (wallet) {
+        monthlyUsers.get(monthKey).add(wallet.toLowerCase());
+      }
     }
 
     // Calculate revenue per user for each month
@@ -165,7 +171,7 @@ export class RevenueAnalyzer {
     return {
       perUserByMonth,
       averagePerMonth,
-      totalUsers: new Set(transactions.map(tx => tx.wallet.toLowerCase())).size
+      totalUsers: new Set(transactions.filter(tx => tx.from_address || tx.wallet).map(tx => (tx.from_address || tx.wallet).toLowerCase())).size
     };
   }
 
@@ -295,7 +301,7 @@ export class RevenueAnalyzer {
    */
   _benchmarkEfficiency(transactions, feeStructure, competitorData) {
     const ourRevenue = this.calculateTotalRevenue(transactions, feeStructure);
-    const ourUsers = new Set(transactions.map(tx => tx.wallet.toLowerCase())).size;
+    const ourUsers = new Set(transactions.filter(tx => tx.from_address || tx.wallet).map(tx => (tx.from_address || tx.wallet).toLowerCase())).size;
     const ourRevenuePerUser = ourUsers > 0 ? ourRevenue.total / ourUsers : 0;
     const ourRevenuePerTx = transactions.length > 0 ? ourRevenue.total / transactions.length : 0;
 

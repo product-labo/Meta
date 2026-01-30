@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import {
-  AreaChart, Area, ResponsiveContainer,
+  AreaChart, Area, ResponsiveContainer, PieChart, Pie, Cell,
   XAxis, YAxis, CartesianGrid, Tooltip
 } from 'recharts';
 
@@ -64,6 +64,79 @@ export function TransactionsTab({ analysisResults }: TransactionsTabProps) {
     const hashStr = hash.toString();
     return `${hashStr.slice(0, 8)}...${hashStr.slice(-6)}`;
   };
+
+  // Get transaction type distribution data
+  const getTransactionTypeData = () => {
+    const typeCount: { [key: string]: number } = {};
+    
+    transactions.forEach((tx: any) => {
+      const type = tx.type || determineTransactionType(tx.methodId || tx.method_id);
+      typeCount[type] = (typeCount[type] || 0) + 1;
+    });
+
+    return Object.entries(typeCount).map(([type, count]) => ({
+      name: formatTransactionType(type),
+      value: count
+    }));
+  };
+
+  // Get function call analytics
+  const getFunctionCallData = () => {
+    const functionCount: { [key: string]: number } = {};
+    const total = transactions.length;
+    
+    transactions.forEach((tx: any) => {
+      const methodId = tx.methodId || tx.method_id || '0xa9059cbb';
+      functionCount[methodId] = (functionCount[methodId] || 0) + 1;
+    });
+
+    return Object.entries(functionCount)
+      .sort(([,a], [,b]) => b - a)
+      .slice(0, 5)
+      .map(([methodId, count]) => ({
+        name: getFunctionName(methodId),
+        signature: methodId,
+        count,
+        percentage: ((count / total) * 100).toFixed(1)
+      }));
+  };
+
+  // Helper functions
+  const determineTransactionType = (methodId: string) => {
+    if (!methodId) return 'transfer';
+    
+    switch (methodId) {
+      case '0xa9059cbb': return 'transfer';
+      case '0x095ea7b3': return 'approval';
+      case '0x23b872dd': return 'transferFrom';
+      case '0x40c10f19': return 'mint';
+      case '0x42966c68': return 'burn';
+      case '0x2e1a7d4d': return 'withdraw';
+      case '0xd0e30db0': return 'deposit';
+      default: return 'contract_call';
+    }
+  };
+
+  const formatTransactionType = (type: string) => {
+    return type.charAt(0).toUpperCase() + type.slice(1).replace('_', ' ');
+  };
+
+  const getFunctionName = (methodId: string) => {
+    const names: { [key: string]: string } = {
+      '0xa9059cbb': 'Transfer',
+      '0x095ea7b3': 'Approve',
+      '0x23b872dd': 'Transfer From',
+      '0x40c10f19': 'Mint',
+      '0x42966c68': 'Burn',
+      '0x2e1a7d4d': 'Withdraw',
+      '0xd0e30db0': 'Deposit'
+    };
+    return names[methodId] || 'Unknown Function';
+  };
+
+  const getTransactionTypeColors = () => [
+    '#3B82F6', '#10B981', '#F59E0B', '#EF4444', '#8B5CF6', '#06B6D4', '#84CC16', '#F97316'
+  ];
   
   return (
     <div className="space-y-6">
@@ -149,6 +222,57 @@ export function TransactionsTab({ analysisResults }: TransactionsTabProps) {
           </CardContent>
         </Card>
       </div>
+
+      {/* Transaction Type Distribution */}
+      <Card className="bg-gray-800 border-gray-600/30">
+        <CardHeader>
+          <CardTitle className="text-white">Transaction Type Distribution</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <ResponsiveContainer width="100%" height={300}>
+            <PieChart>
+              <Pie
+                data={getTransactionTypeData()}
+                cx="50%"
+                cy="50%"
+                labelLine={false}
+                label={({ name, value, percent }) => `${name}: ${value} (${(percent ?? 0 * 100).toFixed(1)}%)`}
+                outerRadius={80}
+                fill="#8884d8"
+                dataKey="value"
+              >
+                {getTransactionTypeData().map((entry, index) => (
+                  <Cell key={`cell-${index}`} fill={getTransactionTypeColors()[index % getTransactionTypeColors().length]} />
+                ))}
+              </Pie>
+              <Tooltip contentStyle={{ backgroundColor: '#1f2937', border: '1px solid #9CA3AF' }} />
+            </PieChart>
+          </ResponsiveContainer>
+        </CardContent>
+      </Card>
+
+      {/* Function Call Analytics */}
+      <Card className="bg-gray-800 border-gray-600/30">
+        <CardHeader>
+          <CardTitle className="text-white">Popular Contract Functions</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="space-y-3">
+            {getFunctionCallData().map((func, i) => (
+              <div key={i} className="flex items-center justify-between p-3 bg-gray-700/50 rounded-lg">
+                <div>
+                  <p className="text-white font-semibold">{func.name}</p>
+                  <p className="text-gray-400 text-sm">{func.signature}</p>
+                </div>
+                <div className="text-right">
+                  <p className="text-white font-bold">{func.count}</p>
+                  <p className="text-gray-400 text-sm">{func.percentage}%</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </CardContent>
+      </Card>
 
       <Card className="bg-gray-800 border-gray-600/30">
         <CardHeader>

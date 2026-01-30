@@ -1,0 +1,8 @@
+{
+  "stage": "subscription_deployed",
+  "network": "lisk-sepolia",
+  "chainId": 4202,
+  "timestamp": 1764432682,
+  "tokenAddress": "0xB51623F59fF9f2AA7d3bC1Afa99AE0fA8049ed3D",
+  "subscriptionAddress": "0x577d9A43D0fa564886379bdD9A56285769683C38"
+}

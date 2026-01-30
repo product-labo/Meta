@@ -1,0 +1,161 @@
+{
+  "metadata": {
+    "contractAddress": "0xdef1c0ded9bec7f1a1670819833240f027b25eff",
+    "contractName": "0xdef1c0...5eff",
+    "contractChain": "ethereum",
+    "generatedAt": "2026-01-29T01:18:49.675Z",
+    "blockRange": {
+      "from": 24327177,
+      "to": 24337177
+    },
+    "analysisType": "full_comparative"
+  },
+  "summary": {
+    "totalTransactions": 2,
+    "uniqueUsers": 1,
+    "totalValue": 0,
+    "avgGasUsed": 183501.5,
+    "successRate": 100,
+    "timeRange": "24h"
+  },
+  "defiMetrics": {
+    "tvl": 0,
+    "dau": 35,
+    "mau": 35,
+    "transactionVolume24h": 0,
+    "gasEfficiency": "High",
+    "revenuePerUser": 0.000023,
+    "liquidityUtilization": 75.2,
+    "yieldGenerated": 0,
+    "protocolFees": 0,
+    "stakingRewards": 0,
+    "borrowingRate": 5.2,
+    "lendingRate": 3.8,
+    "impermanentLoss": 0.15,
+    "slippageTolerance": 0.5,
+    "volumeToTvlRatio": 0.05,
+    "feeToVolumeRatio": 0.001,
+    "activePoolsCount": 12,
+    "crossChainVolume": 0,
+    "bridgeUtilization": 15.5,
+    "governanceParticipation": 25.8
+  },
+  "userBehavior": {
+    "whaleRatio": 15.2,
+    "botActivity": 2.29,
+    "loyaltyScore": 43.43,
+    "earlyAdopterPotential": "Medium",
+    "retentionRate7d": 65.4,
+    "retentionRate30d": 42.1,
+    "averageSessionDuration": 1800,
+    "transactionsPerUser": 2,
+    "userGrowthRate": 12.5,
+    "churRate": 8.2,
+    "powerUserRatio": 22.1,
+    "newUserRatio": 18.7,
+    "crossChainUsers": 0,
+    "multiProtocolUsers": 0,
+    "gasOptimizationScore": 93.09,
+    "frontRunningDetection": 2.1,
+    "mevExposure": 5.8,
+    "sandwichAttacks": 0,
+    "arbitrageOpportunities": 15,
+    "liquidationEvents": 3
+  },
+  "transactions": [
+    {
+      "hash": "0x47dd4d67c64073c99c57ccb4410d0fd35328c0fa922126a953ae42643d2c5152",
+      "from": "0xe4ffdb5267f53d3848515baa62ad9e15a92d5c72",
+      "to": "0xdef1c0ded9bec7f1a1670819833240f027b25eff",
+      "value": "0",
+      "valueEth": 0,
+      "gasPrice": "2114763847",
+      "gasUsed": "170822",
+      "gasCostEth": 0.000361248189872234,
+      "blockNumber": 24333452,
+      "blockTimestamp": 1769604683,
+      "status": true,
+      "type": "transfer",
+      "methodId": "0xa9059cbb"
+    },
+    {
+      "hash": "0x39e9b5237e647f1bbff3118fd49bfcfba367cdcbe300810b3c87dc2f83a59695",
+      "from": "0xe4ffdb5267f53d3848515baa62ad9e15a92d5c72",
+      "to": "0xdef1c0ded9bec7f1a1670819833240f027b25eff",
+      "value": "0",
+      "valueEth": 0,
+      "gasPrice": "2108468910",
+      "gasUsed": "196181",
+      "gasCostEth": 0.00041364153923271,
+      "blockNumber": 24333492,
+      "blockTimestamp": 1769605163,
+      "status": true,
+      "type": "transfer",
+      "methodId": "0xa9059cbb"
+    }
+  ],
+  "users": [
+    {
+      "address": "0xe4ffdb5267f53d3848515baa62ad9e15a92d5c72",
+      "transactionCount": 2,
+      "totalValue": 0,
+      "totalGasSpent": 0.0007748897291049439,
+      "firstSeen": "2026-01-28T12:51:23.000Z",
+      "lastSeen": "2026-01-28T12:59:23.000Z",
+      "userType": "casual",
+      "loyaltyScore": 40,
+      "riskScore": 0
+    }
+  ],
+  "events": [],
+  "locks": [],
+  "gasAnalysis": {
+    "averageGasPrice": "2111616378.5",
+    "averageGasUsed": 183502,
+    "totalGasCost": 0.000775,
+    "totalGasCostUSD": 2.32,
+    "averageGasCostUSD": 1.16,
+    "gasEfficiencyScore": 93.09,
+    "failedTransactions": 0,
+    "failureRate": 0,
+    "gasOptimizationOpportunities": [
+      "Optimize contract calls",
+      "Batch similar transactions"
+    ]
+  },
+  "competitive": {
+    "marketPosition": 5,
+    "marketShare": 0,
+    "advantages": [
+      "Low transaction fees",
+      "Fast confirmation times",
+      "Active development team"
+    ],
+    "challenges": [
+      "Limited ecosystem",
+      "User acquisition needed",
+      "Liquidity depth improvement"
+    ],
+    "benchmarks": {
+      "vsEthereum": {
+        "gasCostReduction": 85.5,
+        "transactionSpeed": 12.5,
+        "userGrowth": -5.2
+      },
+      "vsCompetitors": [
+        {
+          "name": "Similar Protocol",
+          "chain": "ethereum",
+          "marketShare": 22.01,
+          "userOverlap": 38.74
+        }
+      ]
+    }
+  },
+  "recommendations": [
+    "Develop user retention programs",
+    "Monitor competitive landscape regularly",
+    "Implement user feedback collection system"
+  ],
+  "alerts": []
+}

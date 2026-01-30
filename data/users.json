@@ -398,9 +398,12 @@
         "purpose": "Simple test",
         "category": "defi",
         "startDate": "2024-01-01T00:00:00.000Z",
-        "isIndexed": false,
-        "indexingProgress": 0,
-        "lastAnalysisId": null
+        "isIndexed": true,
+        "indexingProgress": 100,
+        "lastAnalysisId": "bb8a4671-9c60-417a-950a-bde3ae3d8c5e",
+        "continuousSync": false,
+        "lastUpdate": "2026-01-29T19:12:55.201Z",
+        "fixedStuckProgress": true
       }
     },
     "preferences": {
@@ -411,7 +414,7 @@
       "defaultChain": "ethereum"
     },
     "createdAt": "2026-01-28T13:52:57.331Z",
-    "updatedAt": "2026-01-28T13:52:57.561Z",
+    "updatedAt": "2026-01-29T19:12:55.203Z",
     "onboarding.defaultContract.indexingProgress": 100,
     "onboarding.defaultContract.lastAnalysisId": "bb8a4671-9c60-417a-950a-bde3ae3d8c5e",
     "onboarding.defaultContract.isIndexed": true
@@ -497,7 +500,12 @@
         "startDate": "2026-01-17T00:00:00.000Z",
         "isIndexed": true,
         "indexingProgress": 100,
-        "lastAnalysisId": "14ef20b1-12d3-44a4-91a4-253d0f55f6d6"
+        "lastAnalysisId": "14ef20b1-12d3-44a4-91a4-253d0f55f6d6",
+        "continuousSync": false,
+        "continuousSyncStopped": "2026-01-30T09:40:19.174Z",
+        "lastUpdate": "2026-01-30T10:05:44.426Z",
+        "hasErrors": false,
+        "completionReason": "normal-completion"
       }
     },
     "preferences": {
@@ -508,9 +516,35 @@
       "defaultChain": "ethereum"
     },
     "createdAt": "2026-01-28T15:09:53.733Z",
-    "updatedAt": "2026-01-28T17:32:00.838Z",
+    "updatedAt": "2026-01-30T10:05:44.427Z",
     "usage.analysisCount": 1,
     "usage.monthlyAnalysisCount": 1,
-    "usage.lastAnalysis": "2026-01-28T17:01:57.966Z"
+    "usage.lastAnalysis": "2026-01-29T16:12:55.043Z",
+    "lastLogin": "2026-01-29T17:43:03.742Z"
+  },
+  {
+    "id": "test-user-sync-123",
+    "email": "test-sync@example.com",
+    "name": "Test Sync User",
+    "onboarding": {
+      "completed": true,
+      "defaultContract": {
+        "address": "0xA0b86a33E6441E13C7d3fF4A4C2C8a2e4e4e4e4e",
+        "chain": "ethereum",
+        "name": "Test Contract",
+        "purpose": "Testing sync persistence",
+        "category": "defi",
+        "startDate": "2026-01-29T14:21:01.592Z",
+        "isIndexed": true,
+        "indexingProgress": 100,
+        "lastAnalysisId": "f35b5d34-6add-4c21-b71a-89adc740dda9",
+        "continuousSync": false,
+        "continuousSyncStarted": "2026-01-29T17:43:11.054Z",
+        "lastUpdate": "2026-01-29T17:54:31.885Z",
+        "fixedStuckProgress": true
+      }
+    },
+    "createdAt": "2026-01-29T14:21:01.595Z",
+    "updatedAt": "2026-01-29T18:05:24.351Z"
   }
 ]

@@ -75,8 +75,14 @@ export class UxBottleneckDetector {
     const sessions = [];
 
     for (const [wallet, txs] of walletTransactions) {
-      // Filter out transactions with invalid timestamps
-      const validTxs = txs.filter(tx => tx.timestamp && !isNaN(tx.timestamp.getTime()));
+      // Filter out transactions with invalid timestamps and normalize them
+      const validTxs = txs.filter(tx => {
+        const timestamp = this._normalizeTimestamp(tx);
+        return timestamp && !isNaN(timestamp.getTime());
+      }).map(tx => ({
+        ...tx,
+        timestamp: this._normalizeTimestamp(tx)
+      }));
       
       if (validTxs.length === 0) continue;
       
@@ -98,8 +104,8 @@ export class UxBottleneckDetector {
         durationMs,
         durationMinutes,
         transactionCount: sortedTxs.length,
-        successfulTransactions: sortedTxs.filter(tx => tx.success).length,
-        failedTransactions: sortedTxs.filter(tx => !tx.success).length
+        successfulTransactions: sortedTxs.filter(tx => tx.success || tx.status).length,
+        failedTransactions: sortedTxs.filter(tx => !(tx.success || tx.status)).length
       });
     }
 
@@ -140,14 +146,19 @@ export class UxBottleneckDetector {
 
     // First pass: count all function calls
     for (const tx of transactions) {
-      const func = tx.functionName;
+      const func = tx.functionName || this._extractFunctionName(tx);
       functionStarts.set(func, (functionStarts.get(func) || 0) + 1);
     }
 
     // Second pass: analyze sequences
     for (const [wallet, txs] of walletTransactions) {
-      // Sort by timestamp
-      const sortedTxs = [...txs].sort((a, b) => a.timestamp.getTime() - b.timestamp.getTime());
+      // Normalize timestamps and sort
+      const sortedTxs = [...txs].map(tx => ({
+        ...tx,
+        timestamp: this._normalizeTimestamp(tx),
+        functionName: tx.functionName || this._extractFunctionName(tx)
+      })).filter(tx => tx.timestamp && !isNaN(tx.timestamp.getTime()))
+        .sort((a, b) => a.timestamp.getTime() - b.timestamp.getTime());
       
       // Analyze consecutive function pairs
       for (let i = 0; i < sortedTxs.length - 1; i++) {
@@ -249,9 +260,9 @@ export class UxBottleneckDetector {
       bottleneckCount: bottlenecks.length,
       metrics: {
         totalTransactions: transactions.length,
-        successfulTransactions: transactions.filter(tx => tx.success).length,
-        failedTransactions: transactions.filter(tx => !tx.success).length,
-        uniqueUsers: new Set(transactions.map(tx => tx.wallet)).size
+        successfulTransactions: transactions.filter(tx => tx.success || tx.status).length,
+        failedTransactions: transactions.filter(tx => !(tx.success || tx.status)).length,
+        uniqueUsers: new Set(transactions.filter(tx => tx.from_address || tx.wallet).map(tx => (tx.from_address || tx.wallet))).size
       }
     };
   }
@@ -261,7 +272,7 @@ export class UxBottleneckDetector {
    * @private
    */
   _analyzeFailurePatterns(transactions) {
-    const failedTxs = transactions.filter(tx => !tx.success);
+    const failedTxs = transactions.filter(tx => !(tx.success || tx.status));
     
     if (failedTxs.length === 0) {
       return {
@@ -275,7 +286,7 @@ export class UxBottleneckDetector {
     const failuresByFunction = new Map();
     
     for (const tx of failedTxs) {
-      const func = tx.functionName;
+      const func = tx.functionName || this._extractFunctionName(tx);
       
       if (!failuresByFunction.has(func)) {
         failuresByFunction.set(func, {
@@ -291,7 +302,7 @@ export class UxBottleneckDetector {
 
     // Calculate total attempts per function
     for (const tx of transactions) {
-      const func = tx.functionName;
+      const func = tx.functionName || this._extractFunctionName(tx);
       
       if (failuresByFunction.has(func)) {
         failuresByFunction.get(func).totalAttempts++;
@@ -318,7 +329,7 @@ export class UxBottleneckDetector {
         failureSequences.push({
           wallet,
           failureCount: txs.length,
-          functions: sortedTxs.map(tx => tx.functionName),
+          functions: sortedTxs.map(tx => tx.functionName || this._extractFunctionName(tx)),
           firstFailure: sortedTxs[0].timestamp,
           lastFailure: sortedTxs[sortedTxs.length - 1].timestamp
         });
@@ -344,7 +355,12 @@ export class UxBottleneckDetector {
     const timeToSuccess = [];
 
     for (const [wallet, txs] of walletTransactions) {
-      const sortedTxs = [...txs].sort((a, b) => a.timestamp.getTime() - b.timestamp.getTime());
+      const sortedTxs = [...txs].map(tx => ({
+        ...tx,
+        timestamp: this._normalizeTimestamp(tx),
+        success: tx.success || tx.status
+      })).filter(tx => tx.timestamp && !isNaN(tx.timestamp.getTime()))
+        .sort((a, b) => a.timestamp.getTime() - b.timestamp.getTime());
       
       if (sortedTxs.length === 0) continue;
 
@@ -395,7 +411,7 @@ export class UxBottleneckDetector {
 
     for (const [wallet, txs] of walletTransactions) {
       // Consider a user "completed" if they have at least one successful transaction
-      const hasSuccess = txs.some(tx => tx.success);
+      const hasSuccess = txs.some(tx => tx.success || tx.status);
       if (hasSuccess) {
         completedUsers++;
       }
@@ -411,7 +427,7 @@ export class UxBottleneckDetector {
   _calculateFailureRate(transactions) {
     if (transactions.length === 0) return 0;
     
-    const failedCount = transactions.filter(tx => !tx.success).length;
+    const failedCount = transactions.filter(tx => !(tx.success || tx.status)).length;
     return failedCount / transactions.length;
   }
 
@@ -423,13 +439,22 @@ export class UxBottleneckDetector {
     const walletMap = new Map();
 
     for (const tx of transactions) {
-      const wallet = tx.wallet.toLowerCase();
+      // Handle cases where from_address might be null/undefined
+      // Use from_address as the wallet identifier for normalized transactions
+      const wallet = tx.from_address || tx.wallet;
       
-      if (!walletMap.has(wallet)) {
-        walletMap.set(wallet, []);
+      if (!wallet) {
+        console.warn('Transaction missing wallet/from_address:', tx);
+        continue;
       }
       
-      walletMap.get(wallet).push(tx);
+      const walletLower = wallet.toLowerCase();
+      
+      if (!walletMap.has(walletLower)) {
+        walletMap.set(walletLower, []);
+      }
+      
+      walletMap.get(walletLower).push(tx);
     }
 
     return walletMap;
@@ -484,6 +509,46 @@ export class UxBottleneckDetector {
         overallFailureRate: 0
       }
     };
+  }
+
+  /**
+   * Normalize timestamp to Date object
+   * @private
+   */
+  _normalizeTimestamp(tx) {
+    // Try different timestamp fields
+    const timestamp = tx.timestamp || tx.block_timestamp || tx.blockTimestamp;
+    
+    if (!timestamp) return null;
+    
+    if (timestamp instanceof Date) {
+      return timestamp;
+    }
+    
+    if (typeof timestamp === 'string') {
+      const date = new Date(timestamp);
+      return isNaN(date.getTime()) ? null : date;
+    }
+    
+    if (typeof timestamp === 'number') {
+      // Handle both seconds and milliseconds
+      const date = timestamp > 1e12 ? new Date(timestamp) : new Date(timestamp * 1000);
+      return isNaN(date.getTime()) ? null : date;
+    }
+    
+    return null;
+  }
+
+  /**
+   * Extract function name from transaction
+   * @private
+   */
+  _extractFunctionName(tx) {
+    if (tx.functionName) return tx.functionName;
+    if (tx.function_name) return tx.function_name;
+    if (tx.method_id) return tx.method_id;
+    if (tx.methodId) return tx.methodId;
+    return 'unknown';
   }
 }
 

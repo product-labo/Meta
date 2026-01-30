@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useEffect, useState, useCallback } from "react"
 import { useRouter } from "next/navigation"
 import { useAuth } from "@/components/auth/auth-provider"
 import { api } from "@/lib/api"
@@ -9,7 +9,7 @@ import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Header } from "@/components/ui/header"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { BarChart3, Clock, TrendingUp, Activity, Plus, Eye, Globe, Users, DollarSign, Zap, RefreshCw, AlertCircle } from "lucide-react"
+import { TrendingUp, Activity, Plus, Globe, Users, DollarSign, Zap, RefreshCw, AlertCircle } from "lucide-react"
 import Link from "next/link"
 import { Progress } from "@/components/ui/progress"
 
@@ -18,6 +18,11 @@ import { OverviewTab } from "@/components/analyzer/overview-tab"
 import { MetricsTab } from "@/components/analyzer/metrics-tab"
 import { UsersTab } from "@/components/analyzer/users-tab"
 import { TransactionsTab } from "@/components/analyzer/transactions-tab"
+import { UxTab } from "@/components/analyzer/ux-tab"
+
+// Import marathon sync hook and animated logo components
+import { useMarathonSync } from "@/hooks/use-marathon-sync"
+import { MarathonSyncLoader, LoadingWithLogo } from "@/components/ui/animated-logo"
 
 interface DefaultContractData {
   contract: {
@@ -29,6 +34,9 @@ interface DefaultContractData {
     startDate: string
     isIndexed: boolean
     indexingProgress: number
+    continuousSync?: boolean
+    continuousSyncStarted?: string
+    continuousSyncStopped?: string
   }
   metrics: {
     tvl?: number
@@ -48,6 +56,9 @@ interface DefaultContractData {
     returningUsers?: number
     topUsers?: any[]
     recentTransactions?: any[]
+    syncCyclesCompleted?: number
+    dataFreshness?: string
+    accumulatedBlockRange?: number
   } | null
   fullResults: any | null // Full analysis results for detailed display
   indexingStatus: {
@@ -108,9 +119,18 @@ export default function DashboardPage() {
   const [userMetrics, setUserMetrics] = useState<UserMetrics | null>(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
-  const [isRefreshing, setIsRefreshing] = useState(false)
-  const [refreshProgress, setRefreshProgress] = useState(0)
   const [activeTab, setActiveTab] = useState('overview')
+  const [quickSyncLoading, setQuickSyncLoading] = useState(false)
+  const [quickSyncProgress, setQuickSyncProgress] = useState(0)
+
+  // Use marathon sync hook for state management
+  const {
+    syncState,
+    startMarathonSync,
+    stopMarathonSync,
+    refreshSyncState,
+    isLoading: marathonLoading
+  } = useMarathonSync()
 
   useEffect(() => {
     if (isAuthenticated) {
@@ -199,81 +219,160 @@ export default function DashboardPage() {
     }).format(amount)
   }
 
-  const handleRefreshDefaultContract = async () => {
+  const handleQuickSync = async () => {
     try {
-      setIsRefreshing(true)
-      setRefreshProgress(0)
       setError(null)
-
-      // Start the refresh
-      const response = await api.onboarding.refreshDefaultContract()
-      console.log('Refresh started:', response)
-
-      // Monitor progress
+      setQuickSyncLoading(true)
+      setQuickSyncProgress(10)
+      
+      console.log('🚀 Starting quick sync...')
+      const response = await api.onboarding.refreshDefaultContract(false)
+      console.log('Quick sync started:', response)
+      
+      setQuickSyncProgress(30)
+      
+      // Monitor quick sync progress
       const monitorProgress = async () => {
         let attempts = 0
-        const maxAttempts = 30 // 1 minute with 2-second intervals
-
-        const checkProgress = async () => {
+        const maxAttempts = 20 // 2 minutes max
+        let lastProgress = 30
+        let stuckCount = 0
+        const MAX_STUCK_ATTEMPTS = 3 // If progress doesn't change for 3 attempts, consider it stuck
+        
+        while (attempts < maxAttempts && quickSyncLoading) {
+          await new Promise(resolve => setTimeout(resolve, 6000)) // Wait 6 seconds
+          attempts++
+          
           try {
-            const status = await api.onboarding.getStatus()
-            setRefreshProgress(status.indexingProgress || 0)
-
-            if (status.isIndexed && status.indexingProgress === 100) {
-              // Refresh completed, reload data
-              await Promise.all([
-                loadDefaultContractData(),
-                loadUserMetrics()
-              ])
-              setIsRefreshing(false)
-              setRefreshProgress(100)
-              return
-            }
-
-            attempts++
-            if (attempts < maxAttempts) {
-              setTimeout(checkProgress, 2000)
+            const contractData = await api.onboarding.getDefaultContract()
+            const analysisHistory = contractData.analysisHistory
+            const indexingStatus = contractData.indexingStatus
+            
+            // Get actual progress from backend
+            const actualProgress = indexingStatus?.progress || 0
+            
+            if (analysisHistory?.latest?.status === 'completed') {
+              console.log('✅ Quick sync completed!')
+              setQuickSyncProgress(100)
+              
+              // Reload data and refresh page after completion
+              setTimeout(async () => {
+                await Promise.all([
+                  loadDefaultContractData(),
+                  loadUserMetrics()
+                ])
+                setQuickSyncLoading(false)
+                setQuickSyncProgress(0)
+                
+                // Trigger page refresh to show updated data
+                console.log('🔄 Quick sync completed, refreshing page...')
+                setTimeout(() => {
+                  window.location.reload()
+                }, 1000)
+              }, 2000)
+              
+              break
+            } else if (analysisHistory?.latest?.status === 'running') {
+              // Use actual progress from backend instead of fake progress
+              const currentProgress = Math.max(30, Math.min(90, actualProgress))
+              setQuickSyncProgress(currentProgress)
+              console.log(`🔄 Quick sync progress: ${currentProgress}% (actual: ${actualProgress}%)`)
+              
+              // Detect if progress is stuck
+              if (currentProgress === lastProgress) {
+                stuckCount++
+                console.log(`⚠️  Progress unchanged for ${stuckCount} attempts`)
+                
+                if (stuckCount >= MAX_STUCK_ATTEMPTS) {
+                  console.log('🚨 Quick sync appears to be stuck')
+                  throw new Error('Quick sync appears to be stuck. Please try again.')
+                }
+              } else {
+                stuckCount = 0 // Reset stuck counter if progress changed
+                lastProgress = currentProgress
+              }
+            } else if (analysisHistory?.latest?.status === 'failed') {
+              console.log('❌ Quick sync failed')
+              throw new Error('Quick sync analysis failed')
             } else {
-              // Timeout, but still reload data
-              await Promise.all([
-                loadDefaultContractData(),
-                loadUserMetrics()
-              ])
-              setIsRefreshing(false)
-              setRefreshProgress(0)
+              // Handle unexpected status
+              console.log(`⚠️  Unexpected analysis status: ${analysisHistory?.latest?.status}`)
+              
+              // Check if we've been waiting too long
+              if (attempts > 5) {
+                throw new Error('Quick sync status unclear. Please refresh the page.')
+              }
             }
-          } catch (error) {
-            console.error('Progress check failed:', error)
-            attempts++
-            if (attempts < maxAttempts) {
-              setTimeout(checkProgress, 2000)
-            } else {
-              setIsRefreshing(false)
-              setRefreshProgress(0)
-              setError('Failed to monitor refresh progress')
-            }
+          } catch (monitorError) {
+            console.error('Error monitoring quick sync:', monitorError)
+            throw monitorError // Re-throw to be caught by outer try-catch
           }
         }
-
-        checkProgress()
+        
+        // If we exit the loop without completing, it's a timeout
+        if (attempts >= maxAttempts && quickSyncLoading) {
+          throw new Error('Quick sync timed out. Please try again.')
+        }
       }
-
-      monitorProgress()
-
+      
+      // Start monitoring in background
+      try {
+        await monitorProgress()
+      } catch (monitorError) {
+        console.error('Quick sync monitoring failed:', monitorError)
+        const errorMessage = monitorError instanceof Error ? monitorError.message : 'Quick sync monitoring failed'
+        setError(errorMessage)
+        setQuickSyncLoading(false)
+        setQuickSyncProgress(0)
+        return
+      }
+      
+      // Wait a bit then reload data (removed the timeout reload since we handle it in monitoring)
+      setTimeout(async () => {
+        // Only reload data if sync is still running, completion will trigger page refresh
+        if (!quickSyncLoading) return
+        
+        await Promise.all([
+          loadDefaultContractData(),
+          loadUserMetrics()
+        ])
+      }, 8000) // 8 seconds minimum loading time
+      
     } catch (error: any) {
-      console.error('Failed to refresh default contract:', error)
-      setError(error.message || 'Failed to refresh contract data')
-      setIsRefreshing(false)
-      setRefreshProgress(0)
+      console.error('Failed to start quick sync:', error)
+      setError(error.message || 'Failed to start quick sync')
+      setQuickSyncLoading(false)
+      setQuickSyncProgress(0)
     }
   }
+
+  const handleStopMarathonSync = useCallback(async () => {
+    try {
+      setError(null)
+      await stopMarathonSync()
+      
+      // Auto-refresh the page after stopping sync
+      console.log('🔄 Marathon sync stopped, refreshing page...')
+      setTimeout(() => {
+        window.location.reload()
+      }, 1000) // 1 second delay to show the stop confirmation
+      
+    } catch (error: any) {
+      console.error('Failed to stop marathon sync:', error)
+      setError(error.message || 'Failed to stop marathon sync')
+    }
+  }, [stopMarathonSync])
 
   if (loading) {
     return (
       <div className="min-h-screen bg-background">
         <Header />
-        <div className="flex items-center justify-center h-96">
-          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
+        <div className="container mx-auto px-4 py-8">
+          <LoadingWithLogo 
+            message="Loading your dashboard..." 
+            size="lg"
+            className="h-96"
+          />
         </div>
       </div>
     )
@@ -304,7 +403,7 @@ export default function DashboardPage() {
         <div className="mb-8">
           <h1 className="text-3xl font-bold mb-2">Welcome back, {user?.name}!</h1>
           <p className="text-muted-foreground">
-            Here's an overview of your default contract and analysis activity
+            Here's an overview of your business contract and analysis activity
           </p>
         </div>
 
@@ -312,17 +411,40 @@ export default function DashboardPage() {
         {defaultContract && (
           <div className="mb-8">
             <div className="flex items-center justify-between mb-4">
-              <h2 className="text-2xl font-semibold">Your Default Contract</h2>
+              <h2 className="text-2xl font-semibold">Dashboard</h2>
               <div className="flex items-center gap-2">
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={handleRefreshDefaultContract}
-                  disabled={isRefreshing}
-                >
-                  <RefreshCw className={`mr-2 h-4 w-4 ${isRefreshing ? 'animate-spin' : ''}`} />
-                  {isRefreshing ? `Syncing ${refreshProgress}%` : 'Sync Data'}
-                </Button>
+                {syncState.isActive ? (
+                  <Button
+                    variant="destructive"
+                    size="sm"
+                    onClick={handleStopMarathonSync}
+                    disabled={marathonLoading}
+                  >
+                    <RefreshCw className={`mr-2 h-4 w-4 ${marathonLoading ? 'animate-spin' : ''}`} />
+                    Stop Marathon Sync
+                  </Button>
+                ) : (
+                  <>
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={handleQuickSync}
+                      disabled={marathonLoading || quickSyncLoading}
+                    >
+                      <RefreshCw className={`mr-2 h-4 w-4 ${quickSyncLoading ? 'animate-spin' : ''}`} />
+                      {quickSyncLoading ? `Quick Sync ${quickSyncProgress}%` : 'Quick Sync'}
+                    </Button>
+                    <Button
+                      variant="default"
+                      size="sm"
+                      onClick={startMarathonSync}
+                      disabled={marathonLoading || quickSyncLoading}
+                    >
+                      <Zap className="mr-2 h-4 w-4" />
+                      Marathon Sync
+                    </Button>
+                  </>
+                )}
                 <Link href="/analyzer">
                   <Button>
                     <Plus className="mr-2 h-4 w-4" />
@@ -333,8 +455,8 @@ export default function DashboardPage() {
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
-              {/* Contract Info Card */}
-              <Card className="lg:col-span-1">
+              {/* Contract Info Card - Full width when no sync active, 1/3 width when sync active */}
+              <Card className={(syncState.isActive || quickSyncLoading) ? "lg:col-span-1" : "lg:col-span-3"}>
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2">
                     <Globe className="h-5 w-5" />
@@ -345,48 +467,255 @@ export default function DashboardPage() {
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <div className="space-y-2 text-sm">
-                    <p><strong>Address:</strong> {defaultContract.contract.address.slice(0, 10)}...</p>
-                    <p><strong>Purpose:</strong> {defaultContract.contract.purpose.slice(0, 100)}...</p>
-                    <p><strong>Started:</strong> {formatDate(defaultContract.contract.startDate)}</p>
-                    <div className="flex items-center gap-2 mt-4">
-                      {defaultContract.indexingStatus.isIndexed ? (
-                        defaultContract.analysisError ? (
-                          <Badge variant="destructive">Analysis Failed</Badge>
-                        ) : (
-                          <Badge variant="default">Indexed</Badge>
-                        )
-                      ) : (
-                        <Badge variant="secondary">
-                          Indexing {defaultContract.indexingStatus.progress}%
-                        </Badge>
-                      )}
-                      {isRefreshing && (
-                        <Badge variant="outline" className="animate-pulse">
-                          Refreshing...
-                        </Badge>
-                      )}
+                  <div className={`space-y-2 text-sm ${(syncState.isActive || quickSyncLoading) ? '' : 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'}`}>
+                    {/* Basic contract info */}
+                    <div className="space-y-2">
+                      <p><strong>Address:</strong> {defaultContract.contract.address.slice(0, 10)}...</p>
+                      <p><strong>Purpose:</strong> {defaultContract.contract.purpose.slice(0, 100)}...</p>
+                      <p><strong>Started:</strong> {formatDate(defaultContract.contract.startDate)}</p>
                     </div>
                     
-                    {/* Refresh Progress Bar */}
-                    {isRefreshing && (
-                      <div className="mt-3">
-                        <div className="flex justify-between text-xs text-muted-foreground mb-1">
-                          <span>Syncing contract data</span>
-                          <span>{refreshProgress}%</span>
+                    {/* Status badges */}
+                    <div className="space-y-2">
+                      <div className="flex items-center gap-2 flex-wrap">
+                        {defaultContract.indexingStatus.isIndexed ? (
+                          defaultContract.analysisError ? (
+                            <Badge variant="destructive">Analysis Failed</Badge>
+                          ) : (
+                            <Badge variant="default">Indexed</Badge>
+                          )
+                        ) : (
+                          <Badge variant="secondary">
+                            Indexing {defaultContract.indexingStatus.progress}%
+                          </Badge>
+                        )}
+                        {syncState.isActive && (
+                          <Badge variant="outline" className="animate-pulse">
+                            Marathon Sync (Cycle {syncState.syncCycle})
+                          </Badge>
+                        )}
+                        {quickSyncLoading && (
+                          <Badge variant="outline" className="animate-pulse bg-blue-50 text-blue-700">
+                            Quick Sync ({quickSyncProgress}%)
+                          </Badge>
+                        )}
+                        {defaultContract.contract.continuousSync && !syncState.isActive && !quickSyncLoading && (
+                          <Badge variant="default" className="bg-green-500">
+                            Live Sync Active
+                          </Badge>
+                        )}
+                      </div>
+                    </div>
+                    
+                    {/* Marathon sync progress - only show when active */}
+                    {syncState.isActive && (
+                      <div className="space-y-2">
+                        <div className="flex justify-between items-center text-xs text-muted-foreground mb-1">
+                          <span>Marathon Sync (Cycle {syncState.syncCycle})</span>
+                          <div className="flex items-center gap-2">
+                            <span>{syncState.progress}%</span>
+                            {syncState.progress === 30 && (
+                              <Button
+                                variant="outline"
+                                size="sm"
+                                onClick={async () => {
+                                  try {
+                                    setError(null)
+                                    await refreshSyncState()
+                                    
+                                    // Also check backend status
+                                    const status = await api.onboarding.getStatus()
+                                    if (status.isIndexed && status.indexingProgress >= 100) {
+                                      console.log('🔄 Backend shows completion, refreshing page...')
+                                      setTimeout(() => {
+                                        window.location.reload()
+                                      }, 1000)
+                                    }
+                                  } catch (err: any) {
+                                    setError('Failed to refresh sync status')
+                                  }
+                                }}
+                                className="text-xs h-6 px-2"
+                              >
+                                Refresh
+                              </Button>
+                            )}
+                          </div>
                         </div>
-                        <Progress value={refreshProgress} className="h-2" />
+                        <Progress value={syncState.progress} className="h-2" />
+                        <div className="text-xs text-muted-foreground">
+                          {syncState.totalTransactions.toLocaleString()} transactions • {syncState.uniqueUsers.toLocaleString()} users
+                          {syncState.cycleStartTime && (
+                            <span> • Cycle started {new Date(syncState.cycleStartTime).toLocaleTimeString()}</span>
+                          )}
+                        </div>
+                        {syncState.error && (
+                          <div className="text-xs text-destructive">
+                            {syncState.error}
+                          </div>
+                        )}
+                      </div>
+                    )}
+                    
+                    {/* Quick sync progress - only show when active */}
+                    {quickSyncLoading && (
+                      <div className="space-y-2">
+                        <div className="flex justify-between items-center text-xs text-muted-foreground mb-1">
+                          <span>Quick Sync</span>
+                          <div className="flex items-center gap-2">
+                            <span>{quickSyncProgress}%</span>
+                            {quickSyncProgress === 30 && (
+                              <Button
+                                variant="outline"
+                                size="sm"
+                                onClick={async () => {
+                                  try {
+                                    setError(null)
+                                    const status = await api.onboarding.getStatus()
+                                    const contractData = await api.onboarding.getDefaultContract()
+                                    
+                                    // Update progress from backend
+                                    const actualProgress = status.indexingProgress || 0
+                                    setQuickSyncProgress(Math.max(30, actualProgress))
+                                    
+                                    // If backend shows completion, force completion
+                                    if (status.isIndexed && actualProgress >= 100) {
+                                      console.log('🔄 Backend shows completion, completing quick sync...')
+                                      setQuickSyncProgress(100)
+                                      setQuickSyncLoading(false)
+                                      
+                                      setTimeout(async () => {
+                                        await Promise.all([
+                                          loadDefaultContractData(),
+                                          loadUserMetrics()
+                                        ])
+                                        window.location.reload()
+                                      }, 1000)
+                                    }
+                                  } catch (err: any) {
+                                    setError('Failed to refresh quick sync status')
+                                  }
+                                }}
+                                className="text-xs h-6 px-2"
+                              >
+                                Refresh
+                              </Button>
+                            )}
+                          </div>
+                        </div>
+                        <Progress value={quickSyncProgress} className="h-2" />
+                        <div className="text-xs text-muted-foreground">
+                          Refreshing contract data...
+                        </div>
                       </div>
                     )}
                   </div>
                 </CardContent>
               </Card>
 
-              {/* Quick Metrics Summary */}
-              <div className="lg:col-span-2 grid grid-cols-2 gap-4">
+              {/* Marathon Sync Loader - Only show when marathon sync is active, takes 2/3 width */}
+              {syncState.isActive && (
+                <div className="lg:col-span-2">
+                  <MarathonSyncLoader
+                    progress={syncState.progress}
+                    cycle={syncState.syncCycle}
+                    transactions={syncState.totalTransactions}
+                    users={syncState.uniqueUsers}
+                    cycleStartTime={syncState.cycleStartTime}
+                    estimatedDuration={syncState.estimatedCycleDuration}
+                    cyclesCompleted={syncState.cyclesCompleted}
+                    onRefresh={async () => {
+                      try {
+                        setError(null)
+                        await refreshSyncState()
+                        
+                        // Also check backend status
+                        const status = await api.onboarding.getStatus()
+                        if (status.isIndexed && status.indexingProgress >= 100) {
+                          console.log('🔄 Backend shows completion, refreshing page...')
+                          setTimeout(() => {
+                            window.location.reload()
+                          }, 1000)
+                        }
+                      } catch (err: any) {
+                        setError('Failed to refresh marathon sync status')
+                      }
+                    }}
+                    className="p-6 border rounded-lg bg-gradient-to-br from-blue-50 to-purple-50 dark:from-blue-950/20 dark:to-purple-950/20 h-full"
+                  />
+                </div>
+              )}
+              
+              {/* Quick Sync Loader - Only show when quick sync is active, takes 2/3 width */}
+              {quickSyncLoading && !syncState.isActive && (
+                <div className="lg:col-span-2">
+                  <div className="p-6 border rounded-lg bg-gradient-to-br from-green-50 to-blue-50 dark:from-green-950/20 dark:to-blue-950/20 h-full">
+                    <LoadingWithLogo 
+                      message="Quick Sync in Progress" 
+                      size="lg"
+                      className="h-full"
+                    />
+                    <div className="mt-4 space-y-3">
+                      <div className="flex justify-between items-center text-sm">
+                        <span>Progress</span>
+                        <div className="flex items-center gap-2">
+                          <span>{quickSyncProgress}%</span>
+                          {quickSyncProgress === 30 && (
+                            <Button
+                              variant="outline"
+                              size="sm"
+                              onClick={async () => {
+                                try {
+                                  setError(null)
+                                  const status = await api.onboarding.getStatus()
+                                  const contractData = await api.onboarding.getDefaultContract()
+                                  
+                                  // Update progress from backend
+                                  const actualProgress = status.indexingProgress || 0
+                                  setQuickSyncProgress(Math.max(30, actualProgress))
+                                  
+                                  // If backend shows completion, force completion
+                                  if (status.isIndexed && actualProgress >= 100) {
+                                    console.log('🔄 Backend shows completion, completing quick sync...')
+                                    setQuickSyncProgress(100)
+                                    setQuickSyncLoading(false)
+                                    
+                                    setTimeout(async () => {
+                                      await Promise.all([
+                                        loadDefaultContractData(),
+                                        loadUserMetrics()
+                                      ])
+                                      window.location.reload()
+                                    }, 1000)
+                                  }
+                                } catch (err: any) {
+                                  setError('Failed to refresh quick sync status')
+                                }
+                              }}
+                              className="text-xs h-6 px-2"
+                            >
+                              Refresh
+                            </Button>
+                          )}
+                        </div>
+                      </div>
+                      <Progress value={quickSyncProgress} className="h-2" />
+                      <div className="text-center text-sm text-muted-foreground">
+                        <p>Analyzing recent contract interactions...</p>
+                        <p className="text-xs mt-1">This usually takes 30-60 seconds</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {/* Quick Metrics Summary - Only show when no sync is active */}
+            {!syncState.isActive && !quickSyncLoading && (
+              <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
                 {/* Show error message if analysis failed */}
                 {defaultContract.analysisError && (
-                  <div className="col-span-2 mb-4">
+                  <div className="col-span-2 lg:col-span-4 mb-4">
                     <Card className="border-destructive/50 bg-destructive/5">
                       <CardHeader className="pb-2">
                         <CardTitle className="text-sm font-medium text-destructive flex items-center gap-2">
@@ -398,99 +727,44 @@ export default function DashboardPage() {
                         <p className="text-sm text-muted-foreground mb-3">
                           {defaultContract.analysisError}
                         </p>
-                        <Button
-                          variant="outline"
-                          size="sm"
-                          onClick={handleRefreshDefaultContract}
-                          disabled={isRefreshing}
-                        >
-                          <RefreshCw className={`mr-2 h-4 w-4 ${isRefreshing ? 'animate-spin' : ''}`} />
-                          Retry Analysis
-                        </Button>
+                        <div className="flex gap-2">
+                          <Button
+                            variant="outline"
+                            size="sm"
+                            onClick={handleQuickSync}
+                            disabled={marathonLoading || quickSyncLoading}
+                          >
+                            <RefreshCw className={`mr-2 h-4 w-4 ${quickSyncLoading ? 'animate-spin' : ''}`} />
+                            {quickSyncLoading ? `Retrying ${quickSyncProgress}%` : 'Retry Analysis'}
+                          </Button>
+                          <Button
+                            variant="default"
+                            size="sm"
+                            onClick={startMarathonSync}
+                            disabled={marathonLoading || quickSyncLoading}
+                          >
+                            <Zap className="mr-2 h-4 w-4" />
+                            Marathon Retry
+                          </Button>
+                        </div>
                       </CardContent>
                     </Card>
                   </div>
                 )}
-
-                <Card>
-                  <CardHeader className="pb-2">
-                    <CardTitle className="text-sm font-medium flex items-center gap-2">
-                      <DollarSign className="h-4 w-4" />
-                      TVL
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="text-2xl font-bold">
-                      {defaultContract.fullResults?.fullReport?.defiMetrics?.tvl ? 
-                        formatCurrency(defaultContract.fullResults.fullReport.defiMetrics.tvl) : 
-                        defaultContract.fullResults?.fullReport?.summary?.totalValue ?
-                        formatCurrency(defaultContract.fullResults.fullReport.summary.totalValue) :
-                        defaultContract.analysisError ? 'Error' : 'N/A'}
-                    </div>
-                  </CardContent>
-                </Card>
-
-                <Card>
-                  <CardHeader className="pb-2">
-                    <CardTitle className="text-sm font-medium flex items-center gap-2">
-                      <TrendingUp className="h-4 w-4" />
-                      Volume
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="text-2xl font-bold">
-                      {defaultContract.fullResults?.fullReport?.defiMetrics?.transactionVolume24h ? 
-                        formatCurrency(defaultContract.fullResults.fullReport.defiMetrics.transactionVolume24h) : 
-                        defaultContract.fullResults?.fullReport?.summary?.totalValue ?
-                        formatCurrency(defaultContract.fullResults.fullReport.summary.totalValue) :
-                        defaultContract.analysisError ? 'Error' : 'N/A'}
-                    </div>
-                  </CardContent>
-                </Card>
-
-                <Card>
-                  <CardHeader className="pb-2">
-                    <CardTitle className="text-sm font-medium flex items-center gap-2">
-                      <Users className="h-4 w-4" />
-                      Users
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="text-2xl font-bold">
-                      {defaultContract.fullResults?.fullReport?.summary?.uniqueUsers ? 
-                        formatNumber(defaultContract.fullResults.fullReport.summary.uniqueUsers) : 
-                        defaultContract.analysisError ? 'Error' : 'N/A'}
-                    </div>
-                  </CardContent>
-                </Card>
-
-                <Card>
-                  <CardHeader className="pb-2">
-                    <CardTitle className="text-sm font-medium flex items-center gap-2">
-                      <Activity className="h-4 w-4" />
-                      Transactions
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="text-2xl font-bold">
-                      {defaultContract.fullResults?.fullReport?.summary?.totalTransactions ? 
-                        formatNumber(defaultContract.fullResults.fullReport.summary.totalTransactions) : 
-                        defaultContract.analysisError ? 'Error' : 'N/A'}
-                    </div>
-                  </CardContent>
-                </Card>
+ 
               </div>
-            </div>
+            )}
 
             {/* Detailed Metrics Tabs */}
             {defaultContract.indexingStatus.isIndexed && defaultContract.fullResults?.fullReport && (
               <div className="mb-6">
                 <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-                  <TabsList className="grid w-full grid-cols-4">
+                  <TabsList className="grid w-full grid-cols-5">
                     <TabsTrigger value="overview">Overview</TabsTrigger>
                     <TabsTrigger value="metrics">Metrics</TabsTrigger>
                     <TabsTrigger value="users">Users</TabsTrigger>
                     <TabsTrigger value="transactions">Transactions</TabsTrigger>
+                    <TabsTrigger value="ux">UX Analysis</TabsTrigger>
                   </TabsList>
 
                   <TabsContent value="overview">
@@ -526,6 +800,16 @@ export default function DashboardPage() {
 
                   <TabsContent value="transactions">
                     <TransactionsTab 
+                      analysisResults={{
+                        results: {
+                          target: defaultContract.fullResults
+                        }
+                      }}
+                    />
+                  </TabsContent>
+
+                  <TabsContent value="ux">
+                    <UxTab 
                       analysisResults={{
                         results: {
                           target: defaultContract.fullResults

@@ -47,8 +47,8 @@ function LoginForm() {
         return
       }
 
-      // Default redirect to analyzer for now
-      router.push("/analyzer")
+      // Default redirect to dashboard for now
+      router.push("/dashboard")
       
     } catch (error: any) {
       console.error('Login error:', error)

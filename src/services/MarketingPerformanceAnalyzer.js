@@ -68,14 +68,23 @@ export class MarketingPerformanceAnalyzer {
     const walletFirstSeen = new Map();
     
     for (const tx of transactions) {
-      const wallet = tx.wallet.toLowerCase();
+      // Skip transactions without wallet address
+      // Use from_address as the wallet identifier for normalized transactions
+      const wallet = tx.from_address || tx.wallet;
       
-      if (!walletFirstSeen.has(wallet)) {
-        walletFirstSeen.set(wallet, tx.timestamp);
+      if (!wallet) {
+        console.warn('Transaction missing wallet/from_address in marketing analysis:', tx);
+        continue;
+      }
+      
+      const walletLower = wallet.toLowerCase();
+      
+      if (!walletFirstSeen.has(walletLower)) {
+        walletFirstSeen.set(walletLower, tx.timestamp);
       } else {
-        const currentFirst = walletFirstSeen.get(wallet);
+        const currentFirst = walletFirstSeen.get(walletLower);
         if (tx.timestamp < currentFirst) {
-          walletFirstSeen.set(wallet, tx.timestamp);
+          walletFirstSeen.set(walletLower, tx.timestamp);
         }
       }
     }
@@ -145,19 +154,28 @@ export class MarketingPerformanceAnalyzer {
     const walletTransactions = new Map();
     
     for (const tx of transactions) {
-      const wallet = tx.wallet.toLowerCase();
+      // Skip transactions without wallet address
+      // Use from_address as the wallet identifier for normalized transactions
+      const wallet = tx.from_address || tx.wallet;
       
-      if (!walletFirstSeen.has(wallet)) {
-        walletFirstSeen.set(wallet, tx.timestamp);
-        walletTransactions.set(wallet, []);
+      if (!wallet) {
+        console.warn('Transaction missing wallet/from_address in acquisition quality analysis:', tx);
+        continue;
+      }
+      
+      const walletLower = wallet.toLowerCase();
+      
+      if (!walletFirstSeen.has(walletLower)) {
+        walletFirstSeen.set(walletLower, tx.timestamp);
+        walletTransactions.set(walletLower, []);
       } else {
-        const currentFirst = walletFirstSeen.get(wallet);
+        const currentFirst = walletFirstSeen.get(walletLower);
         if (tx.timestamp < currentFirst) {
-          walletFirstSeen.set(wallet, tx.timestamp);
+          walletFirstSeen.set(walletLower, tx.timestamp);
         }
       }
       
-      walletTransactions.get(wallet).push(tx);
+      walletTransactions.get(walletLower).push(tx);
     }
 
     // Calculate quality for each user
@@ -263,21 +281,30 @@ export class MarketingPerformanceAnalyzer {
     const walletValue = new Map();
     
     for (const tx of transactions) {
-      const wallet = tx.wallet.toLowerCase();
+      // Skip transactions without wallet address
+      // Use from_address as the wallet identifier for normalized transactions
+      const wallet = tx.from_address || tx.wallet;
       
-      if (!walletFirstSeen.has(wallet)) {
-        walletFirstSeen.set(wallet, tx.timestamp);
-        walletValue.set(wallet, 0);
+      if (!wallet) {
+        console.warn('Transaction missing wallet/from_address in lifetime value analysis:', tx);
+        continue;
+      }
+      
+      const walletLower = wallet.toLowerCase();
+      
+      if (!walletFirstSeen.has(walletLower)) {
+        walletFirstSeen.set(walletLower, tx.timestamp);
+        walletValue.set(walletLower, 0);
       } else {
-        const currentFirst = walletFirstSeen.get(wallet);
+        const currentFirst = walletFirstSeen.get(walletLower);
         if (tx.timestamp < currentFirst) {
-          walletFirstSeen.set(wallet, tx.timestamp);
+          walletFirstSeen.set(walletLower, tx.timestamp);
         }
       }
       
       // Accumulate value (ETH + gas)
-      const value = tx.valueEth + tx.gasCostEth;
-      walletValue.set(wallet, walletValue.get(wallet) + value);
+      const value = (tx.value_eth || 0) + (tx.gas_cost_eth || 0);
+      walletValue.set(walletLower, (walletValue.get(walletLower) || 0) + value);
     }
 
     // Group by acquisition month
@@ -383,8 +410,15 @@ export class MarketingPerformanceAnalyzer {
     let totalValue = 0;
 
     for (const tx of transactions) {
-      uniqueWallets.add(tx.wallet.toLowerCase());
-      totalValue += tx.valueEth + tx.gasCostEth;
+      // Skip transactions without wallet address
+      // Use from_address as the wallet identifier for normalized transactions
+      const wallet = tx.from_address || tx.wallet;
+      
+      if (wallet) {
+        uniqueWallets.add(wallet.toLowerCase());
+      }
+      
+      totalValue += (tx.value_eth || 0) + (tx.gas_cost_eth || 0);
     }
 
     return {

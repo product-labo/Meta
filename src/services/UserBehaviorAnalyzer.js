@@ -193,7 +193,28 @@ export class UserBehaviorAnalyzer {
 
     // 3. Whale Behavior Score
     const whaleUsers = users.filter(user => 
-      user.transactions.some(tx => ethers.parseEther(tx.valueEth.toString()) >= this.config.whaleThreshold)
+      user.transactions.some(tx => {
+        try {
+          const valueStr = tx.valueEth.toString();
+          const valueInEth = parseFloat(valueStr);
+          
+          // Skip extremely small values that would cause parseEther to fail
+          if (valueInEth < 1e-15) {
+            return false;
+          }
+          
+          // Skip extremely large values that would overflow
+          if (valueInEth > 1e18) {
+            return true; // Assume it's a whale transaction
+          }
+          
+          const decimalStr = valueInEth.toFixed(18);
+          return ethers.parseEther(decimalStr) >= this.config.whaleThreshold;
+        } catch (error) {
+          console.warn(`Failed to parse value for whale detection: ${tx.valueEth}`, error);
+          return false;
+        }
+      })
     );
     const whaleBehaviorScore = (whaleUsers.length / users.length) * 100;
 
@@ -580,7 +601,28 @@ export class UserBehaviorAnalyzer {
 
   _classifyUser(user) {
     // Whale classification
-    if (user.transactions.some(tx => ethers.parseEther(tx.valueEth.toString()) >= this.config.whaleThreshold)) {
+    if (user.transactions.some(tx => {
+      try {
+        const valueStr = tx.valueEth.toString();
+        const valueInEth = parseFloat(valueStr);
+        
+        // Skip extremely small values that would cause parseEther to fail
+        if (valueInEth < 1e-15) {
+          return false;
+        }
+        
+        // Skip extremely large values that would overflow
+        if (valueInEth > 1e18) {
+          return true; // Assume it's a whale transaction
+        }
+        
+        const decimalStr = valueInEth.toFixed(18);
+        return ethers.parseEther(decimalStr) >= this.config.whaleThreshold;
+      } catch (error) {
+        console.warn(`Failed to parse value for whale classification: ${tx.valueEth}`, error);
+        return false;
+      }
+    })) {
       return 'whale';
     }
     

@@ -265,10 +265,21 @@ export const api = {
       return apiRequest('/api/onboarding/user-metrics');
     },
 
-    refreshDefaultContract: async () => {
+    refreshDefaultContract: async (continuous: boolean = false) => {
       return apiRequest('/api/onboarding/refresh-default-contract', {
         method: 'POST',
+        body: JSON.stringify({ continuous }),
       });
+    },
+
+    stopContinuousSync: async () => {
+      return apiRequest('/api/onboarding/stop-continuous-sync', {
+        method: 'POST',
+      });
+    },
+
+    debugAnalysis: async () => {
+      return apiRequest('/api/onboarding/debug-analysis');
     }
   },
 
@@ -318,16 +329,9 @@ export const api = {
     },
 
     getSuggestedQuestions: async (contractAddress: string, contractChain: string) => {
-      // This would be a separate endpoint, but for now we'll generate them client-side
-      return {
-        questions: [
-          "What's the overall performance of this contract?",
-          "Show me the transaction volume trends",
-          "Who are the top users of this contract?",
-          "Are there any security concerns I should know about?",
-          "How does this contract compare to competitors?"
-        ]
-      };
+      return apiRequest(`/api/chat/suggested-questions?contractAddress=${encodeURIComponent(contractAddress)}&contractChain=${encodeURIComponent(contractChain)}`, {
+        method: 'GET',
+      });
     }
   }
 };

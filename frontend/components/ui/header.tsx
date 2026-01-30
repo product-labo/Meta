@@ -2,6 +2,7 @@ import Link from "next/link"
 import { MetaGaugeLogo } from "@/components/icons/metagauge-logo"
 import { Button } from "@/components/ui/button"
 import { useAuth } from "@/components/auth/auth-provider"
+import { ThemeToggle } from "@/components/theme/theme-toggle"
 import { User, LogOut, BarChart3, History, MessageCircle } from "lucide-react"
 import {
   DropdownMenu,
@@ -15,9 +16,9 @@ export function Header() {
   const { user, isAuthenticated, logout } = useAuth()
 
   return (
-    <header className="flex items-center justify-between px-6 py-4 max-w-7xl mx-auto w-full">
+    <header className="flex items-center justify-between px-6 py-4 max-w-7xl mx-auto w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <Link href="/" className="flex items-center gap-2">
-        <MetaGaugeLogo className="h-6 w-8" />
+        <MetaGaugeLogo className="h-8 w-8" />
         <span className="font-semibold text-lg">MetaGauge</span>
       </Link>
 
@@ -39,6 +40,7 @@ export function Header() {
       )}
 
       <div className="flex items-center gap-3">
+        <ThemeToggle />
         {isAuthenticated ? (
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
