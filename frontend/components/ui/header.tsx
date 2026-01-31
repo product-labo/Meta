@@ -3,6 +3,7 @@ import { MetaGaugeLogo } from "@/components/icons/metagauge-logo"
 import { Button } from "@/components/ui/button"
 import { useAuth } from "@/components/auth/auth-provider"
 import { ThemeToggle } from "@/components/theme/theme-toggle"
+import { WalletConnect } from "@/components/web3/wallet-connect"
 import { User, LogOut, BarChart3, History, MessageCircle } from "lucide-react"
 import {
   DropdownMenu,
@@ -40,7 +41,16 @@ export function Header() {
       )}
 
       <div className="flex items-center gap-3">
-        <ThemeToggle />
+        
+        
+        {/* Wallet Connection - Show for authenticated users */}
+        {isAuthenticated && (
+          <WalletConnect 
+            enforceNetwork={false}
+            className="hidden sm:block"
+          />
+        )}
+        
         {isAuthenticated ? (
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
@@ -85,6 +95,8 @@ export function Header() {
             </Button>
           </>
         )}
+
+        <ThemeToggle />
       </div>
     </header>
   )

@@ -8,6 +8,7 @@ const _inter = Inter({ subsets: ["latin"] })
 
 import { AuthProvider } from "@/components/auth/auth-provider"
 import { ThemeProvider } from "@/components/theme/theme-provider"
+import { Web3Provider } from "@/components/web3/web3-provider"
 
 export const metadata: Metadata = {
   title: "MetaGauge - Measure, Optimize, and Scale Your Web3 Project",
@@ -49,9 +50,11 @@ export default function RootLayout({
           defaultTheme="system"
           storageKey="metagauge-ui-theme"
         >
-          <AuthProvider>
-            {children}
-          </AuthProvider>
+          <Web3Provider>
+            <AuthProvider>
+              {children}
+            </AuthProvider>
+          </Web3Provider>
         </ThemeProvider>
         <Analytics />
       </body>

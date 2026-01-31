@@ -268,6 +268,7 @@ export class UserJourneyAnalyzer {
   _identifyCommonPaths(walletJourneys) {
     const pathCounts = new Map();
     const pathTimings = new Map();
+    const pathWallets = new Map(); // Track which wallets used each path
 
     for (const [wallet, journey] of walletJourneys) {
       if (journey.length < 2) continue;
@@ -280,6 +281,12 @@ export class UserJourneyAnalyzer {
           
           // Count path occurrences
           pathCounts.set(pathKey, (pathCounts.get(pathKey) || 0) + 1);
+          
+          // Track wallets that used this path
+          if (!pathWallets.has(pathKey)) {
+            pathWallets.set(pathKey, new Set());
+          }
+          pathWallets.get(pathKey).add(wallet);
           
           // Track timing
           const duration = pathSlice[pathSlice.length - 1].timestamp.getTime() - 
@@ -297,19 +304,21 @@ export class UserJourneyAnalyzer {
     const paths = Array.from(pathCounts.entries())
       .map(([path, count]) => {
         const timings = pathTimings.get(path) || [];
+        const uniqueWallets = pathWallets.get(path) || new Set();
         const avgTime = timings.length > 0 
           ? timings.reduce((sum, t) => sum + t, 0) / timings.length 
           : 0;
 
         return {
           sequence: path.split(' → '),
-          userCount: count,
+          userCount: uniqueWallets.size, // Use unique wallet count instead of occurrence count
+          totalOccurrences: count, // Keep track of total occurrences
           averageCompletionTime: avgTime,
-          conversionRate: count / walletJourneys.size
+          conversionRate: uniqueWallets.size / walletJourneys.size
         };
       })
-      .filter(p => p.userCount >= 2) // Only include paths used by 2+ users
-      .sort((a, b) => b.userCount - a.userCount)
+      .filter(p => p.userCount >= 2) // Only include paths used by 2+ unique users
+      .sort((a, b) => b.userCount - a.userCount) // Sort by unique user count
       .slice(0, 20); // Top 20 paths
 
     return paths;

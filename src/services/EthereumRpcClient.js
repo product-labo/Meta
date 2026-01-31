@@ -1,8 +1,10 @@
 /**
  * Ethereum RPC Client
- * Optimized client for Ethereum's JSON-RPC API
+ * Optimized client for Ethereum's JSON-RPC API with robust filter handling
  * Multi-Chain RPC Integration - Compatible with MultiChainContractIndexer
  */
+
+import { createRobustProvider } from './RobustProvider.js';
 
 export class EthereumRpcClient {
   constructor(rpcUrl, options = {}) {
@@ -10,9 +12,26 @@ export class EthereumRpcClient {
     this.timeout = options.timeout || 30000;
     this.retries = options.retries || 2;
     this.requestId = 1;
+    
+    // Create robust provider to handle filter errors
+    this.robustProvider = createRobustProvider(rpcUrl, {
+      maxBlockRange: options.maxBlockRange || 2000,
+      pollingInterval: options.pollingInterval || 4000,
+      usePolling: true
+    });
   }
 
   async _makeRpcCall(method, params = [], timeout = this.timeout) {
+    // Use robust provider for filter-related calls
+    if (method === 'eth_getLogs') {
+      try {
+        return await this.robustProvider.getLogs(params[0]);
+      } catch (error) {
+        console.warn(`Robust provider failed, falling back to direct RPC: ${error.message}`);
+        // Fall through to direct RPC call
+      }
+    }
+    
     const payload = {
       jsonrpc: '2.0',
       method,
@@ -42,6 +61,16 @@ export class EthereumRpcClient {
       const data = await response.json();
       
       if (data.error) {
+        // Handle specific filter errors
+        if (data.error.code === -32602 && data.error.message.includes('filter not found')) {
+          console.warn(`Filter not found error detected, method: ${method}`);
+          
+          // For filter changes, return empty array instead of throwing
+          if (method === 'eth_getFilterChanges') {
+            return [];
+          }
+        }
+        
         throw new Error(`RPC Error: ${data.error.message || data.error}`);
       }
 
@@ -305,6 +334,33 @@ export class EthereumRpcClient {
    */
   async getNetworkVersion() {
     return await this._makeRpcCall('net_version', [], 5000);
+  }
+
+  /**
+   * Create an event listener that handles filter errors gracefully
+   * @param {Object} filter - Event filter
+   * @param {Function} callback - Event callback
+   * @returns {Function} Cleanup function
+   */
+  createEventListener(filter, callback) {
+    return this.robustProvider.createRobustEventListener(filter, callback);
+  }
+
+  /**
+   * Get provider statistics
+   * @returns {Object} Statistics
+   */
+  getStats() {
+    return this.robustProvider.getStats();
+  }
+
+  /**
+   * Cleanup resources
+   */
+  async destroy() {
+    if (this.robustProvider) {
+      await this.robustProvider.destroy();
+    }
   }
 }
 

@@ -1,0 +1,188 @@
+{
+  "metadata": {
+    "contractAddress": "0xdef1c0ded9bec7f1a1670819833240f027b25eff",
+    "contractName": "0xdef1c0...5eff",
+    "contractChain": "ethereum",
+    "generatedAt": "2026-01-30T11:55:56.748Z",
+    "blockRange": {
+      "from": 24337521,
+      "to": 24347521
+    },
+    "analysisType": "full_comparative"
+  },
+  "summary": {
+    "totalTransactions": 2,
+    "uniqueUsers": 1,
+    "totalValue": 19.990000000000002,
+    "avgGasUsed": 365247.5,
+    "successRate": 100,
+    "timeRange": "24h"
+  },
+  "defiMetrics": {
+    "tvl": 0,
+    "dau": 38,
+    "mau": 38,
+    "transactionVolume24h": 19.990000000000002,
+    "gasEfficiency": "High",
+    "revenuePerUser": 0.000005,
+    "liquidityUtilization": 75.2,
+    "yieldGenerated": 0,
+    "protocolFees": 0,
+    "stakingRewards": 0,
+    "borrowingRate": 5.2,
+    "lendingRate": 3.8,
+    "impermanentLoss": 0.15,
+    "slippageTolerance": 0.5,
+    "volumeToTvlRatio": 0.05,
+    "feeToVolumeRatio": 0.001,
+    "activePoolsCount": 12,
+    "crossChainVolume": 3.9980000000000007,
+    "bridgeUtilization": 15.5,
+    "governanceParticipation": 25.8
+  },
+  "userBehavior": {
+    "whaleRatio": 2.63,
+    "botActivity": 7.37,
+    "loyaltyScore": 54.74,
+    "earlyAdopterPotential": "Medium",
+    "retentionRate7d": 65.4,
+    "retentionRate30d": 42.1,
+    "averageSessionDuration": 1800,
+    "transactionsPerUser": 2,
+    "userGrowthRate": 12.5,
+    "churRate": 8.2,
+    "powerUserRatio": 22.1,
+    "newUserRatio": 18.7,
+    "crossChainUsers": 0,
+    "multiProtocolUsers": 0,
+    "gasOptimizationScore": 91.42,
+    "frontRunningDetection": 2.1,
+    "mevExposure": 5.8,
+    "sandwichAttacks": 0,
+    "arbitrageOpportunities": 15,
+    "liquidationEvents": 3
+  },
+  "transactions": [
+    {
+      "hash": "0x3eede113e8de5d3fa1560618ba2817f27b8fdb8997f2f88187183b433ee396e7",
+      "from": "0xf2fc8c3791a5826ff9696c8941fcf967ab2832a9",
+      "to": "0xdef1c0ded9bec7f1a1670819833240f027b25eff",
+      "value": "15000000000000000000",
+      "valueEth": 15,
+      "gasPrice": "147078627",
+      "gasUsed": "396578",
+      "gasCostEth": 0.000058328147738406,
+      "blockNumber": 24347037,
+      "blockTimestamp": 1769768327,
+      "status": true,
+      "type": "transfer",
+      "methodId": "0xa9059cbb"
+    },
+    {
+      "hash": "0x3c7a6e3843633404770fd73538e147556e06ad189de8d7bbe2cd08aecf586773",
+      "from": "0xf2fc8c3791a5826ff9696c8941fcf967ab2832a9",
+      "to": "0xdef1c0ded9bec7f1a1670819833240f027b25eff",
+      "value": "4990000000000000000",
+      "valueEth": 4.99,
+      "gasPrice": "141037249",
+      "gasUsed": "333917",
+      "gasCostEth": 0.000047094735074333,
+      "blockNumber": 24347058,
+      "blockTimestamp": 1769768579,
+      "status": true,
+      "type": "transfer",
+      "methodId": "0xa9059cbb"
+    }
+  ],
+  "users": [
+    {
+      "address": "0xf2fc8c3791a5826ff9696c8941fcf967ab2832a9",
+      "transactionCount": 2,
+      "totalValue": 19.990000000000002,
+      "totalGasSpent": 0.000105422882812739,
+      "firstSeen": "2026-01-30T10:18:47.000Z",
+      "lastSeen": "2026-01-30T10:22:59.000Z",
+      "userType": "casual",
+      "loyaltyScore": 40,
+      "riskScore": 15.01
+    }
+  ],
+  "events": [
+    {
+      "eventName": "Transfer",
+      "signature": "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
+      "from": "0xf2fc8c3791a5826ff9696c8941fcf967ab2832a9",
+      "to": "0xdef1c0ded9bec7f1a1670819833240f027b25eff",
+      "value": "15000000000000000000",
+      "blockNumber": 24347037,
+      "transactionHash": "0x3eede113e8de5d3fa1560618ba2817f27b8fdb8997f2f88187183b433ee396e7"
+    },
+    {
+      "eventName": "Transfer",
+      "signature": "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
+      "from": "0xf2fc8c3791a5826ff9696c8941fcf967ab2832a9",
+      "to": "0xdef1c0ded9bec7f1a1670819833240f027b25eff",
+      "value": "4990000000000000000",
+      "blockNumber": 24347058,
+      "transactionHash": "0x3c7a6e3843633404770fd73538e147556e06ad189de8d7bbe2cd08aecf586773"
+    }
+  ],
+  "locks": [
+    {
+      "lockContract": "0xdef1c0ded9bec7f1a1670819833240f027b25eff",
+      "lockedAmount": "15000000000000000000",
+      "lockDuration": 2592000,
+      "unlockTimestamp": 1772366155,
+      "lockType": "transfer",
+      "beneficiary": "0xf2fc8c3791a5826ff9696c8941fcf967ab2832a9"
+    }
+  ],
+  "gasAnalysis": {
+    "averageGasPrice": "144057938",
+    "averageGasUsed": 365248,
+    "totalGasCost": 0.000105,
+    "totalGasCostUSD": 0.29,
+    "averageGasCostUSD": 0.15,
+    "gasEfficiencyScore": 91.42,
+    "failedTransactions": 0,
+    "failureRate": 0,
+    "gasOptimizationOpportunities": [
+      "Optimize contract calls",
+      "Batch similar transactions"
+    ]
+  },
+  "competitive": {
+    "marketPosition": 3,
+    "marketShare": 0,
+    "advantages": [
+      "Low transaction fees",
+      "Fast confirmation times",
+      "Active development team"
+    ],
+    "challenges": [
+      "Limited ecosystem",
+      "User acquisition needed",
+      "Liquidity depth improvement"
+    ],
+    "benchmarks": {
+      "vsEthereum": {
+        "gasCostReduction": 85.5,
+        "transactionSpeed": 12.5,
+        "userGrowth": -5.2
+      },
+      "vsCompetitors": [
+        {
+          "name": "Similar Protocol",
+          "chain": "ethereum",
+          "marketShare": 6.57,
+          "userOverlap": 32.27
+        }
+      ]
+    }
+  },
+  "recommendations": [
+    "Monitor competitive landscape regularly",
+    "Implement user feedback collection system"
+  ],
+  "alerts": []
+}

@@ -2781,5 +2781,57 @@
     "analysisCount": 0,
     "createdAt": "2026-01-29T17:39:49.544Z",
     "updatedAt": "2026-01-29T17:39:49.545Z"
+  },
+  {
+    "id": "1c225005-379b-432c-9ab2-c23b175498fe",
+    "userId": "5a88940c-d4e6-4ef5-a03e-214485b23317",
+    "name": "BlouctStock",
+    "description": "Default contract for BlouctStock - The lisk multichain infra for everyday use",
+    "targetContract": {
+      "address": "0x4200000000000000000000000000000000000015",
+      "chain": "lisk",
+      "name": "BlouctStock",
+      "abi": "[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_admin\",\"type\":\"address\"}],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"previousAdmin\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"newAdmin\",\"type\":\"address\"}],\"name\":\"AdminChanged\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"implementation\",\"type\":\"address\"}],\"name\":\"Upgraded\",\"type\":\"event\"},{\"stateMutability\":\"payable\",\"type\":\"fallback\"},{\"inputs\":[],\"name\":\"admin\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_admin\",\"type\":\"address\"}],\"name\":\"changeAdmin\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"implementation\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_implementation\",\"type\":\"address\"}],\"name\":\"upgradeTo\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_implementation\",\"type\":\"address\"},{\"internalType\":\"bytes\",\"name\":\"_data\",\"type\":\"bytes\"}],\"name\":\"upgradeToAndCall\",\"outputs\":[{\"internalType\":\"bytes\",\"name\":\"\",\"type\":\"bytes\"}],\"stateMutability\":\"payable\",\"type\":\"function\"},{\"stateMutability\":\"payable\",\"type\":\"receive\"}]"
+    },
+    "competitors": [],
+    "rpcConfig": {
+      "ethereum": [
+        "https://ethereum-rpc.publicnode.com",
+        "https://rpc.ankr.com/eth"
+      ],
+      "lisk": [
+        "https://rpc.api.lisk.com",
+        "https://lisk.drpc.org",
+        "https://lisk.gateway.tenderly.co/2o3VKjmisQNOJIPlLrt6Ye",
+        "https://site1.moralis-nodes.com/lisk/7f6b7ac6edf2456fa240535cc2d8fc6e"
+      ],
+      "starknet": [
+        "https://rpc.starknet.lava.build",
+        "https://starknet-rpc.publicnode.com",
+        "https://starknet-mainnet.infura.io/v3/52be4d01250949baa85cad00e7b955ab"
+      ]
+    },
+    "analysisParams": {
+      "blockRange": 10000,
+      "whaleThreshold": 10,
+      "maxConcurrentRequests": 5,
+      "failoverTimeout": 60000,
+      "maxRetries": 2,
+      "outputFormats": [
+        "json",
+        "csv",
+        "markdown"
+      ]
+    },
+    "tags": [
+      "default",
+      "dao"
+    ],
+    "isActive": true,
+    "isDefault": true,
+    "lastAnalyzed": null,
+    "analysisCount": 0,
+    "createdAt": "2026-01-30T13:47:09.594Z",
+    "updatedAt": "2026-01-30T13:47:09.594Z"
   }
 ]

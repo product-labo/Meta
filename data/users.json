@@ -516,11 +516,11 @@
       "defaultChain": "ethereum"
     },
     "createdAt": "2026-01-28T15:09:53.733Z",
-    "updatedAt": "2026-01-30T10:05:44.427Z",
+    "updatedAt": "2026-01-30T11:03:46.264Z",
     "usage.analysisCount": 1,
     "usage.monthlyAnalysisCount": 1,
     "usage.lastAnalysis": "2026-01-29T16:12:55.043Z",
-    "lastLogin": "2026-01-29T17:43:03.742Z"
+    "lastLogin": "2026-01-30T11:03:46.263Z"
   },
   {
     "id": "test-user-sync-123",
@@ -546,5 +546,59 @@
     },
     "createdAt": "2026-01-29T14:21:01.595Z",
     "updatedAt": "2026-01-29T18:05:24.351Z"
+  },
+  {
+    "id": "5a88940c-d4e6-4ef5-a03e-214485b23317",
+    "email": "emixxshow17@gmail.com",
+    "password": "$2a$12$CGL6kqhStyItI/sdjKjU7ubTM/XBctyuyz7moHHoFWkHmA3kk7Qri",
+    "name": "Ojo Emmanuel",
+    "tier": "free",
+    "apiKey": "f5f7a4d4da4c48fe31bcb925cf5a3c2c4219664fb7c50678eebe905e466115db",
+    "isActive": true,
+    "emailVerified": false,
+    "usage": {
+      "analysisCount": 0,
+      "monthlyAnalysisCount": 0,
+      "lastAnalysis": null,
+      "monthlyResetDate": "2026-01-30T13:36:41.131Z"
+    },
+    "onboarding": {
+      "completed": true,
+      "socialLinks": {
+        "website": "https://sepolia-blockscout.lisk.com/address/0x4200000000000000000000000000000000000015",
+        "twitter": "@blockcout",
+        "discord": null,
+        "telegram": null
+      },
+      "logo": null,
+      "defaultContract": {
+        "address": "0x4200000000000000000000000000000000000015",
+        "chain": "lisk",
+        "abi": "[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_admin\",\"type\":\"address\"}],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"previousAdmin\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"newAdmin\",\"type\":\"address\"}],\"name\":\"AdminChanged\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"implementation\",\"type\":\"address\"}],\"name\":\"Upgraded\",\"type\":\"event\"},{\"stateMutability\":\"payable\",\"type\":\"fallback\"},{\"inputs\":[],\"name\":\"admin\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_admin\",\"type\":\"address\"}],\"name\":\"changeAdmin\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"implementation\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_implementation\",\"type\":\"address\"}],\"name\":\"upgradeTo\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_implementation\",\"type\":\"address\"},{\"internalType\":\"bytes\",\"name\":\"_data\",\"type\":\"bytes\"}],\"name\":\"upgradeToAndCall\",\"outputs\":[{\"internalType\":\"bytes\",\"name\":\"\",\"type\":\"bytes\"}],\"stateMutability\":\"payable\",\"type\":\"function\"},{\"stateMutability\":\"payable\",\"type\":\"receive\"}]",
+        "name": "BlouctStock",
+        "purpose": "The lisk multichain infra for everyday use",
+        "category": "dao",
+        "startDate": "2005-02-23T00:00:00.000Z",
+        "isIndexed": true,
+        "indexingProgress": 100,
+        "lastAnalysisId": "ddd3f613-c008-419a-b2de-a0ee122e6b67",
+        "lastUpdate": "2026-01-30T16:40:03.383Z",
+        "currentStep": "Finalizing results",
+        "continuousSync": false,
+        "hasErrors": false,
+        "continuousSyncStopped": "2026-01-30T16:39:22.704Z",
+        "completionReason": "normal-completion",
+        "continuousSyncStarted": "2026-01-30T16:38:05.491Z"
+      }
+    },
+    "preferences": {
+      "notifications": {
+        "email": true,
+        "analysis": true
+      },
+      "defaultChain": "ethereum"
+    },
+    "createdAt": "2026-01-30T13:36:41.132Z",
+    "updatedAt": "2026-01-30T16:40:03.383Z"
   }
 ]

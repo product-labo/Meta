@@ -21,7 +21,10 @@
     "test:multi-chain-indexing": "node test-multi-chain-indexing-scenarios.js",
     "test:complete-indexing": "node test-complete-multi-chain-indexing.js",
     "test:indexing-scenarios": "node test-multi-chain-indexing-scenarios.js",
-    "test:cross-chain-competitive": "node test-cross-chain-competitive-analysis.js"
+    "test:cross-chain-competitive": "node test-cross-chain-competitive-analysis.js",
+    "test:subscription": "node test-subscription-system.js",
+    "test:subscription-integration": "node test-complete-subscription-integration.js",
+    "test:rainbowkit": "node test-rainbowkit-integration.js"
   },
   "keywords": [
     "blockchain",

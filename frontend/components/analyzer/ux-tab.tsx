@@ -247,6 +247,10 @@ const walletClassData = Object.entries(
             </CardContent>
           </Card>
         )}
+      </div>
+
+      {/* Journey Distribution and Wallet Classification */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
 
         {/* User Lifecycle Distribution */}
         {lifecycleData.length > 0 && (
@@ -280,10 +284,7 @@ const walletClassData = Object.entries(
             </CardContent>
           </Card>
         )}
-      </div>
-
-      {/* Journey Distribution and Wallet Classification */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        
         {/* Journey Length Distribution */}
         {journeyDistribution.length > 0 && (
           <Card>

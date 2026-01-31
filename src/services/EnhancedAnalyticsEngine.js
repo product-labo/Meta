@@ -35,6 +35,52 @@ export class EnhancedAnalyticsEngine {
   }
 
   /**
+   * Load contract ABI for function name decoding
+   * @private
+   */
+  async _loadContractAbi(contractAddress, chain) {
+    try {
+      // First try to load from local ABI files
+      const fs = await import('fs');
+      const path = await import('path');
+      
+      // Check for contract-specific ABI file
+      const abiPath = path.join(process.cwd(), 'abis', `${contractAddress.toLowerCase()}.json`);
+      if (fs.existsSync(abiPath)) {
+        const abiContent = fs.readFileSync(abiPath, 'utf8');
+        return JSON.parse(abiContent);
+      }
+      
+      // Check for common ABIs based on chain
+      const commonAbis = {
+        'ethereum': ['common-defi.json', 'usdc.json', 'competitor-4-uniswap-v3.json'],
+        'lisk': ['common-defi.json', 'usdc.json'],
+        'starknet': ['common-defi.json', 'trip.json']
+      };
+      
+      const chainAbis = commonAbis[chain] || [];
+      for (const abiFile of chainAbis) {
+        const commonAbiPath = path.join(process.cwd(), 'abis', abiFile);
+        if (fs.existsSync(commonAbiPath)) {
+          const abiContent = fs.readFileSync(commonAbiPath, 'utf8');
+          const abi = JSON.parse(abiContent);
+          console.log(`   📋 Using common ABI: ${abiFile}`);
+          return abi;
+        }
+      }
+      
+      // If no local ABI found, try to fetch from blockchain explorer APIs
+      // This would require API keys and is chain-specific
+      // For now, return null and rely on method ID mapping
+      return null;
+      
+    } catch (error) {
+      console.warn(`Failed to load ABI for ${contractAddress}: ${error.message}`);
+      return null;
+    }
+  }
+
+  /**
    * Timeout wrapper for long-running operations
    */
   _withTimeout(promise, timeoutMs, operation = 'operation') {
@@ -73,6 +119,17 @@ export class EnhancedAnalyticsEngine {
       
       console.log(`   📊 Analyzing interactions from block ${fromBlock} to ${toBlock} (${toBlock - fromBlock + 1} blocks)`);
       
+      // Load contract ABI for function name decoding
+      let contractAbi = null;
+      try {
+        contractAbi = await this._loadContractAbi(contractAddress, chain);
+        if (contractAbi) {
+          console.log(`   📋 Loaded ABI with ${contractAbi.length} functions/events`);
+        }
+      } catch (error) {
+        console.warn(`   ⚠️  Could not load ABI: ${error.message}`);
+      }
+      
       // Report progress if available
       if (progressReporter) {
         await progressReporter.updateProgress(3, 'Fetching contract interactions');
@@ -97,9 +154,13 @@ export class EnhancedAnalyticsEngine {
       console.log(`      📊 Total events: ${interactionData.summary.totalEvents}`);
       console.log(`      📦 Method: ${interactionData.method}`);
       
-      // Normalize transaction data
-      const normalizedTxs = this.normalizer.normalizeTransactions(interactionData.transactions, chain);
-      console.log(`   ✅ Normalized ${normalizedTxs.length} transactions`);
+      // Normalize transaction data with ABI support
+      const normalizedTxs = this.normalizer.normalizeTransactions(interactionData.transactions, chain, contractAbi);
+      console.log(`   ✅ Normalized ${normalizedTxs.length} transactions with function names`);
+      
+      // Log function name extraction success
+      const functionsWithNames = normalizedTxs.filter(tx => tx.functionName && tx.functionName !== 'unknown' && !tx.functionName.startsWith('0x'));
+      console.log(`   🎯 Successfully extracted ${functionsWithNames.length}/${normalizedTxs.length} function names`);
       
       // Report progress if available
       if (progressReporter) {

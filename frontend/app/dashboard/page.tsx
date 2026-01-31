@@ -24,6 +24,9 @@ import { UxTab } from "@/components/analyzer/ux-tab"
 import { useMarathonSync } from "@/hooks/use-marathon-sync"
 import { MarathonSyncLoader, LoadingWithLogo } from "@/components/ui/animated-logo"
 
+// Import subscription components
+import { SubscriptionStatus } from "@/components/subscription/subscription-status"
+
 interface DefaultContractData {
   contract: {
     address: string
@@ -822,6 +825,69 @@ export default function DashboardPage() {
             )}
           </div>
         )}
+
+        {/* Subscription Status Section */}
+        <div className="mb-8">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <SubscriptionStatus className="lg:col-span-1" />
+            
+            {/* User Metrics Summary */}
+            {userMetrics && (
+              <Card className="lg:col-span-2">
+                <CardHeader>
+                  <CardTitle className="flex items-center gap-2">
+                    <Activity className="h-5 w-5" />
+                    Usage Overview
+                  </CardTitle>
+                  <CardDescription>
+                    Your analytics activity and limits
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <div className="text-center">
+                      <div className="text-2xl font-bold text-primary">
+                        {userMetrics.overview.totalContracts}
+                      </div>
+                      <div className="text-xs text-muted-foreground">Total Contracts</div>
+                    </div>
+                    <div className="text-center">
+                      <div className="text-2xl font-bold text-green-600">
+                        {userMetrics.overview.completedAnalyses}
+                      </div>
+                      <div className="text-xs text-muted-foreground">Completed</div>
+                    </div>
+                    <div className="text-center">
+                      <div className="text-2xl font-bold text-blue-600">
+                        {userMetrics.usage.monthlyAnalysisCount}
+                      </div>
+                      <div className="text-xs text-muted-foreground">This Month</div>
+                    </div>
+                    <div className="text-center">
+                      <div className="text-2xl font-bold text-orange-600">
+                        {userMetrics.limits.remaining}
+                      </div>
+                      <div className="text-xs text-muted-foreground">Remaining</div>
+                    </div>
+                  </div>
+                  
+                  {userMetrics.limits.monthly > 0 && (
+                    <div className="mt-4">
+                      <div className="flex justify-between text-sm mb-1">
+                        <span>Monthly Usage</span>
+                        <span>{userMetrics.usage.monthlyAnalysisCount} / {userMetrics.limits.monthly}</span>
+                      </div>
+                      <Progress 
+                        value={(userMetrics.usage.monthlyAnalysisCount / userMetrics.limits.monthly) * 100} 
+                        className="h-2"
+                      />
+                    </div>
+                  )}
+                </CardContent>
+              </Card>
+            )}
+          </div>
+        </div>
       </div>
     </div>
   )

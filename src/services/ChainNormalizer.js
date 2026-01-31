@@ -9,10 +9,22 @@
  */
 
 import { ethers } from 'ethers';
+import { AbiDecoderService } from './AbiDecoderService.js';
 
 export class ChainNormalizer {
-  constructor() {
+  constructor(contractAbi = null, chain = 'ethereum') {
     this.supportedChains = ['ethereum', 'starknet', 'lisk'];
+    this.abiDecoder = null;
+    
+    // Initialize ABI decoder if ABI is provided
+    if (contractAbi && Array.isArray(contractAbi)) {
+      try {
+        this.abiDecoder = new AbiDecoderService(contractAbi, chain);
+      } catch (error) {
+        console.warn(`Failed to initialize ABI decoder: ${error.message}`);
+      }
+    }
+    
     this.chainConfigs = {
       ethereum: {
         nativeCurrency: 'ETH',
@@ -39,9 +51,10 @@ export class ChainNormalizer {
    * Normalize transactions from any supported chain to unified format
    * @param {Array<Object>} transactions - Raw transactions from blockchain
    * @param {string} chain - Source blockchain network
+   * @param {Array<Object>} contractAbi - Optional contract ABI for function name decoding
    * @returns {Array<Object>} Normalized transactions
    */
-  normalizeTransactions(transactions, chain) {
+  normalizeTransactions(transactions, chain, contractAbi = null) {
     if (!Array.isArray(transactions)) {
       throw new Error('Transactions must be an array');
     }
@@ -53,6 +66,15 @@ export class ChainNormalizer {
     const chainLower = chain.toLowerCase();
     if (!this.supportedChains.includes(chainLower)) {
       throw new Error(`Unsupported chain: ${chain}`);
+    }
+
+    // Initialize ABI decoder if provided and not already initialized
+    if (contractAbi && !this.abiDecoder) {
+      try {
+        this.abiDecoder = new AbiDecoderService(contractAbi, chainLower);
+      } catch (error) {
+        console.warn(`Failed to initialize ABI decoder: ${error.message}`);
+      }
     }
 
     const normalized = [];
@@ -111,6 +133,11 @@ export class ChainNormalizer {
       
       // Raw data preservation
       raw_data: this._preserveRawData(transaction, chain),
+      
+      // Function information (extracted from input data using ABI)
+      method_id: this._extractMethodId(transaction, chain),
+      functionName: this._extractFunctionName(transaction, chain),
+      function_name: this._extractFunctionName(transaction, chain), // Alias for compatibility
       
       // Timestamps
       created_at: new Date().toISOString()
@@ -471,6 +498,131 @@ export class ChainNormalizer {
     if (chainConfig) {
       normalized.raw_data.chain_id = chainConfig.chainId;
     }
+  }
+
+  /**
+   * Extract method ID from transaction input
+   * @private
+   */
+  _extractMethodId(transaction, chain) {
+    const input = transaction.input || transaction.data || transaction.calldata;
+    
+    if (!input) return null;
+    
+    if (chain === 'starknet') {
+      // Starknet uses different format
+      if (Array.isArray(input) && input.length > 0) {
+        return input[0]; // First element is function selector
+      }
+      return input;
+    }
+    
+    // Ethereum-like chains
+    if (typeof input === 'string' && input.startsWith('0x') && input.length >= 10) {
+      return input.slice(0, 10); // First 4 bytes (8 hex chars + 0x)
+    }
+    
+    return null;
+  }
+
+  /**
+   * Extract human-readable function name from transaction
+   * @private
+   */
+  _extractFunctionName(transaction, chain) {
+    // Try to get from existing fields first
+    if (transaction.functionName) return transaction.functionName;
+    if (transaction.function_name) return transaction.function_name;
+    
+    // Try to decode using ABI if available
+    if (this.abiDecoder) {
+      try {
+        const input = transaction.input || transaction.data || transaction.calldata;
+        if (input) {
+          const decoded = this.abiDecoder.decodeMethod(input);
+          if (decoded && decoded.name) {
+            return decoded.name;
+          }
+        }
+      } catch (error) {
+        // Silently continue to fallback methods
+      }
+    }
+    
+    // Fallback to method ID mapping
+    const methodId = this._extractMethodId(transaction, chain);
+    if (methodId) {
+      const functionName = this._mapMethodIdToFunctionName(methodId);
+      if (functionName !== methodId) {
+        return functionName;
+      }
+    }
+    
+    // Final fallback
+    return methodId || 'unknown';
+  }
+
+  /**
+   * Map common method IDs to function names
+   * @private
+   */
+  _mapMethodIdToFunctionName(methodId) {
+    const commonMethods = {
+      // Standard ERC-20 functions
+      '0xa9059cbb': 'transfer',
+      '0x095ea7b3': 'approve',
+      '0x23b872dd': 'transferFrom',
+      '0x70a08231': 'balanceOf',
+      '0xdd62ed3e': 'allowance',
+      '0x18160ddd': 'totalSupply',
+      '0x06fdde03': 'name',
+      '0x95d89b41': 'symbol',
+      '0x313ce567': 'decimals',
+      
+      // Common DeFi functions (from ABI)
+      '0xb6b55f25': 'deposit',
+      '0x2e1a7d4d': 'withdraw',
+      '0xa694fc3a': 'stake',
+      '0x2e17de78': 'unstake',
+      '0x40c10f19': 'mint',
+      '0x42966c68': 'burn',
+      '0x022c0d9f': 'swap',
+      '0x38ed1739': 'swapExactTokensForTokens',
+      '0xe8e33700': 'addLiquidity',
+      '0xbaa2abde': 'removeLiquidity',
+      '0x372500ab': 'claimRewards',
+      '0xf69e2046': 'compound',
+      
+      // Additional common DeFi method IDs
+      '0x3db6be2b': 'swap',
+      '0x7ff36ab5': 'swapExactETHForTokens',
+      '0x18cbafe5': 'swapTokensForExactETH',
+      '0x791ac947': 'swapExactTokensForETH',
+      '0x4a25d94a': 'swapTokensForExactTokens',
+      '0xf305d719': 'addLiquidityETH',
+      '0x02751cec': 'removeLiquidityETH',
+      '0x5c11d795': 'removeLiquidityWithPermit',
+      '0xded9382a': 'removeLiquidityETHWithPermit',
+      '0x12d43a51': 'claim',
+      '0x4e71d92d': 'claimRewards',
+      '0x6a627842': 'mint',
+      '0x379607f5': 'claimReward',
+      '0x1c4b774b': 'unstake',
+      '0x17caf6f1': 'compound',
+      '0x5312ea8e': 'reinvest',
+      '0x853828b6': 'harvest',
+      '0x4641257d': 'exit',
+      '0x1959a002': 'claimAll',
+      '0x6e553f65': 'emergencyWithdraw',
+      
+      // Legacy mappings for backward compatibility
+      '0x128acb08': 'stake',   // Alternative stake signature
+      '0x3ccfd60b': 'withdraw',
+      '0xe2bbb158': 'deposit',
+      '0x441a3e70': 'withdraw'
+    };
+    
+    return commonMethods[methodId] || 'unknown';
   }
 
   /**

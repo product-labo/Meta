@@ -1,0 +1,469 @@
+{
+  "metadata": {
+    "contractAddress": "0x1234567890123456789012345678901234567890",
+    "contractName": "TestContract",
+    "contractChain": "ethereum",
+    "generatedAt": "2026-01-30T15:30:49.881Z",
+    "blockRange": {
+      "from": 0,
+      "to": 1000
+    },
+    "analysisType": "enhanced_interaction_based",
+    "fetchMethod": "interaction-based",
+    "interactionSummary": {
+      "totalTransactions": 3,
+      "totalEvents": 0,
+      "eventTransactions": 0,
+      "directTransactions": 3
+    }
+  },
+  "summary": {
+    "totalTransactions": 3,
+    "uniqueUsers": 1,
+    "totalValue": 1,
+    "avgGasUsed": 33666.666666666664,
+    "successRate": 100,
+    "timeRange": "24h",
+    "interactionEfficiency": 0
+  },
+  "defiMetrics": {
+    "tvl": 0,
+    "netInflow": 1,
+    "netOutflow": 1,
+    "netFlow": 0,
+    "revenuePerUser": 0.00202,
+    "protocolRevenue": 0.00202,
+    "whaleActivityRatio": 0,
+    "dau": 1,
+    "wau": 1,
+    "mau": 1,
+    "transactionVolume": 1,
+    "averageTransactionSize": 0.333333,
+    "functionSuccessRate": 100,
+    "averageGasCost": 0.000673,
+    "contractUtilizationRate": 0.1,
+    "crossContractInteractionRate": 2,
+    "protocolStickiness": 100,
+    "eventDrivenVolume": 0,
+    "interactionComplexity": "low",
+    "contractUtilization": 0
+  },
+  "userBehavior": {
+    "whaleRatio": 15.2,
+    "botActivity": 8.5,
+    "loyaltyScore": 90,
+    "earlyAdopterPotential": "High",
+    "retentionRate7d": 65.4,
+    "retentionRate30d": 42.1,
+    "avgSessionDuration": 1800,
+    "transactionsPerUser": 3,
+    "growthRate": 12.5,
+    "churnRate": 8.2,
+    "powerUserRatio": 22.1,
+    "newUserRatio": 18.7,
+    "crossChainUsers": 0,
+    "multiProtocolUsers": 0,
+    "frontRunningDetection": 2.1,
+    "mevExposure": 5.8,
+    "sandwichAttacks": 0,
+    "arbitrageOpportunities": 15,
+    "liquidationEvents": 3,
+    "interactionPatterns": {
+      "batchTransactions": 0,
+      "singleTransactions": 3,
+      "complexInteractions": 0
+    },
+    "eventEngagement": 0,
+    "contractLoyalty": 15
+  },
+  "uxAnalysis": {
+    "bottlenecks": [],
+    "sessionDurations": {
+      "sessions": [
+        {
+          "wallet": "0x742d35cc6634c0532925a3b8d4c9db96c4b4d8b6",
+          "firstTransaction": "2026-01-30T15:30:49.843Z",
+          "lastTransaction": "2026-01-30T15:30:49.843Z",
+          "durationMs": 0,
+          "durationMinutes": 0,
+          "transactionCount": 3,
+          "successfulTransactions": 3,
+          "failedTransactions": 0
+        }
+      ],
+      "averageDuration": 0,
+      "medianDuration": 0,
+      "minDuration": 0,
+      "maxDuration": 0
+    },
+    "failurePatterns": {
+      "totalFailures": 0,
+      "failuresByFunction": [],
+      "failureSequences": []
+    },
+    "uxGrade": {
+      "grade": "A",
+      "completionRate": 1,
+      "failureRate": 0,
+      "averageTransactionTime": 0,
+      "bottleneckCount": 0,
+      "metrics": {
+        "totalTransactions": 3,
+        "successfulTransactions": 3,
+        "failedTransactions": 0,
+        "uniqueUsers": 1
+      }
+    },
+    "timeToFirstSuccess": {
+      "users": [
+        {
+          "wallet": "0x742d35cc6634c0532925a3b8d4c9db96c4b4d8b6",
+          "firstTransaction": "2026-01-30T15:30:49.843Z",
+          "firstSuccess": "2026-01-30T15:30:49.843Z",
+          "timeToSuccessMs": 0,
+          "timeToSuccessMinutes": 0,
+          "attemptsBeforeSuccess": 1
+        }
+      ],
+      "averageTimeToSuccessMinutes": 0,
+      "medianTimeToSuccessMinutes": 0,
+      "usersWithSuccess": 1,
+      "totalUsers": 1
+    },
+    "summary": {
+      "totalSessions": 1,
+      "averageSessionDuration": 0,
+      "bottleneckCount": 0,
+      "overallCompletionRate": 1,
+      "overallFailureRate": 0
+    }
+  },
+  "userJourneys": {
+    "totalUsers": 1,
+    "averageJourneyLength": 3,
+    "commonPaths": [],
+    "entryPoints": [
+      {
+        "functionName": "transfer",
+        "userCount": 1,
+        "percentage": 100
+      }
+    ],
+    "featureAdoption": {
+      "transitions": [
+        {
+          "from": "transfer",
+          "to": "deposit",
+          "userCount": 1,
+          "adoptionRate": 1,
+          "percentage": 100
+        },
+        {
+          "from": "deposit",
+          "to": "withdraw",
+          "userCount": 1,
+          "adoptionRate": 1,
+          "percentage": 100
+        }
+      ],
+      "adoptionRates": {
+        "transfer → deposit": 1,
+        "deposit → withdraw": 1
+      },
+      "functionUsage": [
+        {
+          "functionName": "transfer",
+          "uniqueUsers": 1
+        },
+        {
+          "functionName": "deposit",
+          "uniqueUsers": 1
+        },
+        {
+          "functionName": "withdraw",
+          "uniqueUsers": 1
+        }
+      ]
+    },
+    "dropoffPoints": [
+      {
+        "functionName": "withdraw",
+        "dropoffCount": 1,
+        "totalAppearances": 1,
+        "dropoffRate": 1,
+        "dropoffPercentage": 100
+      }
+    ],
+    "journeyDistribution": {
+      "3": 1
+    }
+  },
+  "userLifecycle": {
+    "lifecycleDistribution": {
+      "new": 1,
+      "active": 0,
+      "inactive": 0,
+      "dormant": 0,
+      "churned": 0
+    },
+    "walletClassification": {
+      "distribution": {
+        "whale": {
+          "count": 0,
+          "percentage": 0,
+          "totalVolume": 0,
+          "averageTransactions": 0
+        },
+        "retail": {
+          "count": 0,
+          "percentage": 0,
+          "totalVolume": 0,
+          "averageTransactions": 0
+        },
+        "bot": {
+          "count": 0,
+          "percentage": 0,
+          "totalVolume": 0,
+          "averageTransactions": 0
+        },
+        "arbitrageur": {
+          "count": 0,
+          "percentage": 0,
+          "totalVolume": 0,
+          "averageTransactions": 0
+        },
+        "experimenter": {
+          "count": 1,
+          "percentage": 100,
+          "totalVolume": 1,
+          "averageTransactions": 3
+        }
+      },
+      "details": {
+        "whale": [],
+        "retail": [],
+        "bot": [],
+        "arbitrageur": [],
+        "experimenter": [
+          {
+            "wallet": "0x742d35cc6634c0532925a3b8d4c9db96c4b4d8b6",
+            "firstSeen": "2026-01-30T15:30:49.843Z",
+            "lastSeen": "2026-01-30T15:30:49.843Z",
+            "transactionCount": 3,
+            "successfulTransactions": 3,
+            "totalVolume": 1,
+            "totalGasSpent": 40400000,
+            "functionsUsed": [
+              "transfer",
+              "deposit",
+              "withdraw"
+            ],
+            "daysSinceFirstSeen": 1,
+            "daysSinceLastActivity": 1,
+            "lifecycleStage": "new",
+            "type": "experimenter"
+          }
+        ]
+      }
+    },
+    "cohortAnalysis": [
+      {
+        "cohortPeriod": "2026-01",
+        "totalUsers": 1,
+        "retentionRates": {
+          "day1": 100
+        },
+        "totalVolume": 1,
+        "averageVolumePerUser": 1
+      }
+    ],
+    "activationMetrics": {
+      "totalWallets": 1,
+      "activatedWallets": 1,
+      "activationRate": 100,
+      "averageActivationTime": 1,
+      "activationTimeDistribution": {
+        "immediate": 0,
+        "sameDay": 1,
+        "sameWeek": 0,
+        "sameMonth": 0,
+        "longTerm": 0
+      }
+    },
+    "progressionAnalysis": {
+      "functionProgression": [
+        {
+          "functionName": "transfer",
+          "totalAdoptions": 1,
+          "averageAdoptionOrder": 1,
+          "isEntryPoint": 1,
+          "adoptionRate": 100
+        },
+        {
+          "functionName": "deposit",
+          "totalAdoptions": 1,
+          "averageAdoptionOrder": 2,
+          "isEntryPoint": 0,
+          "adoptionRate": 100
+        },
+        {
+          "functionName": "withdraw",
+          "totalAdoptions": 1,
+          "averageAdoptionOrder": 3,
+          "isEntryPoint": 0,
+          "adoptionRate": 100
+        }
+      ],
+      "topProgressionPaths": [
+        {
+          "path": "transfer → deposit",
+          "userCount": 1,
+          "percentage": 100
+        },
+        {
+          "path": "deposit → withdraw",
+          "userCount": 1,
+          "percentage": 100
+        }
+      ],
+      "progressionDepth": {
+        "singleFunction": 0,
+        "multiFunction": 1,
+        "powerUsers": 0
+      }
+    },
+    "summary": {
+      "activeUsers": 0,
+      "newUsers": 1,
+      "churnedUsers": 0,
+      "retentionRate": 0,
+      "averageLifespan": 0
+    }
+  },
+  "interactions": {
+    "totalEvents": 0,
+    "eventTypes": {},
+    "interactionFrequency": 0,
+    "peakInteractionTimes": [
+      {
+        "hour": 16,
+        "count": 3
+      }
+    ]
+  },
+  "transactions": [
+    {
+      "hash": "0x1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef",
+      "from": "0x742d35cc6634c0532925a3b8d4c9db96c4b4d8b6",
+      "to": "0x1234567890123456789012345678901234567890",
+      "value": "1000000000000000000",
+      "valueEth": 1,
+      "gasPrice": "20000000000",
+      "gasUsed": "21000",
+      "gasCostEth": 0.00042,
+      "blockNumber": 1000,
+      "blockTimestamp": 1769787049.843,
+      "status": true,
+      "type": "transfer",
+      "methodId": "0xa9059cbb",
+      "source": "unknown",
+      "eventCount": 0
+    },
+    {
+      "hash": "0x2345678901bcdef12345678901bcdef12345678901bcdef12345678901bcdef1",
+      "from": "0x742d35cc6634c0532925a3b8d4c9db96c4b4d8b6",
+      "to": "0x1234567890123456789012345678901234567890",
+      "value": "0",
+      "valueEth": 0,
+      "gasPrice": "20000000000",
+      "gasUsed": "45000",
+      "gasCostEth": 0.0009,
+      "blockNumber": 1001,
+      "blockTimestamp": 1769787049.843,
+      "status": true,
+      "type": "contract_call",
+      "methodId": "0xb6b55f25",
+      "source": "unknown",
+      "eventCount": 0
+    },
+    {
+      "hash": "0x3456789012cdef123456789012cdef123456789012cdef123456789012cdef12",
+      "from": "0x742d35cc6634c0532925a3b8d4c9db96c4b4d8b6",
+      "to": "0x1234567890123456789012345678901234567890",
+      "value": "0",
+      "valueEth": 0,
+      "gasPrice": "20000000000",
+      "gasUsed": "35000",
+      "gasCostEth": 0.0007,
+      "blockNumber": 1002,
+      "blockTimestamp": 1769787049.843,
+      "status": true,
+      "type": "withdraw",
+      "methodId": "0x2e1a7d4d",
+      "source": "unknown",
+      "eventCount": 0
+    }
+  ],
+  "users": [
+    {
+      "address": "0x742d35cc6634c0532925a3b8d4c9db96c4b4d8b6",
+      "transactionCount": 3,
+      "totalValue": 1,
+      "totalGasSpent": 0.00202,
+      "firstSeen": "2026-01-30T15:30:49.843Z",
+      "lastSeen": "2026-01-30T15:30:49.843Z",
+      "userType": "casual",
+      "loyaltyScore": 60,
+      "riskScore": 0,
+      "eventInteractions": 0,
+      "uniqueEventTypes": 0,
+      "eventInteractionRatio": 0
+    }
+  ],
+  "events": [],
+  "locks": [],
+  "gasAnalysis": {
+    "averageGasPrice": "20000000000",
+    "averageGasUsed": 33667,
+    "totalGasCost": 0.00202,
+    "gasEfficiencyScore": 70.76,
+    "failedTransactions": 0,
+    "failureRate": 0,
+    "gasOptimizationOpportunities": [
+      "Improve event emission efficiency"
+    ],
+    "interactionGasEfficiency": 0
+  },
+  "interactionInsights": [
+    "Using optimized interaction-based data fetching"
+  ],
+  "competitive": {
+    "marketPosition": 1,
+    "marketShare": 0,
+    "advantages": [
+      "Efficient interaction-based analysis",
+      "High event activity",
+      "Optimized gas usage"
+    ],
+    "challenges": [
+      "Limited ecosystem",
+      "User acquisition needed",
+      "Liquidity depth improvement"
+    ],
+    "interactionMetrics": {
+      "eventEfficiency": 0,
+      "interactionComplexity": "low",
+      "fetchMethodOptimization": "optimal"
+    },
+    "benchmarks": {
+      "vsEthereum": {
+        "gasCostReduction": 85.5,
+        "transactionSpeed": 12.5,
+        "userGrowth": -5.2,
+        "interactionEfficiency": 0
+      }
+    }
+  },
+  "recommendations": [],
+  "alerts": []
+}

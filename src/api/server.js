@@ -19,6 +19,8 @@ import analysisRoutes from './routes/analysis.js';
 import userRoutes from './routes/users.js';
 import chatRoutes from './routes/chat.js';
 import onboardingRoutes from './routes/onboarding.js';
+import subscriptionRoutes from './routes/subscription.js';
+import faucetRoutes from './routes/faucet.js';
 
 // Import middleware
 import { authenticateToken } from './middleware/auth.js';
@@ -94,7 +96,9 @@ app.get('/', (req, res) => {
       analysis: '/api/analysis',
       users: '/api/users',
       chat: '/api/chat',
-      onboarding: '/api/onboarding'
+      onboarding: '/api/onboarding',
+      subscription: '/api/subscription',
+      faucet: '/api/faucet'
     }
   });
 });
@@ -151,6 +155,8 @@ app.use('/api/analysis', authenticateToken, analysisRoutes); // analysisLimiter 
 app.use('/api/users', authenticateToken, userRoutes);
 app.use('/api/chat', authenticateToken, chatRoutes);
 app.use('/api/onboarding', authenticateToken, onboardingRoutes);
+app.use('/api/subscription', subscriptionRoutes); // Some routes require auth, some don't
+app.use('/api/faucet', faucetRoutes); // Public faucet endpoints
 
 // Serve OpenAPI documentation
 app.use('/api-docs', express.static(join(__dirname, 'docs')));

@@ -568,10 +568,25 @@ export default function OnboardingPage() {
                 </div>
 
                 {indexingProgress === 100 && (
-                  <div className="text-center">
-                    <p className="text-green-600 font-medium mb-4">
-                      Redirecting to your dashboard...
+                  <div className="text-center space-y-4">
+                    <p className="text-green-600 font-medium">
+                      ✅ Contract analysis complete!
                     </p>
+                    <div className="flex gap-3 justify-center">
+                      <Button
+                        onClick={() => router.push('/subscription')}
+                        className="flex-1 max-w-xs"
+                      >
+                        Choose Subscription Plan
+                      </Button>
+                      <Button
+                        variant="outline"
+                        onClick={() => router.push('/dashboard')}
+                        className="flex-1 max-w-xs"
+                      >
+                        Continue with Free Plan
+                      </Button>
+                    </div>
                   </div>
                 )}
               </CardContent>
