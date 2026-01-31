@@ -9,8 +9,10 @@ import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Header } from "@/components/ui/header"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { ArrowLeft, Download, RefreshCw, Share, Clock, CheckCircle, XCircle } from "lucide-react"
+import { ArrowLeft, Download, RefreshCw, Share, Clock, CheckCircle, XCircle, Twitter, FileText, FileSpreadsheet } from "lucide-react"
 import Link from "next/link"
+import { useToast } from "@/hooks/use-toast"
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
 
 // Import dashboard components
 import { DashboardHeader } from "@/components/analyzer/dashboard-header"
@@ -49,6 +51,8 @@ export default function AnalysisResultPage() {
   const [error, setError] = useState<string | null>(null)
   const [refreshing, setRefreshing] = useState(false)
   const [dashboardTab, setDashboardTab] = useState('overview')
+  const [syncing, setSyncing] = useState(false)
+  const { toast } = useToast()
 
   const analysisId = params.id as string
 
@@ -89,6 +93,205 @@ export default function AnalysisResultPage() {
     setRefreshing(true)
     await loadAnalysis()
     setRefreshing(false)
+  }
+
+  const handleSync = async () => {
+    if (!analysis?.contractAddress) {
+      toast({
+        title: "Error",
+        description: "No contract address available for sync",
+        variant: "destructive"
+      })
+      return
+    }
+
+    setSyncing(true)
+    try {
+      // First create a contract config if needed, then start analysis
+      const contractResponse = await api.contracts.create({
+        address: analysis.contractAddress,
+        chain: analysis.analysisType || 'lisk',
+        name: `Contract ${analysis.contractAddress.slice(0, 10)}...`,
+        abi: null
+      })
+
+      // Start a new analysis
+      const response = await api.analysis.start(contractResponse.id, 'competitive')
+
+      toast({
+        title: "Sync Started",
+        description: "A new analysis has been triggered. You'll be redirected to the new results.",
+      })
+
+      // Redirect to the new analysis
+      setTimeout(() => {
+        router.push(`/analysis/${response.analysisId}`)
+      }, 2000)
+
+    } catch (error) {
+      console.error('Sync failed:', error)
+      toast({
+        title: "Sync Failed",
+        description: "Failed to trigger new analysis. Please try again.",
+        variant: "destructive"
+      })
+    } finally {
+      setSyncing(false)
+    }
+  }
+
+  const handleShareOnX = () => {
+    if (!analysis) return
+
+    const contractAddr = analysis.contractAddress ? 
+      `${analysis.contractAddress.slice(0, 10)}...${analysis.contractAddress.slice(-8)}` : 
+      'Contract'
+    
+    const tweetText = `🔍 Just analyzed ${contractAddr} on ${analysis.analysisType || 'blockchain'} using @MetaGauge!\n\n📊 Key insights:\n• Smart contract analytics\n• User behavior analysis\n• Performance metrics\n\nCheck it out: ${window.location.href}\n\n#DeFi #Analytics #Blockchain`
+    
+    const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(tweetText)}`
+    window.open(twitterUrl, '_blank')
+  }
+
+  const handleExportJSON = () => {
+    if (!analysis?.results) return
+
+    const dataStr = JSON.stringify(analysis.results, null, 2)
+    const dataBlob = new Blob([dataStr], { type: 'application/json' })
+    const url = URL.createObjectURL(dataBlob)
+    const link = document.createElement('a')
+    link.href = url
+    link.download = `metagauge-analysis-${analysis.id}-${new Date().toISOString().split('T')[0]}.json`
+    link.click()
+    URL.revokeObjectURL(url)
+
+    toast({
+      title: "Export Complete",
+      description: "Analysis data exported as JSON file",
+    })
+  }
+
+  const handleExportCSV = () => {
+    if (!analysis?.results) return
+
+    try {
+      // Convert key metrics to CSV format
+      const csvData = []
+      
+      // Add header
+      csvData.push(['Metric', 'Value', 'Category'])
+      
+      // Add overview metrics
+      if (analysis.results.overview) {
+        const overview = analysis.results.overview
+        csvData.push(['Total Transactions', overview.totalTransactions || 0, 'Overview'])
+        csvData.push(['Unique Users', overview.uniqueUsers || 0, 'Overview'])
+        csvData.push(['Total Volume', overview.totalVolume || 0, 'Overview'])
+        csvData.push(['Success Rate', `${overview.successRate || 0}%`, 'Overview'])
+      }
+
+      // Add metrics data
+      if (analysis.results.metrics) {
+        const metrics = analysis.results.metrics
+        Object.entries(metrics).forEach(([key, value]) => {
+          if (typeof value === 'number' || typeof value === 'string') {
+            csvData.push([key, value, 'Metrics'])
+          }
+        })
+      }
+
+      // Convert to CSV string
+      const csvString = csvData.map(row => 
+        row.map(cell => `"${cell}"`).join(',')
+      ).join('\n')
+
+      // Download CSV
+      const dataBlob = new Blob([csvString], { type: 'text/csv' })
+      const url = URL.createObjectURL(dataBlob)
+      const link = document.createElement('a')
+      link.href = url
+      link.download = `metagauge-analysis-${analysis.id}-${new Date().toISOString().split('T')[0]}.csv`
+      link.click()
+      URL.revokeObjectURL(url)
+
+      toast({
+        title: "Export Complete",
+        description: "Analysis data exported as CSV file",
+      })
+    } catch (error) {
+      toast({
+        title: "Export Failed",
+        description: "Failed to export CSV. Please try again.",
+        variant: "destructive"
+      })
+    }
+  }
+
+  const handleExportReport = () => {
+    if (!analysis?.results) return
+
+    try {
+      // Generate a comprehensive markdown report
+      const contractAddr = analysis.contractAddress || 'Unknown'
+      const date = new Date().toLocaleDateString()
+      
+      let report = `# MetaGauge Analysis Report\n\n`
+      report += `**Contract Address:** ${contractAddr}\n`
+      report += `**Chain:** ${analysis.analysisType || 'Unknown'}\n`
+      report += `**Analysis Date:** ${date}\n`
+      report += `**Status:** ${analysis.status}\n\n`
+
+      // Overview section
+      if (analysis.results.overview) {
+        report += `## Overview\n\n`
+        const overview = analysis.results.overview
+        report += `- **Total Transactions:** ${overview.totalTransactions || 0}\n`
+        report += `- **Unique Users:** ${overview.uniqueUsers || 0}\n`
+        report += `- **Total Volume:** ${overview.totalVolume || 0}\n`
+        report += `- **Success Rate:** ${overview.successRate || 0}%\n\n`
+      }
+
+      // Metrics section
+      if (analysis.results.metrics) {
+        report += `## Key Metrics\n\n`
+        Object.entries(analysis.results.metrics).forEach(([key, value]) => {
+          if (typeof value === 'number' || typeof value === 'string') {
+            report += `- **${key}:** ${value}\n`
+          }
+        })
+        report += `\n`
+      }
+
+      // AI Insights section
+      if (analysis.results.aiInsights) {
+        report += `## AI Insights\n\n`
+        report += `${analysis.results.aiInsights}\n\n`
+      }
+
+      report += `---\n\n`
+      report += `*Generated by MetaGauge - Smart Contract Analytics Platform*\n`
+      report += `*Report ID: ${analysis.id}*\n`
+
+      // Download markdown report
+      const dataBlob = new Blob([report], { type: 'text/markdown' })
+      const url = URL.createObjectURL(dataBlob)
+      const link = document.createElement('a')
+      link.href = url
+      link.download = `metagauge-report-${analysis.id}-${new Date().toISOString().split('T')[0]}.md`
+      link.click()
+      URL.revokeObjectURL(url)
+
+      toast({
+        title: "Report Generated",
+        description: "Comprehensive analysis report exported",
+      })
+    } catch (error) {
+      toast({
+        title: "Export Failed",
+        description: "Failed to generate report. Please try again.",
+        variant: "destructive"
+      })
+    }
   }
 
   const getStatusIcon = (status: string) => {
@@ -198,15 +401,51 @@ export default function AnalysisResultPage() {
                   <RefreshCw className={`h-4 w-4 mr-2 ${refreshing ? 'animate-spin' : ''}`} />
                   Refresh
                 </Button>
-                <Button variant="outline" size="sm">
-                  <Share className="h-4 w-4 mr-2" />
+                
+                {analysis.status === 'completed' && (
+                  <Button 
+                    variant="outline" 
+                    size="sm" 
+                    onClick={handleSync}
+                    disabled={syncing}
+                  >
+                    <RefreshCw className={`h-4 w-4 mr-2 ${syncing ? 'animate-spin' : ''}`} />
+                    {syncing ? 'Syncing...' : 'Sync Latest'}
+                  </Button>
+                )}
+                
+                <Button 
+                  variant="outline" 
+                  size="sm"
+                  onClick={handleShareOnX}
+                >
+                  <Twitter className="h-4 w-4 mr-2" />
                   Share
                 </Button>
+                
                 {analysis.status === 'completed' && (
-                  <Button variant="outline" size="sm">
-                    <Download className="h-4 w-4 mr-2" />
-                    Export
-                  </Button>
+                  <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                      <Button variant="outline" size="sm">
+                        <Download className="h-4 w-4 mr-2" />
+                        Export
+                      </Button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent align="end">
+                      <DropdownMenuItem onClick={handleExportJSON}>
+                        <FileText className="h-4 w-4 mr-2" />
+                        Export as JSON
+                      </DropdownMenuItem>
+                      <DropdownMenuItem onClick={handleExportCSV}>
+                        <FileSpreadsheet className="h-4 w-4 mr-2" />
+                        Export as CSV
+                      </DropdownMenuItem>
+                      <DropdownMenuItem onClick={handleExportReport}>
+                        <FileText className="h-4 w-4 mr-2" />
+                        Generate Report
+                      </DropdownMenuItem>
+                    </DropdownMenuContent>
+                  </DropdownMenu>
                 )}
               </div>
             </div>
@@ -302,23 +541,28 @@ export default function AnalysisResultPage() {
             <div className="mt-12 p-6 bg-card border rounded-lg text-center">
               <p className="text-muted-foreground text-sm">
                 Generated by <span className="text-foreground font-semibold">MetaGauge</span> •{' '}
-                <Button
-                  onClick={() => {
-                    // Create and download JSON file
-                    const dataStr = JSON.stringify(analysis.results, null, 2);
-                    const dataBlob = new Blob([dataStr], {type: 'application/json'});
-                    const url = URL.createObjectURL(dataBlob);
-                    const link = document.createElement('a');
-                    link.href = url;
-                    link.download = `analysis-${analysis.id}.json`;
-                    link.click();
-                    URL.revokeObjectURL(url);
-                  }}
-                  variant="outline"
-                  size="sm"
-                >
-                  Export JSON
-                </Button>
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <Button variant="outline" size="sm">
+                      <Download className="h-4 w-4 mr-2" />
+                      Export Data
+                    </Button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent align="center">
+                    <DropdownMenuItem onClick={handleExportJSON}>
+                      <FileText className="h-4 w-4 mr-2" />
+                      Export as JSON
+                    </DropdownMenuItem>
+                    <DropdownMenuItem onClick={handleExportCSV}>
+                      <FileSpreadsheet className="h-4 w-4 mr-2" />
+                      Export as CSV
+                    </DropdownMenuItem>
+                    <DropdownMenuItem onClick={handleExportReport}>
+                      <FileText className="h-4 w-4 mr-2" />
+                      Generate Report
+                    </DropdownMenuItem>
+                  </DropdownMenuContent>
+                </DropdownMenu>
               </p>
             </div>
           </div>
