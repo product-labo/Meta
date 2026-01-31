@@ -309,19 +309,13 @@ export class ContractInteractionFetcher extends EventEmitter {
     
     try {
       // Fetch contract events
-      if (chain === 'starknet') {
-        // Starknet event fetching would be different
-        console.log(`   ⚠️ Starknet event fetching not yet implemented, falling back to block scan`);
-        return await this._fallbackBlockScan(client, contractAddress, fromBlock, toBlock);
-      } else {
-        // Ethereum-compatible event fetching
-        const logs = await client._makeRpcCall('eth_getLogs', [{
-          fromBlock: '0x' + fromBlock.toString(16),
-          toBlock: '0x' + toBlock.toString(16),
-          address: contractAddress
-        }]);
-        
-        console.log(`   📋 Found ${logs.length} events`);
+      const logs = await client._makeRpcCall('eth_getLogs', [{
+        fromBlock: '0x' + fromBlock.toString(16),
+        toBlock: '0x' + toBlock.toString(16),
+        address: contractAddress
+      }]);
+      
+      console.log(`   📋 Found ${logs.length} events`);
         
         // Process events
         for (const log of logs) {
@@ -384,7 +378,6 @@ export class ContractInteractionFetcher extends EventEmitter {
           const batchResults = await Promise.all(batchPromises);
           transactions.push(...batchResults.filter(tx => tx !== null));
         }
-      }
       
       return {
         transactions,

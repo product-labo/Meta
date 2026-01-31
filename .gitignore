@@ -42,3 +42,9 @@ temp/
 contract/
 data/
 reports/
+test**.js
+**FIX.md
+**FIXES.md
+**COMPLETE.md
+**INTEGRATION.md
+**FINAL.md

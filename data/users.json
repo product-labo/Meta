@@ -516,11 +516,11 @@
       "defaultChain": "ethereum"
     },
     "createdAt": "2026-01-28T15:09:53.733Z",
-    "updatedAt": "2026-01-30T11:03:46.264Z",
+    "updatedAt": "2026-01-31T15:20:43.266Z",
     "usage.analysisCount": 1,
     "usage.monthlyAnalysisCount": 1,
     "usage.lastAnalysis": "2026-01-29T16:12:55.043Z",
-    "lastLogin": "2026-01-30T11:03:46.263Z"
+    "lastLogin": "2026-01-31T15:20:43.265Z"
   },
   {
     "id": "test-user-sync-123",
