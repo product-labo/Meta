@@ -582,13 +582,13 @@
         "isIndexed": true,
         "indexingProgress": 100,
         "lastAnalysisId": "ddd3f613-c008-419a-b2de-a0ee122e6b67",
-        "lastUpdate": "2026-01-30T16:40:03.383Z",
+        "lastUpdate": "2026-01-31T13:33:53.001Z",
         "currentStep": "Finalizing results",
         "continuousSync": false,
         "hasErrors": false,
-        "continuousSyncStopped": "2026-01-30T16:39:22.704Z",
+        "continuousSyncStopped": "2026-01-31T13:33:44.994Z",
         "completionReason": "normal-completion",
-        "continuousSyncStarted": "2026-01-30T16:38:05.491Z"
+        "continuousSyncStarted": "2026-01-31T13:32:04.338Z"
       }
     },
     "preferences": {
@@ -599,6 +599,10 @@
       "defaultChain": "ethereum"
     },
     "createdAt": "2026-01-30T13:36:41.132Z",
-    "updatedAt": "2026-01-30T16:40:03.383Z"
+    "updatedAt": "2026-01-31T13:46:40.882Z",
+    "lastLogin": "2026-01-31T13:31:34.282Z",
+    "usage.analysisCount": 1,
+    "usage.monthlyAnalysisCount": 1,
+    "usage.lastAnalysis": "2026-01-31T13:46:40.880Z"
   }
 ]
